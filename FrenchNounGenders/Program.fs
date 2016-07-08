@@ -6,7 +6,10 @@ open Calculations
 let main argv =
     runAlgorithm alwaysReturnMasculine "Always masculine"
     runAlgorithm alwaysReturnFeminine "Always feminine"
-    runAlgorithm simplifiedListOfEndings "Simplified list of endings"
+    runAlgorithm vowelsAndConsonents "Vowels and consonents"
+    runAlgorithm perLetter "Per letter"
+    runAlgorithm frenchTogether "French together"
+    runAlgorithm fluentU "Fluent u"
 
     printfn "\ndone!"
     ignore (Console.ReadLine())

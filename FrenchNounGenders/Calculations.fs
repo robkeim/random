@@ -7,10 +7,14 @@ open FrenchNouns
 open Parsers
 open Types
 
-let nounList : Noun list =
+let rawNounList : Noun list =
     match run pInput rawNounList with
         | Success(result, _, _) -> result
         | Failure(errorMsg, _, _) -> raise (System.Exception("Invalid input list of words"))
+
+let nounList =
+    rawNounList
+        |> List.filter (fun noun -> System.Text.RegularExpressions.Regex.Match(noun.Word, ".*$").Success)
 
 let wordList : string list =
     nounList

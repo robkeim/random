@@ -19,7 +19,7 @@ namespace GetGenderFromDictionary
             {
                 ServicePointManager.DefaultConnectionLimit = 256;
 
-                var words = System.IO.File.ReadAllLines(@".\FrenchWords.txt");
+                var words = File.ReadAllLines(@".\FrenchWords.txt");
 
                 foreach (var word in words)
                 {
@@ -37,7 +37,7 @@ namespace GetGenderFromDictionary
                 foreach (var noun in Nouns.OrderBy(n => n))
                 {
                     Console.WriteLine(noun);
-                    streamWriter.WriteAsync(noun);
+                    streamWriter.WriteLine(noun);
                 }
             }
 
