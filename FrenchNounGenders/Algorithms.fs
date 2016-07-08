@@ -3,17 +3,6 @@
 open System.Text.RegularExpressions
 open Types
 
-let alwaysReturnOneGender word gender =
-    { Word=word; Gender=gender }
-
-// Always return masculine
-let alwaysReturnMasculine word =
-    alwaysReturnOneGender word Masculine
-
-// Always return feminine
-let alwaysReturnFeminine word =
-    alwaysReturnOneGender word Feminine
-
 let (|RegexMatch|_|) pattern input =
    match Regex.Match(input, "^" + pattern + "$").Success with
    | true -> Some true
@@ -24,6 +13,14 @@ let (|EndsWithRegexMatch|_|) pattern input =
    | true -> Some true
    | _ -> None
 
+// Always return masculine
+let alwaysReturnMasculine word =
+    Masculine
+
+// Always return feminine
+let alwaysReturnFeminine word =
+    Feminine
+
 // Rules for only feminine words from "A simplified list of endings" on this site:
 // https://frenchtogether.com/french-nouns-gender/
 // Feminine noun endings
@@ -33,10 +30,10 @@ let (|EndsWithRegexMatch|_|) pattern input =
 // - Most words with other endings are masculine.
 let simplifiedListOfEndings word = 
     match word with
-    | EndsWithRegexMatch "age" _ -> { Word=word; Gender=Masculine }
-    | EndsWithRegexMatch "ege" _ -> { Word=word; Gender=Masculine }
-    | EndsWithRegexMatch "é" _ -> { Word=word; Gender=Masculine }
-    | EndsWithRegexMatch "isme" _ -> { Word=word; Gender=Masculine }
-    | EndsWithRegexMatch "e" _ -> { Word=word; Gender=Feminine }
-    | EndsWithRegexMatch "ion" _ -> { Word=word; Gender=Feminine }
-    | _ -> { Word=word; Gender=Masculine }
+    | EndsWithRegexMatch "age" _ -> Masculine
+    | EndsWithRegexMatch "ege" _ -> Masculine
+    | EndsWithRegexMatch "é" _ -> Masculine
+    | EndsWithRegexMatch "isme" _ -> Masculine
+    | EndsWithRegexMatch "e" _ -> Feminine
+    | EndsWithRegexMatch "ion" _ -> Feminine
+    | _ -> Masculine

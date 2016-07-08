@@ -38,10 +38,14 @@ let printResult title num total =
     let percentage = percentage num total
     printfn "    %s %.2f%% (%i / %i)" title percentage num total
 
-let getMatches (algorithm : string -> Noun) = 
+let getNounForWord word (algorithm : string -> Gender) =
+    let gender = algorithm word
+    { Word=word; Gender=gender }
+
+let getMatches (algorithm : string -> Gender) = 
     let result : Noun list =
         wordList
-            |> Seq.map algorithm
+            |> Seq.map (fun word -> (getNounForWord word algorithm))
             |> Seq.toList
 
     let resultMap =
