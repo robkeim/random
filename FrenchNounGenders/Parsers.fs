@@ -9,7 +9,7 @@ let pWord : Parser<string, unit> =
 
 // Parser for gender (either m or f)
 let pGender : Parser<Gender, unit> =
-    (stringReturn "m" Masculin)
+    (stringReturn "m" Masculine)
     <|> (stringReturn "f" Feminine)
 
 // Parser for noun with the format word<TAB>gender

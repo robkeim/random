@@ -1,9 +1,12 @@
 ﻿open System
-open FrenchNouns
-open Parsers
+open Algorithms
+open Calculations
 
 [<EntryPoint>]
 let main argv =
-    printfn "done!"
+    runAlgorithm alwaysReturnMasculine "Always masculine"
+    runAlgorithm alwaysReturnFeminine "Always feminine"
+
+    printfn "\ndone!"
     ignore (Console.ReadLine())
     0

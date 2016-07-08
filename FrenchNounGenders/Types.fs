@@ -1,5 +1,5 @@
 ﻿module Types
 
-type Gender = Masculin | Feminine
+type Gender = Masculine | Feminine
 
 type Noun = { Word: string; Gender: Gender }

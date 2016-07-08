@@ -2,7 +2,7 @@
 
 // The nouns in this list were taken from the following site and represent the most commonly used ones
 // http://www.memrise.com/course/131111/5000-most-common-french-words-2/
-let nounList = 
+let rawNounList = 
     "abandon	m
 abbé	m
 abord	m

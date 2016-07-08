@@ -56,12 +56,14 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <None Include="App.config" />
+    <Content Include="packages.config" />
     <Compile Include="FrenchNouns.fs" />
     <Compile Include="Types.fs" />
     <Compile Include="Parsers.fs" />
+    <Compile Include="Algorithms.fs" />
+    <Compile Include="Calculations.fs" />
     <Compile Include="Program.fs" />
-    <None Include="App.config" />
-    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FParsec">
