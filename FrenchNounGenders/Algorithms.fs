@@ -15,8 +15,12 @@ let alwaysReturnFeminine word =
     alwaysReturnOneGender word Feminine
 
 let (|RegexMatch|_|) pattern input =
-   let m = Regex.Match(input, "^" + pattern + "$")
    match Regex.Match(input, "^" + pattern + "$").Success with
+   | true -> Some true
+   | _ -> None
+
+let (|EndsWithRegexMatch|_|) pattern input =
+   match Regex.Match(input, pattern + "$").Success with
    | true -> Some true
    | _ -> None
 
@@ -29,10 +33,10 @@ let (|RegexMatch|_|) pattern input =
 // - Most words with other endings are masculine.
 let simplifiedListOfEndings word = 
     match word with
-    | RegexMatch ".*age" _ -> { Word=word; Gender=Masculine }
-    | RegexMatch ".*ege" _ -> { Word=word; Gender=Masculine }
-    | RegexMatch ".*é" _ -> { Word=word; Gender=Masculine }
-    | RegexMatch ".*isme" _ -> { Word=word; Gender=Masculine }
-    | RegexMatch ".*e" _ -> { Word=word; Gender=Feminine }
-    | RegexMatch ".*ion" _ -> { Word=word; Gender=Feminine }
+    | EndsWithRegexMatch "age" _ -> { Word=word; Gender=Masculine }
+    | EndsWithRegexMatch "ege" _ -> { Word=word; Gender=Masculine }
+    | EndsWithRegexMatch "é" _ -> { Word=word; Gender=Masculine }
+    | EndsWithRegexMatch "isme" _ -> { Word=word; Gender=Masculine }
+    | EndsWithRegexMatch "e" _ -> { Word=word; Gender=Feminine }
+    | EndsWithRegexMatch "ion" _ -> { Word=word; Gender=Feminine }
     | _ -> { Word=word; Gender=Masculine }
