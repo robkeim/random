@@ -14,15 +14,26 @@ namespace GetGenderFromDictionary
         private static readonly ConcurrentBag<string> Nouns = new ConcurrentBag<string>();
         static void Main(string[] args)
         {
-            ServicePointManager.DefaultConnectionLimit = 256;
-
-            var words = System.IO.File.ReadAllLines(@".\FrenchWords.txt");
-            
-            ProcessWords(words, 20).Wait();
-
-            foreach (var word in Nouns.OrderBy(n => n))
+            try
             {
-                Console.WriteLine(word);
+                ServicePointManager.DefaultConnectionLimit = 256;
+
+                var words = System.IO.File.ReadAllLines(@".\FrenchWords.txt");
+
+                foreach (var word in words)
+                {
+                    ProcessWord(word).Wait();
+                    System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1));
+                }
+
+                foreach (var word in Nouns.OrderBy(n => n))
+                {
+                    Console.WriteLine(word);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Exception={e}");
             }
 
             Console.WriteLine("\ndone!");
@@ -59,6 +70,7 @@ namespace GetGenderFromDictionary
 
         private static readonly Regex MasculineRegex = new Regex(">Nom masculin", RegexOptions.Compiled);
         private static readonly Regex FeminineRegex = new Regex(">Nom féminin", RegexOptions.Compiled);
+        private static readonly Regex ThrottledRegex = new Regex("Limite de connections atteinte, veuillez réessayer plus tard", RegexOptions.Compiled);
 
         private static async Task ProcessWord(string word)
         {
@@ -88,6 +100,19 @@ namespace GetGenderFromDictionary
                         Console.WriteLine($"{Nouns.Count} nouns found so far");
                     }
                 }
+                else if (ThrottledRegex.Match(result).Success)
+                {
+                    throw new InvalidOperationException("Getting throttled :(");
+                }
+                else
+                {
+                    Console.WriteLine($"{word}\tnone");
+                }
+            }
+            catch (InvalidOperationException)
+            {
+                // Ensure throttling gets bubbled up so we kill the program
+                throw;
             }
             catch (Exception e)
             {
