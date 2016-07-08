@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FrenchNounGenders", "FrenchNounGenders.fsproj", "{8A0BA6C2-8C79-4969-8AAF-5A9E5F99A572}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetGenderFromDictionary", "..\GetGenderFromDictionary\GetGenderFromDictionary.csproj", "{5221774D-A837-4864-BBF0-4ED3519C5273}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{8A0BA6C2-8C79-4969-8AAF-5A9E5F99A572}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A0BA6C2-8C79-4969-8AAF-5A9E5F99A572}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A0BA6C2-8C79-4969-8AAF-5A9E5F99A572}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5221774D-A837-4864-BBF0-4ED3519C5273}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5221774D-A837-4864-BBF0-4ED3519C5273}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5221774D-A837-4864-BBF0-4ED3519C5273}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5221774D-A837-4864-BBF0-4ED3519C5273}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

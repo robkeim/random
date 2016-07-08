@@ -68,3 +68,6 @@ let runAlgorithm algorithm title =
     printResult "Overall  " numCorrect (numNouns nounList)
     printResult "Masculine" numMasculineCorrect (numMasculineNouns nounList)
     printResult "Feminine " numFeminineCorrect (numFeminineNouns nounList)
+
+let runAlgorithmForOneword algorithm word =
+    printfn "%s -> %A" word (algorithm word)
