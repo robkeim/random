@@ -2,15 +2,13 @@
 
 open Types
 
-// Always return one gender
-let alwaysReturnOneGender list gender =
-    list
-        |> List.map (fun word -> {Word=word; Gender=gender})
+let alwaysReturnOneGender word gender =
+    { Word=word; Gender=gender }
 
 // Always return masculine
-let alwaysReturnMasculine list =
-    alwaysReturnOneGender list Masculine
+let alwaysReturnMasculine word =
+    alwaysReturnOneGender word Masculine
 
 // Always return feminine
-let alwaysReturnFeminine list =
-    alwaysReturnOneGender list Feminine
+let alwaysReturnFeminine word =
+    alwaysReturnOneGender word Feminine
