@@ -3,12 +3,12 @@
 open System.Text.RegularExpressions
 open Types
 
-let (|RegexMatch|_|) pattern input =
+let private (|RegexMatch|_|) pattern input =
    match Regex.Match(input, "^" + pattern + "$").Success with
    | true -> Some true
    | _ -> None
 
-let (|EndsWithRegexMatch|_|) pattern input =
+let private (|EndsWithRegexMatch|_|) pattern input =
    match Regex.Match(input, pattern + "$").Success with
    | true -> Some true
    | _ -> None

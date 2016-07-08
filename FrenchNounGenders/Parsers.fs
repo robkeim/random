@@ -4,16 +4,16 @@ open FParsec
 open Types
 
 // Parser for word
-let pWord : Parser<string, unit> =
+let private pWord : Parser<string, unit> =
     manySatisfy ((<>) '\t')
 
 // Parser for gender (either m or f)
-let pGender : Parser<Gender, unit> =
+let private pGender : Parser<Gender, unit> =
     (stringReturn "m" Masculine)
     <|> (stringReturn "f" Feminine)
 
 // Parser for noun with the format word<TAB>gender
-let pNoun : Parser<Noun, unit> =
+let private pNoun : Parser<Noun, unit> =
     pipe3
         pWord
         tab

@@ -1,52 +1,51 @@
 ﻿module Calculations
 
 open System
-open Algorithms
 open FParsec
 open FrenchNouns
 open Parsers
 open Types
 
-let rawNounList : Noun list =
+let private rawNounList : Noun list =
     match run pInput rawNounList with
         | Success(result, _, _) -> result
         | Failure(errorMsg, _, _) -> raise (System.Exception("Invalid input list of words"))
 
-let nounList =
+let private nounList =
     rawNounList
         |> List.filter (fun noun -> System.Text.RegularExpressions.Regex.Match(noun.Word, ".*$").Success)
 
-let wordList : string list =
+let private wordList : string list =
     nounList
         |> List.map (fun noun -> noun.Word)
 
 // Calculate statistics
-let numNouns list =
+let private numNouns list =
     List.length list
 
-let numNounsPerGender list gender =
+let private numNounsPerGender list gender =
     list
         |> List.filter (fun noun -> noun.Gender = gender)
         |> List.length
 
-let numMasculineNouns list =
+let private numMasculineNouns list =
     numNounsPerGender list Masculine
 
-let numFeminineNouns list =
+let private numFeminineNouns list =
     numNounsPerGender list Feminine
 
-let percentage num total =
+let private percentage num total =
     Math.Round((float)num / (float)total * 100., 2)
 
-let printResult title num total =
+let private printResult title num total =
     let percentage = percentage num total
     printfn "    %s %.2f%% (%i / %i)" title percentage num total
 
-let getNounForWord word (algorithm : string -> Gender) =
+let private getNounForWord word (algorithm : string -> Gender) =
     let gender = algorithm word
     { Word=word; Gender=gender }
 
-let getMatches (algorithm : string -> Gender) = 
+let private getMatches (algorithm : string -> Gender) = 
     let result : Noun list =
         wordList
             |> Seq.map (fun word -> (getNounForWord word algorithm))
