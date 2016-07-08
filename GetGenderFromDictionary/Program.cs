@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -25,15 +26,19 @@ namespace GetGenderFromDictionary
                     ProcessWord(word).Wait();
                     System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1));
                 }
-
-                foreach (var word in Nouns.OrderBy(n => n))
-                {
-                    Console.WriteLine(word);
-                }
             }
             catch (Exception e)
             {
                 Console.WriteLine($"Exception={e}");
+            }
+
+            using (var streamWriter = new StreamWriter(@"c:\users\rkeim\desktop\output.txt"))
+            {
+                foreach (var noun in Nouns.OrderBy(n => n))
+                {
+                    Console.WriteLine(noun);
+                    streamWriter.WriteAsync(noun);
+                }
             }
 
             Console.WriteLine("\ndone!");
