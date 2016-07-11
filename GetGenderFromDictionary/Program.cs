@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -12,19 +11,36 @@ namespace GetGenderFromDictionary
 {
     class Program
     {
-        private static readonly ConcurrentBag<string> Nouns = new ConcurrentBag<string>();
+        private static readonly ConcurrentDictionary<string, string> Words = new ConcurrentDictionary<string, string>();
+        private static string PreviousWord = "";
+
         static void Main(string[] args)
         {
             try
             {
                 ServicePointManager.DefaultConnectionLimit = 256;
 
-                var words = File.ReadAllLines(@".\FrenchWords.txt");
+                var alreadyProcessedWords = File.ReadAllLines(@"c:\users\rkeim\desktop\output.txt");
 
-                foreach (var word in words)
+                foreach (var alreadyProcessedWord in alreadyProcessedWords)
                 {
-                    ProcessWord(word).Wait();
-                    System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1));
+                    var split = alreadyProcessedWord.Split('\t');
+                    Words[split[0]] = split[1];
+                }
+
+                var words = File.ReadAllLines(@".\FrenchWords.txt")
+                    .Except(Words.Keys)
+                    .OrderBy(w => Guid.NewGuid());
+
+                Random random = new Random();
+
+                using (var streamWriter = new StreamWriter(@"c:\users\rkeim\desktop\output.txt", append: true))
+                {
+                    foreach (var word in words)
+                    {
+                        ProcessWordAsync(word, streamWriter).Wait();
+                        System.Threading.Thread.Sleep(TimeSpan.FromSeconds(random.Next(2, 10)));
+                    }
                 }
             }
             catch (Exception e)
@@ -32,78 +48,42 @@ namespace GetGenderFromDictionary
                 Console.WriteLine($"Exception={e}");
             }
 
-            using (var streamWriter = new StreamWriter(@"c:\users\rkeim\desktop\output.txt"))
-            {
-                foreach (var noun in Nouns.OrderBy(n => n))
-                {
-                    Console.WriteLine(noun);
-                    streamWriter.WriteLine(noun);
-                }
-            }
-
             Console.WriteLine("\ndone!");
             Console.ReadLine();
-        }
-
-        // The site throttled my traffic almost immediately after I started sending requests, so I'm not going to be able
-        // to run calls in parallel
-        private static async Task ProcessWords(IEnumerable<string> words, int numConcurrentCalls)
-        {
-            var tasks = words.Select(ProcessWord);
-
-            var running = new LinkedList<Task>();
-
-            foreach (var task in tasks)
-            {
-                running.AddLast(task);
-
-                // Restrict only 
-                if (running.Count < numConcurrentCalls)
-                {
-                    continue;
-                }
-
-                await Task.WhenAny(running);
-
-                var finished = running.First(t => t.IsCompleted);
-                await finished;
-                running.Remove(finished);
-            }
-
-            await Task.WhenAll(running);
         }
 
         private static readonly Regex MasculineRegex = new Regex(">Nom masculin", RegexOptions.Compiled);
         private static readonly Regex FeminineRegex = new Regex(">Nom féminin", RegexOptions.Compiled);
         private static readonly Regex ThrottledRegex = new Regex("Limite de connections atteinte, veuillez réessayer plus tard", RegexOptions.Compiled);
 
-        private static async Task ProcessWord(string word)
+        private static async Task ProcessWordAsync(string word, StreamWriter streamWriter)
         {
             try
             {
                 var url = new Uri($"http://www.le-dictionnaire.com/definition.php?mot={RemoveAccents(word)}");
                 var client = new WebClient();
+
+                // Add headers to simulate the web reqeuests that are done
+                client.Headers.Add(HttpRequestHeader.Host, "www.le-dictionnaire.com");
+                client.Headers.Add("Upgrade-Insecure-Requests", "1");
+                client.Headers.Add(HttpRequestHeader.UserAgent, "Mozilla / 5.0(Windows NT 10.0; WOW64) AppleWebKit / 537.36(KHTML, like Gecko) Chrome / 51.0.2704.103 Safari / 537.36");
+                client.Headers.Add(HttpRequestHeader.Accept, "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+                client.Headers.Add(HttpRequestHeader.Referer, $"http://www.le-dictionnaire.com/definition.php?mot={PreviousWord}");
+                client.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip, deflate, sdch");
+                client.Headers.Add(HttpRequestHeader.AcceptLanguage, "en-US,en;q=0.8,fr-FR;q=0.6,fr;q=0.4");
+
                 var result = await client.DownloadStringTaskAsync(url);
+
+                // This is used to simulate the real call pattern on the web (not sure why they're issuing this request on every lookup)
+                await client.DownloadStringTaskAsync(new Uri("http://www.le-dictionnaire.com/definition.php?cookiechoices.js"));
 
                 if (MasculineRegex.Match(result).Success)
                 {
-                    Nouns.Add($"{word}\tm");
-
-                    Console.WriteLine($"{word}\tm");
-                    if (Nouns.Count % 100 == 0)
-                    {
-                        Console.WriteLine($"{Nouns.Count} nouns found so far");
-                    }
+                    ProcessWord(word, "m", streamWriter);
                 }
                 else if (FeminineRegex.Match(result).Success)
                 {
-                    Nouns.Add($"{word}\tf");
-
-                    Console.WriteLine($"{word}\tf");
-                    if (Nouns.Count % 100 == 0)
-                    {
-                        Console.WriteLine($"{Nouns.Count} nouns found so far");
-                    }
+                    ProcessWord(word, "f", streamWriter);
                 }
                 else if (ThrottledRegex.Match(result).Success)
                 {
@@ -111,8 +91,10 @@ namespace GetGenderFromDictionary
                 }
                 else
                 {
-                    Console.WriteLine($"{word}\tnone");
+                    ProcessWord(word, "none", streamWriter);
                 }
+
+                PreviousWord = word;
             }
             catch (InvalidOperationException)
             {
@@ -122,6 +104,20 @@ namespace GetGenderFromDictionary
             catch (Exception e)
             {
                 Console.WriteLine($"Word={word};Exception={e}");
+            }
+        }
+
+        private static void ProcessWord(string word, string value, StreamWriter streamWriter)
+        {
+            Words[word] = value;
+
+            var lineToWrite = $"{word}\t{value}";
+            Console.WriteLine(lineToWrite);
+            streamWriter.WriteLine(lineToWrite);
+            streamWriter.Flush();
+            if (Words.Count % 100 == 0)
+            {
+                Console.WriteLine($"{Words.Count} nouns found so far");
             }
         }
 
