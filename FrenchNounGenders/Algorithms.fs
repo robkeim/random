@@ -21,8 +21,8 @@ let alwaysReturnMasculine word =
 let alwaysReturnFeminine word =
     Feminine
 
-// Assign all consonents to be masculine and all vowels to be feminine
-let vowelsAndConsonents word =
+// Assign all consonants to be masculine and all vowels to be feminine
+let vowelsAndConsonants word =
     match word with
     | EndsWithRegexMatch "[bcdfghjklmnpqrstvwxyz]" _ -> Masculine
     | EndsWithRegexMatch "[aeéiouû]" _ -> Feminine
