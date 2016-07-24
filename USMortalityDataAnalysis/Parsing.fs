@@ -129,7 +129,13 @@ let private parseMethodOfDisposition string =
     | "E" -> MethodOfDisposition.Unknown // Not in the spec but shows up in the data
     | _ -> raise (Exception("Unexpected value for MethodOfDisposition"))
 
-// TODO: Autopsy
+let private parseAutopsy (string : string) =
+    match string.ToUpper() with
+    | "Y" -> Autopsy.Yes
+    | "N" -> Autopsy.No
+    | "U" -> Autopsy.Unknown
+    | _ -> raise (Exception("Unexpected value for Autopsy"))
+
 // TODO: ActivityCode
 // TODO: PlaceOfInjury
 // TODO: Icd10Code
@@ -171,7 +177,7 @@ let private parseDeathRecord (line : string) : Option<DeathRecord> =
     // TODO: InjuryAtWork
     // TODO: MannerOfDeath
     let methodOfDisposition = parseMethodOfDisposition fields.[20]
-    // TODO: Autopsy
+    let autopsy = parseAutopsy fields.[21]
     // TODO: ActivityCode
     // TODO: PlaceOfInjury
     // TODO: Icd10Code
@@ -212,7 +218,7 @@ let private parseDeathRecord (line : string) : Option<DeathRecord> =
             // TODO: InjuryAtWork
             // TODO: MannerOfDeath
             MethodOfDisposition = methodOfDisposition
-            // TODO: Autopsy
+            Autopsy = autopsy
             // TODO: ActivityCode
             // TODO: PlaceOfInjury
             // TODO: Icd10Code

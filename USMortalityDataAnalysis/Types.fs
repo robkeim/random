@@ -83,7 +83,11 @@ type MethodOfDisposition =
     | Other
     | Unknown
 
-// TODO: Autopsy
+type Autopsy =
+    Yes
+    | No
+    | Unknown
+
 // TODO: ActivityCode
 // TODO: PlaceOfInjury
 // TODO: Icd10Code
@@ -124,7 +128,7 @@ type DeathRecord =
         // TODO: InjuryAtWork
         // TODO: MannerOfDeath
         MethodOfDisposition: MethodOfDisposition
-        // TODO: Autopsy
+        Autopsy: Autopsy
         // TODO: ActivityCode
         // TODO: PlaceOfInjury
         // TODO: Icd10Code

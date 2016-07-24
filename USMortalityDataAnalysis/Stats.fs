@@ -94,6 +94,17 @@ let private PrintMethodsOfDisposition deathRecords =
         methodsOfDispositionMap
         [| MethodOfDisposition.Buriel; MethodOfDisposition.Cremation; MethodOfDisposition.Other; MethodOfDisposition.Unknown |]
 
+let private PrintAutopsy deathRecords =
+    let autopsyMap =
+        MapCounts
+            (fun record -> record.Autopsy)
+            deathRecords
+
+    printfn "\nBreakdown by autopsy:"
+    PrintCounts
+        autopsyMap
+        [| Autopsy.Yes; Autopsy.No; Autopsy.Unknown |]
+
 let GetStats deathRecords : unit =
     let numRecords = Array.length deathRecords
     printfn "Total records: %i" numRecords
@@ -101,4 +112,5 @@ let GetStats deathRecords : unit =
     // PrintMaritalStatuses deathRecords
     // PrintSexes deathRecords
     // PrintAgeOfDeaths deathRecords
-    PrintMethodsOfDisposition deathRecords
+    // PrintMethodsOfDisposition deathRecords
+    PrintAutopsy deathRecords
