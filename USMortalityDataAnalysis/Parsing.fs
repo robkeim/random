@@ -5,6 +5,9 @@ open System.IO
 open FParsec
 open Types
 
+//let private file =  @"C:\Users\rkeim\OneDrive\code\random\USMortalityDataAnalysis\OriginalData\DeathRecords_TestSet.csv"
+let private file =  @"C:\Users\rkeim\OneDrive\code\random\USMortalityDataAnalysis\OriginalData\DeathRecords.csv"
+
 let private pWord : Parser<string, unit> =
     manySatisfy ((<>) ',')
 
@@ -152,6 +155,6 @@ let private parseDeathRecord (line : string) : Option<DeathRecord> =
     Some deathRecord
     
 let GetDeathRecords : DeathRecord array =
-    File.ReadAllLines @"C:\Users\rkeim\OneDrive\code\random\USMortalityDataAnalysis\OriginalData\DeathRecords.csv"
+    File.ReadAllLines file
     |> Array.tail // Remove the first line which describes the format of the file
     |> Array.choose parseDeathRecord

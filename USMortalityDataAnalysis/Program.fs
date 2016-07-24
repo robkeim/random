@@ -3,13 +3,15 @@
 
 open System
 open Parsing
+open Stats
 
 [<EntryPoint>]
 let main argv =
     let deathRecords = GetDeathRecords
 
-    deathRecords
-    |> Array.iter (fun p -> printfn "%A" p)
+    GetStats deathRecords
+//    deathRecords
+//    |> Array.iter (fun p -> printfn "%A" p)
 
     printfn "\ndone!"
     ignore (Console.ReadLine())
