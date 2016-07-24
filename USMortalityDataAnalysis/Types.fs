@@ -1,34 +1,5 @@
 ﻿module Types
 
-// The following fields are still to be parsed:
-// - AgeRecode52
-// - AgeRecode27
-// - AgeRecode12
-// - InfantAgeRecode22
-// - PlaceOfDeathAndDecedentsStatus
-// - DayOfWeekOfDeath
-// - CurrentDataYear
-// - InjuryAtWork
-// - MannerOfDeath
-// - MethodOfDisposition
-// - Autopsy
-// - ActivityCode
-// - PlaceOfInjury
-// - Icd10Code
-// - CauseRecode358
-// - CauseRecode113
-// - InfantCauseRecode130
-// - CauseRecode39
-// - NumberOfEntityAxisConditions
-// - NumberOfRecordAxisConditions
-// - Race
-// - BridgedRaceFlag
-// - RaceImputationFlag
-// - RaceRecode3
-// - RaceRecode5
-// - HispanicOrigin
-// - HispanicOriginRaceRecode
-
 type ResidentStatus =
     Residents
     | IntrastateResidents
@@ -101,6 +72,34 @@ type MaritalStatus =
     | Divorced
     | Unknown
 
+// TODO: AgeRecode52
+// TODO: AgeRecode27
+// TODO: AgeRecode12
+// TODO: InfantAgeRecode22
+// TODO: PlaceOfDeathAndDecedentsStatus
+// TODO: DayOfWeekOfDeath
+// TODO: CurrentDataYear
+// TODO: InjuryAtWork
+// TODO: MannerOfDeath
+// TODO: MethodOfDisposition
+// TODO: Autopsy
+// TODO: ActivityCode
+// TODO: PlaceOfInjury
+// TODO: Icd10Code
+// TODO: CauseRecode358
+// TODO: CauseRecode113
+// TODO: InfantCauseRecode130
+// TODO: CauseRecode39
+// TODO: NumberOfEntityAxisConditions
+// TODO: NumberOfRecordAxisConditions
+// TODO: Race
+// TODO: BridgedRaceFlag
+// TODO: RaceImputationFlag
+// TODO: RaceRecode3
+// TODO: RaceRecode5
+// TODO: HispanicOrigin
+// TODO: HispanicOriginRaceRecode
+
 type DeathRecord =
     {
         Id : int;
@@ -119,4 +118,31 @@ type DeathRecord =
         // TODO: InfantAgeRecode22
         // TODO: PlaceOfDeathAndDecedentsStatus
         MaritalStatus: MaritalStatus;
+        // TODO: AgeRecode52
+        // TODO: AgeRecode27
+        // TODO: AgeRecode12
+        // TODO: InfantAgeRecode22
+        // TODO: PlaceOfDeathAndDecedentsStatus
+        // TODO: DayOfWeekOfDeath
+        // TODO: CurrentDataYear
+        // TODO: InjuryAtWork
+        // TODO: MannerOfDeath
+        // TODO: MethodOfDisposition
+        // TODO: Autopsy
+        // TODO: ActivityCode
+        // TODO: PlaceOfInjury
+        // TODO: Icd10Code
+        // TODO: CauseRecode358
+        // TODO: CauseRecode113
+        // TODO: InfantCauseRecode130
+        // TODO: CauseRecode39
+        // TODO: NumberOfEntityAxisConditions
+        // TODO: NumberOfRecordAxisConditions
+        // TODO: Race
+        // TODO: BridgedRaceFlag
+        // TODO: RaceImputationFlag
+        // TODO: RaceRecode3
+        // TODO: RaceRecode5
+        // TODO: HispanicOrigin
+        // TODO: HispanicOriginRaceRecode
     }

@@ -113,6 +113,34 @@ let private parseMaritalStatus string =
     | "U" -> MaritalStatus.Unknown
     | _ -> raise (Exception("Unexpected value for MaritalStatus"))
 
+// TODO: AgeRecode52
+// TODO: AgeRecode27
+// TODO: AgeRecode12
+// TODO: InfantAgeRecode22
+// TODO: PlaceOfDeathAndDecedentsStatus
+// TODO: DayOfWeekOfDeath
+// TODO: CurrentDataYear
+// TODO: InjuryAtWork
+// TODO: MannerOfDeath
+// TODO: MethodOfDisposition
+// TODO: Autopsy
+// TODO: ActivityCode
+// TODO: PlaceOfInjury
+// TODO: Icd10Code
+// TODO: CauseRecode358
+// TODO: CauseRecode113
+// TODO: InfantCauseRecode130
+// TODO: CauseRecode39
+// TODO: NumberOfEntityAxisConditions
+// TODO: NumberOfRecordAxisConditions
+// TODO: Race
+// TODO: BridgedRaceFlag
+// TODO: RaceImputationFlag
+// TODO: RaceRecode3
+// TODO: RaceRecode5
+// TODO: HispanicOrigin
+// TODO: HispanicOriginRaceRecode
+
 let private parseDeathRecord (line : string) : Option<DeathRecord> =
     let fields = parseLines line
 
@@ -132,6 +160,33 @@ let private parseDeathRecord (line : string) : Option<DeathRecord> =
     // TODO: InfantAgeRecode22
     // TODO: PlaceOfDeathAndDecedentsStatus
     let maritalStatus = parseMaritalStatus fields.[15]
+    // TODO: AgeRecode52
+    // TODO: AgeRecode27
+    // TODO: AgeRecode12
+    // TODO: InfantAgeRecode22
+    // TODO: PlaceOfDeathAndDecedentsStatus
+    // TODO: DayOfWeekOfDeath
+    // TODO: CurrentDataYear
+    // TODO: InjuryAtWork
+    // TODO: MannerOfDeath
+    // TODO: MethodOfDisposition
+    // TODO: Autopsy
+    // TODO: ActivityCode
+    // TODO: PlaceOfInjury
+    // TODO: Icd10Code
+    // TODO: CauseRecode358
+    // TODO: CauseRecode113
+    // TODO: InfantCauseRecode130
+    // TODO: CauseRecode39
+    // TODO: NumberOfEntityAxisConditions
+    // TODO: NumberOfRecordAxisConditions
+    // TODO: Race
+    // TODO: BridgedRaceFlag
+    // TODO: RaceImputationFlag
+    // TODO: RaceRecode3
+    // TODO: RaceRecode5
+    // TODO: HispanicOrigin
+    // TODO: HispanicOriginRaceRecode
 
     let deathRecord =
         {
