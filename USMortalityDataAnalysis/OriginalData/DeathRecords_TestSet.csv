@@ -1,0 +1,11 @@
+Id,ResidentStatus,Education1989Revision,Education2003Revision,EducationReportingFlag,MonthOfDeath,Sex,AgeType,Age,AgeSubstitutionFlag,AgeRecode52,AgeRecode27,AgeRecode12,InfantAgeRecode22,PlaceOfDeathAndDecedentsStatus,MaritalStatus,DayOfWeekOfDeath,CurrentDataYear,InjuryAtWork,MannerOfDeath,MethodOfDisposition,Autopsy,ActivityCode,PlaceOfInjury,Icd10Code,CauseRecode358,CauseRecode113,InfantCauseRecode130,CauseRecode39,NumberOfEntityAxisConditions,NumberOfRecordAxisConditions,Race,BridgedRaceFlag,RaceImputationFlag,RaceRecode3,RaceRecode5,HispanicOrigin,HispanicOriginRaceRecode
+1,1,0,2,1,1,M,1,87,0,43,23,11,0,4,M,4,2014,U,7,C,N,99,99,I64,238,70,0,24,1,1,1,0,0,1,1,100,6
+2,1,0,2,1,1,M,1,58,0,37,17,8,0,4,D,3,2014,U,7,C,N,99,99,I250,214,62,0,21,3,3,1,0,0,1,1,100,6
+3,1,0,7,1,1,F,1,75,0,41,21,10,0,4,W,2,2014,U,7,C,N,99,99,J449,267,86,0,28,2,2,1,0,0,1,1,100,6
+4,1,0,6,1,1,M,1,74,0,40,20,9,0,6,D,1,2014,U,7,C,N,99,99,I48,228,68,0,22,3,3,1,0,0,1,1,100,6
+5,1,0,3,1,1,M,1,64,0,38,18,8,0,4,D,2,2014,U,7,C,N,99,99,I250,214,62,0,21,1,1,1,0,0,1,1,100,6
+6,1,0,5,1,1,F,1,93,0,44,24,11,0,6,W,4,2014,U,7,C,N,99,99,K137,280,111,0,37,5,5,1,0,0,1,1,100,6
+7,1,0,4,1,1,M,1,82,0,42,22,10,0,4,M,6,2014,U,7,C,N,99,99,I251,215,63,0,21,4,3,1,0,0,1,1,100,6
+8,1,0,4,1,1,M,1,55,0,37,17,8,0,7,S,6,2014,U,7,C,N,99,99,I250,214,62,0,21,2,2,2,1,0,3,2,100,7
+9,1,0,3,1,1,F,1,86,0,43,23,11,0,4,W,6,2014,U,7,C,N,99,99,F03,175,111,0,37,1,1,1,0,0,1,1,100,6
+10,1,0,3,1,1,M,1,23,0,30,10,4,0,7,S,4,2014,N,2,R,N,9,5,X72,429,125,0,40,3,3,1,0,0,1,1,100,6
