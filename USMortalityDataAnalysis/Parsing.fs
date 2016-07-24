@@ -123,7 +123,17 @@ let private parseInjuryAtWork string =
     | "U" -> InjuryAtWork.Unknown
     | _ -> raise (Exception("Unexpected value for InjuryAtWork"))
 
-// TODO: MannerOfDeath
+let private parseMannerOfDeath string =
+    match parseInt string with
+    | 1 -> MannerOfDeath.Accident
+    | 2 -> MannerOfDeath.Suicide
+    | 3 -> MannerOfDeath.Homicide
+    | 4 -> MannerOfDeath.PendingInvestigation
+    | 5 -> MannerOfDeath.CouldNotDetermine
+    | 6 -> MannerOfDeath.SelfInflicted
+    | 7 -> MannerOfDeath.Natural
+    | 0 -> MannerOfDeath.NotSpecified
+    | _ -> raise (Exception("Unexpected value for MannerOfDeath"))
 
 let private parseMethodOfDisposition string =
     match string with
@@ -182,7 +192,7 @@ let private parseDeathRecord (line : string) : Option<DeathRecord> =
     // TODO: DayOfWeekOfDeath
     // TODO: CurrentDataYear
     let injuryAtWork = parseInjuryAtWork fields.[18]
-    // TODO: MannerOfDeath
+    let mannerOfDeath = parseMannerOfDeath fields.[19]
     let methodOfDisposition = parseMethodOfDisposition fields.[20]
     let autopsy = parseAutopsy fields.[21]
     // TODO: ActivityCode
@@ -223,7 +233,7 @@ let private parseDeathRecord (line : string) : Option<DeathRecord> =
             // TODO: DayOfWeekOfDeath
             // TODO: CurrentDataYear
             InjuryAtWork = injuryAtWork
-            // TODO: MannerOfDeath
+            MannerOfDeath = mannerOfDeath
             MethodOfDisposition = methodOfDisposition
             Autopsy = autopsy
             // TODO: ActivityCode

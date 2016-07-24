@@ -21,7 +21,12 @@ let private PrintCounts map labels =
             map
 
     Array.iter
-        (fun label -> printfn "\t%A: %.2f%% (%i)" label (CalculatePercentage map.[label] numRecords) map.[label])
+        (fun label ->
+            let occurances =
+                match map.ContainsKey label with
+                | true -> map.[label]
+                | false -> 0
+            printfn "\t%A: %.2f%% (%i)" label (CalculatePercentage occurances numRecords) occurances)
         labels
 
 // Months
@@ -116,6 +121,26 @@ let private PrintInjuryAtWork deathRecords =
         injuryAtWorkMap
         [| InjuryAtWork.Yes; InjuryAtWork.No; InjuryAtWork.Unknown |]
 
+let private PrintMannerOfDeath deathRecords =
+    let mannerOfDeathMap =
+        MapCounts
+            (fun record -> record.MannerOfDeath)
+            deathRecords
+
+    printfn "\nBreakdown by manner of death:"
+    PrintCounts
+        mannerOfDeathMap
+        [|
+            MannerOfDeath.Accident
+            MannerOfDeath.Suicide
+            MannerOfDeath.Homicide
+            MannerOfDeath.PendingInvestigation
+            MannerOfDeath.CouldNotDetermine
+            MannerOfDeath.SelfInflicted
+            MannerOfDeath.Natural
+            MannerOfDeath.NotSpecified
+        |]
+
 let GetStats deathRecords : unit =
     let numRecords = Array.length deathRecords
     printfn "Total records: %i" numRecords
@@ -125,4 +150,5 @@ let GetStats deathRecords : unit =
     // PrintAgeOfDeaths deathRecords
     // PrintMethodsOfDisposition deathRecords
     // PrintAutopsy deathRecords
-    PrintInjuryAtWork deathRecords
+    // PrintInjuryAtWork deathRecords
+    PrintMannerOfDeath deathRecords

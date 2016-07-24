@@ -80,7 +80,15 @@ type InjuryAtWork =
     | No
     | Unknown
 
-// TODO: MannerOfDeath
+type MannerOfDeath =
+    Accident
+    | Suicide
+    | Homicide
+    | PendingInvestigation
+    | CouldNotDetermine
+    | SelfInflicted
+    | Natural
+    | NotSpecified
 
 type MethodOfDisposition =
     Buriel
@@ -131,7 +139,7 @@ type DeathRecord =
         // TODO: DayOfWeekOfDeath
         // TODO: CurrentDataYear
         InjuryAtWork: InjuryAtWork
-        // TODO: MannerOfDeath
+        MannerOfDeath: MannerOfDeath
         MethodOfDisposition: MethodOfDisposition
         Autopsy: Autopsy
         // TODO: ActivityCode
