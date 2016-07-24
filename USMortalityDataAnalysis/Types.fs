@@ -72,16 +72,17 @@ type MaritalStatus =
     | Divorced
     | Unknown
 
-// TODO: AgeRecode52
-// TODO: AgeRecode27
-// TODO: AgeRecode12
-// TODO: InfantAgeRecode22
-// TODO: PlaceOfDeathAndDecedentsStatus
 // TODO: DayOfWeekOfDeath
 // TODO: CurrentDataYear
 // TODO: InjuryAtWork
 // TODO: MannerOfDeath
-// TODO: MethodOfDisposition
+
+type MethodOfDisposition =
+    Buriel
+    | Cremation
+    | Other
+    | Unknown
+
 // TODO: Autopsy
 // TODO: ActivityCode
 // TODO: PlaceOfInjury
@@ -102,32 +103,27 @@ type MaritalStatus =
 
 type DeathRecord =
     {
-        Id : int;
+        Id : int
         ResidentStatus : ResidentStatus
         Education1989Revision : Education1989Revision
         Education2003Revision : Education2003Revision
         EducationReportingFlag : EducationReportingFlag
-        MonthOfDeath : int; // 1 -> January ... 12 -> December
-        Sex: Sex;
-        AgeType: AgeType;
-        Age: int;
-        AgeSubstitutionFlag: AgeSubstituionFlag;
+        MonthOfDeath : int // 1 -> January ... 12 -> December
+        Sex: Sex
+        AgeType: AgeType
+        Age: int
+        AgeSubstitutionFlag: AgeSubstituionFlag
         // TODO: AgeRecode52
         // TODO: AgeRecode27
         // TODO: AgeRecode12
         // TODO: InfantAgeRecode22
         // TODO: PlaceOfDeathAndDecedentsStatus
-        MaritalStatus: MaritalStatus;
-        // TODO: AgeRecode52
-        // TODO: AgeRecode27
-        // TODO: AgeRecode12
-        // TODO: InfantAgeRecode22
-        // TODO: PlaceOfDeathAndDecedentsStatus
+        MaritalStatus: MaritalStatus
         // TODO: DayOfWeekOfDeath
         // TODO: CurrentDataYear
         // TODO: InjuryAtWork
         // TODO: MannerOfDeath
-        // TODO: MethodOfDisposition
+        MethodOfDisposition: MethodOfDisposition
         // TODO: Autopsy
         // TODO: ActivityCode
         // TODO: PlaceOfInjury

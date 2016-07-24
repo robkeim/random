@@ -66,7 +66,7 @@ let private parseEducation2003Revision string =
     | 7 -> Education2003Revision.MastersDegree
     | 8 -> Education2003Revision.DoctorateOrProfessionalDegree
     | 9 -> Education2003Revision.Unknown
-    | 0 -> Education2003Revision.Unknown // This wasn't in the spec, but I found it in the data
+    | 0 -> Education2003Revision.Unknown // Not in the spec but shows up in the data
     | _ -> raise (Exception("Unexpected value for Education2003Revision"))
 
 let private parseEducationReportingFlag string =
@@ -113,16 +113,22 @@ let private parseMaritalStatus string =
     | "U" -> MaritalStatus.Unknown
     | _ -> raise (Exception("Unexpected value for MaritalStatus"))
 
-// TODO: AgeRecode52
-// TODO: AgeRecode27
-// TODO: AgeRecode12
-// TODO: InfantAgeRecode22
-// TODO: PlaceOfDeathAndDecedentsStatus
 // TODO: DayOfWeekOfDeath
 // TODO: CurrentDataYear
 // TODO: InjuryAtWork
 // TODO: MannerOfDeath
-// TODO: MethodOfDisposition
+
+let private parseMethodOfDisposition string =
+    match string with
+    | "B" -> MethodOfDisposition.Buriel
+    | "C" -> MethodOfDisposition.Cremation
+    | "O" -> MethodOfDisposition.Other
+    | "U" -> MethodOfDisposition.Unknown
+    | "R" -> MethodOfDisposition.Unknown // Not in the spec but shows up in the data
+    | "D" -> MethodOfDisposition.Unknown // Not in the spec but shows up in the data
+    | "E" -> MethodOfDisposition.Unknown // Not in the spec but shows up in the data
+    | _ -> raise (Exception("Unexpected value for MethodOfDisposition"))
+
 // TODO: Autopsy
 // TODO: ActivityCode
 // TODO: PlaceOfInjury
@@ -160,16 +166,11 @@ let private parseDeathRecord (line : string) : Option<DeathRecord> =
     // TODO: InfantAgeRecode22
     // TODO: PlaceOfDeathAndDecedentsStatus
     let maritalStatus = parseMaritalStatus fields.[15]
-    // TODO: AgeRecode52
-    // TODO: AgeRecode27
-    // TODO: AgeRecode12
-    // TODO: InfantAgeRecode22
-    // TODO: PlaceOfDeathAndDecedentsStatus
     // TODO: DayOfWeekOfDeath
     // TODO: CurrentDataYear
     // TODO: InjuryAtWork
     // TODO: MannerOfDeath
-    // TODO: MethodOfDisposition
+    let methodOfDisposition = parseMethodOfDisposition fields.[20]
     // TODO: Autopsy
     // TODO: ActivityCode
     // TODO: PlaceOfInjury
@@ -190,22 +191,44 @@ let private parseDeathRecord (line : string) : Option<DeathRecord> =
 
     let deathRecord =
         {
-            Id = id;
-            ResidentStatus = residentStatus;
-            Education1989Revision = education1989Revision;
-            Education2003Revision = education2003Revision;
-            EducationReportingFlag = educationReportingFlag;
-            MonthOfDeath = monthOfDeath;
-            Sex = sex;
-            AgeType = ageType;
-            Age = age;
-            AgeSubstitutionFlag = ageSubstitutionFlag;
+            Id = id
+            ResidentStatus = residentStatus
+            Education1989Revision = education1989Revision
+            Education2003Revision = education2003Revision
+            EducationReportingFlag = educationReportingFlag
+            MonthOfDeath = monthOfDeath
+            Sex = sex
+            AgeType = ageType
+            Age = age
+            AgeSubstitutionFlag = ageSubstitutionFlag
             // TODO: AgeRecode52
             // TODO: AgeRecode27
             // TODO: AgeRecode12
             // TODO: InfantAgeRecode22
             // TODO: PlaceOfDeathAndDecedentsStatus
             MaritalStatus = maritalStatus
+            // TODO: DayOfWeekOfDeath
+            // TODO: CurrentDataYear
+            // TODO: InjuryAtWork
+            // TODO: MannerOfDeath
+            MethodOfDisposition = methodOfDisposition
+            // TODO: Autopsy
+            // TODO: ActivityCode
+            // TODO: PlaceOfInjury
+            // TODO: Icd10Code
+            // TODO: CauseRecode358
+            // TODO: CauseRecode113
+            // TODO: InfantCauseRecode130
+            // TODO: CauseRecode39
+            // TODO: NumberOfEntityAxisConditions
+            // TODO: NumberOfRecordAxisConditions
+            // TODO: Race
+            // TODO: BridgedRaceFlag
+            // TODO: RaceImputationFlag
+            // TODO: RaceRecode3
+            // TODO: RaceRecode5
+            // TODO: HispanicOrigin
+            // TODO: HispanicOriginRaceRecode
         }
     Some deathRecord
     

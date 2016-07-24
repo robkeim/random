@@ -82,10 +82,23 @@ let private PrintAgeOfDeaths deathRecords =
         agesMap
         ages
 
+// Method of disposition
+let private PrintMethodsOfDisposition deathRecords =
+    let methodsOfDispositionMap =
+        MapCounts
+            (fun record -> record.MethodOfDisposition)
+            deathRecords
+
+    printfn "\nBreakdown by methods of disposition:"
+    PrintCounts
+        methodsOfDispositionMap
+        [| MethodOfDisposition.Buriel; MethodOfDisposition.Cremation; MethodOfDisposition.Other; MethodOfDisposition.Unknown |]
+
 let GetStats deathRecords : unit =
     let numRecords = Array.length deathRecords
     printfn "Total records: %i" numRecords
-    PrintMonths deathRecords
-    PrintMaritalStatuses deathRecords
-    PrintSexes deathRecords
-    PrintAgeOfDeaths deathRecords
+    // PrintMonths deathRecords
+    // PrintMaritalStatuses deathRecords
+    // PrintSexes deathRecords
+    // PrintAgeOfDeaths deathRecords
+    PrintMethodsOfDisposition deathRecords
