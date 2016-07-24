@@ -8,10 +8,7 @@ open Stats
 [<EntryPoint>]
 let main argv =
     let deathRecords = GetDeathRecords
-
     GetStats deathRecords
-//    deathRecords
-//    |> Array.iter (fun p -> printfn "%A" p)
 
     printfn "\ndone!"
     ignore (Console.ReadLine())

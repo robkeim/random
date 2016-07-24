@@ -106,11 +106,11 @@ let private parseAgeSubstitutionFlag string =
 
 let private parseMaritalStatus string =
     match string with
-    | "S" -> MaritalStatus.NeverMarriedSingle
+    | "S" -> MaritalStatus.SingleNeverMarried
     | "M" -> MaritalStatus.Married
     | "W" -> MaritalStatus.Widowed
     | "D" -> MaritalStatus.Divorced
-    | "U" -> MaritalStatus.MaritalStatusUnknown
+    | "U" -> MaritalStatus.Unknown
     | _ -> raise (Exception("Unexpected value for MaritalStatus"))
 
 let private parseDeathRecord (line : string) : Option<DeathRecord> =

@@ -95,11 +95,11 @@ type AgeSubstituionFlag =
 // TODO: PlaceOfDeathAndDecedentsStatus
 
 type MaritalStatus =
-    NeverMarriedSingle
+    SingleNeverMarried
     | Married
     | Widowed
     | Divorced
-    | MaritalStatusUnknown
+    | Unknown
 
 type DeathRecord =
     {
