@@ -60,9 +60,32 @@ let private PrintSexes deathRecords =
         sexesMap
         [| Sex.Male; Sex.Female |]
 
+// Age of death (for adults)
+let private PrintAgeOfDeaths deathRecords =
+    let filteredDeathRecords =
+        deathRecords
+        |> Array.filter (fun record -> record.AgeType = AgeType.Years)
+
+    let agesMap =
+        MapCounts
+            (fun record -> record.Age)
+            filteredDeathRecords
+
+    let ages =
+        agesMap
+        |> Map.toArray
+        |> Array.map (fun (age, _) -> age)
+        |> Array.sort
+
+    printfn "\nBreakdown by age of death for adults:"
+    PrintCounts
+        agesMap
+        ages
+
 let GetStats deathRecords : unit =
     let numRecords = Array.length deathRecords
     printfn "Total records: %i" numRecords
     PrintMonths deathRecords
     PrintMaritalStatuses deathRecords
     PrintSexes deathRecords
+    PrintAgeOfDeaths deathRecords
