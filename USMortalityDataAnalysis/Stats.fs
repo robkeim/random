@@ -25,33 +25,39 @@ let private PrintCounts map labels =
         labels
 
 // Months
-let private MapMonths deathRecords =
-    MapCounts (fun record -> record.MonthOfDeath) deathRecords
-
 let private PrintMonths deathRecords =
+    let monthsMap =
+        MapCounts
+            (fun record -> record.MonthOfDeath)
+            deathRecords
+
     printfn "\nBreakdown by month:"
     PrintCounts
-        (MapMonths deathRecords)
+        monthsMap
         [| 1 .. 12 |]
 
 // Marital statuses
-let private MapMaritalStatuses deathRecords =
-    MapCounts (fun record -> record.MaritalStatus) deathRecords
-
 let private PrintMaritalStatuses deathRecords =
+    let maritalStatusesMap =
+        MapCounts
+            (fun record -> record.MaritalStatus)
+            deathRecords
+
     printfn "\nBreakdown by marital status:"
     PrintCounts
-        (MapMaritalStatuses deathRecords)
+        maritalStatusesMap
         [| MaritalStatus.SingleNeverMarried; MaritalStatus.Married; MaritalStatus.Widowed; MaritalStatus.Divorced; MaritalStatus.Unknown |]
 
 // Sexes
-let private MapSexes deathRecords =
-    MapCounts (fun record -> record.Sex) deathRecords
-
 let private PrintSexes deathRecords =
+    let sexesMap =
+        MapCounts
+            (fun record -> record.Sex)
+            deathRecords
+
     printfn "\nBreakdown by sex:"
     PrintCounts
-        (MapSexes deathRecords)
+        sexesMap
         [| Sex.Male; Sex.Female |]
 
 let GetStats deathRecords : unit =
