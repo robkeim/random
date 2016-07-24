@@ -49,8 +49,30 @@ let private PrintMaritalStatuses deathRecords : unit =
         maritalStatuses
         deathsPerMaritalStatus
 
+let private NumDeathsForSex deathRecords sex =
+    deathRecords
+        |> Array.filter (fun r -> r.Sex = sex)
+        |> Array.length
+
+let private PrintSexes deathRecords : unit =
+    let numRecords = Array.length deathRecords
+    printfn "\nBreakdown by sex:"
+
+    let deathsPerSex = 
+        [| Sex.Male; Sex.Female |]
+        |> Array.map (fun s -> NumDeathsForSex deathRecords s)
+
+    let sexes =
+        [| "Male"; "Female" |]
+
+    Array.iter2
+        (fun month deaths -> printfn "\t%s: %.2f%% (%i)" month (CalculatePercentage deaths numRecords) deaths)
+        sexes
+        deathsPerSex
+
 let GetStats deathRecords : unit =
     let numRecords = Array.length deathRecords
     printfn "Total records: %i" numRecords
     PrintMonthStats deathRecords
     PrintMaritalStatuses deathRecords
+    PrintSexes deathRecords
