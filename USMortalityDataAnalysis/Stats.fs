@@ -105,6 +105,17 @@ let private PrintAutopsy deathRecords =
         autopsyMap
         [| Autopsy.Yes; Autopsy.No; Autopsy.Unknown |]
 
+let private PrintInjuryAtWork deathRecords =
+    let injuryAtWorkMap =
+        MapCounts
+            (fun record -> record.InjuryAtWork)
+            deathRecords
+
+    printfn "\nBreakdown by injury at work:"
+    PrintCounts
+        injuryAtWorkMap
+        [| InjuryAtWork.Yes; InjuryAtWork.No; InjuryAtWork.Unknown |]
+
 let GetStats deathRecords : unit =
     let numRecords = Array.length deathRecords
     printfn "Total records: %i" numRecords
@@ -113,4 +124,5 @@ let GetStats deathRecords : unit =
     // PrintSexes deathRecords
     // PrintAgeOfDeaths deathRecords
     // PrintMethodsOfDisposition deathRecords
-    PrintAutopsy deathRecords
+    // PrintAutopsy deathRecords
+    PrintInjuryAtWork deathRecords

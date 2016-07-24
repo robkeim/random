@@ -74,7 +74,12 @@ type MaritalStatus =
 
 // TODO: DayOfWeekOfDeath
 // TODO: CurrentDataYear
-// TODO: InjuryAtWork
+
+type InjuryAtWork =
+    Yes
+    | No
+    | Unknown
+
 // TODO: MannerOfDeath
 
 type MethodOfDisposition =
@@ -125,7 +130,7 @@ type DeathRecord =
         MaritalStatus: MaritalStatus
         // TODO: DayOfWeekOfDeath
         // TODO: CurrentDataYear
-        // TODO: InjuryAtWork
+        InjuryAtWork: InjuryAtWork
         // TODO: MannerOfDeath
         MethodOfDisposition: MethodOfDisposition
         Autopsy: Autopsy

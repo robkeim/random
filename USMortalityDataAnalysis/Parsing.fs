@@ -115,7 +115,14 @@ let private parseMaritalStatus string =
 
 // TODO: DayOfWeekOfDeath
 // TODO: CurrentDataYear
-// TODO: InjuryAtWork
+
+let private parseInjuryAtWork string =
+    match string with
+    | "Y" -> InjuryAtWork.Yes
+    | "N" -> InjuryAtWork.No
+    | "U" -> InjuryAtWork.Unknown
+    | _ -> raise (Exception("Unexpected value for InjuryAtWork"))
+
 // TODO: MannerOfDeath
 
 let private parseMethodOfDisposition string =
@@ -174,7 +181,7 @@ let private parseDeathRecord (line : string) : Option<DeathRecord> =
     let maritalStatus = parseMaritalStatus fields.[15]
     // TODO: DayOfWeekOfDeath
     // TODO: CurrentDataYear
-    // TODO: InjuryAtWork
+    let injuryAtWork = parseInjuryAtWork fields.[18]
     // TODO: MannerOfDeath
     let methodOfDisposition = parseMethodOfDisposition fields.[20]
     let autopsy = parseAutopsy fields.[21]
@@ -215,7 +222,7 @@ let private parseDeathRecord (line : string) : Option<DeathRecord> =
             MaritalStatus = maritalStatus
             // TODO: DayOfWeekOfDeath
             // TODO: CurrentDataYear
-            // TODO: InjuryAtWork
+            InjuryAtWork = injuryAtWork
             // TODO: MannerOfDeath
             MethodOfDisposition = methodOfDisposition
             Autopsy = autopsy
