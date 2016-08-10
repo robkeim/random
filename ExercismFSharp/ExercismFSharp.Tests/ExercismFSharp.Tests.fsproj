@@ -60,6 +60,7 @@
     <Compile Include="SpaceAgeTests.fs" />
     <Compile Include="GigasecondTests.fs" />
     <Compile Include="TriangleTests.fs" />
+    <Compile Include="BeerSongTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
