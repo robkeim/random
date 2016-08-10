@@ -57,6 +57,7 @@
     <Compile Include="SumOfMultiplesTests.fs" />
     <Compile Include="DifferenceOfSquaresTests.fs" />
     <Compile Include="BobTests.fs" />
+    <Compile Include="SpaceAgeTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
