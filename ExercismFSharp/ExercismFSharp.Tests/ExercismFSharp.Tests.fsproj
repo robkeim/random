@@ -64,6 +64,7 @@
     <Compile Include="RobotNameTests.fs" />
     <Compile Include="GrainsTests.fs" />
     <Compile Include="LeapYearTests.fs" />
+    <Compile Include="HammingTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

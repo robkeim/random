@@ -56,6 +56,7 @@
     <Compile Include="RobotName.fs" />
     <Compile Include="Grains.fs" />
     <Compile Include="LeapYear.fs" />
+    <Compile Include="Hamming.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
