@@ -48,6 +48,7 @@
     <Compile Include="HelloWorld.fs" />
     <Compile Include="SumOfMultiples.fs" />
     <Compile Include="DifferenceOfSquares.fs" />
+    <Compile Include="Bob.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
