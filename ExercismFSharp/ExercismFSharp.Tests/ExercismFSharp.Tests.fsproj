@@ -55,6 +55,7 @@
     <Compile Include="HelloWorldTests.fs" />
     <Content Include="packages.config" />
     <Compile Include="SumOfMultiplesTests.fs" />
+    <Compile Include="DifferenceOfSquaresTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
