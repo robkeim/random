@@ -54,6 +54,7 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="HelloWorldTests.fs" />
     <Content Include="packages.config" />
+    <Compile Include="SumOfMultiplesTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
