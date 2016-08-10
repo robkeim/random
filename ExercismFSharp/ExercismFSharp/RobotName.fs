@@ -22,8 +22,8 @@ type mkRobot() =
 
     member val name = randomName() with get, set
 
-//let name (robot : mkRobot) =
-//    robot.name
+let name (robot : mkRobot) =
+    robot.name
 
 let reset (robot : mkRobot) =
     robot.reset

@@ -54,6 +54,7 @@
     <Compile Include="Triangle.fs" />
     <Compile Include="BeerSong.fs" />
     <Compile Include="RobotName.fs" />
+    <Compile Include="Grains.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
