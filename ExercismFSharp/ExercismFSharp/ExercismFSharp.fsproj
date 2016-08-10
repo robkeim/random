@@ -50,6 +50,8 @@
     <Compile Include="DifferenceOfSquares.fs" />
     <Compile Include="Bob.fs" />
     <Compile Include="SpaceAge.fs" />
+    <Compile Include="Gigasecond.fs" />
+    <Compile Include="Triangle.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
