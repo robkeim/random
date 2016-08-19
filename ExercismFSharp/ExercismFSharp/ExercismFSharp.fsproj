@@ -69,6 +69,7 @@
     <Compile Include="WordCount.fs" />
     <Compile Include="RomanNumeral.fs" />
     <Compile Include="RnaTranscription.fs" />
+    <Compile Include="Allergies.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
