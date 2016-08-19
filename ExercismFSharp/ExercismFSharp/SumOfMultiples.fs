@@ -1,6 +1,6 @@
 ﻿module SumOfMultiples
 
-let sumOfMultiples (multiples : int list) (number : int) =
+let sumOfMultiples multiples number =
     let isDivisble num divisor =
         num % divisor = 0
 

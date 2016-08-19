@@ -3,7 +3,7 @@
 
 module HelloWorld
 
-let hello (name : string option) =
+let hello name =
     match name with
     | Some name -> sprintf "Hello, %s!" name
     | None -> "Hello, World!"

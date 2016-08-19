@@ -9,8 +9,8 @@ let verse num =
 
 let verses start stop =
     [ start .. -1 .. stop ]
-    |> List.map (fun num -> verse num)
-    |> List.fold (fun res value -> res + value + "\n") ""
+    |> List.map verse
+    |> List.fold (sprintf "%s%s\n") ""
 
 let sing =
     verses 99 0

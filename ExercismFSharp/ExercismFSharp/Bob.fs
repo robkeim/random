@@ -2,7 +2,7 @@
 
 open System
 
-let hey (phrase : string) =
+let hey phrase =
     let isUpperCaseLetter letter =
         Char.IsLetter letter && Char.IsUpper letter
 
@@ -13,7 +13,7 @@ let hey (phrase : string) =
 
     let hasUpperCaseLetter string =
         string
-        |> Seq.exists (fun n -> isUpperCaseLetter n)
+        |> Seq.exists isUpperCaseLetter
 
     let isQuestion phrase =
         phrase |> Seq.tryLast = Some '?'

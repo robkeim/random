@@ -12,7 +12,7 @@ type Planet =
     | Uranus
     | Neptune
 
-let spaceAge (planet : Planet) (seconds : decimal) =
+let spaceAge planet seconds =
     let planetYears planet years =
         match planet with
         | Mercury -> years / 0.2408467m

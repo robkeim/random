@@ -4,8 +4,7 @@ open System
 
 let toRna dna =
     dna
-    |> Seq.map (fun c ->
-        match c with
+    |> Seq.map (function
         | 'G' -> 'C'
         | 'C' -> 'G'
         | 'T' -> 'A'

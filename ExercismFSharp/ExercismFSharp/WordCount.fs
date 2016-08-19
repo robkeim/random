@@ -2,7 +2,7 @@
 
 open System
 
-let wordCount (phrase : string) =
+let wordCount phrase =
     // Remove all characters except letters, digits, and apostrophes
     let normalizeString string =
         string
@@ -23,7 +23,7 @@ let wordCount (phrase : string) =
     
     normalizedPhrase.Split [|' '|]
     |> Seq.map (fun w -> w.Trim ''')
-    |> Seq.choose (fun w -> filterNonEmptyWords w)
+    |> Seq.choose filterNonEmptyWords
     |> Seq.groupBy (fun w -> w)
     |> Seq.map (fun (k, v) -> (k, Seq.length v))
     |> Map.ofSeq
