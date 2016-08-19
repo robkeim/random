@@ -58,6 +58,7 @@
     <Compile Include="LeapYear.fs" />
     <Compile Include="Hamming.fs" />
     <Compile Include="ETL.fs" />
+    <Compile Include="WordCount.fs" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
