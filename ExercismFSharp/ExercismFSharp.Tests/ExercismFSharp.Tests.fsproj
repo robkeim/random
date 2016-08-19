@@ -67,6 +67,7 @@
     <Compile Include="HammingTests.fs" />
     <Compile Include="ETLTests.fs" />
     <Compile Include="WordCountTests.fs" />
+    <Compile Include="RomanNumeralTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
