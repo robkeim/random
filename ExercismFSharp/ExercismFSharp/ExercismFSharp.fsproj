@@ -68,6 +68,7 @@
     <Compile Include="ETL.fs" />
     <Compile Include="WordCount.fs" />
     <Compile Include="RomanNumeral.fs" />
+    <Compile Include="RnaTranscription.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
