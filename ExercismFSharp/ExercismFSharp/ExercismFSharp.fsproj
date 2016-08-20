@@ -70,6 +70,7 @@
     <Compile Include="RomanNumeral.fs" />
     <Compile Include="RnaTranscription.fs" />
     <Compile Include="Allergies.fs" />
+    <Compile Include="Anagram.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
