@@ -70,6 +70,7 @@
     <Compile Include="PalindromeTests.fs" />
     <Compile Include="PangramTest.fs" />
     <Compile Include="ProverbTest.fs" />
+    <Compile Include="QueenAttackTests.fs" />
     <Compile Include="RaindropsTests.fs" />
     <Compile Include="RnaTranscriptionTests.fs" />
     <Compile Include="RobotNameTests.fs" />
