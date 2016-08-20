@@ -15,3 +15,5 @@ Meetup
 Binary Search Tree
 Longest Series Product
 Matrix
+Sieve
+Wordy
