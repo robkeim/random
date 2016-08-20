@@ -78,6 +78,7 @@
     <Compile Include="NucleoTideCountTests.fs" />
     <Compile Include="TwelveDaysSongTests.fs" />
     <Compile Include="NthPrimeTests.fs" />
+    <Compile Include="PalindromeTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
