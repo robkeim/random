@@ -73,6 +73,7 @@
     <Compile Include="Anagram.fs" />
     <Compile Include="Pangram.fs" />
     <Compile Include="Atbash.fs" />
+    <Compile Include="Raindrops.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
