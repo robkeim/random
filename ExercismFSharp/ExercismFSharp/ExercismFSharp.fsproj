@@ -72,6 +72,7 @@
     <Compile Include="Allergies.fs" />
     <Compile Include="Anagram.fs" />
     <Compile Include="Pangram.fs" />
+    <Compile Include="Atbash.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
