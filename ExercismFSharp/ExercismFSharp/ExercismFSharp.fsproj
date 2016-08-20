@@ -81,6 +81,7 @@
     <Compile Include="TwelveDaysSong.fs" />
     <Compile Include="WordCount.fs" />
     <Compile Include="PhoneNumber.fs" />
+    <Compile Include="Isogram.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

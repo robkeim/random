@@ -64,6 +64,7 @@
     <Compile Include="GrainsTests.fs" />
     <Compile Include="HammingTests.fs" />
     <Compile Include="HelloWorldTests.fs" />
+    <Compile Include="IsogramTests.fs" />
     <Compile Include="LeapYearTests.fs" />
     <Compile Include="NthPrimeTests.fs" />
     <Compile Include="NucleoTideCountTests.fs" />
