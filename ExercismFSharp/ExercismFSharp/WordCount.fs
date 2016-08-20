@@ -8,7 +8,7 @@ let wordCount phrase =
         string
         |> Seq.map (fun c ->
             match c with
-            | _ when Char.IsLetterOrDigit c  -> Char.ToLower c
+            | _ when Char.IsLetterOrDigit c  -> Char.ToLowerInvariant c
             | ''' -> '''
             | _ -> ' ')
         |> String.Concat

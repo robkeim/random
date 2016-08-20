@@ -71,6 +71,7 @@
     <Compile Include="RnaTranscriptionTests.fs" />
     <Compile Include="AllergiesTests.fs" />
     <Compile Include="AnagramTests.fs" />
+    <Compile Include="PangramTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

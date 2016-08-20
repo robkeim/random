@@ -1,3 +1,6 @@
 ﻿Bank Account
 Pig Latin
 Accumulate
+Clock
+Series
+Strain

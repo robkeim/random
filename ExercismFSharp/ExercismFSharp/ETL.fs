@@ -3,7 +3,7 @@
 let transform input =
     let mapStringList key values =
         Seq.map
-            (fun (value : string) -> (value.ToLower(), key))
+            (fun (value : string) -> (value.ToLowerInvariant(), key))
             values
 
     input
