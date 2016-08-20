@@ -74,6 +74,7 @@
     <Compile Include="PangramTest.fs" />
     <Compile Include="AtbashTests.fs" />
     <Compile Include="RaindropsTests.fs" />
+    <Compile Include="ProverbTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

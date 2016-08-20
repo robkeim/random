@@ -4,3 +4,4 @@ Accumulate
 Clock
 Series
 Strain
+Acronym
