@@ -69,6 +69,7 @@
     <Compile Include="NucleoTideCountTests.fs" />
     <Compile Include="PalindromeTests.fs" />
     <Compile Include="PangramTest.fs" />
+    <Compile Include="PhoneNumberTests.fs" />
     <Compile Include="ProverbTest.fs" />
     <Compile Include="QueenAttackTests.fs" />
     <Compile Include="RaindropsTests.fs" />

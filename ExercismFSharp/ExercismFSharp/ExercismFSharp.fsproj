@@ -80,6 +80,7 @@
     <Compile Include="Triangle.fs" />
     <Compile Include="TwelveDaysSong.fs" />
     <Compile Include="WordCount.fs" />
+    <Compile Include="PhoneNumber.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
