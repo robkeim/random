@@ -76,6 +76,7 @@
     <Compile Include="RaindropsTests.fs" />
     <Compile Include="ProverbTest.fs" />
     <Compile Include="NucleoTideCountTests.fs" />
+    <Compile Include="TwelveDaysSongTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

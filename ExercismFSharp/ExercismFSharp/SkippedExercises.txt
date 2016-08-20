@@ -5,3 +5,13 @@ Clock
 Series
 Strain
 Acronym
+Crypto Square
+Linked List
+Luhn
+Scrabble Score
+Kindergarten Garden
+Queen Attack
+Meetup
+Binary Search Tree
+Longest Series Product
+Matrix
