@@ -68,6 +68,7 @@
     <Compile Include="NucleoTideCount.fs" />
     <Compile Include="Palindrome.fs" />
     <Compile Include="Pangram.fs" />
+    <Compile Include="PerfectNumbers.fs" />
     <Compile Include="Proverb.fs" />
     <Compile Include="QueenAttack.fs" />
     <Compile Include="Raindrops.fs" />
