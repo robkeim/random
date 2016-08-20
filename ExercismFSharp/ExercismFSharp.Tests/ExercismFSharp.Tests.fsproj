@@ -79,6 +79,7 @@
     <Compile Include="TwelveDaysSongTests.fs" />
     <Compile Include="NthPrimeTests.fs" />
     <Compile Include="PalindromeTests.fs" />
+    <Compile Include="SayTests.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

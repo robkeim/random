@@ -79,6 +79,7 @@
     <Compile Include="TwelveDaysSong.fs" />
     <Compile Include="NthPrime.fs" />
     <Compile Include="Palindrome.fs" />
+    <Compile Include="Say.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
