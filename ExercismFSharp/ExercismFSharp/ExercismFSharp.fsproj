@@ -75,6 +75,7 @@
     <Compile Include="Atbash.fs" />
     <Compile Include="Raindrops.fs" />
     <Compile Include="Proverb.fs" />
+    <Compile Include="NucleoTideCount.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
