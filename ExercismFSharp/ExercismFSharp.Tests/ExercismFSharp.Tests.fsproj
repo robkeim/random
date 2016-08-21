@@ -79,6 +79,7 @@
     <Compile Include="RobotNameTests.fs" />
     <Compile Include="RomanNumeralTests.fs" />
     <Compile Include="SayTests.fs" />
+    <Compile Include="SeriesTests.fs" />
     <Compile Include="SpaceAgeTests.fs" />
     <Compile Include="SumOfMultiplesTests.fs" />
     <Compile Include="TriangleTests.fs" />
