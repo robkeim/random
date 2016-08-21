@@ -70,6 +70,7 @@
     <Compile Include="Pangram.fs" />
     <Compile Include="PerfectNumbers.fs" />
     <Compile Include="Proverb.fs" />
+    <Compile Include="PythagoreanTriplet.fs" />
     <Compile Include="QueenAttack.fs" />
     <Compile Include="Raindrops.fs" />
     <Compile Include="RnaTranscription.fs" />

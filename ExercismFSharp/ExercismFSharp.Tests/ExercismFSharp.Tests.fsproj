@@ -73,6 +73,7 @@
     <Compile Include="PerfectNumbersTests.fs" />
     <Compile Include="PhoneNumberTests.fs" />
     <Compile Include="ProverbTest.fs" />
+    <Compile Include="PythagoreanTripletTests.fs" />
     <Compile Include="QueenAttackTests.fs" />
     <Compile Include="RaindropsTests.fs" />
     <Compile Include="RnaTranscriptionTests.fs" />
