@@ -1,13 +1,12 @@
 ﻿module SumOfMultiples
 
 let sumOfMultiples multiples number =
-    let isDivisble num divisor =
-        num % divisor = 0
-
-    let isDivisible num divisors =
+    let isDivisible divisors num =
         divisors
-        |> List.exists (fun divisor -> isDivisble num divisor) 
+        |> List.exists (fun divisor -> num % divisor = 0) 
     
+    let isDivisibleOfMultiples = isDivisible multiples
+
     [1..number - 1]
-    |> List.filter (fun n -> isDivisible n multiples)
+    |> List.filter isDivisibleOfMultiples
     |> List.sum
