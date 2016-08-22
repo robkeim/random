@@ -53,11 +53,11 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Content Include="packages.config" />
-    <Compile Include="AllergiesTests.fs" />
-    <Compile Include="AnagramTests.fs" />
-    <Compile Include="AtbashTests.fs" />
-    <Compile Include="BeerSongTests.fs" />
-    <Compile Include="BobTests.fs" />
+    <Compile Include="AllergiesTest.fs" />
+    <Compile Include="AnagramTest.fs" />
+    <Compile Include="AtbashTest.fs" />
+    <Compile Include="BeerSongTest.fs" />
+    <Compile Include="BobTest.fs" />
     <Compile Include="DifferenceOfSquaresTests.fs" />
     <Compile Include="ETLTests.fs" />
     <Compile Include="GigasecondTests.fs" />
