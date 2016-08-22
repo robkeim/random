@@ -83,6 +83,7 @@
     <Compile Include="RomanNumeralTest.fs" />
     <Compile Include="SayTest.fs" />
     <Compile Include="SeriesTest.fs" />
+    <Compile Include="SieveTest.fs" />
     <Compile Include="SpaceAgeTest.fs" />
     <Compile Include="SumOfMultiplesTest.fs" />
     <Compile Include="TriangleTest.fs" />

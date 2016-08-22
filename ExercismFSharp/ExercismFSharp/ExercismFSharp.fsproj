@@ -80,6 +80,7 @@
     <Compile Include="RomanNumeral.fs" />
     <Compile Include="Say.fs" />
     <Compile Include="Series.fs" />
+    <Compile Include="Sieve.fs" />
     <Compile Include="SpaceAge.fs" />
     <Compile Include="SumOfMultiples.fs" />
     <Compile Include="Triangle.fs" />
