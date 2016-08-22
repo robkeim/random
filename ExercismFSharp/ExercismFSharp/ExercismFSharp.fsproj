@@ -63,6 +63,7 @@
     <Compile Include="Grains.fs" />
     <Compile Include="Hamming.fs" />
     <Compile Include="HelloWorld.fs" />
+    <Compile Include="Isogram.fs" />
     <Compile Include="LeapYear.fs" />
     <Compile Include="Ledger.fs" />
     <Compile Include="Minesweeper.fs" />
@@ -71,6 +72,7 @@
     <Compile Include="Palindrome.fs" />
     <Compile Include="Pangram.fs" />
     <Compile Include="PerfectNumbers.fs" />
+    <Compile Include="PhoneNumber.fs" />
     <Compile Include="Proverb.fs" />
     <Compile Include="PythagoreanTriplet.fs" />
     <Compile Include="QueenAttack.fs" />
@@ -86,8 +88,7 @@
     <Compile Include="Triangle.fs" />
     <Compile Include="TwelveDaysSong.fs" />
     <Compile Include="WordCount.fs" />
-    <Compile Include="PhoneNumber.fs" />
-    <Compile Include="Isogram.fs" />
+    <Compile Include="SecretHandshake.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
