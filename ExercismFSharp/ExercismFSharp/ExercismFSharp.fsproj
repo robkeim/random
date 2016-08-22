@@ -65,6 +65,7 @@
     <Compile Include="HelloWorld.fs" />
     <Compile Include="LeapYear.fs" />
     <Compile Include="Ledger.fs" />
+    <Compile Include="Minesweeper.fs" />
     <Compile Include="NthPrime.fs" />
     <Compile Include="NucleoTideCount.fs" />
     <Compile Include="Palindrome.fs" />
