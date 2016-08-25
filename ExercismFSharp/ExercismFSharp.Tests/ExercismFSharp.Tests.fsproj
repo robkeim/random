@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Content Include="packages.config" />
+    <Compile Include="AcronymTest.fs" />
     <Compile Include="AllergiesTest.fs" />
     <Compile Include="AnagramTest.fs" />
     <Compile Include="AtbashTest.fs" />
