@@ -82,6 +82,7 @@
     <Compile Include="RnaTranscriptionTest.fs" />
     <Compile Include="RobotNameTest.fs" />
     <Compile Include="RomanNumeralTest.fs" />
+    <Compile Include="SaddlePointTest.fs" />
     <Compile Include="SayTest.fs" />
     <Compile Include="SecretHandshakeTest.fs" />
     <Compile Include="SeriesTest.fs" />

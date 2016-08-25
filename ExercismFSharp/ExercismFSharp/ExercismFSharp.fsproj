@@ -81,6 +81,7 @@
     <Compile Include="RnaTranscription.fs" />
     <Compile Include="RobotName.fs" />
     <Compile Include="RomanNumeral.fs" />
+    <Compile Include="SaddlePoints.fs" />
     <Compile Include="Say.fs" />
     <Compile Include="Series.fs" />
     <Compile Include="Sieve.fs" />
