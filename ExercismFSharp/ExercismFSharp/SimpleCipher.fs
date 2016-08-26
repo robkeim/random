@@ -39,8 +39,7 @@ let encode key input =
 let decode key input =
     treatInput (-) key input
 
-// TODO rkeim does input need to be strongly typed here?
-let encodeRandom (input : string) =
+let encodeRandom input =
     let randomKey =
         getRandomSequence
         |> Seq.take 100

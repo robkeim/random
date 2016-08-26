@@ -69,6 +69,7 @@
     <Compile Include="IsogramTest.fs" />
     <Compile Include="LeapYearTest.fs" />
     <Compile Include="LedgerTest.fs" />
+    <Compile Include="LuhnTest.fs" />
     <Compile Include="MatrixTest.fs" />
     <Compile Include="MinesweeperTest.fs" />
     <Compile Include="NthPrimeTest.fs" />
