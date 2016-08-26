@@ -82,6 +82,7 @@
     <Compile Include="ProverbTest.fs" />
     <Compile Include="PythagoreanTripletTest.fs" />
     <Compile Include="QueenAttackTest.fs" />
+    <Compile Include="RailFenceCipherTest.fs" />
     <Compile Include="RaindropsTest.fs" />
     <Compile Include="RnaTranscriptionTest.fs" />
     <Compile Include="RobotNameTest.fs" />

@@ -81,6 +81,7 @@
     <Compile Include="Proverb.fs" />
     <Compile Include="PythagoreanTriplet.fs" />
     <Compile Include="QueenAttack.fs" />
+    <Compile Include="RailFenceCipher.fs" />
     <Compile Include="Raindrops.fs" />
     <Compile Include="RnaTranscription.fs" />
     <Compile Include="RobotName.fs" />
