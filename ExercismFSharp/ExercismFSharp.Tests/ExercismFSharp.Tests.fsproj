@@ -89,6 +89,7 @@
     <Compile Include="SecretHandshakeTest.fs" />
     <Compile Include="SeriesTest.fs" />
     <Compile Include="SieveTest.fs" />
+    <Compile Include="SimpleCipherTest.fs" />
     <Compile Include="SpaceAgeTest.fs" />
     <Compile Include="SumOfMultiplesTest.fs" />
     <Compile Include="TriangleTest.fs" />

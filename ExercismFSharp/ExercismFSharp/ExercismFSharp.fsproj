@@ -93,6 +93,7 @@
     <Compile Include="TwelveDaysSong.fs" />
     <Compile Include="WordCount.fs" />
     <Compile Include="SecretHandshake.fs" />
+    <Compile Include="SimpleCipher.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
