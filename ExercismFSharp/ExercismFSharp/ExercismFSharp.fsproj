@@ -59,6 +59,7 @@
     <Compile Include="BeerSong.fs" />
     <Compile Include="Bob.fs" />
     <Compile Include="DifferenceOfSquares.fs" />
+    <Compile Include="DiffieHellman.fs" />
     <Compile Include="ETL.fs" />
     <Compile Include="Gigasecond.fs" />
     <Compile Include="Grains.fs" />

@@ -60,6 +60,7 @@
     <Compile Include="BeerSongTest.fs" />
     <Compile Include="BobTest.fs" />
     <Compile Include="DifferenceOfSquaresTest.fs" />
+    <Compile Include="DiffieHellmanTest.fs" />
     <Compile Include="ETLTest.fs" />
     <Compile Include="GigasecondTest.fs" />
     <Compile Include="GrainsTest.fs" />
