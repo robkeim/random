@@ -64,6 +64,7 @@
     <Compile Include="Grains.fs" />
     <Compile Include="Hamming.fs" />
     <Compile Include="HelloWorld.fs" />
+    <Compile Include="House.fs" />
     <Compile Include="Isogram.fs" />
     <Compile Include="LeapYear.fs" />
     <Compile Include="Ledger.fs" />
