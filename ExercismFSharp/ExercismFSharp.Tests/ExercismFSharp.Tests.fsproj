@@ -59,6 +59,7 @@
     <Compile Include="AtbashTest.fs" />
     <Compile Include="BeerSongTest.fs" />
     <Compile Include="BobTest.fs" />
+    <Compile Include="CryptoSquareTest.fs" />
     <Compile Include="DifferenceOfSquaresTest.fs" />
     <Compile Include="DiffieHellmanTest.fs" />
     <Compile Include="ETLTest.fs" />
