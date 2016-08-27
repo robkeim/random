@@ -57,6 +57,7 @@
     <Compile Include="AllergiesTest.fs" />
     <Compile Include="AnagramTest.fs" />
     <Compile Include="AtbashTest.fs" />
+    <Compile Include="BankAccountTest.fs" />
     <Compile Include="BeerSongTest.fs" />
     <Compile Include="BobTest.fs" />
     <Compile Include="CryptoSquareTest.fs" />
