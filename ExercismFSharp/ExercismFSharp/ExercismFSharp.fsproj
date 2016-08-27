@@ -52,6 +52,7 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Accumulate.fs" />
     <Compile Include="Acronym.fs" />
     <Compile Include="Allergies.fs" />
     <Compile Include="Anagram.fs" />
