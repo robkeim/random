@@ -74,6 +74,7 @@
     <Compile Include="HelloWorldTest.fs" />
     <Compile Include="HouseTest.fs" />
     <Compile Include="IsogramTest.fs" />
+    <Compile Include="KinderGartenGardenTest.fs" />
     <Compile Include="LeapYearTest.fs" />
     <Compile Include="LedgerTest.fs" />
     <Compile Include="LuhnTest.fs" />
