@@ -66,6 +66,7 @@
     <Compile Include="DifferenceOfSquaresTest.fs" />
     <Compile Include="DiffieHellmanTest.fs" />
     <Compile Include="ETLTest.fs" />
+    <Compile Include="ErrorHandlingTest.fs" />
     <Compile Include="GigasecondTest.fs" />
     <Compile Include="GradeSchoolTest.fs" />
     <Compile Include="GrainsTest.fs" />
