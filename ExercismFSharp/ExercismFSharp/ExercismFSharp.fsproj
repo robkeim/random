@@ -60,6 +60,7 @@
     <Compile Include="BankAccount.fs" />
     <Compile Include="BeerSong.fs" />
     <Compile Include="Bob.fs" />
+    <Compile Include="Clock.fs" />
     <Compile Include="CryptoSquare.fs" />
     <Compile Include="DifferenceOfSquares.fs" />
     <Compile Include="DiffieHellman.fs" />
