@@ -19,5 +19,5 @@ let translate codon =
     |> Seq.chunkBySize 3
     |> Seq.map (Array.fold (sprintf "%s%c") String.Empty)
     |> Seq.map toProtein
-    |> Seq.takeWhile (fun protein -> not (protein = "STOP"))
+    |> Seq.takeWhile (fun protein -> protein <> "STOP")
     |> Seq.toList

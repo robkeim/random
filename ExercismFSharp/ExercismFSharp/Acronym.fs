@@ -8,7 +8,7 @@ let acronym (input : string) =
         |> Array.head
 
     phrase.Split [|' '; '-'|]
-    |> Seq.filter (fun word -> not (Seq.length word = 0))
+    |> Seq.filter (fun word -> Seq.length word <> 0)
     |> Seq.map (fun word ->
         Seq.append
             (word |> Seq.head |> Char.ToUpperInvariant |> Seq.singleton)

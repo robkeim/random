@@ -5,7 +5,7 @@ let rec private listToFilter res list =
     | [] -> res
     | x::xs ->
         let filtered =
-            xs |> List.filter (fun elem -> not (elem % x = 0))
+            xs |> List.filter (fun elem -> elem % x <> 0)
         listToFilter (x :: res) filtered
 
 let primesUpTo num =

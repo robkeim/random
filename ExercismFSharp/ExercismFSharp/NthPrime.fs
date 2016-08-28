@@ -9,7 +9,7 @@ let private isPrime n =
     | _ ->
         let max = int (Math.Ceiling (Math.Sqrt (float n)))
         [3 .. 1 .. max]
-        |> Seq.forall (fun value -> not (n % value = 0))
+        |> Seq.forall (fun value -> n % value <> 0)
 
 let private primesSeq =
     Seq.initInfinite (fun v -> v + 1)

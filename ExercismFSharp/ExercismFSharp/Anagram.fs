@@ -17,4 +17,4 @@ let anagrams (candidates : string list) word =
 
     candidates
     |> List.filter (fun w ->
-        order w = orderedWord && not (toLower w = toLower word))
+        order w = orderedWord && toLower w <> toLower word)

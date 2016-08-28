@@ -49,7 +49,6 @@ let ``Grade returns an empty list if there are no students in that grade`` () =
     Assert.That(grade 1 school, Is.EqualTo([]))
 
 [<Test>]
-[<Ignore("Remove to run test")>]
 let ``Student names and grades in roster are sorted`` () =
     let school =
         empty        

@@ -24,7 +24,7 @@ let handshake num =
     let movements =
         Enum.GetValues(typeof<HandshakeMovement>)
         |> Seq.cast<HandshakeMovement>
-        |> Seq.filter (fun x -> not (x = HandshakeMovement.ReverseOperations))
+        |> Seq.filter (fun x -> x <> HandshakeMovement.ReverseOperations)
         |> Seq.filter isIncludedMovement
         |> Seq.map stringMovement
         |> Seq.toList
