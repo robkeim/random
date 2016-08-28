@@ -95,6 +95,7 @@
     <Compile Include="RomanNumeralTest.fs" />
     <Compile Include="SaddlePointTest.fs" />
     <Compile Include="SayTest.fs" />
+    <Compile Include="ScrabbleScoreTest.fs" />
     <Compile Include="SecretHandshakeTest.fs" />
     <Compile Include="SeriesTest.fs" />
     <Compile Include="SieveTest.fs" />

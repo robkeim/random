@@ -94,6 +94,7 @@
     <Compile Include="RomanNumeral.fs" />
     <Compile Include="SaddlePoints.fs" />
     <Compile Include="Say.fs" />
+    <Compile Include="ScrabbleScore.fs" />
     <Compile Include="Series.fs" />
     <Compile Include="Sieve.fs" />
     <Compile Include="SpaceAge.fs" />
