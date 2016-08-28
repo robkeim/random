@@ -96,6 +96,7 @@
     <Compile Include="RaindropsTest.fs" />
     <Compile Include="RnaTranscriptionTest.fs" />
     <Compile Include="RobotNameTest.fs" />
+    <Compile Include="RobotSimulatorTest.fs" />
     <Compile Include="RomanNumeralTest.fs" />
     <Compile Include="SaddlePointTest.fs" />
     <Compile Include="SayTest.fs" />
