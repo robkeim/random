@@ -97,15 +97,16 @@
     <Compile Include="SaddlePoints.fs" />
     <Compile Include="Say.fs" />
     <Compile Include="ScrabbleScore.fs" />
+    <Compile Include="SecretHandshake.fs" />
     <Compile Include="Series.fs" />
     <Compile Include="Sieve.fs" />
+    <Compile Include="SimpleCipher.fs" />
     <Compile Include="SpaceAge.fs" />
+    <Compile Include="Strain.fs" />
     <Compile Include="SumOfMultiples.fs" />
     <Compile Include="Triangle.fs" />
     <Compile Include="TwelveDaysSong.fs" />
     <Compile Include="WordCount.fs" />
-    <Compile Include="SecretHandshake.fs" />
-    <Compile Include="SimpleCipher.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

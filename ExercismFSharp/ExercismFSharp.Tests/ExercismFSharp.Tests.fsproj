@@ -86,6 +86,7 @@
     <Compile Include="PangramTest.fs" />
     <Compile Include="PerfectNumbersTest.fs" />
     <Compile Include="PhoneNumberTest.fs" />
+    <Compile Include="ProteinTranslationTest.fs" />
     <Compile Include="ProverbTest.fs" />
     <Compile Include="PythagoreanTripletTest.fs" />
     <Compile Include="QueenAttackTest.fs" />
@@ -102,11 +103,11 @@
     <Compile Include="SieveTest.fs" />
     <Compile Include="SimpleCipherTest.fs" />
     <Compile Include="SpaceAgeTest.fs" />
+    <Compile Include="StrainTest.fs" />
     <Compile Include="SumOfMultiplesTest.fs" />
     <Compile Include="TriangleTest.fs" />
     <Compile Include="TwelveDaysSongTest.fs" />
     <Compile Include="WordCountTest.fs" />
-    <Compile Include="ProteinTranslationTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
