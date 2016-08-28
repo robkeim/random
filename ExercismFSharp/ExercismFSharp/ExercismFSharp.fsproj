@@ -84,6 +84,7 @@
     <Compile Include="Pangram.fs" />
     <Compile Include="PerfectNumbers.fs" />
     <Compile Include="PhoneNumber.fs" />
+    <Compile Include="ProteinTranslation.fs" />
     <Compile Include="Proverb.fs" />
     <Compile Include="PythagoreanTriplet.fs" />
     <Compile Include="QueenAttack.fs" />
