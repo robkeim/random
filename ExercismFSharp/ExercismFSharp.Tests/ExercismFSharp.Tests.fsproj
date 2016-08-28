@@ -87,6 +87,7 @@
     <Compile Include="PangramTest.fs" />
     <Compile Include="PerfectNumbersTest.fs" />
     <Compile Include="PhoneNumberTest.fs" />
+    <Compile Include="PrimeFactorsTest.fs" />
     <Compile Include="ProteinTranslationTest.fs" />
     <Compile Include="ProverbTest.fs" />
     <Compile Include="PythagoreanTripletTest.fs" />
