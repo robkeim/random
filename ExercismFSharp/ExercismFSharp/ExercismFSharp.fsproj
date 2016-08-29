@@ -80,6 +80,7 @@
     <Compile Include="ListOps.fs" />
     <Compile Include="Luhn.fs" />
     <Compile Include="Matrix.fs" />
+    <Compile Include="Meetup.fs" />
     <Compile Include="Minesweeper.fs" />
     <Compile Include="NthPrime.fs" />
     <Compile Include="NucleoTideCount.fs" />

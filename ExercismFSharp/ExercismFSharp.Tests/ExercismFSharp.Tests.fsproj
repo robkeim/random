@@ -81,6 +81,7 @@
     <Compile Include="ListOpsTest.fs" />
     <Compile Include="LuhnTest.fs" />
     <Compile Include="MatrixTest.fs" />
+    <Compile Include="MeetupTest.fs" />
     <Compile Include="MinesweeperTest.fs" />
     <Compile Include="NthPrimeTest.fs" />
     <Compile Include="NucleoTideCountTest.fs" />
