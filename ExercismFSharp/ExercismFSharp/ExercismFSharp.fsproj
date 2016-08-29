@@ -55,6 +55,7 @@
     <Compile Include="Accumulate.fs" />
     <Compile Include="Acronym.fs" />
     <Compile Include="Allergies.fs" />
+    <Compile Include="AllYourBase.fs" />
     <Compile Include="Anagram.fs" />
     <Compile Include="Atbash.fs" />
     <Compile Include="BankAccount.fs" />
