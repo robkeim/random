@@ -107,6 +107,7 @@
     <Compile Include="SeriesTest.fs" />
     <Compile Include="SieveTest.fs" />
     <Compile Include="SimpleCipherTest.fs" />
+    <Compile Include="SimpleLinkedListTest.fs" />
     <Compile Include="SpaceAgeTest.fs" />
     <Compile Include="StrainTest.fs" />
     <Compile Include="SumOfMultiplesTest.fs" />

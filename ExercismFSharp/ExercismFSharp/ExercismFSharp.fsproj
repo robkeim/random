@@ -106,6 +106,7 @@
     <Compile Include="Series.fs" />
     <Compile Include="Sieve.fs" />
     <Compile Include="SimpleCipher.fs" />
+    <Compile Include="SimpleLinkedList.fs" />
     <Compile Include="SpaceAge.fs" />
     <Compile Include="Strain.fs" />
     <Compile Include="SumOfMultiples.fs" />
