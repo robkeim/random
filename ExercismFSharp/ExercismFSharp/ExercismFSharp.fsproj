@@ -76,6 +76,7 @@
     <Compile Include="House.fs" />
     <Compile Include="Isogram.fs" />
     <Compile Include="KinderGartenGarden.fs" />
+    <Compile Include="LargestSeriesProduct.fs" />
     <Compile Include="LeapYear.fs" />
     <Compile Include="Ledger.fs" />
     <Compile Include="ListOps.fs" />
