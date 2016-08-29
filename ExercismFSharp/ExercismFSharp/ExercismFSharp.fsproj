@@ -88,6 +88,7 @@
     <Compile Include="NucleoTideCount.fs" />
     <Compile Include="Palindrome.fs" />
     <Compile Include="Pangram.fs" />
+    <Compile Include="PascalsTriangle.fs" />
     <Compile Include="PerfectNumbers.fs" />
     <Compile Include="PhoneNumber.fs" />
     <Compile Include="PrimeFactors.fs" />
