@@ -87,6 +87,7 @@
     <Compile Include="Minesweeper.fs" />
     <Compile Include="NthPrime.fs" />
     <Compile Include="NucleoTideCount.fs" />
+    <Compile Include="OcrNumbers.fs" />
     <Compile Include="Palindrome.fs" />
     <Compile Include="Pangram.fs" />
     <Compile Include="PascalsTriangle.fs" />

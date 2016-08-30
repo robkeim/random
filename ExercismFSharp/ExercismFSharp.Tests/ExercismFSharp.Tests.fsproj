@@ -88,6 +88,7 @@
     <Compile Include="MinesweeperTest.fs" />
     <Compile Include="NthPrimeTest.fs" />
     <Compile Include="NucleoTideCountTest.fs" />
+    <Compile Include="OcrNumbersTest.fs" />
     <Compile Include="PalindromeTest.fs" />
     <Compile Include="PangramTest.fs" />
     <Compile Include="PascalsTriangleTest.fs" />
