@@ -62,6 +62,7 @@
     <Compile Include="BankAccountTest.fs" />
     <Compile Include="BeerSongTest.fs" />
     <Compile Include="BinarySearchTest.fs" />
+    <Compile Include="BinarySearchTreeTest.fs" />
     <Compile Include="BobTest.fs" />
     <Compile Include="ClockTests.fs" />
     <Compile Include="CryptoSquareTest.fs" />
