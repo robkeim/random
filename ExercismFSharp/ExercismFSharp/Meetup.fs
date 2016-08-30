@@ -24,9 +24,9 @@ let meetupDay dayOfWeek schedule year month =
     let daysInMonth = getDaysInMonth year month dayOfWeek
 
     match schedule with
-    | First -> daysInMonth |> Seq.head
+    | First  -> daysInMonth |> Seq.head
     | Second -> daysInMonth |> Seq.skip 1 |> Seq.head
-    | Third -> daysInMonth |> Seq.skip 2 |> Seq.head
+    | Third  -> daysInMonth |> Seq.skip 2 |> Seq.head
     | Fourth -> daysInMonth |> Seq.skip 3 |> Seq.head
-    | Last -> daysInMonth |> Seq.last
+    | Last   -> daysInMonth |> Seq.last
     | Teenth -> daysInMonth |> Seq.filter (fun date -> date.Day >= 13 && date.Day <= 19) |> Seq.head
