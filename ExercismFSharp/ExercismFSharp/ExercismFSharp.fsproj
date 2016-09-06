@@ -67,6 +67,7 @@
     <Compile Include="CryptoSquare.fs" />
     <Compile Include="DifferenceOfSquares.fs" />
     <Compile Include="DiffieHellman.fs" />
+    <Compile Include="DotDsl.fs" />
     <Compile Include="ETL.fs" />
     <Compile Include="ErrorHandling.fs" />
     <Compile Include="Gigasecond.fs" />

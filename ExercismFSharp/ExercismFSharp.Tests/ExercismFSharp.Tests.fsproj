@@ -68,6 +68,7 @@
     <Compile Include="CryptoSquareTest.fs" />
     <Compile Include="DifferenceOfSquaresTest.fs" />
     <Compile Include="DiffieHellmanTest.fs" />
+    <Compile Include="DotDslTest.fs" />
     <Compile Include="ETLTest.fs" />
     <Compile Include="ErrorHandlingTest.fs" />
     <Compile Include="GigasecondTest.fs" />
