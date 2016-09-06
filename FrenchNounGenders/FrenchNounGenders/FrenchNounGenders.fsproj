@@ -64,6 +64,9 @@
     <Compile Include="Algorithms.fs" />
     <Compile Include="Calculations.fs" />
     <Compile Include="Program.fs" />
+    <Content Include="NounList.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FParsec">

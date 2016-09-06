@@ -25,14 +25,14 @@ let alwaysReturnFeminine word =
 let vowelsAndConsonants word =
     match word with
     | EndsWithRegexMatch "[bcdfghjklmnpqrstvwxyz]" _ -> Masculine
-    | EndsWithRegexMatch "[aeéiouû]" _ -> Feminine
+    | EndsWithRegexMatch "[aâáàeêéèëæiîïoôóuû]" _ -> Feminine
     | _ -> raise (System.ArgumentException("Unmatched word: " + word))
 
 // Assign each given letter to be either masculine or feminine
 let perLetter word =
     match word with
-    | EndsWithRegexMatch "[abcdfghijklmopqrstuûvxyz]" _ -> Masculine
-    | EndsWithRegexMatch "[eénw]" _ -> Feminine
+    | EndsWithRegexMatch "[aâáàbcdfghiîïjklmoôópqrstuûvxyz]" _ -> Masculine
+    | EndsWithRegexMatch "[eêéèëænw]" _ -> Feminine
     | _ -> raise (System.ArgumentException("Unmatched word: " + word))
 
 // Rules for only feminine words from "A simplified list of endings" on this site:
