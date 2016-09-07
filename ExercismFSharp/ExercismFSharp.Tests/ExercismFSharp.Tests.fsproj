@@ -117,6 +117,7 @@
     <Compile Include="SpaceAgeTest.fs" />
     <Compile Include="StrainTest.fs" />
     <Compile Include="SumOfMultiplesTest.fs" />
+    <Compile Include="TournamentTest.fs" />
     <Compile Include="TriangleTest.fs" />
     <Compile Include="TwelveDaysSongTest.fs" />
     <Compile Include="WordCountTest.fs" />
