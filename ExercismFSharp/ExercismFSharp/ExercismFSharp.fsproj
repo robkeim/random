@@ -84,6 +84,7 @@
     <Compile Include="Ledger.fs" />
     <Compile Include="ListOps.fs" />
     <Compile Include="Luhn.fs" />
+    <Compile Include="Markdown.fs" />
     <Compile Include="Matrix.fs" />
     <Compile Include="Meetup.fs" />
     <Compile Include="Minesweeper.fs" />

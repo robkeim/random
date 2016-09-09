@@ -122,6 +122,7 @@
     <Compile Include="TriangleTest.fs" />
     <Compile Include="TwelveDaysSongTest.fs" />
     <Compile Include="WordCountTest.fs" />
+    <Compile Include="MarkdownTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
