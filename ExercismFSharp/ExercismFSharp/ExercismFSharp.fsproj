@@ -119,6 +119,7 @@
     <Compile Include="Strain.fs" />
     <Compile Include="SumOfMultiples.fs" />
     <Compile Include="Tournament.fs" />
+    <Compile Include="TreeBuilding.fs" />
     <Compile Include="Triangle.fs" />
     <Compile Include="TwelveDaysSong.fs" />
     <Compile Include="WordCount.fs" />
