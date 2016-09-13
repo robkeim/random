@@ -98,6 +98,7 @@
     <Compile Include="PascalsTriangleTest.fs" />
     <Compile Include="PerfectNumbersTest.fs" />
     <Compile Include="PhoneNumberTest.fs" />
+    <Compile Include="PigLatinTest.fs" />
     <Compile Include="PrimeFactorsTest.fs" />
     <Compile Include="ProteinTranslationTest.fs" />
     <Compile Include="ProverbTest.fs" />
