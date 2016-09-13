@@ -64,6 +64,7 @@
     <Compile Include="BinarySearchTest.fs" />
     <Compile Include="BinarySearchTreeTest.fs" />
     <Compile Include="BobTest.fs" />
+    <Compile Include="BracketPushTest.fs" />
     <Compile Include="CircularBufferTest.fs" />
     <Compile Include="ClockTests.fs" />
     <Compile Include="CryptoSquareTest.fs" />
