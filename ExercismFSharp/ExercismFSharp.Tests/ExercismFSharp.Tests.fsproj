@@ -69,6 +69,7 @@
     <Compile Include="ClockTests.fs" />
     <Compile Include="CryptoSquareTest.fs" />
     <Compile Include="CustomSetTest.fs" />
+    <Compile Include="DiamondTest.fs" />
     <Compile Include="DifferenceOfSquaresTest.fs" />
     <Compile Include="DiffieHellmanTest.fs" />
     <Compile Include="DotDslTest.fs" />

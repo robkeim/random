@@ -68,6 +68,7 @@
     <Compile Include="Clock.fs" />
     <Compile Include="CryptoSquare.fs" />
     <Compile Include="CustomSet.fs" />
+    <Compile Include="Diamond.fs" />
     <Compile Include="DifferenceOfSquares.fs" />
     <Compile Include="DiffieHellman.fs" />
     <Compile Include="DotDsl.fs" />
