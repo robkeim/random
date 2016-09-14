@@ -87,6 +87,7 @@
     <Compile Include="LedgerTest.fs" />
     <Compile Include="ListOpsTest.fs" />
     <Compile Include="LuhnTest.fs" />
+    <Compile Include="MarkdownTest.fs" />
     <Compile Include="MatrixTest.fs" />
     <Compile Include="MeetupTest.fs" />
     <Compile Include="MinesweeperTest.fs" />
@@ -126,7 +127,7 @@
     <Compile Include="TriangleTest.fs" />
     <Compile Include="TwelveDaysSongTest.fs" />
     <Compile Include="WordCountTest.fs" />
-    <Compile Include="MarkdownTest.fs" />
+    <Compile Include="WordProblemTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
