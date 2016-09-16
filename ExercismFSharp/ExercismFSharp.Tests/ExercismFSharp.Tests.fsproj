@@ -122,6 +122,7 @@
     <Compile Include="SimpleLinkedListTest.fs" />
     <Compile Include="SpaceAgeTest.fs" />
     <Compile Include="StrainTest.fs" />
+    <Compile Include="SublistTest.fs" />
     <Compile Include="SumOfMultiplesTest.fs" />
     <Compile Include="TournamentTest.fs" />
     <Compile Include="TreeBuildingTest.fs" />

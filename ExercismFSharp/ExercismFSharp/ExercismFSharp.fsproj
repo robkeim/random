@@ -121,6 +121,7 @@
     <Compile Include="SimpleLinkedList.fs" />
     <Compile Include="SpaceAge.fs" />
     <Compile Include="Strain.fs" />
+    <Compile Include="Sublist.fs" />
     <Compile Include="SumOfMultiples.fs" />
     <Compile Include="Tournament.fs" />
     <Compile Include="TreeBuilding.fs" />
