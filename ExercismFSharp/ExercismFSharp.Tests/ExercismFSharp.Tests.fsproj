@@ -78,6 +78,7 @@
     <Compile Include="GigasecondTest.fs" />
     <Compile Include="GradeSchoolTest.fs" />
     <Compile Include="GrainsTest.fs" />
+    <Compile Include="GrepTest.fs" />
     <Compile Include="HammingTest.fs" />
     <Compile Include="HelloWorldTest.fs" />
     <Compile Include="HouseTest.fs" />

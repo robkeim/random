@@ -77,6 +77,7 @@
     <Compile Include="Gigasecond.fs" />
     <Compile Include="GradeSchool.fs" />
     <Compile Include="Grains.fs" />
+    <Compile Include="Grep.fs" />
     <Compile Include="Hamming.fs" />
     <Compile Include="HelloWorld.fs" />
     <Compile Include="House.fs" />
