@@ -86,6 +86,7 @@
     <Compile Include="LargestSeriesProduct.fs" />
     <Compile Include="LeapYear.fs" />
     <Compile Include="Ledger.fs" />
+    <Compile Include="LinkedList.fs" />
     <Compile Include="ListOps.fs" />
     <Compile Include="Luhn.fs" />
     <Compile Include="Markdown.fs" />
