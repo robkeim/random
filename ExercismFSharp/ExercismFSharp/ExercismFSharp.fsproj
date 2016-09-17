@@ -117,6 +117,7 @@
     <Compile Include="RomanNumeral.fs" />
     <Compile Include="SaddlePoints.fs" />
     <Compile Include="Say.fs" />
+    <Compile Include="ScaleGenerator.fs" />
     <Compile Include="ScrabbleScore.fs" />
     <Compile Include="SecretHandshake.fs" />
     <Compile Include="Series.fs" />
