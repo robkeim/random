@@ -133,6 +133,7 @@
     <Compile Include="TwoBucketTest.fs" />
     <Compile Include="WordCountTest.fs" />
     <Compile Include="WordProblemTest.fs" />
+    <Compile Include="FoodChainTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
