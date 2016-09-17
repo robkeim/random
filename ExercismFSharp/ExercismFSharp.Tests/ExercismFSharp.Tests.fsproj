@@ -130,6 +130,7 @@
     <Compile Include="TreeBuildingTest.fs" />
     <Compile Include="TriangleTest.fs" />
     <Compile Include="TwelveDaysSongTest.fs" />
+    <Compile Include="TwoBucketTest.fs" />
     <Compile Include="WordCountTest.fs" />
     <Compile Include="WordProblemTest.fs" />
   </ItemGroup>
