@@ -99,6 +99,7 @@
     <Compile Include="OcrNumbersTest.fs" />
     <Compile Include="PalindromeTest.fs" />
     <Compile Include="PangramTest.fs" />
+    <Compile Include="ParallelLetterFrequencyTest.fs" />
     <Compile Include="PascalsTriangleTest.fs" />
     <Compile Include="PerfectNumbersTest.fs" />
     <Compile Include="PhoneNumberTest.fs" />
