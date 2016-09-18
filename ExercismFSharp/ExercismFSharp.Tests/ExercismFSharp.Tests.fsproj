@@ -134,6 +134,7 @@
     <Compile Include="SublistTest.fs" />
     <Compile Include="SumOfMultiplesTest.fs" />
     <Compile Include="TournamentTest.fs" />
+    <Compile Include="TransposeTest.fs" />
     <Compile Include="TreeBuildingTest.fs" />
     <Compile Include="TriangleTest.fs" />
     <Compile Include="TwelveDaysSongTest.fs" />
