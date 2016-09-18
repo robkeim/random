@@ -115,6 +115,7 @@
     <Compile Include="RobotName.fs" />
     <Compile Include="RobotSimulator.fs" />
     <Compile Include="RomanNumeral.fs" />
+    <Compile Include="RunLengthEncoding.fs" />
     <Compile Include="SaddlePoints.fs" />
     <Compile Include="Say.fs" />
     <Compile Include="ScaleGenerator.fs" />

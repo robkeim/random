@@ -75,6 +75,7 @@
     <Compile Include="DotDslTest.fs" />
     <Compile Include="ETLTest.fs" />
     <Compile Include="ErrorHandlingTest.fs" />
+    <Compile Include="FoodChainTest.fs" />
     <Compile Include="GigasecondTest.fs" />
     <Compile Include="GradeSchoolTest.fs" />
     <Compile Include="GrainsTest.fs" />
@@ -115,6 +116,7 @@
     <Compile Include="RobotNameTest.fs" />
     <Compile Include="RobotSimulatorTest.fs" />
     <Compile Include="RomanNumeralTest.fs" />
+    <Compile Include="RunLengthEncodingTest.fs" />
     <Compile Include="SaddlePointTest.fs" />
     <Compile Include="SayTest.fs" />
     <Compile Include="ScaleGeneratorTest.fs" />
@@ -135,7 +137,6 @@
     <Compile Include="TwoBucketTest.fs" />
     <Compile Include="WordCountTest.fs" />
     <Compile Include="WordProblemTest.fs" />
-    <Compile Include="FoodChainTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
