@@ -65,6 +65,7 @@
     <Compile Include="Bob.fs" />
     <Compile Include="Bowling.fs" />
     <Compile Include="BracketPush.fs" />
+    <Compile Include="Change.fs" />
     <Compile Include="CircularBuffer.fs" />
     <Compile Include="Clock.fs" />
     <Compile Include="CryptoSquare.fs" />
