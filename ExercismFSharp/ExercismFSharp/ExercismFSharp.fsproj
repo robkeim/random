@@ -106,6 +106,7 @@
     <Compile Include="PerfectNumbers.fs" />
     <Compile Include="PhoneNumber.fs" />
     <Compile Include="PigLatin.fs" />
+    <Compile Include="Poker.fs" />
     <Compile Include="PrimeFactors.fs" />
     <Compile Include="ProteinTranslation.fs" />
     <Compile Include="Proverb.fs" />
