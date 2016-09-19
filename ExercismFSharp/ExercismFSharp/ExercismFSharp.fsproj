@@ -138,6 +138,7 @@
     <Compile Include="TwoBucket.fs" />
     <Compile Include="WordCount.fs" />
     <Compile Include="WordProblem.fs" />
+    <Compile Include="WordSearch.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
