@@ -1,4 +1,4 @@
-﻿module Question25
+﻿module Problem25
 
 open System
 
@@ -19,5 +19,4 @@ let thousandDigitFibonacci =
         |> Seq.length
 
     Console.WriteLine (result + 1)
-
     ()

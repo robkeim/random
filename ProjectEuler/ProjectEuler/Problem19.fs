@@ -1,4 +1,4 @@
-﻿module Question19
+﻿module Problem19
 
 open System
 
@@ -10,5 +10,4 @@ let numSundays =
         |> Seq.length
 
     Console.WriteLine result
-
     ()

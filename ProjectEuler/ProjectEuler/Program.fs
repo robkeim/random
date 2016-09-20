@@ -4,8 +4,9 @@ open System
 
 [<EntryPoint>]
 let main argv =
-    //Question19.numSundays
-    Question25.thousandDigitFibonacci
+    //Problem19.numSundays
+    //Problem25.thousandDigitFibonacci
+    Problem30.digitFifthPowers
 
     printfn "done!"
     Console.ReadLine() |> ignore
