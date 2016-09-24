@@ -9,7 +9,8 @@ let main argv =
     //Problem30.digitFifthPowers
     //Problem31.numCoins
     //Problem36.doublePalendromes
-    Problem42.numTriangleWords
+    //Problem42.numTriangleWords
+    Problem52.permutedMultiples
 
     printfn "done!"
     Console.ReadLine() |> ignore
