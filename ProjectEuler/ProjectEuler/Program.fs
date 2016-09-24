@@ -8,7 +8,8 @@ let main argv =
     //Problem25.thousandDigitFibonacci
     //Problem30.digitFifthPowers
     //Problem31.numCoins
-    Problem36.doublePalendromes
+    //Problem36.doublePalendromes
+    Problem42.numTriangleWords
 
     printfn "done!"
     Console.ReadLine() |> ignore
