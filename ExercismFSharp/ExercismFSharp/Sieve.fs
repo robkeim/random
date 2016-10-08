@@ -1,7 +1,7 @@
 ﻿module Sieve
 
-let rec private listToFilter res list =
-    match list with
+let rec private listToFilter res =
+    function
     | [] -> res
     | x::xs ->
         let filtered =
