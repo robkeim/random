@@ -1,12 +1,16 @@
 ﻿module DifferenceOfSquares
 
+let private square n =
+    n * n
+
 let squareOfSums num =
-    let sum = [1..num] |> List.sum
-    sum * sum
+    [1..num]
+    |> List.sum
+    |> square
 
 let sumOfSquares num =
     [1..num]
-    |> List.sumBy (fun n -> n * n)
+    |> List.sumBy square
 
 let difference num =
     (squareOfSums num) - (sumOfSquares num)
