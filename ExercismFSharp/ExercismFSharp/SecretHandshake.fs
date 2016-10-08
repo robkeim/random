@@ -3,10 +3,10 @@
 open System
 
 type private HandshakeMovement =
-    | Wink = 1
-    | DoubleBlink = 2
-    | CloseYourEyes = 4
-    | Jump = 8
+    | Wink              = 1
+    | DoubleBlink       = 2
+    | CloseYourEyes     = 4
+    | Jump              = 8
     | ReverseOperations = 16
 
 let handshake num =
@@ -15,11 +15,11 @@ let handshake num =
 
     let stringMovement mov =
         match mov with
-        | HandshakeMovement.Wink -> "wink"
-        | HandshakeMovement.DoubleBlink -> "double blink"
+        | HandshakeMovement.Wink          -> "wink"
+        | HandshakeMovement.DoubleBlink   -> "double blink"
         | HandshakeMovement.CloseYourEyes -> "close your eyes"
-        | HandshakeMovement.Jump -> "jump"
-        | _ -> raise (InvalidOperationException "No string representation for reverse")
+        | HandshakeMovement.Jump          -> "jump"
+        | _                               -> failwith "no string representation for reverse"
 
     let movements =
         Enum.GetValues(typeof<HandshakeMovement>)
@@ -29,6 +29,7 @@ let handshake num =
         |> Seq.map stringMovement
         |> Seq.toList
 
-    match isIncludedMovement HandshakeMovement.ReverseOperations with
-    | true -> movements |> List.rev
-    | false -> movements
+    if isIncludedMovement HandshakeMovement.ReverseOperations then
+        movements |> List.rev
+    else
+        movements
