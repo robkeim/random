@@ -10,11 +10,7 @@ let parsePhoneNumber input =
 
     let length = phoneNumber |> List.length
 
-    let toString phoneNumber =
-        phoneNumber
-        |> List.fold (sprintf "%s%c") ""
-
     match phoneNumber with
-    | _ when length = 10 -> Some (phoneNumber |> toString)
-    | '1'::pn when length = 11 -> Some (pn |> toString)
-    | _ -> None
+    | _ when length = 10       -> Some (phoneNumber |> String.Concat)
+    | '1'::pn when length = 11 -> Some (pn |> String.Concat)
+    | _                        -> None
