@@ -2,30 +2,18 @@
 
 open System
 
-let hey phrase =
-    let isUpperCaseLetter letter =
-        Char.IsLetter letter && Char.IsUpper letter
+let hey (phrase : string) =
+    let isNothing =
+        String.IsNullOrWhiteSpace phrase
 
-    let areAllLettersUpperCase string =
-        string
-        |> Seq.filter Char.IsLetter
-        |> Seq.forall isUpperCaseLetter
+    let isQuestion =
+        phrase.EndsWith "?"
 
-    let hasUpperCaseLetter string =
-        string
-        |> Seq.exists isUpperCaseLetter
-
-    let isQuestion phrase =
-        phrase |> Seq.tryLast = Some '?'
-
-    let isYelling phrase =
-         hasUpperCaseLetter phrase && areAllLettersUpperCase phrase
-
-    let isNothing phrase =
-        (Seq.isEmpty phrase) || (Seq.forall Char.IsWhiteSpace phrase)
+    let isYelling =
+        Seq.exists Char.IsLetter phrase && phrase = phrase.ToUpperInvariant()
 
     match phrase with
-    | _ when isYelling phrase -> "Whoa, chill out!"
-    | _ when isQuestion phrase -> "Sure."
-    | _ when isNothing phrase -> "Fine. Be that way!"
-    | _ -> "Whatever."
+    | _ when isYelling  -> "Whoa, chill out!"
+    | _ when isQuestion -> "Sure."
+    | _ when isNothing  -> "Fine. Be that way!"
+    | _                 -> "Whatever."
