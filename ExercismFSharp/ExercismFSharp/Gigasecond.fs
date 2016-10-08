@@ -3,5 +3,4 @@
 open System
 
 let gigasecond (time : DateTime) =
-    let gigasecondBirthday = time.AddSeconds 1000000000.
-    gigasecondBirthday.Date
+    (time.AddSeconds 1000000000.).Date
