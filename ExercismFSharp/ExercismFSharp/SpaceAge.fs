@@ -15,14 +15,14 @@ type Planet =
 let spaceAge planet seconds =
     let planetYears planet years =
         match planet with
+        | Earth   -> years
         | Mercury -> years / 0.2408467m
-        | Venus -> years / 0.61519726m
-        | Mars -> years / 1.8808158m
+        | Venus   -> years / 0.61519726m
+        | Mars    -> years / 1.8808158m
         | Jupiter -> years / 11.862615m
-        | Saturn -> years / 29.447498m
-        | Uranus -> years / 84.016846m
+        | Saturn  -> years / 29.447498m
+        | Uranus  -> years / 84.016846m
         | Neptune -> years / 164.79132m
-        | _ -> years
     
     let earthYears = seconds / 31557600m
     let planetYears = planetYears planet earthYears
