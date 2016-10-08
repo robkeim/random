@@ -26,7 +26,7 @@ let kind s1 s2 s3 =
         s1 = s2 || s1 = s3 || s2 = s3
 
     match (s1, s2, s3) with
-    | _ when isImpossible s1 s2 s3 -> raise (InvalidOperationException "Invalid triangle sides")
+    | _ when isImpossible s1 s2 s3   -> raise (InvalidOperationException "Invalid triangle sides")
     | _ when isEquilaterial s1 s2 s3 -> TriangleKind.Equilateral
-    | _ when isIsoceles s1 s2 s3 -> TriangleKind.Isosceles
-    | _ -> TriangleKind.Scalene
+    | _ when isIsoceles     s1 s2 s3 -> TriangleKind.Isosceles
+    | _                              -> TriangleKind.Scalene
