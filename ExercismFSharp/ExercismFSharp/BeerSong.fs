@@ -1,5 +1,7 @@
 ﻿module BeerSong
 
+open System
+
 let verse num =
     match num with
     | 0 -> "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n"
@@ -8,9 +10,9 @@ let verse num =
     | _ -> sprintf "%d bottles of beer on the wall, %d bottles of beer.\nTake one down and pass it around, %d bottles of beer on the wall.\n" num num (num - 1)
 
 let verses start stop =
-    [ start .. -1 .. stop ]
+    [start .. -1 .. stop]
     |> List.map verse
-    |> List.fold (sprintf "%s%s\n") ""
+    |> List.fold (sprintf "%s%s\n") String.Empty
 
 let sing =
     verses 99 0
