@@ -39,21 +39,21 @@ let verse num =
         | 12 -> "twelfth"
         | _ -> raise (ArgumentOutOfRangeException "Invalid value")
 
-    let nthGift num =
-        match num with
-        | 1 -> "and a Partridge in a Pear Tree"
-        | 2 -> "two Turtle Doves"
-        | 3 -> "three French Hens"
-        | 4 -> "four Calling Birds"
-        | 5 -> "five Gold Rings"
-        | 6 -> "six Geese-a-Laying"
-        | 7 -> "seven Swans-a-Swimming"
-        | 8 -> "eight Maids-a-Milking"
-        | 9 -> "nine Ladies Dancing"
+    let nthGift =
+        function
+        | 1  -> "and a Partridge in a Pear Tree"
+        | 2  -> "two Turtle Doves"
+        | 3  -> "three French Hens"
+        | 4  -> "four Calling Birds"
+        | 5  -> "five Gold Rings"
+        | 6  -> "six Geese-a-Laying"
+        | 7  -> "seven Swans-a-Swimming"
+        | 8  -> "eight Maids-a-Milking"
+        | 9  -> "nine Ladies Dancing"
         | 10 -> "ten Lords-a-Leaping"
         | 11 -> "eleven Pipers Piping"
         | 12 -> "twelve Drummers Drumming"
-        | _ -> raise (ArgumentOutOfRangeException "num ArgumentOutOfRange excemptions")
+        | _ -> failwith "invalid day of Christmas"
 
     let head = sprintf "On the %s day of Christmas my true love gave to me" (cardinal num)
 
@@ -67,4 +67,4 @@ let verse num =
 let verses first last =
     [first..last]
     |> Seq.map (fun n -> sprintf "%s\n" (verse n))
-    |> Seq.reduce (sprintf "%s%s")
+    |> String.Concat
