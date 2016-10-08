@@ -10,13 +10,13 @@ let wordCount phrase =
             match c with
             | _ when Char.IsLetterOrDigit c  -> Char.ToLowerInvariant c
             | ''' -> '''
-            | _ -> ' ')
+            | _   -> ' ')
         |> String.Concat
 
     let filterNonEmptyWords w =
         match w with
         | _ when Seq.length w > 0 -> Some w
-        | _ -> None
+        | _                       -> None
 
     let normalizedPhrase =
         phrase |> normalizeString
@@ -24,6 +24,6 @@ let wordCount phrase =
     normalizedPhrase.Split [|' '|]
     |> Seq.map (fun w -> w.Trim ''')
     |> Seq.choose filterNonEmptyWords
-    |> Seq.groupBy (fun w -> w)
+    |> Seq.groupBy id
     |> Seq.map (fun (k, v) -> (k, Seq.length v))
     |> Map.ofSeq
