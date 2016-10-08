@@ -12,7 +12,7 @@ let private toProtein =
     | "UGU" | "UGC"                 -> "Cysteine"
     | "UGG"                         -> "Tryptophan"
     | "UAA" | "UAG" | "UGA"         -> "STOP"
-    | _                             -> failwith "Invalid protein"
+    | _                             -> failwith "invalid protein"
 
 let translate codon =
     codon

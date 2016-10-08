@@ -7,4 +7,4 @@ let toRna dna =
         | 'C' -> 'G'
         | 'T' -> 'A'
         | 'A' -> 'U'
-        | _   -> failwith "Invalid DNA character")
+        | _   -> failwith "invalid dna character")
