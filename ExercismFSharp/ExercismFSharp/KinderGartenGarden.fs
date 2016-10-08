@@ -28,8 +28,8 @@ let safeArrayAccess offset (line : string) =
     try
         let lowerBound = offset * 2
         line.[lowerBound .. lowerBound + 1]
-        |> Seq.map (fun value ->
-            match value with
+        |> Seq.map (
+            function
             | 'C' -> Some Plant.Clover
             | 'G' -> Some Plant.Grass
             | 'R' -> Some Plant.Radishes
