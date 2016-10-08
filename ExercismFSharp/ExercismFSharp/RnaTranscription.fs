@@ -1,7 +1,5 @@
 ﻿module RNATranscription
 
-open System
-
 let toRna dna =
     dna
     |> Seq.map (function
@@ -9,4 +7,4 @@ let toRna dna =
         | 'C' -> 'G'
         | 'T' -> 'A'
         | 'A' -> 'U'
-        | _ -> raise (ArgumentException "Invalid DNA character"))
+        | _   -> failwith "Invalid DNA character")
