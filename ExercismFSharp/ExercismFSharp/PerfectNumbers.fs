@@ -18,5 +18,4 @@ let classify num =
     match diff with
     | _ when diff < 0 -> NumberType.Deficient
     | 0               -> NumberType.Perfect
-    | _ when diff > 0 -> NumberType.Abundant
-    | _               -> failwith "unreachable code"
+    | _               -> NumberType.Abundant
