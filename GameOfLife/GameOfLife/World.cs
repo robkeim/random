@@ -16,6 +16,11 @@ namespace GameOfLife
             }
         }
 
+        public Cell[,] GetState()
+        {
+            return new Cell[0, 0];
+        }
+
         public bool Equals(World other)
         {
             return other != null
