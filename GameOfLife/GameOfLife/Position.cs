@@ -14,6 +14,21 @@ namespace GameOfLife
 
         public int Y { get; }
 
+        public Position[] GetNeighbors()
+        {
+            return new[]
+            {
+                new Position(X - 1, Y - 1), 
+                new Position(X - 1, Y), 
+                new Position(X - 1, Y + 1), 
+                new Position(X, Y - 1), 
+                new Position(X, Y + 1), 
+                new Position(X + 1, Y - 1), 
+                new Position(X + 1, Y), 
+                new Position(X + 1, Y + 1),
+            };
+        }
+
         public override bool Equals(object obj)
         {
             return Equals(obj as Position);
