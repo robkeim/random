@@ -8,7 +8,7 @@ namespace GameOfLifeTests
     public class PositionTests
     {
         [TestMethod]
-        public void TwoPositionsWithTheSameReferenceAreEqual()
+        public void Two_Positions_With_The_Same_Reference_Are_Equal()
         {
             // Arrange
             var position = new Position(0, 0);
@@ -19,7 +19,7 @@ namespace GameOfLifeTests
         }
 
         [TestMethod]
-        public void TwoPositionsWithDifferentReferencesAreEqual()
+        public void Two_Positions_With_Different_References_Are_Equal()
         {
             // Arrange
             var position1 = new Position(0, 0);
@@ -31,7 +31,7 @@ namespace GameOfLifeTests
         }
 
         [TestMethod]
-        public void TwoDifferentPositionsAreNotEqual()
+        public void Two_Different_Positions_Are_Not_Equal()
         {
             // Arrange
             var position1 = new Position(0, 0);
@@ -43,7 +43,7 @@ namespace GameOfLifeTests
         }
 
         [TestMethod]
-        public void GetNeighborsReturnsEightResults()
+        public void Get_Neighbors_Returns_Eight_Results()
         {
             // Arrange
             var position = new Position(0, 0);
@@ -57,7 +57,7 @@ namespace GameOfLifeTests
         }
 
         [TestMethod]
-        public void GetNeighborsReturnsCorrectPositions()
+        public void Get_Neighbors_Returns_Correct_Positions()
         {
             // Arrange
             var position = new Position(0, 0);
