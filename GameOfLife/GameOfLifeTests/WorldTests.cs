@@ -41,5 +41,19 @@ namespace GameOfLifeTests
             // Assert
             Assert.AreNotEqual(world1, world2);
         }
+
+        [TestMethod]
+        public void Worlds_With_One_Cell_But_Different_Positions_Are_Not_Equal()
+        {
+            // Arrange
+            var world1 = new World();
+            world1.AddLiveCell(new Position(0, 1));
+            var world2 = new World();
+            world2.AddLiveCell(new Position(0, 0));
+
+            // Act
+            // Assert
+            Assert.AreNotEqual(world1, world2);
+        }
     }
 }

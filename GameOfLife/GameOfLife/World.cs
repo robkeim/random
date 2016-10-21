@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GameOfLife
 {
-    // TODO override GetHashCode
     public class World: IEquatable<World>
     {
         private readonly HashSet<Position> _liveCells = new HashSet<Position>();
@@ -18,12 +18,19 @@ namespace GameOfLife
 
         public bool Equals(World other)
         {
-            return other != null && _liveCells.Count == other._liveCells.Count;
+            return other != null
+                && _liveCells.Count == other._liveCells.Count
+                && _liveCells.All(p => other._liveCells.Contains(p));
         }
 
         public override bool Equals(object obj)
         {
             return Equals(obj as World);
+        }
+
+        public override int GetHashCode()
+        {
+            return _liveCells?.GetHashCode() ?? 0;
         }
     }
 }
