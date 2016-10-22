@@ -6,6 +6,18 @@ namespace GameOfLife
 {
     public class World: IEquatable<World>
     {
+        public World()
+        {
+        }
+
+        private World(int minX, int maxX, int minY, int maxY)
+        {
+            _minX = minX;
+            _maxX = maxX;
+            _minY = minY;
+            _maxY = maxY;
+        }
+
         private readonly HashSet<Position> _liveCells = new HashSet<Position>();
 
         private int _minX = int.MaxValue;
@@ -26,9 +38,9 @@ namespace GameOfLife
             }
         }
 
-        public Cell[,] GetState()
+        public Cell[,] GetCurrentState()
         {
-            if (_liveCells.Count == 0)
+            if (_minX == int.MaxValue && _maxX == int.MinValue && _minY == int.MaxValue && _maxY == int.MinValue)
             {
                 return new Cell[0, 0];
             }
@@ -51,6 +63,42 @@ namespace GameOfLife
             }
 
             return result;
+        }
+
+        public World GetNextIteration()
+        {
+            var positionsToCheck = new HashSet<Position>();
+
+            foreach (var liveCell in _liveCells)
+            {
+                positionsToCheck.Add(liveCell);
+
+                foreach (var neighbor in liveCell.GetNeighbors())
+                {
+                    positionsToCheck.Add(neighbor);
+                }
+            }
+
+            var result = new World(_minX, _maxX, _minY, _maxY);
+
+            foreach (var position in positionsToCheck)
+            {
+                var cellAtPosition = _liveCells.Contains(position)
+                    ? (Cell)new LiveCell()
+                    : new DeadCell();
+
+                if (cellAtPosition.LivesInNextIteration(GetLiveNeighborsForPosition(position)))
+                {
+                    result.AddLiveCell(position);
+                }
+            }
+
+            return result;
+        }
+
+        private int GetLiveNeighborsForPosition(Position position)
+        {
+            return position.GetNeighbors().Count(n => _liveCells.Contains(n));
         }
 
         public bool Equals(World other)

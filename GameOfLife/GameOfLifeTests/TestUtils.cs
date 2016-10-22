@@ -5,6 +5,26 @@ namespace GameOfLifeTests
 {
     public static class TestUtils
     {
+        public static World CreateWorld(params string[] lines)
+        {
+            var state = CreateExpectedWorldState(lines);
+
+            var result = new World();
+
+            for (int i = 0; i < state.GetLength(0); i++)
+            {
+                for (int j = 0; j < state.GetLength(1); j++)
+                {
+                    if (state[j, i] is LiveCell)
+                    {
+                        result.AddLiveCell(new Position(j, i));
+                    }
+                }
+            }
+
+            return result;
+        }
+
         public static Cell[,] CreateExpectedWorldState(params string[] lines)
         {
             var xSize = lines[0].Length;

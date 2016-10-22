@@ -14,7 +14,7 @@ namespace GameOfLifeTests
             var expected = new Cell[0, 0];
 
             // Act
-            var actual = world.GetState();
+            var actual = world.GetCurrentState();
 
             // Assert
             CollectionAssert.AreEqual(expected, actual);
@@ -26,10 +26,11 @@ namespace GameOfLifeTests
             // Arrange
             var world = new World();
             world.AddLiveCell(new Position(0, 0));
-            var expected = TestUtils.CreateExpectedWorldState("X");
+            var expected = TestUtils.CreateExpectedWorldState(
+                "X");
 
             // Act
-            var actual = world.GetState();
+            var actual = world.GetCurrentState();
 
             // Assert
             TestUtils.AssertWorldStatesAreEqual(expected, actual);
@@ -46,7 +47,7 @@ namespace GameOfLifeTests
                 "XX");
 
             // Act
-            var actual = world.GetState();
+            var actual = world.GetCurrentState();
 
             // Assert
             TestUtils.AssertWorldStatesAreEqual(expected, actual);
@@ -64,7 +65,7 @@ namespace GameOfLifeTests
                 "X");
 
             // Act
-            var actual = world.GetState();
+            var actual = world.GetCurrentState();
 
             // Assert
             TestUtils.AssertWorldStatesAreEqual(expected, actual);
@@ -84,7 +85,7 @@ namespace GameOfLifeTests
                 "XX");
 
             // Act
-            var actual = world.GetState();
+            var actual = world.GetCurrentState();
 
             // Assert
             TestUtils.AssertWorldStatesAreEqual(expected, actual);
@@ -101,7 +102,7 @@ namespace GameOfLifeTests
                 "X.X");
 
             // Act
-            var actual = world.GetState();
+            var actual = world.GetCurrentState();
 
             // Assert
             TestUtils.AssertWorldStatesAreEqual(expected, actual);
@@ -120,7 +121,7 @@ namespace GameOfLifeTests
                 "X");
 
             // Act
-            var actual = world.GetState();
+            var actual = world.GetCurrentState();
 
             // Assert
             TestUtils.AssertWorldStatesAreEqual(expected, actual);
@@ -139,7 +140,7 @@ namespace GameOfLifeTests
                 "..X");
 
             // Act
-            var actual = world.GetState();
+            var actual = world.GetCurrentState();
 
             // Assert
             TestUtils.AssertWorldStatesAreEqual(expected, actual);
@@ -158,7 +159,7 @@ namespace GameOfLifeTests
                 "..X");
 
             // Act
-            var actual = world.GetState();
+            var actual = world.GetCurrentState();
 
             // Assert
             TestUtils.AssertWorldStatesAreEqual(expected, actual);
