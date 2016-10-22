@@ -27,10 +27,18 @@ namespace GameOfLife
 
         public void AddLiveCell(Position position)
         {
+            AddCell(position, new LiveCell());
+        }
+
+        public void AddCell(Position position, Cell cell)
+        {
             if (!_liveCells.Contains(position))
             {
-                _liveCells.Add(position);
-
+                if (cell.GetType() == typeof(LiveCell))
+                {
+                    _liveCells.Add(position);
+                }
+                
                 _minX = Math.Min(_minX, position.X);
                 _maxX = Math.Max(_maxX, position.X);
                 _minY = Math.Min(_minY, position.Y);

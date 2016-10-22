@@ -24,8 +24,8 @@ namespace GameOfLifeTests
         public void World_With_One_Live_Cell_Returns_One_By_One_State()
         {
             // Arrange
-            var world = new World();
-            world.AddLiveCell(new Position(0, 0));
+            var world = TestUtils.CreateWorld(
+                "X");
             var expected = TestUtils.CreateExpectedWorldState(
                 "X");
 
@@ -40,9 +40,8 @@ namespace GameOfLifeTests
         public void World_With_Two_Live_Cells_Horizontal_Returns_State()
         {
             // Arrange
-            var world = new World();
-            world.AddLiveCell(new Position(0, 0));
-            world.AddLiveCell(new Position(1, 0));
+            var world = TestUtils.CreateWorld(
+                "XX");
             var expected = TestUtils.CreateExpectedWorldState(
                 "XX");
 
@@ -57,9 +56,9 @@ namespace GameOfLifeTests
         public void World_With_Two_Live_Cells_Vertical_Returns_State()
         {
             // Arrange
-            var world = new World();
-            world.AddLiveCell(new Position(0, 0));
-            world.AddLiveCell(new Position(0, 1));
+            var world = TestUtils.CreateWorld(
+                "X",
+                "X");
             var expected = TestUtils.CreateExpectedWorldState(
                 "X",
                 "X");
@@ -75,11 +74,9 @@ namespace GameOfLifeTests
         public void World_With_Two_By_Two_Live_Cells_Vertical_Returns_State()
         {
             // Arrange
-            var world = new World();
-            world.AddLiveCell(new Position(0, 0));
-            world.AddLiveCell(new Position(0, 1));
-            world.AddLiveCell(new Position(1, 0));
-            world.AddLiveCell(new Position(1, 1));
+            var world = TestUtils.CreateWorld(
+                "XX",
+                "XX");
             var expected = TestUtils.CreateExpectedWorldState(
                 "XX",
                 "XX");
@@ -95,9 +92,8 @@ namespace GameOfLifeTests
         public void World_With_Two_Live_Cells_Separated_By_Space_Horizontal_Returns_State()
         {
             // Arrange
-            var world = new World();
-            world.AddLiveCell(new Position(0, 0));
-            world.AddLiveCell(new Position(2, 0));
+            var world = TestUtils.CreateWorld(
+                "X.X");
             var expected = TestUtils.CreateExpectedWorldState(
                 "X.X");
 
@@ -112,9 +108,10 @@ namespace GameOfLifeTests
         public void World_With_Two_Live_Cells_Separated_By_Space_Verical_Returns_State()
         {
             // Arrange
-            var world = new World();
-            world.AddLiveCell(new Position(0, 0));
-            world.AddLiveCell(new Position(0, 2));
+            var world = TestUtils.CreateWorld(
+                "X",
+                ".",
+                "X");
             var expected = TestUtils.CreateExpectedWorldState(
                 "X",
                 ".",
@@ -131,9 +128,10 @@ namespace GameOfLifeTests
         public void World_With_Two_Live_Cells_In_Opposite_Corners_Returns_State()
         {
             // Arrange
-            var world = new World();
-            world.AddLiveCell(new Position(0, 0));
-            world.AddLiveCell(new Position(2, 2));
+            var world = TestUtils.CreateWorld(
+                "X..",
+                "...",
+                "..X");
             var expected = TestUtils.CreateExpectedWorldState(
                 "X..",
                 "...",

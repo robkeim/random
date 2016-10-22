@@ -9,11 +9,9 @@ namespace GameOfLifeTests
         [TestMethod]
         public void World_With_One_Cell_Dies_In_Next_Iteration()
         {
-            // TODO replace all world initializations with helper function
-
             // Arrange
-            var world = new World();
-            world.AddLiveCell(new Position(0, 0));
+            var world = TestUtils.CreateWorld(
+                "X");
             var expected = TestUtils.CreateExpectedWorldState(
                 ".");
 

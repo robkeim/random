@@ -15,10 +15,7 @@ namespace GameOfLifeTests
             {
                 for (int j = 0; j < state.GetLength(1); j++)
                 {
-                    if (state[j, i] is LiveCell)
-                    {
-                        result.AddLiveCell(new Position(j, i));
-                    }
+                    result.AddCell(new Position(j, i), state[i, j]);
                 }
             }
 
