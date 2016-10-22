@@ -8,10 +8,10 @@ namespace GameOfLife
     {
         private readonly HashSet<Position> _liveCells = new HashSet<Position>();
 
-        private int minX = int.MaxValue;
-        private int maxX = int.MinValue;
-        private int minY = int.MaxValue;
-        private int maxY = int.MinValue;
+        private int _minX = int.MaxValue;
+        private int _maxX = int.MinValue;
+        private int _minY = int.MaxValue;
+        private int _maxY = int.MinValue;
 
         public void AddLiveCell(Position position)
         {
@@ -19,10 +19,10 @@ namespace GameOfLife
             {
                 _liveCells.Add(position);
 
-                minX = Math.Min(minX, position.X);
-                maxX = Math.Max(maxX, position.X);
-                minY = Math.Min(minY, position.Y);
-                maxY = Math.Max(maxY, position.Y);
+                _minX = Math.Min(_minX, position.X);
+                _maxX = Math.Max(_maxX, position.X);
+                _minY = Math.Min(_minY, position.Y);
+                _maxY = Math.Max(_maxY, position.Y);
             }
         }
 
@@ -33,8 +33,8 @@ namespace GameOfLife
                 return new Cell[0, 0];
             }
 
-            int xSize = maxX - minX + 1;
-            int ySize = maxY - minY + 1;
+            int xSize = _maxX - _minX + 1;
+            int ySize = _maxY - _minY + 1;
 
             var result = new Cell[ySize, xSize];
 
@@ -42,7 +42,7 @@ namespace GameOfLife
             {
                 for (int j = 0; j < ySize; j++)
                 {
-                    var position = new Position(minX + i, minY + j);
+                    var position = new Position(_minX + i, _minY + j);
                     
                     result[j, i] = _liveCells.Contains(position)
                         ? (Cell)new LiveCell()

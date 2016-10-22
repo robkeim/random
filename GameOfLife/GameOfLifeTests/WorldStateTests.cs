@@ -90,6 +90,80 @@ namespace GameOfLifeTests
             AssertWorldStatesAreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void World_With_Two_Live_Cells_Separated_By_Space_Horizontal_Returns_State()
+        {
+            // Arrange
+            var world = new World();
+            world.AddLiveCell(new Position(0, 0));
+            world.AddLiveCell(new Position(2, 0));
+            var expected = CreateExpectedWorldState(
+                "X.X");
+
+            // Act
+            var actual = world.GetState();
+
+            // Assert
+            AssertWorldStatesAreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void World_With_Two_Live_Cells_Separated_By_Space_Verical_Returns_State()
+        {
+            // Arrange
+            var world = new World();
+            world.AddLiveCell(new Position(0, 0));
+            world.AddLiveCell(new Position(0, 2));
+            var expected = CreateExpectedWorldState(
+                "X",
+                ".",
+                "X");
+
+            // Act
+            var actual = world.GetState();
+
+            // Assert
+            AssertWorldStatesAreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void World_With_Two_Live_Cells_In_Opposite_Corners_Returns_State()
+        {
+            // Arrange
+            var world = new World();
+            world.AddLiveCell(new Position(0, 0));
+            world.AddLiveCell(new Position(2, 2));
+            var expected = CreateExpectedWorldState(
+                "X..",
+                "...",
+                "..X");
+
+            // Act
+            var actual = world.GetState();
+
+            // Assert
+            AssertWorldStatesAreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void World_With_Two_Live_Cells_In_Opposite_Corners_And_Negative_Positions_Returns_State()
+        {
+            // Arrange
+            var world = new World();
+            world.AddLiveCell(new Position(-1, -1));
+            world.AddLiveCell(new Position(1, 1));
+            var expected = CreateExpectedWorldState(
+                "X..",
+                "...",
+                "..X");
+
+            // Act
+            var actual = world.GetState();
+
+            // Assert
+            AssertWorldStatesAreEqual(expected, actual);
+        }
+
         private static Cell[,] CreateExpectedWorldState(params string[] lines)
         {
             var xSize = lines[0].Length;
