@@ -13,5 +13,15 @@ namespace GameOfLife
 
             return numAliveNeighbors == 3;
         }
+
+        public override bool Equals(Cell other)
+        {
+            return other is DeadCell;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Cell);
+        }
     }
 }
