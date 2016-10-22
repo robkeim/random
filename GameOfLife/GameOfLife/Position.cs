@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace GameOfLife
 {
+    [DebuggerDisplay("({X}, {Y})")]
     public class Position : IEquatable<Position>
     {
         public Position(int x, int y)
