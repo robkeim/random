@@ -134,5 +134,149 @@ namespace GameOfLifeTests
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Pulsar1()
+        {
+            // Arrange
+            var world = TestUtils.CreateWorld(
+                ".................",
+                ".................",
+                "....XXX...XXX....",
+                ".................",
+                "..X....X.X....X..",
+                "..X....X.X....X..",
+                "..X....X.X....X..",
+                "....XXX...XXX....",
+                ".................",
+                "....XXX...XXX....",
+                "..X....X.X....X..",
+                "..X....X.X....X..",
+                "..X....X.X....X..",
+                ".................",
+                "....XXX...XXX....",
+                ".................",
+                ".................");
+            var expected = TestUtils.CreateWorld(
+                ".................",
+                ".....X.....X.....",
+                ".....X.....X.....",
+                ".....XX...XX.....",
+                ".................",
+                ".XXX..XX.XX..XXX.",
+                "...X.X.X.X.X.X...",
+                ".....XX...XX.....",
+                ".................",
+                ".....XX...XX.....",
+                "...X.X.X.X.X.X...",
+                ".XXX..XX.XX..XXX.",
+                ".................",
+                ".....XX...XX.....",
+                ".....X.....X.....",
+                ".....X.....X.....",
+                ".................");
+
+            // Act
+            var actual = world.GetNextIteration();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Pulsar2()
+        {
+            // Arrange
+            var world = TestUtils.CreateWorld(
+                ".................",
+                ".....X.....X.....",
+                ".....X.....X.....",
+                ".....XX...XX.....",
+                ".................",
+                ".XXX..XX.XX..XXX.",
+                "...X.X.X.X.X.X...",
+                ".....XX...XX.....",
+                ".................",
+                ".....XX...XX.....",
+                "...X.X.X.X.X.X...",
+                ".XXX..XX.XX..XXX.",
+                ".................",
+                ".....XX...XX.....",
+                ".....X.....X.....",
+                ".....X.....X.....",
+                ".................");
+            var expected = TestUtils.CreateWorld(
+                ".................",
+                ".................",
+                "....XX.....XX....",
+                ".....XX...XX.....",
+                "..X..X.X.X.X..X..",
+                "..XXX.XX.XX.XXX..",
+                "...X.X.X.X.X.X...",
+                "....XXX...XXX....",
+                ".................",
+                "....XXX...XXX....",
+                "...X.X.X.X.X.X...",
+                "..XXX.XX.XX.XXX..",
+                "..X..X.X.X.X..X..",
+                ".....XX...XX.....",
+                "....XX.....XX....",
+                ".................",
+                ".................");
+
+            // Act
+            var actual = world.GetNextIteration();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Pulsar3()
+        {
+            // Arrange
+            var world = TestUtils.CreateWorld(
+                ".................",
+                ".................",
+                "....XX.....XX....",
+                ".....XX...XX.....",
+                "..X..X.X.X.X..X..",
+                "..XXX.XX.XX.XXX..",
+                "...X.X.X.X.X.X...",
+                "....XXX...XXX....",
+                ".................",
+                "....XXX...XXX....",
+                "...X.X.X.X.X.X...",
+                "..XXX.XX.XX.XXX..",
+                "..X..X.X.X.X..X..",
+                ".....XX...XX.....",
+                "....XX.....XX....",
+                ".................",
+                ".................");
+            var expected = TestUtils.CreateWorld(
+                ".................",
+                ".................",
+                "....XXX...XXX....",
+                ".................",
+                "..X....X.X....X..",
+                "..X....X.X....X..",
+                "..X....X.X....X..",
+                "....XXX...XXX....",
+                ".................",
+                "....XXX...XXX....",
+                "..X....X.X....X..",
+                "..X....X.X....X..",
+                "..X....X.X....X..",
+                ".................",
+                "....XXX...XXX....",
+                ".................",
+                ".................");
+
+            // Act
+            var actual = world.GetNextIteration();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
