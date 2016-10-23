@@ -10,9 +10,9 @@ namespace GameOfLifeTests
         public void World_With_One_Cell_Dies_In_Next_Iteration()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 "X");
-            var expected = TestUtils.CreateExpectedWorldState(
+            var expected = Utils.CreateWorldState(
                 ".");
 
             // Act
@@ -28,10 +28,10 @@ namespace GameOfLifeTests
         public void Dead_Cell_With_Three_Neighbors_Changes_State_In_Next_Iteration()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 "X..",
                 "X.X");
-            var expected = TestUtils.CreateExpectedWorldState(
+            var expected = Utils.CreateWorldState(
                 ".X.",
                 ".X.");
 
@@ -48,9 +48,9 @@ namespace GameOfLifeTests
         public void World_Expands_In_Next_Iteration()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 "XXX");
-            var expected = TestUtils.CreateExpectedWorldState(
+            var expected = Utils.CreateWorldState(
                 ".X.",
                 ".X.",
                 ".X.");

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using GameOfLife;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GameOfLifeTests
 {
@@ -9,7 +10,7 @@ namespace GameOfLifeTests
         public void Block()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 "XX",
                 "XX");
 
@@ -24,7 +25,7 @@ namespace GameOfLifeTests
         public void Beehive()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 ".XX.",
                 "X..X",
                 ".XX.");
@@ -40,7 +41,7 @@ namespace GameOfLifeTests
         public void Loaf()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 ".XX.",
                 "X..X",
                 ".X.X",
@@ -57,7 +58,7 @@ namespace GameOfLifeTests
         public void Boat()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 "XX.",
                 "X.X",
                 ".X.");

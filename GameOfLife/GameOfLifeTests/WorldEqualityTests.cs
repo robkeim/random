@@ -34,7 +34,7 @@ namespace GameOfLifeTests
         {
             // Arrange
             var world1 = new World();
-            var world2 = TestUtils.CreateWorld(
+            var world2 = Utils.CreateWorld(
                 "X");
 
             // Act
@@ -46,9 +46,9 @@ namespace GameOfLifeTests
         public void Worlds_With_One_Cell_But_Different_Positions_Are_Not_Equal()
         {
             // Arrange
-            var world1 = TestUtils.CreateWorld(
+            var world1 = Utils.CreateWorld(
                 ".X");
-            var world2 = TestUtils.CreateWorld(
+            var world2 = Utils.CreateWorld(
                 "X");
 
             // Act

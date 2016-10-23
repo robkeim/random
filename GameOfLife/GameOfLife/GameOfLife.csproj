@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Cell.cs" />
     <Compile Include="DeadCell.cs" />
+    <Compile Include="Utils.cs" />
     <Compile Include="LiveCell.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Program.cs" />

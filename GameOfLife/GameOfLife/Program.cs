@@ -1,11 +1,27 @@
-﻿namespace GameOfLife
+﻿using System;
+using System.Threading;
+
+namespace GameOfLife
 {
     // This is a solution to Conway's Game of Life:
     // https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            var world = Utils.CreateWorld(
+                ".X.",
+                "..X",
+                "XXX");
+
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine(Utils.GetPrintableState(world));
+
+                world = world.GetNextIteration();
+                Thread.Sleep(TimeSpan.FromMilliseconds(250));
+            }
         }
     }
 }

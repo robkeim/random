@@ -1,4 +1,5 @@
 ﻿using System;
+using GameOfLife;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace GameOfLifeTests
@@ -10,11 +11,11 @@ namespace GameOfLifeTests
         public void Blinker1()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 "...",
                 "XXX",
                 "...");
-            var expected = TestUtils.CreateWorld(
+            var expected = Utils.CreateWorld(
                 ".X.",
                 ".X.",
                 ".X.");
@@ -30,12 +31,12 @@ namespace GameOfLifeTests
         public void Blinker2()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 ".X.",
                 ".X.",
                 ".X.");
             
-            var expected = TestUtils.CreateWorld(
+            var expected = Utils.CreateWorld(
                 "...",
                 "XXX",
                 "...");
@@ -51,12 +52,12 @@ namespace GameOfLifeTests
         public void Toad1()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 "....",
                 ".XXX",
                 "XXX.",
                 "....");
-            var expected = TestUtils.CreateWorld(
+            var expected = Utils.CreateWorld(
                 "..X.",
                 "X..X",
                 "X..X",
@@ -73,12 +74,12 @@ namespace GameOfLifeTests
         public void Toad2()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 "..X.",
                 "X..X",
                 "X..X",
                 ".X..");
-            var expected = TestUtils.CreateWorld(
+            var expected = Utils.CreateWorld(
                 "....",
                 ".XXX",
                 "XXX.",
@@ -95,12 +96,12 @@ namespace GameOfLifeTests
         public void Beacon1()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 "XX..",
                 "X...",
                 "...X",
                 "..XX");
-            var expected = TestUtils.CreateWorld(
+            var expected = Utils.CreateWorld(
                 "XX..",
                 "XX..",
                 "..XX",
@@ -117,12 +118,12 @@ namespace GameOfLifeTests
         public void Beacon2()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 "XX..",
                 "XX..",
                 "..XX",
                 "..XX");
-            var expected = TestUtils.CreateWorld(
+            var expected = Utils.CreateWorld(
                 "XX..",
                 "X...",
                 "...X",
@@ -139,7 +140,7 @@ namespace GameOfLifeTests
         public void Pulsar1()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 ".................",
                 ".................",
                 "....XXX...XXX....",
@@ -157,7 +158,7 @@ namespace GameOfLifeTests
                 "....XXX...XXX....",
                 ".................",
                 ".................");
-            var expected = TestUtils.CreateWorld(
+            var expected = Utils.CreateWorld(
                 ".................",
                 ".....X.....X.....",
                 ".....X.....X.....",
@@ -187,7 +188,7 @@ namespace GameOfLifeTests
         public void Pulsar2()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 ".................",
                 ".....X.....X.....",
                 ".....X.....X.....",
@@ -205,7 +206,7 @@ namespace GameOfLifeTests
                 ".....X.....X.....",
                 ".....X.....X.....",
                 ".................");
-            var expected = TestUtils.CreateWorld(
+            var expected = Utils.CreateWorld(
                 ".................",
                 ".................",
                 "....XX.....XX....",
@@ -235,7 +236,7 @@ namespace GameOfLifeTests
         public void Pulsar3()
         {
             // Arrange
-            var world = TestUtils.CreateWorld(
+            var world = Utils.CreateWorld(
                 ".................",
                 ".................",
                 "....XX.....XX....",
@@ -253,7 +254,7 @@ namespace GameOfLifeTests
                 "....XX.....XX....",
                 ".................",
                 ".................");
-            var expected = TestUtils.CreateWorld(
+            var expected = Utils.CreateWorld(
                 ".................",
                 ".................",
                 "....XXX...XXX....",
