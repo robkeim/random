@@ -113,7 +113,11 @@ namespace GameOfLife
         {
             return other != null
                 && _liveCells.Count == other._liveCells.Count
-                && _liveCells.All(p => other._liveCells.Contains(p));
+                && _liveCells.All(p => other._liveCells.Contains(p))
+                && _minX == other._minX
+                && _maxX == other._maxX
+                && _minY == other._minY
+                && _maxY == other._maxY;
         }
 
         public override bool Equals(object obj)
