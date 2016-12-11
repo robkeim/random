@@ -6,7 +6,7 @@ namespace AdventOfCode
 {
     // http://adventofcode.com/2016/day/5
     //
-    //     --- Day 5: How About a Nice Game of Chess? ---
+    // --- Day 5: How About a Nice Game of Chess? ---
     //
     // You are faced with a security door designed by Easter Bunny engineers that seem to have acquired most of their security knowledge by watching hacking movies.
     //
@@ -28,7 +28,7 @@ namespace AdventOfCode
     // uqwqemis
     // Answer: 1a3099aa
     //
-    //     --- Part Two ---
+    // --- Part Two ---
     //
     // As the door slides open, you are presented with a second door that uses a slightly more inspired security mechanism.Clearly unimpressed by the last version
     // (in what movie is the password decrypted in order?!), the Easter Bunny engineers have worked out a better solution.

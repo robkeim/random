@@ -4,7 +4,7 @@ namespace AdventOfCode
 {
     // http://adventofcode.com/2016/day/2
     //
-    //     --- Day 2: Bathroom Security ---
+    // --- Day 2: Bathroom Security ---
     //
     // You arrive at Easter Bunny Headquarters under cover of darkness.However, you left in such a rush that you forgot to use the bathroom! Fancy office
     // buildings like this one usually have keypad locks on their bathrooms, so you search the front desk for the code.
@@ -40,7 +40,7 @@ namespace AdventOfCode
     // LULLRRDURRLDUUDRRURLURURRRLRDRUULUULURLLURRDRULRDURDDDDUULLLLDUULDLULURDRLDLULULDRLLDLLRLRULURUDRUUDULRULLLUDRULUDRLLUDLDRRDRUUURURLRDURDRLRDDDURLURRDLRUUUDUURULULDLUULRDLRRRDRDRLLLDLRRDRLLDDULDRUDRRLULLRDLDUDDULRDDLULRURULRLLLULDLLLLRDLDRURUDUURURLDRLUULLDUDULUDDDULUDLRUDDUDLULLUULUUURULURRULRDDURDDLURLRRDRDLDULRLRDRRRULRDDDRLLDDDDRRRRDRDLULUURDURULDLRDULDUDLDURUDLUDLUDDDUDURDURDDURLLRUDUURRRUDRRRRULLLLDDDLUULLUULRRRULDLURDLULRULDRLR
     // Answer: 98575
     //
-    //     --- Part Two ---
+    // --- Part Two ---
     //
     // You finally arrive at the bathroom (it's a several minute walk from the lobby so visitors can behold the many fancy conference rooms and water coolers on this
     // floor) and go to punch in the code. Much to your bladder's dismay, the keypad is not at all like you imagined it.Instead, you are confronted with the result
@@ -58,7 +58,7 @@ namespace AdventOfCode
     // Finally, after five more moves, you end at 3.
     // So, given the actual keypad layout, the code would be 5DB3.
     //
-    //Using the same instructions in your puzzle input, what is the correct bathroom code?
+    // Using the same instructions in your puzzle input, what is the correct bathroom code?
     // Answer: CD8D4
     public static class Day2
     {
