@@ -60,7 +60,7 @@ namespace AdventOfCode
     //
     // Using the same instructions in your puzzle input, what is the correct bathroom code?
     // Answer: CD8D4
-    public static class Day2
+    public static class Day02
     {
         public static string FindBathroomCode(string rawInput)
         {

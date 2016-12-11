@@ -51,7 +51,7 @@ namespace AdventOfCode
 
     // What is the decompressed length of the file using this improved format?
     // Answer: XXX
-    public static class Day9
+    public static class Day09
     {
         public static int GetDecompressedLength(string input)
         {

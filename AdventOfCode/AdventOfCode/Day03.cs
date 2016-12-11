@@ -36,7 +36,7 @@ namespace AdventOfCode
     // 203 403 603
     // In your puzzle input, and instead reading by columns, how many of the listed triangles are possible?
     // Answer: 1544
-    public static class Day3
+    public static class Day03
     {
         public static int CountValidTriangles(string input)
         {

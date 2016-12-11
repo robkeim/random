@@ -41,7 +41,7 @@ namespace AdventOfCode
     // zazbz[bzb]cdb supports SSL (zaz has no corresponding aza, but zbz has a corresponding bzb, even though zaz and zbz overlap).
     // How many IPs in your puzzle input support SSL?
     // Answer: 260
-    public static class Day7
+    public static class Day07
     {
         public static int CountTlsSupport(string input)
         {

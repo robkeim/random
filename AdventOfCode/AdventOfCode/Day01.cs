@@ -41,7 +41,7 @@ namespace AdventOfCode
     //
     // How many blocks away is the first location you visit twice?
     // Answer: 131
-    public static class Day1
+    public static class Day01
     {
         public static int FindDistanceFromHQ(string rawInput)
         {

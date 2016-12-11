@@ -4,7 +4,7 @@ using System.Text;
 
 namespace AdventOfCode
 {
-    public static class Day6
+    public static class Day06
     {
         // http://adventofcode.com/2016/day/6
         //

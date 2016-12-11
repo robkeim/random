@@ -39,7 +39,7 @@ namespace AdventOfCode
     //
     // What is the sector ID of the room where North Pole objects are stored?
     // Answer: 267
-    public static class Day4
+    public static class Day04
     {
         public static int FindRealRooms(string input)
         {

@@ -59,7 +59,7 @@ namespace AdventOfCode
     //
     // After you swipe your card, what code is the screen trying to display?
     // Answer: CFLELOYFCS
-    public static class Day8
+    public static class Day08
     {
         public static int CountPixels(string input)
         {
