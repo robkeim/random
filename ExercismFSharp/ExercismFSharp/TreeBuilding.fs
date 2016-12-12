@@ -22,15 +22,14 @@ let buildTree records =
         records
         |> List.sortBy (fun x -> x.RecordId)
         |> validateInput
-        |> List.fold (fun acc elem -> (elem.ParentId, elem.RecordId) :: acc) []
-        |> List.rev
+        |> List.map (fun elem -> (elem.ParentId, elem.RecordId))
         |> List.groupBy fst
         |> List.map (fun (x, y) -> (x, List.map snd y))
         |> Map.ofSeq
 
     let rec helper key =
-        match Map.containsKey key map with
-        | true  -> Branch (key, List.map helper (Map.find key map))
-        | false -> Leaf key
+        match Map.tryFind key map with
+        | Some value  -> Branch (key, List.map helper value)
+        | None        -> Leaf key
 
     helper 0
