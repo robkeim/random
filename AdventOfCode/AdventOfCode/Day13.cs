@@ -50,7 +50,7 @@ namespace AdventOfCode
     // --- Part Two ---
     //
     // How many locations(distinct x, y coordinates, including your starting location) can you reach in at most 50 steps?
-    // Answer: XXX
+    // Answer: 135
     public static class Day13
     {
         public static int FindShortestPath(int favNumber, int x, int y)
@@ -67,7 +67,7 @@ namespace AdventOfCode
                 var item = itemsToProcess.Dequeue();
                 var curPos = item.Item1;
                 var depth = item.Item2;
-                
+
                 if (target.Equals(curPos))
                 {
                     return depth;
@@ -94,7 +94,39 @@ namespace AdventOfCode
 
             return -1;
         }
-        
+
+        public static int FindMaxSpotsVisited(int favNumber)
+        {
+            var itemsToProcess = new Queue<Tuple<Coordinate, int>>();
+            var visitedLocations = new HashSet<Coordinate>();
+            var tuple = CreateCoordinateAndDepth(1, 1, 0);
+            visitedLocations.Add(tuple.Item1);
+            itemsToProcess.Enqueue(tuple);
+
+            while (itemsToProcess.Count != 0)
+            {
+                var item = itemsToProcess.Dequeue();
+                var curPos = item.Item1;
+                var depth = item.Item2;
+
+                if (depth == 50)
+                {
+                    continue;
+                }
+
+                foreach (var neighbor in curPos.GetNeighbors())
+                {
+                    if (IsOpenSpace(neighbor, favNumber) && !visitedLocations.Contains(neighbor))
+                    {
+                        visitedLocations.Add(neighbor);
+                        itemsToProcess.Enqueue(CreateCoordinateAndDepth(neighbor, depth + 1));
+                    }
+                }
+            }
+
+            return visitedLocations.Count;
+        }
+
         private static Tuple<Coordinate, int> CreateCoordinateAndDepth(int x, int y, int depth)
         {
             return CreateCoordinateAndDepth(new Coordinate(x, y), depth);
@@ -138,7 +170,7 @@ namespace AdventOfCode
                 + coord.Y * coord.Y;
 
             var binary = Convert.ToString(number, 2);
-            
+
             return binary.Count(c => c == '1') % 2 == 0;
         }
 
