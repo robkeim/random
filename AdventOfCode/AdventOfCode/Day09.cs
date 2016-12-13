@@ -50,7 +50,7 @@ namespace AdventOfCode
     // its decompressed length.
 
     // What is the decompressed length of the file using this improved format?
-    // Answer: XXX
+    // Answer: 11052855125
     public static class Day09
     {
         public static int GetDecompressedLength(string input)
@@ -92,38 +92,24 @@ namespace AdventOfCode
             return resultString.Length;
         }
 
-        public static int GetRecursiveDecompressedLength(string input)
+        public static long GetRecursiveDecompressedLength(string input)
         {
             var repeatRegex = new Regex(@"\((\d+)x(\d+)\)");
-            var totalLength = 0;
 
-            while (input.Contains("("))
+            if (!input.Contains("("))
             {
-                var startIndex = input.IndexOf("(", StringComparison.InvariantCulture);
-                
-                totalLength += startIndex;
-                input = input.Substring(startIndex);
-
-                var match = repeatRegex.Match(input);
-                var length = int.Parse(match.Groups[1].ToString());
-                var num = int.Parse(match.Groups[2].ToString());
-
-                var stringToRepeat = input.Substring(match.Length, length);
-
-                var remaining = new StringBuilder();
-
-                for (int i = 0; i < num; i++)
-                {
-                    remaining.Append(stringToRepeat);
-                }
-
-                remaining.Append(input.Substring(match.Length + length));
-                input = remaining.ToString();
+                return input.Length;
             }
 
-            totalLength += input.Length;
+            var startIndex = input.IndexOf("(", StringComparison.InvariantCulture);
             
-            return totalLength;
+            input = input.Substring(startIndex);
+
+            var match = repeatRegex.Match(input);
+            var length = int.Parse(match.Groups[1].ToString());
+            var num = int.Parse(match.Groups[2].ToString());
+
+            return startIndex + num * GetRecursiveDecompressedLength(input.Substring(match.Length, length)) + GetRecursiveDecompressedLength(input.Substring(match.Length + length));
         }
     }
 }
