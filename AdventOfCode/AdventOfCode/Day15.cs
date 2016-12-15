@@ -41,6 +41,17 @@ namespace AdventOfCode
     // capsule?
     // Disc #1 has 5 positions; at time=0, it is at position 2.\nDisc #2 has 13 positions; at time=0, it is at position 7.\nDisc #3 has 17 positions; at time=0, it is at position 10.\nDisc #4 has 3 positions; at time=0, it is at position 2.\nDisc #5 has 19 positions; at time=0, it is at position 9.\nDisc #6 has 7 positions; at time=0, it is at position 0.
     // Answer: 148737
+    //
+    // --- Part Two ---
+    //
+    // After getting the first capsule(it contained a star! what great fortune!), the machine detects your success and begins to rearrange itself.
+    //
+    // When it's done, the discs are back in their original configuration as if it were time=0 again, but a new disc with 11 positions and starting at position 0 has
+    // appeared exactly one second below the previously-bottom disc.
+    //
+    //With this new disc, and counting again starting from time = 0 with the configuration in your puzzle input, what is the first time you can press the button to
+    // get another capsule?
+    // Answer: 2353212
     public static class Day15
     {
         // Each tuple represents <size, position at t=0>
