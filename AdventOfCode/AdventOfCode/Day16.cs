@@ -60,6 +60,11 @@ namespace AdventOfCode
         // The first disk you have to fill has length 272. Using the initial state in your puzzle input, what is the correct checksum?
         // 11100010111110100
         // Answer: 10100011010101011
+        //
+        // --- Part Two ---
+
+        // The second disk you have to fill has length 35651584. Again using the initial state in your puzzle input, what is the correct checksum for this disk?
+        // Answer: 01010001101011001
         public static string GetDragonChecksum(string input, int diskSize)
         {
             var data = GetData(input, diskSize);
