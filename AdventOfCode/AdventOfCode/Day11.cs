@@ -123,6 +123,21 @@ namespace AdventOfCode
     // In your situation, what is the minimum number of steps required to bring all of the objects to the fourth floor?
     // The first floor contains a promethium generator and a promethium-compatible microchip.\nThe second floor contains a cobalt generator, a curium generator, a ruthenium generator, and a plutonium generator.\nThe third floor contains a cobalt-compatible microchip, a curium-compatible microchip, a ruthenium-compatible microchip, and a plutonium-compatible microchip.\nThe fourth floor contains nothing relevant.
     // Answer: 33
+    //
+    // --- Part Two ---
+    //
+    // You step into the cleanroom separating the lobby from the isolated area and put on the hazmat suit.
+    //
+    // Upon entering the isolated containment area, however, you notice some extra parts on the first floor that weren't listed on the record outside:
+    // - An elerium generator.
+    // - An elerium-compatible microchip.
+    // - A dilithium generator.
+    // - A dilithium-compatible microchip.
+    //
+    // These work just like the other generators and microchips.You'll have to get them up to assembly as well.
+    //
+    // What is the minimum number of steps required to bring all of the objects, including these four new ones, to the fourth floor?
+    // Answer: 57
     public static class Day11
     {
         public static int NumSteps()
@@ -133,13 +148,24 @@ namespace AdventOfCode
             // Sample input
             //elementsToProcess.Enqueue(State.MakeState(0, 1, Pair.MakePair(2, 1), Pair.MakePair(3, 1)));
 
+            // Part I
+            //AddQueueItem(elementsToProcess, visited, State.MakeState(0, 1,
+            //    Pair.MakePair(1, 1),
+            //    Pair.MakePair(2, 3),
+            //    Pair.MakePair(2, 3),
+            //    Pair.MakePair(2, 3),
+            //    Pair.MakePair(2, 3)));
+
+            // Part II
             AddQueueItem(elementsToProcess, visited, State.MakeState(0, 1,
+                Pair.MakePair(1, 1),
+                Pair.MakePair(1, 1),
                 Pair.MakePair(1, 1),
                 Pair.MakePair(2, 3),
                 Pair.MakePair(2, 3),
                 Pair.MakePair(2, 3),
                 Pair.MakePair(2, 3)));
-            
+
             while (elementsToProcess.Count != 0)
             {
                 var curElem = elementsToProcess.Dequeue();
