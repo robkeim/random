@@ -52,6 +52,19 @@ namespace AdventOfCode
     //
     // udskfozm
     // Answer: DDRLRRUDDR
+    //
+    // --- Part Two ---
+    //
+    // You're curious how robust this security solution really is, and so you decide to find longer and longer paths which still provide access to the vault. You remember
+    // that paths always end the first time they reach the bottom-right room (that is, they can never pass through it, only end in it).
+    //
+    // For example:
+    // - If your passcode were ihgpwlah, the longest path would take 370 steps.
+    // - With kglvqrro, the longest path would be 492 steps long.
+    // - With ulqzkmiv, the longest path would be 830 steps long.
+    //
+    // What is the length of the longest path that reaches the vault?
+    // Answer: 556
     public static class Day17
     {
         public static string TwoStepsForward(string input)
@@ -100,6 +113,57 @@ namespace AdventOfCode
             }
 
             return "No valid path exists";
+        }
+
+        public static int LongestPath(string input)
+        {
+            var longestPath = int.MinValue;
+            var elementsToProcess = new Queue<State>();
+
+            elementsToProcess.Enqueue(new State(0, 0, string.Empty));
+
+            while (elementsToProcess.Count != 0)
+            {
+                var curElem = elementsToProcess.Dequeue();
+                var xPos = curElem.XPos;
+                var yPos = curElem.YPos;
+                var moves = curElem.Moves;
+
+                if (xPos == 3 && yPos == 3)
+                {
+                    Console.WriteLine($"Path length {moves.Length}");
+                    longestPath = Math.Max(longestPath, moves.Length);
+                    continue;
+                }
+
+                var hash = CalculateMd5Hash(input, moves);
+
+                // Up
+                if (yPos > 0 && DoorIsOpen(hash[0]))
+                {
+                    elementsToProcess.Enqueue(new State(xPos, yPos - 1, $"{moves}U"));
+                }
+
+                // Down
+                if (yPos < 3 && DoorIsOpen(hash[1]))
+                {
+                    elementsToProcess.Enqueue(new State(xPos, yPos + 1, $"{moves}D"));
+                }
+
+                // Left
+                if (xPos > 0 && DoorIsOpen(hash[2]))
+                {
+                    elementsToProcess.Enqueue(new State(xPos - 1, yPos, $"{moves}L"));
+                }
+
+                // Right
+                if (xPos < 3 && DoorIsOpen(hash[3]))
+                {
+                    elementsToProcess.Enqueue(new State(xPos + 1, yPos, $"{moves}R"));
+                }
+            }
+
+            return longestPath;
         }
 
         private static bool DoorIsOpen(char c)
