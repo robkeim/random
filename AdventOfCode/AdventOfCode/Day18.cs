@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace AdventOfCode
 {
@@ -55,6 +53,11 @@ namespace AdventOfCode
     //Starting with the map in your puzzle input, in a total of 40 rows (including the starting row), how many safe tiles are there?
     // .^^^.^.^^^.^.......^^.^^^^.^^^^..^^^^^.^.^^^..^^.^.^^..^.^..^^...^.^^.^^^...^^.^.^^^..^^^^.....^....
     // Answer: 2013
+    //
+    // --- Part Two ---
+
+    // How many safe tiles are there in a total of 400000 rows?
+    // Answer: 20006289
     public static class Day18
     {
         public static int CountSafeSquares(string line, int numLines)

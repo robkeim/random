@@ -8,8 +8,6 @@ namespace AdventOfCode
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine(Day11.NumSteps());
-
             Console.WriteLine("done!");
             Console.ReadLine();
         }
