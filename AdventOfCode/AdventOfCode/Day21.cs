@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace AdventOfCode
 {
@@ -39,6 +41,11 @@ namespace AdventOfCode
     // of scrambling abcdefgh?
     // rotate based on position of letter d\nmove position 1 to position 6\nswap position 3 with position 6\nrotate based on position of letter c\nswap position 0 with position 1\nrotate right 5 steps\nrotate left 3 steps\nrotate based on position of letter b\nswap position 0 with position 2\nrotate based on position of letter g\nrotate left 0 steps\nreverse positions 0 through 3\nrotate based on position of letter a\nrotate based on position of letter h\nrotate based on position of letter a\nrotate based on position of letter g\nrotate left 5 steps\nmove position 3 to position 7\nrotate right 5 steps\nrotate based on position of letter f\nrotate right 7 steps\nrotate based on position of letter a\nrotate right 6 steps\nrotate based on position of letter a\nswap letter c with letter f\nreverse positions 2 through 6\nrotate left 1 step\nreverse positions 3 through 5\nrotate based on position of letter f\nswap position 6 with position 5\nswap letter h with letter e\nmove position 1 to position 3\nswap letter c with letter h\nreverse positions 4 through 7\nswap letter f with letter h\nrotate based on position of letter f\nrotate based on position of letter g\nreverse positions 3 through 4\nrotate left 7 steps\nswap letter h with letter a\nrotate based on position of letter e\nrotate based on position of letter f\nrotate based on position of letter g\nmove position 5 to position 0\nrotate based on position of letter c\nreverse positions 3 through 6\nrotate right 4 steps\nmove position 1 to position 2\nreverse positions 3 through 6\nswap letter g with letter a\nrotate based on position of letter d\nrotate based on position of letter a\nswap position 0 with position 7\nrotate left 7 steps\nrotate right 2 steps\nrotate right 6 steps\nrotate based on position of letter b\nrotate right 2 steps\nswap position 7 with position 4\nrotate left 4 steps\nrotate left 3 steps\nswap position 2 with position 7\nmove position 5 to position 4\nrotate right 3 steps\nrotate based on position of letter g\nmove position 1 to position 2\nswap position 7 with position 0\nmove position 4 to position 6\nmove position 3 to position 0\nrotate based on position of letter f\nswap letter g with letter d\nswap position 1 with position 5\nreverse positions 0 through 2\nswap position 7 with position 3\nrotate based on position of letter g\nswap letter c with letter a\nrotate based on position of letter g\nreverse positions 3 through 5\nmove position 6 to position 3\nswap letter b with letter e\nreverse positions 5 through 6\nmove position 6 to position 7\nswap letter a with letter e\nswap position 6 with position 2\nmove position 4 to position 5\nrotate left 5 steps\nswap letter a with letter d\nswap letter e with letter g\nswap position 3 with position 7\nreverse positions 0 through 5\nswap position 5 with position 7\nswap position 1 with position 7\nswap position 1 with position 7\nrotate right 7 steps\nswap letter f with letter a\nreverse positions 0 through 7\nrotate based on position of letter d\nreverse positions 2 through 4\nswap position 7 with position 1\nswap letter a with letter h
     // ghfacdbe
+    //
+    // You scrambled the password correctly, but you discover that you can't actually modify the password file on the system. You'll need to un-scramble one of the existing passwords by reversing the scrambling process.
+    //
+    // What is the un-scrambled version of the scrambled password fbgdceah?
+    // Answer: fhgcdaeb
     public static class Day21
     {
         public static string ScrambledLettersHash(string input, string instructions)
@@ -129,6 +136,48 @@ namespace AdventOfCode
             }
             
             return result;
+        }
+
+        // Brute force solution but given the password is 8 characters long, there are only 40,320 (8!) combinations to try
+        public static string UnscrambleLetters(string scrambledResult, string instructions)
+        {
+            var result = string.Empty;
+
+            Parallel.ForEach(GetPermutations(scrambledResult), permutation =>
+            {
+                if (ScrambledLettersHash(permutation, instructions) == scrambledResult)
+                {
+                    Console.WriteLine(permutation);
+                    result = permutation;
+                }
+            });
+
+            return result;
+        }
+
+        private static List<string> GetPermutations(string input)
+        {
+            return GetPermutations(string.Empty, input);
+        }
+
+        private static List<string> GetPermutations(string soFar, string remaining)
+        {
+            if (remaining.Length == 0)
+            {
+                return new List<string> { soFar };
+            }
+
+            var results = new List<string>();
+
+            for (int i = 0; i < remaining.Length; i++)
+            {
+                var nextSoFar = $"{soFar}{remaining[i]}";
+                var nextRemaining = remaining.Remove(i, 1);
+
+                results.AddRange(GetPermutations(nextSoFar, nextRemaining));
+            }
+           
+            return results;
         }
 
         private static string ReplaceAt(this string input, int index, char replacement)
