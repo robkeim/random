@@ -55,6 +55,19 @@ namespace AdventOfCode
     // What value should be sent to the safe?
     // cpy a b\ndec b\ncpy a d\ncpy 0 a\ncpy b c\ninc a\ndec c\njnz c -2\ndec d\njnz d -5\ndec b\ncpy b c\ncpy c d\ndec d\ninc c\njnz d -2\ntgl c\ncpy -16 c\njnz 1 c\ncpy 99 c\njnz 77 d\ninc a\ninc d\njnz d -2\ninc c\njnz c -5
     // Answer: 12663
+    //
+    // --- Part Two ---
+    //
+    // The safe doesn't open, but it does make several angry noises to express its frustration.
+    //
+    // You're quite sure your logic is working correctly, so the only other thing is... you check the painting again. As it turns out, colored eggs are still eggs. Now you
+    // count 12.
+    //
+    // As you run the program with this new input, the prototype computer begins to overheat.You wonder what's taking so long, and whether the lack of any instruction more
+    // powerful than "add one" has anything to do with it. Don't bunnies usually multiply?
+    //
+    // Anyway, what value should actually be sent to the safe?
+    // Answer: 479009223
     public static class Day23
     {
         public static int GetValueForSafe(string input)
@@ -66,13 +79,15 @@ namespace AdventOfCode
 
             var registers = new Dictionary<string, int>
             {
-                ["a"] = 7,
+                ["a"] = 7, // 12 for Part II which runs *really* slowly :)
                 ["b"] = 0,
                 ["c"] = 0,
                 ["d"] = 0
             };
             
             var curInstructionIndex = 0;
+
+            var totalInstructions = 0;
 
             while (curInstructionIndex < instructions.Length)
             {
@@ -253,8 +268,8 @@ namespace AdventOfCode
                 Jump
             }
 
-            private Regex _oneArgumentRegex = new Regex(@"(inc|dec|tgl) ([a-z])", RegexOptions.Compiled);
-            private Regex _twoArgumentRegex = new Regex(@"(cpy|jnz) ([a-z]|-?\d+) ([a-z]|-?\d+)", RegexOptions.Compiled);
+            private static readonly Regex _oneArgumentRegex = new Regex(@"(inc|dec|tgl) ([a-z])", RegexOptions.Compiled);
+            private static readonly Regex _twoArgumentRegex = new Regex(@"(cpy|jnz) ([a-z]|-?\d+) ([a-z]|-?\d+)", RegexOptions.Compiled);
         }
     }
 }
