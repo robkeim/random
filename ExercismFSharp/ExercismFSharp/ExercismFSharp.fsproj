@@ -141,6 +141,7 @@
     <Compile Include="WordCount.fs" />
     <Compile Include="WordProblem.fs" />
     <Compile Include="WordSearch.fs" />
+    <Compile Include="BookStore.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
