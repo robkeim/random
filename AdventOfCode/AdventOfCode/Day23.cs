@@ -86,9 +86,7 @@ namespace AdventOfCode
             };
             
             var curInstructionIndex = 0;
-
-            var totalInstructions = 0;
-
+            
             while (curInstructionIndex < instructions.Length)
             {
                 var curInstruction = instructions[curInstructionIndex];
