@@ -1,0 +1,1 @@
+I created this website to manage the cousin ornament exchange registrations before moving to Google forms. I removed the personal data about my family for privacy reasons, but other than that everything is here.
