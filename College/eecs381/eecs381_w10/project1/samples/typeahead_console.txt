@@ -1,0 +1,100 @@
+
+Enter command: ar DVD Tobruk
+Record 1 added
+
+Enter command: ar VHS Showboat
+Record 2 added
+
+Enter command: ar Betamax!!! Gettysburg
+Record 3 added
+
+Enter command: pL
+Library contains 3 records:
+3: Betamax u !!! Gettysburg
+2: VHS u Showboat
+1: DVD u Tobruk
+
+Enter command: ar DVD       Bleak          
+Record 4 added
+
+Enter command: House
+Unrecognized command!
+
+Enter command: pL
+Library contains 4 records:
+3: Betamax u !!! Gettysburg
+4: DVD u Bleak
+2: VHS u Showboat
+1: DVD u Tobruk
+
+Enter command: ar VHS War and Peace: The 6-tape version of the incredible Soviet Union film that was really long
+Record 5 added
+
+Enter command: Unrecognized command!
+
+Enter command: pL
+Library contains 5 records:
+3: Betamax u !!! Gettysburg
+4: DVD u Bleak
+2: VHS u Showboat
+1: DVD u Tobruk
+5: VHS u War and Peace: The 6-tape version of the incredible Soviet Uni
+
+Enter command: p
+r
+4
+4: DVD u Bleak
+
+Enter command: pr1pr2pr3pr4pr5
+1: DVD u Tobruk
+
+Enter command: 2: VHS u Showboat
+
+Enter command: 3: Betamax u !!! Gettysburg
+
+Enter command: 4: DVD u Bleak
+
+Enter command: 5: VHS u War and Peace: The 6-tape version of the incredible Soviet Uni
+
+Enter command: pr1pr
+1: DVD u Tobruk
+
+Enter command: 2p
+2: VHS u Showboat
+
+Enter command: r  3       p     r   4p
+3: Betamax u !!! Gettysburg
+
+Enter command: 4: DVD u Bleak
+
+Enter command: r5
+5: VHS u War and Peace: The 6-tape version of the incredible Soviet Uni
+
+Enter command: pr1xpr2pr3
+1: DVD u Tobruk
+
+Enter command: Unrecognized command!
+
+Enter command: pr1prxpr3
+1: DVD u Tobruk
+
+Enter command: Could not read an integer value!
+
+Enter command: pr1pr2prx
+1: DVD u Tobruk
+
+Enter command: 2: VHS u Showboat
+
+Enter command: Could not read an integer value!
+
+Enter command: prxp
+Could not read an integer value!
+
+Enter command: r2pr3
+Unrecognized command!
+
+Enter command: pr1qq
+1: DVD u Tobruk
+
+Enter command: All data deleted
+Done

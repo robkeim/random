@@ -1,0 +1,193 @@
+<html><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Assignment 4: Security and Uploads</title>
+</head><body>
+<h1>Assignment 4: Security and Uploads</h1>
+
+<p>Due Wednesday, February 17, 2010, at 11:55 PM</p>
+
+<p>
+In this assignment you will learn how to authenticate users and
+maintain sessions using cookies.  Be sure to make a new copy of your
+PA4 code for this assignment.
+</p>
+
+<h2>Part 1: Getting Started</h2>
+
+
+Here are some links from the PHP manual to get you started.
+
+<ul>
+<li>Cookies -
+<a href="http://www.php.net/manual/en/features.cookies.php">http://www.php.net/manual/en/features.cookies.php</a>
+</li>
+<li>Sessions -
+<a href="http://www.php.net/manual/en/ref.session.php">http://www.php.net/manual/en/ref.session.php</a>
+</li>
+<li>Uploads -
+<a href="http://www.php.net/manual/en/features.file-upload.php">http://www.php.net/manual/en/features.file-upload.php</a>
+</li>
+</ul>
+
+<h2>Part 2: Secure the Website</h2>
+
+
+
+<p>
+For this assignment, we will keep track of more than whether or
+not user is logged in. We will track the user using the session.
+</p>
+
+<p>
+Whenever a user tries to enter a sensitive page you should make sure
+that he/she has the privileges to view it. (For a list of sensitive
+pages, please consult the pa3 specification.)  This is done by
+checking if the user has a valid session and if so whether the
+user is authorized to view the page. Some pages only require that
+the user be authenticated and are not dependent on who the user is
+(eg. logged-in home page).  Others may provide access depending on
+who the user is and whether he/she is permitted to access that page
+(eg. someone's private album).
+</p>
+
+<ul>
+
+<li>
+Check if the user has a valid session. If so, check if the user has
+permission to see the page, then let them see the page.
+</li>
+
+<li>
+If the session is expired, say so and give the user a link to the
+Login page.
+</li>
+
+<li>
+If there is no session, then state that one must authenticate to view
+this page and give a link to the Login page.
+</li>
+
+</ul>
+
+<p>
+
+In some of the cases above, the user is given a link to the Login
+page.  This Login page needs to have memory. After the user
+types her name and password she should be returned right back to
+the sensitive page she previously tried to access. Note, some of
+the pages can be sensitive some of the time and public the rest
+of the time. For example, the View Album page is only sensitive if
+the album is private.
+</p>
+
+<h3>Access rules</h3>
+
+<ul>
+
+<li>
+Public albums are visible and accessible to both logged-in users and
+unauthenticated visitors.
+</li>
+
+<li>
+Private albums are visible to all logged-in
+users but not to unauthenticated visitors.
+</li>
+
+<li>
+Private albums are accessible only to those users that have explicit
+access to that album. User u will have access to user v's private
+album a if and only if there exists a tuple (a, u) in the AlbumAccess
+relation.
+</li>
+
+<li>
+A picture that does not belong to any public albums is accessible to a
+user u if and only if it belongs to at least one private album that u
+has permission to access to.
+</li>
+
+</ul>
+
+<h3>Valid Session</h3>
+
+<p>
+We maintain sessions for the sensitive pages only. In this
+assignment, a valid session contains two session variables: the
+username and a key.  You will need to encrypt the username (use
+some simple rotation, shifting or XORing scheme for that). The key
+should encode the server time.  Whenever you validate a session,
+compare it to the current server time to determine whether the
+session is expired.  Note how this approach gets around the problem
+of relying on the client's time. You may store the username and
+key as two different names or lump them together into one string. For
+testing purpose, we limit the lifetime of a session to be 5 minutes
+of inactivity.
+</p>
+
+
+
+<h2> Part 3: Uploading Files </h2>
+
+
+<p>
+At the Edit Album page, a user should be able to upload a picture
+to add to their photo album. The user should be able to browse to
+their intended file, and select it for upload. You should display
+the path of the file to be uploaded as a check for the user before
+they execute the upload.
+</p>
+
+<p>
+All uploaded files should be stored in ~/uploads, where ~ is your
+group's home directory.  For performance reasons, you should ensure
+that only files smaller than 1MB be allowed for upload. If the
+user tries to upload a file larger than 1MB, you should disallow
+the upload and display an error message indicating that their file
+was too large.
+</p>
+
+<p>
+You should check to make sure that the file name chosen for upload
+does not already exist. If it is already present, prompt the user
+to provide a different name for the file at the destination.
+</p>
+
+<h2>Extra Credit</h2>
+<ul>
+<li> An additional class of "root-user". Anyone who is a root-user can
+edit anyone's album. There should be an administrative interface for
+giving/removing the root-user power.</li>
+<li> Download the image bytes.</li>
+<li> Allow "invisible photos" that are not visible to certain
+photo/user pairs, even if the user is logged in and has access to view
+the album. For example, if my friend Alice hates my friend Bob, I don't
+want Alice to see the photo of me and Bob together. I should be able to
+add "Alice/meAndBob.jpg" to the invisible list; Alice will never know! </li>
+</ul>
+
+<h2>Grading</h2>
+
+<p>
+We will check your pa4 directory for your new secure photo album
+website. Based on pa3, your website should contain at least the
+following users with their albums.
+</p>
+
+<ul><li>Username: sportslover, Password: paulpass - "I love football" (public), "I also love football" (public)</li>
+<li>Username: traveler, Password: rebeccapass - "Around The World"(public)</li>
+<li>Username: spacejunkie, Password: bobpass - "Cool Space Shots" (private, also accessible to traveler)</li>
+</ul>
+
+<p>
+Your website may contain other users and albums, but please ensure that
+the above users and albums exist. Do not touch the files in
+pa4 sub-directory after the deadline.
+</p>
+
+<p>
+When you have completed the assignment, send an email to <a href="mailto:vahed@umich.edu">vahed@umich.edu</a>, listing the extra credit items you have implemented for this assignment.
+</p>
+
+</body></html>

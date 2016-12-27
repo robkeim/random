@@ -1,0 +1,77 @@
+Enter command:Dictionary is empty
+Enter command:Action list is empty
+Enter command:Unrecognized command!
+Enter command:Unknown cross-reference type!
+Enter command:Could not read an integer!
+Enter command:Could not read an integer!
+Enter command:Minimum and maximum numbers must be 0 or positive!
+Enter command:Minimum and maximum numbers must be 0 or positive!
+Enter command:Maximum must be greater than or equal to minimum!
+Enter command:Input document words:
+None
+Enter command:Enter input dictionary file name:11 words loaded
+Enter command:Enter input document file name:Enter output document file name:
+1: hTe bear said forcefully to hte moose,
+"hTe" is not in the dictionary: Enter command:Enter replacement:Do you want to replace this in rest of document? Enter y or n:"hTe" will be replaced by "The" in the rest of the document
+
+1: The bear said forcefully to hte moose,
+"forcefully" is not in the dictionary: Enter command:Do you want to skip this in rest of document? Enter y or n:"forcefully" will be skipped for the rest of the document
+
+1: The bear said forcefully to hte moose,
+"hte" is not in the dictionary: Enter command:Enter replacement:Do you want to replace this in rest of document? Enter y or n:"hte" will be replaced by "the" in the rest of the document
+
+2: "I ate a bear, a walrus,and .... 
+"ate" is not in the dictionary: Enter command:
+4:       even a zebra!"
+"even" is not in the dictionary: Enter command:
+5: The moose said equally forcefully to hte bear, "I doubt
+"equally" is not in the dictionary: Enter command:Enter replacement:Do you want to replace this in rest of document? Enter y or n:
+5: The moose said very forcefully to the bear, "I doubt
+"doubt" is not in the dictionary: Enter command:
+6: it."
+"it" is not in the dictionary: Enter command:Document statistics:
+Number of words: 23
+Longest word length: 10
+Number of words containing at least one apostrophe: 0
+Average letters per word: 4.3913
+4 words were added to the dictionary
+3 actions were specified
+Enter command:aardvark
+and
+ate
+bear
+dingo
+doubt
+even
+it
+moose
+said
+saw
+the
+to
+walrus
+zebra
+Dictionary statistics:
+Number of words: 15
+Longest word length: 8
+Number of words containing at least one apostrophe: 0
+Average letters per word: 4.13333
+Enter command:Action list contains 3 actions:
+Skip forcefully
+Replace hTe with The
+Replace hte with the
+Enter command:Enter output dictionary file name:Output file could not be opened!
+Enter command:Enter output dictionary file name:15 words saved
+Enter command:Unrecognized command!
+Enter command:Dictionary emptied
+Action list emptied
+Cross-references emptied
+Enter command:Unrecognized command!
+Enter command:Enter input document file name:Input file could not be opened!
+Enter command:Enter input document file name:Document statistics:
+Number of words: 19
+Longest word length: 8
+Number of words containing at least one apostrophe: 1
+Average letters per word: 3.94737
+16 words were added to the dictionary
+Enter command:Done

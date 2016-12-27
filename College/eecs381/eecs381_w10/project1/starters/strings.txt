@@ -1,0 +1,72 @@
+/* Notes:
+1. The messages are classified by which module's .c file prints them out.
+You must follow this classification to be sure your modules behave like mine.
+Note that p1_main does all printing except for data about individual records 
+and collections, which is output by their print functions.
+
+2. Where two percent signs appear in a row ('%%'), change it to 
+the appropriate printf formatting item. 
+
+3. If there is no actual non-whitespace constant text involved in an output statement, 
+the string is not shown here. 
+
+4. Note how the command error messages listed below are output by p1_main; thus, 
+functions in other modules must return an error condition to p1_main, 
+which then prints the appropriate message from this list.
+*/
+
+/* main module */
+/* top level messages */
+"\nEnter command: "
+"Done\n"
+
+/* print command messages */
+"Library is empty\n"
+"Library contains %d records:\n"
+"Catalog is empty\n"
+"Catalog contains %d collections:\n"
+"Memory allocations:\n"
+"Records: %d\n"
+"Collections: %d\n"
+"Containers: %d\n"
+"Container items in use: %d\n"
+"Container items allocated: %d\n"
+"C-strings: %d bytes total\n"
+
+/* add/modify/delete/save/restore command messages */
+"Record %d added\n"
+"Collection %s added\n"
+"Member %d %s added\n"
+"Rating for record %d changed to %d\n"
+"Record %d %s deleted\n"
+"Collection %s deleted\n"
+"Member %d %s deleted\n"
+"All collections deleted\n"
+"All records deleted\n"
+"All data deleted\n"
+"Data saved\n"
+"Data loaded\n"
+
+/* command error messages */
+"Unrecognized command!\n"
+"Library already has a record with this title!\n"
+"Catalog already has a collection with this name!\n"
+"Record is already a member in the collection!\n"
+"Record is not a member in the collection!\n"
+"Cannot delete a record that is a member of a collection!\n"
+"Cannot clear all records unless all collections are empty!\n"
+"No record with that title!\n"
+"No record with that ID!\n"
+"No collection with that name!\n"
+"Could not read an integer value!\n"
+"Rating is out of range!\n"
+"Could not open file!\n"
+"Invalid data found in file!\n"
+
+/* Record module */
+"%%: %% u %%\n"  /* used when rating is zero */
+"%%: %% %% %%\n"  /* used when rating is non-zero */
+
+/* Collection module */
+"Collection %% contains:"
+" None\n"

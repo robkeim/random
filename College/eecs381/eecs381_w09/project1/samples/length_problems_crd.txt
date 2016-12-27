@@ -1,0 +1,8 @@
+This is a short line, just to get started.
+Is "moxie" really a word?
+This is a very long line that also has a very long word in the middle of it, 
+namely , but on the other hand, the line could contain even more long words, 
+so that it was extremely long to an utterly amazing extent.
+This is also a long line, with short word in the middle of it, , 
+that if replaced, might result in a bad line length.
+This is a short line, but we have already started.

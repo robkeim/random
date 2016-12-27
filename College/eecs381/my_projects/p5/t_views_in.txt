@@ -1,0 +1,31 @@
+close_bridge_view Ajax
+open bridge_view Ajax
+open_bridge_view Ajax
+open_bridge_view Ajax
+open_bridge_view Snort
+close_bridge_view Snort
+default
+close_map_view
+open_map_view
+open_map_view
+Xerxes course 270 2
+open_bridge_view Xerxes
+Ajax course 0 2
+go show
+go show
+go show
+Ajax stop
+go show
+go show
+go
+go show
+Ajax attack Xerxes
+go
+show
+go show
+go show
+Ajax destination Shell 2
+go show
+close_bridge_view Xerxes
+go show
+quit

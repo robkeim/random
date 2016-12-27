@@ -1,0 +1,108 @@
+Sim_object Exxon constructed
+Island Exxon constructed
+Sim_object Shell constructed
+Island Shell constructed
+Sim_object Bermuda constructed
+Island Bermuda constructed
+Sim_object Ajax constructed
+Track_base constructed
+Ship Ajax constructed
+Warship Ajax constructed
+Cruiser Ajax constructed
+Sim_object Xerxes constructed
+Track_base constructed
+Ship Xerxes constructed
+Warship Xerxes constructed
+Cruiser Xerxes constructed
+Sim_object Valdez constructed
+Track_base constructed
+Ship Valdez constructed
+Tanker Valdez constructed
+Model constructed
+Controller constructed
+View constructed
+
+Time 0: Enter command: Unrecognized command!
+
+Time 0: Enter command: Trying to create ship of unknown type!
+
+Time 0: Enter command: Name is already in use!
+
+Time 0: Enter command: Ship not found!
+
+Time 0: Enter command: Unrecognized command!
+
+Time 0: Enter command: Island not found!
+
+Time 0: Enter command: Valdez will sail on course 225.00 deg, speed 1.00 nm/hr to (20.00, 20.00)
+
+Time 0: Enter command: Unrecognized command!
+
+Time 0: Enter command: Valdez will load at Bermuda
+
+Time 0: Enter command: Load and unload cargo destinations are the same!
+
+Time 0: Enter command: Valdez will unload at Exxon
+Valdez will sail on course 225.00 deg, speed 10.00 nm/hr to (20.00, 20.00)
+
+Time 0: Enter command: Warship may not attack itself!
+
+Time 0: Enter command: Invalid heading entered!
+
+Time 0: Enter command: Negative speed entered!
+
+Time 0: Enter command: Expected an integer!
+
+Time 0: Enter command: Expected a double!
+
+Time 0: Enter command: Expected a double!
+
+Time 0: Enter command: Unrecognized command!
+
+Time 0: Enter command: Was not attacking!
+
+Time 0: Enter command: Can't dock!
+
+Time 0: Enter command: Must be docked!
+
+Time 0: Enter command: Cannot load at a destination!
+
+Time 0: Enter command: Cannot unload at a destination!
+
+Time 0: Enter command: Cannot attack!
+
+Time 0: Enter command: Unrecognized command!
+
+Time 0: Enter command: Cannot attack!
+
+Time 0: Enter command: Tanker has cargo destinations!
+
+Time 0: Enter command: Valdez stopping at (30.00, 30.00)
+Valdez now has no cargo destinations
+
+Time 0: Enter command: Ship cannot go that fast!
+
+Time 0: Enter command: View destructed
+Done
+Controller destructed
+Cruiser Ajax destructed
+Warship Ajax destructed
+Ship Ajax destructed
+Track_base destructed
+Sim_object Ajax destructed
+Island Bermuda destructed
+Sim_object Bermuda destructed
+Island Exxon destructed
+Sim_object Exxon destructed
+Island Shell destructed
+Sim_object Shell destructed
+Tanker Valdez destructed
+Ship Valdez destructed
+Track_base destructed
+Sim_object Valdez destructed
+Cruiser Xerxes destructed
+Warship Xerxes destructed
+Ship Xerxes destructed
+Track_base destructed
+Sim_object Xerxes destructed
+Model destructed

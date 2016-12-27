@@ -1,0 +1,56 @@
+status
+create Oil_City Tanker -5 20
+Oil_City destination Shell 10
+Valdez load_at Exxon
+Valdez unload_at Bermuda
+Valdez destination Exxon 10
+Ajax course 180 20
+Xerxes course 270 20
+go
+status
+Ajax stop
+Ajax attack Xerxes
+go
+status
+Oil_City dock_at Shell
+go
+status
+Xerxes position 0 0 20
+Oil_City load_at Shell
+Oil_City unload_at Bermuda
+go
+status
+go
+status
+Ajax course 315 5
+go
+status
+Xerxes destination Bermuda 10
+Ajax attack Xerxes
+go
+Xerxes stop_attack
+status
+go
+status
+go
+status
+Xerxes attack Ajax
+go
+Ajax attack Xerxes
+status
+go
+status
+go
+status
+go
+status
+Ajax destination Bermuda 20
+Valdez stop
+go
+status
+go
+status
+Ajax dock_at Bermuda
+Ajax refuel
+status
+quit

@@ -1,0 +1,13 @@
+Similarity matrix:
+                    1     2     3     4     
+1 w.txt             -     5     6     7     
+2 x.txt             5     -     9     7     
+3 y.txt             6     9     -     8     
+4 z.txt             7     7     8     -     
+
+Clustered similarity matrix:
+                    A1    A2    B3    C4    
+A1 w.txt            -     5     6     7     
+A2 x.txt            5     -     9     7     
+B3 y.txt            6     9     -     8     
+C4 z.txt            7     7     8     -     

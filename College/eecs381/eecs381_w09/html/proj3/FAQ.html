@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="949.43">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 14.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 16.0px Helvetica; min-height: 19.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Courier}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 10.0px Courier}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Courier; min-height: 14.0px}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; min-height: 14.0px}
+    span.s1 {font: 12.0px Courier}
+    span.Apple-tab-span {white-space:pre}
+  </style>
+</head>
+<body>
+<p class="p1"><b>Project 3 Frequently Asked Questions (FAQ)</b></p>
+<p class="p1"><b>Updated 3/5/2009</b></p>
+<p class="p1"><b>Most recent items appear first</b></p>
+<p class="p2"><br></p>
+<p class="p3"><b>I'm trying to use for_each to apply a function object to every object in a container, as in:</b></p>
+<p class="p4"><b>for_each(c.begin(), c.end(), func_obj);</b></p>
+<p class="p3"><b>but after the for_each, the function object I supply is still in the initial state! What's wrong, and how do I do this?</b></p>
+<p class="p3">Review the implementation of for_each shown in the lecture notes:</p>
+<p class="p5">template&lt;class InputIterator, class Function&gt;</p>
+<p class="p5">inline</p>
+<p class="p5">Function</p>
+<p class="p5">for_each(InputIterator first, InputIterator last, Function f)</p>
+<p class="p5">{</p>
+<p class="p5"><span class="Apple-tab-span">	</span>for (; first != last; ++first)</p>
+<p class="p5"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>f(*first);</p>
+<p class="p5"><span class="Apple-tab-span">	</span>return f;</p>
+<p class="p5">}</p>
+<p class="p6"><br></p>
+<p class="p3">First, notice that the parameter <span class="s1">f</span> is passed in by value - a copy is made. Second, notice that <span class="s1">f</span> is returned (by value), and the type of the returned value is the <span class="s1">Function</span> type. The reason why the object is still in the initial state is that it was the copy inside of the <span class="s1">for_each</span> that got modified, not your original! The modified one just got thrown away when <span class="s1">for_each</span> returned!</p>
+<p class="p6"><br></p>
+<p class="p3">The normal way you use <span class="s1">for_each</span> to apply a function object is to get a copy of the internal function object back from <span class="s1">for_each</span> - that will have the results in it. E.g.:</p>
+<p class="p6"><br></p>
+<p class="p4">My_FO_class func_obj;</p>
+<p class="p4">My_FO_class result = for_each(c.begin(), c.end(), func_obj);</p>
+<p class="p6"><br></p>
+<p class="p3">The object <span class="s1">result</span> will be a copy of the object that was applied to each element in the container. This can be shortened by handing in an unnamed object to for_each - since it is going to copy it anyway:</p>
+<p class="p6"><br></p>
+<p class="p4">My_FO_class result = for_each(c.begin(), c.end(), My_FO_class());</p>
+<p class="p7"><br></p>
+<p class="p3">The copying might seem inefficient, but it practice, it is fairly fast because it only happens once on the way into the <span class="s1">for_each</span>, and once on the way out.</p>
+<p class="p6"><br></p>
+<p class="p3"><b>I'm using the iterator interface for std::string. Will calling the replace member function invalidate my iterators?</b></p>
+<p class="p3">Yes, for the same reasons and under the same conditions that would apply for std::vector. The implementation of std::string and std::vector are very similar, just like your implementation of String and Ordered_array. Basically, anything that might modify the internal contents of the string that requires reallocation or other changes in the internal array will result in invalid iterators, and invalid references or pointers to characters in the string as well.</p>
+<p class="p6"><br></p>
+<p class="p3">A useful technique is to use std::distance (a function template defined in &lt;iterator&gt;) to compute the difference between .begin() and your current iterator, and save the value (a size_t), then modify the string, then reset the iterator by adding the saved distance to .begin().</p>
+<p class="p6"><br></p>
+<p class="p3"><b>I'm trying to use the Std. Lib. adapters and binders to call a function/function object that accepts an argument by reference. I'm getting an error about a reference to reference being illegal. What's wrong and what do I do about it?</b></p>
+<p class="p3">See the explanation in the example:</p>
+<p class="p6"><br></p>
+<p class="p3">http://www.engin.umich.edu/class/eecs381/examples/binders_adapters_demos/ordinary_function_for_each_demo.cpp</p>
+<p class="p6"><br></p>
+<p class="p3">You must either pass the argument by value (not possible for a stream) or create a custom function object class.</p>
+<p class="p6"><br></p>
+<p class="p3"><b>I'm implementing the required command map for the top-level command dispatching. Don't all the functions whose pointers are stored in the map have to take the same parameters? Do I use a zillion parameters, even if the function doesn't need them? What's a good way to deal with this?</b></p>
+<p class="p6"><br></p>
+<p class="p3">It is true: All the functions pointed to in the map do need to have the same return type and parameter types - you can have only one function pointer type in the map.</p>
+<p class="p6"><br></p>
+<p class="p3">It would be gross to require every function to accept every possible parameter. But in this project, there shouldn't be that many parameters for the top-level commands - so it wouldn't be horrible to hand in unnecessary parameters - though it is ugly.</p>
+<p class="p6"><br></p>
+<p class="p3"><i>Tidbit: </i>In C++, leaving out the name of an unused function parameter in the function definition tells the compiler you are not using the parameter on purpose - this will automatically shut off an "unused parameter" warning.</p>
+<p class="p6"><br></p>
+<p class="p3">However, there is an ancient idiom to simplify parameter lists: declare and create a structure type object that wraps the function parameters that you might need, and hand a reference to this one object into the function. Because it is by reference, there is no data copying, and you automatically get to pass information back through the parameters if need be. If the structure involves only a reasonable number of well-named members, it looks pretty clean and is reasonably easy to read. The major disadvantage of this technique is that the function parameters no longer give you any clue to what the function takes as input or produces as output - usually nothing will be const. This unclarity is an argument against using this idiom when it provides no special advantage.</p>
+<p class="p6"><br></p>
+<p class="p3">In C, you have to pass the structure in by pointer, and the result looks somewhat cluttered and suggests hairier stuff than is really going on:</p>
+<p class="p8"><br></p>
+<p class="p4">struct Data {</p>
+<p class="p4"><span class="Apple-tab-span">	</span>int x;</p>
+<p class="p4"><span class="Apple-tab-span">	</span>int y;</p>
+<p class="p4"><span class="Apple-tab-span">	</span>int z;</p>
+<p class="p4">};</p>
+<p class="p7"><br></p>
+<p class="p4">int main(void) {</p>
+<p class="p4"><span class="Apple-tab-span">	</span>struct Data data;</p>
+<p class="p4"><span class="Apple-tab-span">	</span>...</p>
+<p class="p4"><span class="Apple-tab-span">	</span>f1(&amp;data);</p>
+<p class="p4">}</p>
+<p class="p7"><br></p>
+<p class="p4">void f1(struct Data * p) {</p>
+<p class="p4"><span class="Apple-tab-span">	</span>if(p-&gt;x)</p>
+<p class="p4"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>p-&gt;y =2 * p-&gt;z;</p>
+<p class="p4">etc.</p>
+<p class="p8"><br></p>
+<p class="p3">But in C++, the reference syntax is easier on the eyes, and the resulting code looks more humdrum - like it actually is:</p>
+<p class="p8"><br></p>
+<p class="p4">struct Data {</p>
+<p class="p4"><span class="Apple-tab-span">	</span>int x;</p>
+<p class="p4"><span class="Apple-tab-span">	</span>int y;</p>
+<p class="p4"><span class="Apple-tab-span">	</span>int z;</p>
+<p class="p4">};</p>
+<p class="p7"><br></p>
+<p class="p4">int main() {</p>
+<p class="p4"><span class="Apple-tab-span">	</span>Data data;</p>
+<p class="p4"><span class="Apple-tab-span">	</span>...</p>
+<p class="p4"><span class="Apple-tab-span">	</span>f1(data);</p>
+<p class="p4">}</p>
+<p class="p7"><br></p>
+<p class="p4">void f1(Data&amp; data) {</p>
+<p class="p4"><span class="Apple-tab-span">	</span>if(data.x)</p>
+<p class="p4"><span class="Apple-tab-span">	</span><span class="Apple-tab-span">	</span>data.y = 2 * data.z;</p>
+<p class="p4">etc.</p>
+<p class="p8"><br></p>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Assignment 3: Authentication and Sessions</title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="824.48">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 16.0px 0.0px; font: 24.0px Times}
+    p.p2 {margin: 0.0px 0.0px 12.0px 0.0px; font: 12.0px Times}
+    p.p3 {margin: 0.0px 0.0px 14.0px 0.0px; font: 18.0px Times}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #001de0}
+    p.p5 {margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; min-height: 14.0px}
+    span.s1 {color: #000000}
+    span.s2 {text-decoration: underline}
+    span.s3 {font: 12.0px Courier}
+    span.s4 {text-decoration: underline ; color: #0b29d3}
+  </style>
+</head>
+<body>
+<h1 style="margin: 0.0px 0.0px 16.0px 0.0px; font: 24.0px Times"><b>Assignment 3: Authentication and Sessions</b></h1>
+<p class="p2">Due Wednesday, February 3, 2010, at 11:59 PM.</p>
+<p class="p2">For this PA, you will continue working on the photo album website developed in PA2. However, do not touch the files in the pa2 sub-directory. Make another sub-directory called pa3, and copy the files from pa2 into the pa3 sub-directory and work on the files there. By the end of this programming assignment you will learn how to authenticate users and maintain sessions using cookies.</p>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 18.0px Times"><b>Part 1: Getting started</b></h2>
+<p class="p2">These sites contain useful tutorial and reference information for what you'll be implementing in this PA.</p>
+<ul>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #001de0"><span class="s1">Validation: <a href="http://developer.mozilla.org/en/docs/The_DOM_and_JavaScript"><span class="s2">http://developer.mozilla.org/en/docs/The_DOM_and_JavaScript</span></a> , <a href="http://developer.apple.com/internet/webcontent/validation.html"><span class="s2">http://developer.apple.com/internet/webcontent/validation.html</span></a></span></li>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #001de0"><span class="s1">Cookies: <a href="http://www.php.net/manual/en/features.cookies.php"><span class="s2">http://www.php.net/manual/en/features.cookies.php</span></a></span></li>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #001de0"><span class="s1">Sessions: <a href="http://www.php.net/manual/en/ref.session.php"><span class="s2">http://www.php.net/manual/en/ref.session.php</span></a></span></li>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; color: #001de0"><span class="s1">Authentication: <a href="http://www.php.net/manual/en/features.http-auth.php"><span class="s2">http://www.php.net/manual/en/features.http-auth.php</span></a></span></li>
+</ul>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 18.0px Times"><b>Part 2: Build the website</b></h2>
+<p class="p2">This PA is about personalization. The first step to doing any kind of personalization is to keep track of who is browsing your site. In class we discussed how HTTP is a stateless protocol, and that the simplest way to maintain state from one page request to another is using cookies. In this PA we will add a login page to the site. Users will only need to type their username and password once. Thereafter we will use a cookie to determine who the logged in user is. From this point on we will declare certain pages sensitive and require users to login before they can view those pages. The rest of the pages will remain public and will not require a username or password to be viewed.</p>
+<p class="p2">Keep in mind that this is not a session; it will not expire. A user will have to explicitly log out, or allow the cookie to expire in order to no longer be authenticated. Actual sessions will be implemented in the next project.</p>
+<p class="p2">Here is a guideline of the files that you may wish to create in your application. You should have created some of these (or their equivalent) for PA2.</p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times"><b>Default home page [public]</b></h3>
+<p class="p2">Contains welcoming message and information about the website. Also has an invitation for new users to join as members. There should be links to a New User page and a Login page. Alternatively you can embed the login form on the home page. There should be some way of getting from this home page to all the public albums of all users.</p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times"><b>New User page [public]</b></h3>
+<p class="p2">Contains a form for users to fill in their username, firstname, lastname, e-mail address and password. Make sure the password field does not display text and there are two password fields for verification. The username must be unique, at least three characters long and can only have letters, digits and underscores. Passwords should be at least 5 and at most 15 characters long. Perform client side validation with appropriate error messages to indicate what exactly is wrong with the data. Perform server side checks as well to ensure that browsers without Javascript support (or malicious users) also maintain consistency.</p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times"><b>Logged-in home page [sensitive]</b></h3>
+<p class="p2">This page is the home page for a user who has already logged in. Make sure for all pages in logged in state, you display the message "Logged in as Firstname Lastname" in a convenient location. This page and all subsequent logged-in pages should have a navigational interface with links to Home (i.e. this page), Edit Account, My Albums and Logout. The main body of the page should have a list of all the accessible albums categorized by their owners. Accessible albums include public albums as well as private albums which have been authorized for this user by the owner.</p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times"><b>Edit Account page [sensitive]</b></h3>
+<p class="p2">The user should be able to change his/her firstname, lastname, password and e-mail address (but not username). Validate the form both on client- as well as server-side. Also keep a link on this page to delete the user's account. This should remove all associated pictures (if not in another user's albums), albums, as well as access to other user's albums (since the username may be allocated to a new user now).</p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times"><b>My Albums page [sensitive]</b></h3>
+<p class="p2">This is your editalbumlist.php page from PA2. It allows the user to add new albums, view existing albums, delete them or edit them. Use a Javascript pop-up confirming that the user indeed wants to delete an album. Remember that deleting an album should also involve deleting those pictures in the album which are not included in any other album.</p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times"><b>Edit Album page [sensitive]</b></h3>
+<p class="p2">At the top the user should be able to change the album name and permissions. There should be some way the user can edit a list of friends (i.e. other users) to whom he/she would like to give explicit access to view this album if it is private. This may be on the same page or a separate page. If you do this on a separate page, at least list out the names of the friends on this page.</p>
+<p class="p2">Below this, you should list the pictures. User should be able to delete pictures from the album as well as add new pictures.</p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times"><b>View Album page [sensitive/public]</b></h3>
+<p class="p6">This page displays an album just like the previous assignments. The album title should be at the top, along with the album's owner. The photos should be displayed in sequence order, each with its date last modified and a caption. The only difference is to ensure that, if the album is private, only the logged-in user has permission to view the album.</p>
+<p class="p7"><br></p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times"><b>View picture page [sensitive/public]</b></h3>
+<p class="p2">This page displays a picture just like the previous assignment. It should have the caption, full-sized picture and links to previous and next picture.</p>
+<p class="p7"><br></p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Times"><b>Logout page [sensitive]</b></h3>
+<p class="p2">This should clear the cookie and redirect to the default home page.</p>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 18.0px Times"><b>Part 3: Authentication</b></h2>
+<p class="p2">In order to view a sensitive page, the user must be authenticated. You should use a form with username/password that is shipped to a PHP script that checks this with the database. You will come across these situations:</p>
+<ul>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times">Username is invalid: Complain that no such user exists and encourage the user to become a new member.</li>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times">Username is valid but password is not: Ask the user to re-enter the password. Make sure the username is already entered in the form so that he/she does not have to type that again.</li>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times">Username and password are both valid: Take the user to the logged-in home page.</li>
+</ul>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 18.0px Times"><b>Part 4: Client side validation</b></h2>
+<p class="p2">Add client side Javascript validation to check these forms:</p>
+<ul>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times">New User form</li>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times">Edit Account form</li>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times">Popup confirmation before deleting album</li>
+</ul>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 18.0px Times"><b>Grading</b></h2>
+<p class="p2">We will check the <span class="s3">pa3</span> directory for your new secure photo album website. Based on <span class="s3">pa2</span> , your website should contain at least the following users with their albums.</p>
+<ul>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times">Username: sportslover, Password: paulpass - "I love football" (public), "I also love football" (public)</li>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times">Username: traveler, Password: rebeccapass - "Around The World"(public)</li>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times">Username: spacejunkie, Password: bobpass - "Cool Space Shots" (private, also accessible to traveler)</li>
+</ul>
+<p class="p2">Your website may contain other users and albums, but please ensure that the above users and albums exist.</p>
+<p class="p2">Do not touch the files in <span class="s3">pa3</span> sub-directory after the deadline.</p>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 18.0px Times"><b>Submitting Your Assignment</b></h2>
+<p class="p2">When you are finished with the PA, send an email to <a href="mailto:vahed@umich.edu"><span class="s4">vahed@umich.edu</span></a> listing the extra credit done on the site.</p>
+<h2 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 18.0px Times"><b>Extra Credit</b></h2>
+<p class="p6"><b>Groups of 4 people are required to do a least 2 of the following in addition to the assignment requirements.</b></p>
+<ul>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times">When a form is submitted in the New User page, send an e-mail message to the new user confirming his/her membership with CC to yourself and redirect him/her to the logged-in home page.</li>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times">Show real thumbnails with the captions instead of just a list in the Edit Album page.</li>
+  <li style="margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times">Ask the user if he/she has forgotten the password and if so, create a new password and e-mail it to him</li>
+</ul>
+<p class="p2">Each correctly implemented extra credit will increase your score by 2%, to a maximum of 10%. The main reason for the extra credit is to provide opportunities for you to challenge yourself. Please take on the extra credit after you have completed the rest of the assignment.</p>
+</body>
+</html>

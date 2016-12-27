@@ -1,0 +1,65 @@
+Enter command:Dictionary is empty
+Enter command:Action list is empty
+Enter command:Memory allocations:
+9 strings with total allocation of 9 bytes
+0 dictionary cells in use with total allocation of 3 cells requiring 36 bytes
+0 action list cells in use with total allocation of 3 cells requiring 84 bytes
+Enter command:Enter input dictionary file name:11 words loaded
+Enter command:Enter input document file name:Enter output document file name:
+hTe bear said forcefully to hte moose,
+
+"hTe" is not in the dictionary: Enter command:Enter replacement:Do you want to replace this in rest of document? Enter y or n:"hTe" will be replaced by "The" in the rest of the document
+
+The bear said forcefully to hte moose,
+
+"forcefully" is not in the dictionary: Enter command:Do you want to skip this in rest of document? Enter y or n:"forcefully" will be skipped for the rest of the document
+
+The bear said forcefully to hte moose,
+
+"hte" is not in the dictionary: Enter command:Enter replacement:Do you want to replace this in rest of document? Enter y or n:"hte" will be replaced by "the" in the rest of the document
+
+"I ate a bear, a walrus,and .... 
+
+"ate" is not in the dictionary: Enter command:
+      even a zebra!"
+
+"even" is not in the dictionary: Enter command:
+The moose said equally forcefully to hte bear, "I doubt
+
+"equally" is not in the dictionary: Enter command:Enter replacement:Do you want to replace this in rest of document? Enter y or n:
+The moose said very forcefully to the bear, "I doubt
+
+"doubt" is not in the dictionary: Enter command:
+it."
+
+"it" is not in the dictionary: Enter command:23 words processed in the input document
+4 words were added to the dictionary
+3 actions were specified
+Enter command:Dictionary contains 15 words:
+aardvark
+and
+ate
+bear
+dingo
+doubt
+even
+it
+moose
+said
+saw
+the
+to
+walrus
+zebra
+Enter command:Action list contains 3 actions:
+Skip forcefully
+Replace hTe with The
+Replace hte with the
+Enter command:Enter output dictionary file name:Could not open file for output! Re-enter name:15 words saved
+Enter command:Unrecognized command!
+Enter command:Dictionary emptied
+Action list emptied
+Enter command:Unrecognized command!
+Enter command:Enter input document file name:Could not open file for input! Re-enter name:Could not open file for input! Re-enter name:Could not open file for input! Re-enter name:19 words processed in the input document
+16 words were added to the dictionary
+Enter command:Done

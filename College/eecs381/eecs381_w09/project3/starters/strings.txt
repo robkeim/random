@@ -1,0 +1,64 @@
+/* Strings used in output messages. Two or more strings on the same line would be part of the same
+line of output, with some variable value output between them.
+*/
+
+
+/* Messages emitted by main module */
+"Enter command:"
+"Done"
+"Dictionary emptied"
+"Action list emptied"
+"Cross-references emptied"
+" words were added to the dictionary"
+" words loaded"
+" words saved"
+"Dictionary is empty"
+"Action list is empty"
+"Action list contains "   " actions:"
+"Enter input document file name:"
+"Enter input dictionary file name:"
+"Enter output dictionary file name:"
+"Enter output document file name:"
+" actions were specified"
+
+/* Message emitted when statistics are output */
+"Document statistics:"
+"Dictionary statistics:"
+"Number of words: "
+"Longest word length: "
+"Number of words containing at least one apostrophe: "
+"Average letters per word: "
+
+/* Messages emitted during interaction with user during spell-checking */
+"\""   "\" is not in the dictionary: "
+"Do you want to skip this in rest of document? Enter y or n:"
+"\""   "\" will be skipped for the rest of the document"
+"Enter replacement:"
+"Do you want to replace this in rest of document? Enter y or n:"
+"\""   "\" will be replaced by \""   "\" in the rest of the document"
+
+/* Messages emitted for action items */
+"Skip "
+"Replace "   " with "
+
+/* Messages emitted for a cross-reference listing */
+"Added words:"
+"Skipped words:"
+"Replaced words:"
+"Words with apostrophes:"
+"Input document words:"
+"Input document lines:"
+": " // follows the word in the cross-reference output line
+"None"
+
+/* Error messages sent in Error exception objects */
+"Unrecognized command!"
+"Input file could not be opened!"
+"Output file could not be opened!"
+"Unknown cross-reference type!"
+"Could not read an integer!"
+"Minimum and maximum numbers must be 0 or positive!"
+"Maximum must be greater than or equal to minimum!"
+
+			
+

@@ -1,0 +1,25 @@
+<!--This file created by ClarisWorks HTML Filter 2.0-->
+<HTML>
+<HEAD>
+<META NAME=GENERATOR CONTENT="ClarisWorks HTML Filter 2.0">
+<TITLE>Finding_Misaddressing_Bugs</TITLE>
+</HEAD>
+<BODY  >
+
+<P><B>How can I find array subscripting bugs?<BR>
+<BR>
+</B>Look where the subscripting variable is set or modified.  Are you positive it will never get too large or negative?  How do you know? Remember, something is wrong, so everything is a suspect!  Step through the code and watch the variable to see if it goes out of bounds.  If the index variable is supposed to only be changed in a for statement, make sure you don't modify it somewhere in the body of the loop:<BR>
+<BR>
+Don't assume anything about where variables are located relative to each other.  Your compiler might have its own rules for how it lays out memory, and these may not be obvious. So if you store off the end of an array, you will clobber whatever has been placed there, but that may not be the next variable declared in your program. <BR>
+<BR>
+<B>How can I find pointer bugs?<BR>
+</B><BR>
+The debugger can show you the values of all your pointer variables and the contents of your data structure.  You can dereference the pointers to see what they point to.  Look for cases where they point to obvious trash.  However, you could be building a fine data structure in the middle of the operating system, so you have to make sure the addresses in the pointers are really correct.<BR>
+<BR>
+For example, you build a data structure using pieces of memory allocated with malloc or new; you can see what those addresses are, and note them on a diagram of the data structure as it gets built.  Look for pointers coming up with bogus addresses.<BR>
+<BR>
+Note: if your program allocates memory, you can't depend on that allocated memory to always have the same address as the last time you ran the program.  The OS is complex(!) and has its own agenda for using memory.<BR>
+</P>
+</BODY>
+</HTML>
+

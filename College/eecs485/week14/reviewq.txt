@@ -1,0 +1,33 @@
+Review Questions
+April 16, 2010
+
+
+1.  Explain why the TTL field is critical in getting DNS to work.
+
+
+2.  List some reasons it can be useful to have an organization-level web proxy.
+
+
+3.  What are the relative benefits of choosing a replication-based distribution strategy over a partitioning-based one?
+
+4.  What is the scenario in which the 2-phase commit protocol is useful?  If a participant machine in a 2-phase commit deployment dies while between the two phases of a write operation, what does it do upon reboot?
+
+5.  As discussed in class, GFS was designed to handle a small number of very large append-only files.  What would you have to change in order for it to be useful for general-purpose filesystem needs?
+
+
+6.  Imagine we want to compute PageRank using MapReduce.  The input dataset is of the form:
+URL, (outlinks, pagerank)
+
+How would you implement this?
+
+
+7.  Describe a MapReduce job that might require substantial map work, but only a short reduce phase.  Then describe a job with the reverse characteristics.
+
+
+8.  What are some reasons a web service might want to make sure a given file is not cached?
+
+
+
+
+
+

@@ -1,0 +1,81 @@
+EECS485
+Review Questions, Week 1.
+
+1) How many HTTP requests would be required to fetch a web page with two embedded GIF files?  How many TCP connections would be made, using HTTP 1.0?  What about HTTP 1.1?
+
+Under 1.0, there would be three HTTP requests (one for the HTML content, and one for each image).  Each HTTP connection would have a corresponding TCP connection.  Under HTTP 1.1, the three HTTP connections could reuse a single TCP connection.
+
+2. What are the different parts of a URL.  Where is each interpreted?
+
+See lecture notes.  The protocol part is interpreted at the client to choose
+the application level protocol.  Let's assume this is http.
+The domain part is interpreted by the TCP/IP layer at the client.  
+The path part is interpreted at the web server to find the file or
+application to serve.  The parameter part (after ?) is interpreted by the
+specific application/file selected by the path part on the web server.
+The location part (after #) is interpreted by the client, as a display
+directive. 
+
+3) If you have a choice of using PHP or in-browser JavaScript, which would you use for each of the following, and why?
+  a) Drop down menu on mouse-over an image
+  b) Password verification
+  c) Error-checking on a form being filled in (say, testing the format of an email address)
+  d) Adding an item to a shopping cart
+
+3a) JavaScript is best for on-screen items that require fast response.  You don't want an HTTP round-trip and page reload for just mousing over an image.
+
+ b) Passwords are kept at the server side, so PHP is best here.
+
+ c) You could do either server- or client-side checking, depending on how sophisticated the test is.  If doing simple format-checking (is there an "@" sign?), then JavaScript is probably best.
+
+ d) Your shopping cart session is probably stored at the server-side, so PHP is probably best.  There may be some applications where client-side carts are acceptable.
+
+
+4) What are the relative benefits of running an Apache-module version of PHP, as opposed to CGI for creating dynamic server-side content?
+
+CGI has a process-start overhead that is undesirable for performance reasons.  The only possible reason to prefer it is due to the process-space memory protection it provides.  If you had a very buggy server-side programming language, maybe CGI would be the right solution.  For modern PHP, Apache integration (without the process-start overhead) is the way to go.
+
+
+5) We discussed that http servers are deployed as a mixture of threads and processes.  In what scenario might you choose to deploy a system that uses many processes, with very few threads per process?  In what scenario might you choose the reverse, using few processes, with many threads per process?
+
+Process and threads each provide a way to perform work in parallel.  There is a tradeoff between the extra protection that separate processes provide, vs the lower overhead that threads provide.  If you have a very buggy piece of code, but still want to process many requests, you might try a lot of processes with relatively few threads per process.  If you want to process as many requests as possible on a single machine, and you are willing to accept that the entire process might die in the event of a bug, then few processes with many threads would be the right approach.
+
+
+6) Imagine that you are about to visit the home page of Hoozah!, an alternate universe's most popular site.  Hoozah! uses dynamic content on the server to choose news stories which appear immediately.  It also implements drop-down mouse menus on the client.  Its engineers have chosen the standard 3-tier architecture we discussed in class.  Hoozah! is a bit behind the times, and so only supports HTTP 1.0.
+
+All of the following operations take place.  Put them into the correct sequence:
+
+  a) Text representing the news story appears on your screen
+  b) Your browser receives an HTTP 404 code ("Not Found")
+  c) The first database SQL query is executed
+  d) The Hoozah! Apache server receives the first SYN packet from your machine.  
+  e) Some JavaScript code is executed for the first time
+  f) Some PHP code is executed for the first time
+  g) The bytes representing GET "http://hoozah.com/index.html" are placed on the wire for the first time.
+
+
+  The correct sequence is:
+  d) The Hoozah! Apache server receives the first SYN packet from your machine.  
+  f) Some PHP code is executed for the first time
+  c) The first database SQL query is executed
+  g) The bytes representing GET "http://hoozah.com/index.html" are placed on the wire for the first time.
+
+  At this point, the question is a bit of a trick.  There are several possible sequences, but the most likely is the following one:
+  a) Text representing the news story appears on your screen
+  e) Some JavaScript code is executed for the first time
+  b) Your browser receives an HTTP 404 code ("Not Found")
+
+
+7) Consider a website for biologists, in which users can view genetic sequences, post comments about them, and read comments that others have left.  How would you design such a site, using the Model-View-Controller model?  What would each component (the M, the V, the C) consist of?
+
+  There are two pieces of data here: the genetic sequence and the comment set.  We can think of each has having an MVC pattern.
+
+  For the comment set, the model is a set of tuples in a backend database, probably with "author", "text", and "timestamp" fields.  The view is a set of blocks of HTML that print the comments to the screen.  The controller is the HTML form that has a text field and a "post comment" button.
+
+  Each genetic sequence is probably represented by a single tuple, which contains a "text" field consisting of letters in the genetic alphabet (e.g., ACGT).  This database tuple is the model.  The HTML code that renders the letters to the biologist's screen makes up the view.  Because the sequence itself is not editable from this tool, there is no controller.
+
+
+8) The same-origin policy prevents client-side JavaScript programs from different sites from interfering with each other.  Describe how poorly-written server-side code can undermine the same-origin policy, allowing JavaScript from site A to modify the HTML from site B.
+
+  Examine the lecture notes for a description of cross-site scripting attacks.  The problem is that poorly-written server code may render arbitrarty user-provided text as part of the server's HTML output.  For example, Google will print your query in the HTML for the query results page.  The server code should be sure to "sanitize" any text provided by users, so that the server does not mistakenly emit HTML or JavaScript code written by another party.
+

@@ -1,0 +1,96 @@
+Review Questions
+March 12, 2010
+
+You will not be tested on the "Topics in Web Search Research" material.
+
+
+1) Explain briefly each of the following auction types.  How do they differ?  Give an example of each.
+
+Ascending bid auction
+
+Bids are public.  The price of an item starts at a minimum or "reserve price".  It goes up by increments, as long as at least one bidder agrees to the price.  The auction stops when no new bidder agrees to the incremented price.  The winner is the most-recent successful bidder, who pays the bid-price.  Art auctions are commonly of this type.  Most auctions depicted in films are of this type.
+
+
+Descending bid auction
+
+Bids are public.  The price of an item starts at a maximum price and goes down by decrements.  The winner of the auction is the first bidder to agree to the decremented price.  The winner pays the bid-price.  The Dutch flower market auction is such an auction.
+
+
+Sealed-bid first-price auction
+
+Bids are private.  All bidders enter a secret bid.  The winner of the auction is the highest bidder, who pays the bid-price.  The original Overture search-ad auction was a first-price auction.
+
+
+Sealed-bid second-price auction
+
+Bids are private.  All bidders enter a secret bid.  The winner of the auction is the highest bidder, who pays the bid-price of the 2nd-highest bidder.  Ebay employs a sealed-bid second-price auction.
+
+
+
+2) Explain why a bidder in a second-price auction should always bid the same amount as his valuation of the auction item.
+
+Bidder i values the object at v_i, and is willing to pay up to v_i.  However, i would prefer to pay as little as possible.
+
+We want to prove that i's utility is maximized when v_i = b_i.
+
+Recall that the payoff to i is:
+  (v_i - max(b_j))  if b_i > max(b_j) for all j != i.
+  0            if otherwise.
+
+If b_i > v_i, then the bidder will possibly pay more than he values the object (resulting in negative utility).
+
+If b_i < v_i, then the bidder will possibly fail to obtain the object (resulting in zero utility) even though positive-utility outcomes were possible.
+
+Thus, the best strategy is v_i = b_i.
+
+Note that a second-price auction is slightly strange.  The bid b_i for bidder i determines whether i wins the object.  But another participant determines what i pays for the object.
+
+
+3) Explain why this is not true of a bidder in a first-price auction.
+
+A bidder in a first-price auction will pay the bid price, even if the 2nd-highest bidder values the object substantially lower.  Thus, even though bidder i values the object at v_i, i may submit a bid of b_i < v_i, as long as he believes b_i will still be higher than the maximum bid of every other auction participant.  First-price auctions encourage lower bidding.
+
+
+
+4) "Sniping" is the Ebay practice of increasing one's bid dramatically right before the end of the auction.
+Recall that Ebay auctions are sealed-bid second-price auctions (aka, Vickrey auctions).
+
+Why is sniping nonsensical, from the perspective of standard auction/game-theoretic analysis of Vickrey auctions?
+
+Give at least one reason why sniping is nonetheless observed in practice.  For each reason, what part of the analysis of
+a Vickrey auction is flawed?
+
+
+There is no reason to snipe because a Vickrey auction bidder should always bid their true valuation.  The temporal ordering
+of the bid shouldn't matter.  If the bidder has bid the true valuation, and is currently not the winner of the auction,
+then entering a higher last-minute bid would result in negative utility for the bidder.
+
+There are a few theories on why sniping takes place.  One is that bidders do not actually know the best valuation of 
+an object, and that the auction process itself reveals the true valuation.  In this case, it makes sense to snipe because
+a late bidder will have more information about the true valuation.  
+
+A related point is that by not entering a bid earlier in the auction, the bidder can deny other participants the informational 
+benefit of the bid.  So even if the bidder knows his own valuation perfectly and acts accordingly, it can make sense to 
+engage in sniping if other bidders do not.
+
+There are also behavioral theories about people becoming so excited about the auction that they misjudge their own true
+valuation of the object, etc.
+
+
+
+5) What are two practices that made Google ad auctions different from the original Overture ad auctions?  Why might
+they have chosen each?
+
+Google did two things differently.
+1) They used a (generalized) second-price auction instead of a first-price.  This meant that bidders did not have to
+aggressively modify their bids as Overture's first-price auction encouraged them to do.
+
+2) They sorted ads by a combination of bid price and predicted-click-through, instead of simple bid-price.  This led 
+high-quality relevant ads with comparatively low bids to be placed relatively highly.  Because money changes hands
+only when the search user actually clicks on an ad, it may be true that frequently-clicked ads with low bids generate
+more money than infrequently-clicked ads with high bids.  This led to both more clicks and more revenue for Google.
+
+
+
+
+

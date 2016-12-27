@@ -1,0 +1,91 @@
+
+Enter command: xyz
+Unrecognized command!
+
+Enter command: ai Tom Jones 123
+Person Jones added
+
+Enter command: ai Bill Jones 000
+There is already a person with this last name!
+
+Enter command: pi Bob
+No person with that name!
+
+Enter command: ar 1001
+Room 1001 added
+
+Enter command: ar 1001
+There is already a room with this number!
+
+Enter command: ar x1001
+Could not read an integer value!
+
+Enter command: ar -1001
+Room number is not in range!
+
+Enter command: am 1001 10 Silly_Stuff
+Meeting added at 10
+
+Enter command: am 1001 10 Important_Stuff
+There is already a meeting at that time!
+
+Enter command: am 1001 x10 Important_Stuff
+Could not read an integer value!
+
+Enter command: am 1001 6 Important_Stuff
+Time is not in range!
+
+Enter command: ap 1001 10 Bob
+No person with that name!
+
+Enter command: dp 1001 10 Bob
+No person with that name!
+
+Enter command: ap 1001 10 Jones
+Participant Jones added
+
+Enter command: ap 1001 10 Jones
+This person is already a participant!
+
+Enter command: dp 1001 10 Jones
+Participant Jones deleted
+
+Enter command: dp 1001 10 Jones
+This person is not a participant in the meeting!
+
+Enter command: ap 1001 10 Jones
+Participant Jones added
+
+Enter command: pm 1001 3
+No meeting at that time!
+
+Enter command: pm 1002 10
+No room with that number!
+
+Enter command: pr 23
+No room with that number!
+
+Enter command: ps
+Information for 1 rooms:
+--- Room 1001 ---
+Meeting time: 10, Topic: Silly_Stuff
+Participants:
+Tom Jones 123
+
+Enter command: dg
+Cannot clear people list unless there are no meetings!
+
+Enter command: di Jones
+This person is a participant in a meeting!
+
+Enter command: ld nonexistent_file.txt
+Could not open file!
+
+Enter command: ld invalid_file.txt
+Invalid data found in file!
+
+Enter command: qq
+All meetings deleted
+All rooms deleted
+All persons deleted
+Done

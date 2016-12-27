@@ -1,0 +1,30 @@
+open map
+show
+zoom 0
+zoom 4
+show
+close Toledo
+open Toledo
+open Iriel
+open health
+open health
+open amounts
+pan 10 a show
+pan 10 10 show
+open Bug
+size 4
+show
+size a
+close Bug
+open Shire
+size 40
+size 30
+show
+close Iriel
+open Iriel
+close map
+default
+open map
+default
+show
+quit

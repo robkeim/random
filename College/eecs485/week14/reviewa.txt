@@ -1,0 +1,77 @@
+Review Questions
+April 16, 2010
+
+
+1.  Explain why the TTL field is critical in getting DNS to work.
+
+DNS lookups are cached aggressively, at different layers in the system.  (For example, both your computer and your ISP may be caching DNS records.)  
+
+
+2.  List some reasons it can be useful to have an organization-level web proxy.
+
+The proxy can implement network policy, audit network access, scan incoming messages for viruses, and share cached Web content downloaded by the organization's users.
+
+
+3.  What are the relative benefits of choosing a replication-based distribution strategy over a partitioning-based one?
+
+With a replicated service, any replica can provide service.  Thus a replica-based load-handling strategy can also be a good availability strategy.
+The disadvantages of replication are twofold: managing updates to many replicas can be difficult, and the replicas may require substantial storage overhead.
+
+
+4.  What is the scenario in which the 2-phase commit protocol is useful?  If a participant machine in a 2-phase commit deployment dies while between the two phases of a write operation, what does it do upon reboot?
+
+2-phase commit allows a write-based transaction to be applied across several machines.  We want the overall transaction to be reflected at all, or none, of the participating machines.
+
+The machine knows the content of the write, because it was written to disk during the first prepare portion of 2-phase commit.  The machine now needs to know whether this operation should be committed or aborted.  It must ask the coordinator machine to say if the relevant transaction was committed or aborted.  
+
+
+5.  As discussed in class, GFS was designed to handle a small number of very large append-only files.  What would you have to change in order for it to be useful for general-purpose filesystem needs?
+
+The single master server must track the mapping between filename and chunk. If the number of filenames goes up dramatically, then the master will need to devote a much larger amount of space to this mapping.  In addition, we would need to add general seek-and-write behavior, not just append-only writes.  The first challenge (changing the master to account for additional files) poses moderate difficulty.  The latter requirement - adding general write behavior to GFS - dramatically changes the system; it makes GFS much more similar to a traditional distributed filesystem.
+
+
+6.  Imagine we want to compute PageRank using MapReduce.  The input dataset is of the form:
+URL, (outlinks, pagerank)
+
+How would you implement this?
+
+For each iteration of PageRank, we run the MapReduce job once.
+
+Each map task emits rank that gets sent to the "outgoing node".  If the input to map is:
+URL, (outlinkURLs[], pageRank)
+
+then it emits several (|outlinkURL| of them) intermediate key/values of the form:
+outlinkURL[i], (URL, pageRank / len(outlinkURLs))
+
+finally, it emits an additional key/value of the form:
+URL, (outlinkURLs[], -1)
+
+
+In reduce, for a given key URL, we receive a set of values that look like this:
+URL, (srcPageRank_0 / len(src-outlinkURLs_0))
+     (srcPageRank_1 / len(src-outlinkURLs_1))
+     ...
+     (srcPageRank_N-1 / len(src-outlinkURLs_N-1))
+     (outlinkURLs[], -1)
+
+We can then sum all of the srcPageRank values, and discount by d.  (Let's assume for now that the remaining "teleport" term of PageRank is a constant, hard-coded into the MapReduce job.)  We then emit a brand-new key, value pair that matches the original input to map():
+URL, (outlinkURLs[], <newPageRank>)
+
+We then run this MapReduce job as many times as we would like iterations of the algorithm.
+
+
+7.  Describe a MapReduce job that might require substantial map work, but only a short reduce phase.  Then describe a job with the reverse characteristics.
+
+MapReduce jobs can contain an "empty" reduce that does nothing but emit the map output.  Consider a program that performs image analysis for a large number of input pictures.  The map tasks may have heavy computation to perform, but the reduce function does little or nothing.  In contrast, imagine an index-construction task that can use an enormous number of parallel map tasks to process its input very quickly, but because the user wants to emit just one output file, is limited to a single reduce function.  (Recall that the number of output files is determined by the number of reducers.)  In this scenario, many many mappers can finish quickly, but we're limited to a single concurrent reduce task.)
+
+
+8.  What are some reasons a web service might want to make sure a given file is not cached?
+
+Caching can be bad in several ways.  First, it can lead to incorrect behavior if the cached object has been modified at the server but not reflected at the client.  For example, cached JavaScript libraries may no longer interact correctly with downloaded HTML pages.  Second, cached objects do not appear in the site operator's logs for advertising purposes.
+
+
+
+
+
+
+

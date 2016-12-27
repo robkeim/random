@@ -1,0 +1,61 @@
+/* Strings used in output messages. Two or more strings on the same line would be part of the same
+line of output, with some variable value output between them.
+*/
+
+
+/* Messages emitted by main module */
+"Enter command:"
+"Done"
+"Dictionary emptied"
+"Action list emptied"
+" words were added to the dictionary"
+" words loaded"
+" words saved"
+"Dictionary is empty"
+"Dictionary contains "    " words:"
+"Action list is empty"
+"Action list contains "   " actions:"
+
+"Memory allocations:"
+" strings with total allocation of "   " bytes"
+" dictionary cells in use with total allocation of "   " cells requiring " " bytes"
+" action list cells in use with total allocation of "  " cells requiring " " bytes"
+
+"Enter input document file name:"
+"Enter input dictionary file name:"
+"Enter output dictionary file name:"
+"Enter output document file name:"
+" words processed in the input document"
+" actions were specified"
+
+"\""   "\" is not in the dictionary: "
+"Do you want to skip this in rest of document? Enter y or n:"
+"\""   "\" will be skipped for the rest of the document"
+"Enter replacement:"
+"Do you want to replace this in rest of document? Enter y or n:"
+"\""   "\" will be replaced by \""   "\" in the rest of the document"
+
+/* Error messages emitted from main module */
+"Unrecognized command!\n"
+"Could not open file for input! Re-enter name:"
+"Could not open file for output! Re-enter name:"
+
+/* Messages emitted from Action_item */
+"Skip "
+"Replace "   " with "
+
+
+/* Messages emitted from String constructors, destructor, and assignment operators */
+"Ctor: \""     "\""
+"Copy ctor: \""    "\""
+"Dtor: \""   "\""
+"Assign from String:  \""    "\""
+"Assign from C-string:  \""     "\""
+
+/* Message strings to be used to initialize a String_exception object in String
+"Subscript out of range"
+"Substring bounds invalid"
+"Remove bounds invalid"
+"Insertion point out of range"
+			
+

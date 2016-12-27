@@ -1,0 +1,57 @@
+// New text strings used in Project 5.
+// Strings already used in Project 4 are not shown, 
+// except for those that need special comment or possibly different treatment
+// Output is produced only in a .cpp file - no header files may contain output statements.
+// A gap between two output operators marks where a variable or function would appear.
+// A '+' marks where another string would appear in concatenation.
+
+
+
+// Controller output
+// strings used in Error objects thrown by Controller
+"Agent is dead!"	// not expected to be visible in this project
+"View of that name already open!"
+"No object of that name!"
+"No view of that name is open!"
+"No map view is open!"
+
+
+// Agent output 
+
+// Agent::describe output
+cout << "   Is dead" << endl; // not expected to be visible in this project
+cout << "   Is disappearing" << endl; // no longer used - should be deleted
+cout << "   Is dying" << endl; // no longer used - should be deleted
+
+// Archer & Soldier (Warriors) output
+// describe output
+cout << "   Attacking dead target" << endl;
+// update output
+cout <<  << ": Target is dead" << endl;
+
+// Soldier output
+// update output - arrangement for output may be different
+"Clang!"
+
+// Archer output
+// update output
+"Twang!"
+// take_hit output
+cout <<  << ": I'm going to run away to " <<  << endl;
+// describe output
+cout << "Archer ";
+
+
+
+// local view output
+cout << "Local view for: " << << endl;
+
+// health and amounts view output
+"Amounts"
+"Health"
+
+cout << "Current " << << ":" << endl;
+cout << "--------------" << endl;
+cout <<  << ": " <<  << endl;
+
+

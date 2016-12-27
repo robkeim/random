@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="949.43">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 14.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 16.0px Helvetica; min-height: 19.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1"><b>Project 5 Frequently Asked Questions (FAQ)</b></p>
+<p class="p1"><b>Updated 4/2/2009</b></p>
+<p class="p1"><b>Most recent items appear first</b></p>
+<p class="p2"><br></p>
+<p class="p3"><b>My code is passing all of the samples, and many of the tests, but failing several. Any suggestions?</b></p>
+<p class="p3">Sure, but they are pretty generic - almost all problems people are having fit into these two categories:</p>
+<p class="p4"><br></p>
+<p class="p3">1. To get lots of "action" into the situation, most of the tests involve agents fighting with each other, so if your code mismatches the specs there, it will fail many of the tests, even those whose names don't suggest fighting.<span class="Apple-converted-space">  </span>If your code is failing the "no show" tests, improper agent fighting interactions is the likely cause. Review the spec doc and the C&amp;C carefully and compare to your code. Note that poor class design will make your code more error-prone, for example, by violating the single-point-of-maintenance principle. The specs were written with a good class design in mind, so it is relatively easy to get the details right if the class design is good.</p>
+<p class="p4"><br></p>
+<p class="p3">2. Even if your agents behave correctly and your views display correctly, you can have untested gaps in your code in areas such as error handling or opening/closing views. The essay on testing will be useful - for example, make sure that your tests have proper "coverage" - you've forced your code to go through all the different paths present. Again, good code design makes this relatively easy to accomplish.</p>
+<p class="p4"><br></p>
+<p class="p3">Finally, review the C&amp;C page and the rest of this FAQ page. Often, reading FAQs turns out to be useful even if the Question doesn't seem immediately relevant.</p>
+<p class="p4"><b></b><br></p>
+<p class="p3"><b>One of the samples has a local view whose X-axis labels start at "-0" instead of "0". What does this mean, and what if my code doesn't produce it?</b></p>
+<p class="p3">You can get a negative zero if the value in a float/double variable is a small negative number that when printed out gets rounded to too few places to display any of the non-zero digits. A small positive number could also get rounded off to zero when printed, but we conventionally don't print a "+" sign, so you never see a "+0" in the output.</p>
+<p class="p4"><br></p>
+<p class="p3">If your code doesn't produce it, here are the possible reasons:</p>
+<p class="p3">(a) You aren't using the stream output formatting to get the required whole-number output, but doing some DIY thing that doesn't produce the same results.</p>
+<p class="p3">(b) You are doing the numerical calculations in a radically different way than specified, so maybe you are getting a small positive number instead.</p>
+<p class="p3">(c) You are using a platform (e.g. 64 bit) that has very different numerical precision, producing a small positive value instead. Provided (a) and (b) are not involved, this reason should disappear in your submitted code because the autograder uses the same architecture, compiler, and library for your code as ours.<span class="Apple-converted-space"> </span></p>
+<p class="p4"><br></p>
+<p class="p3">Note: The autograder uses a custom diff-like facility that knows that a "-0.00" should equate to plain "0.00" in the output, but not if the output has no places to the right of the decimal point.</p>
+<p class="p4"><br></p>
+<p class="p3">Basically, if you are doing the calculations and printout for the map view as specified, then you should be able to reuse these calculations to do the local view as specified, and get the right results.</p>
+<p class="p4"><br></p>
+<p class="p3"><b>Can I use a Smart_Pointer with an incompletely declared class? I'm trying to declare a member variable that is a container of Smart_Pointers.</b></p>
+<p class="p3">Generally, no. Examine Smart_Pointer.h and you will see how it has to access member functions of the pointed-to type, meaning that you can't create a Smart_Pointer without access to the complete type of the pointed-to objects. Unfortunately, this means that some of your class headers will have to include header files for the pointed-to types. However, with proper design you should still be able to limit these includes to only Sim_objects, Agents, and Structures, and Views only - you should not have to include any leaf class headers for the declarations of Model or Controller.</p>
+<p class="p4"><br></p>
+<p class="p3"><b>I'm getting a recursive call error during initialization of Model. I'm using a Meyers Singleton.</b></p>
+<p class="p3">The basic problem is that the first get_instance calls for initializing a static variable, which initializes Model by calling its constructor. If during the construction process you call get_instance again, then a recursive initialization error is happening, and at least gcc gives a special error message.</p>
+<p class="p4"><br></p>
+<p class="p3">You can fix this by not calling get_instance() during Model's construction either directly or indirectly. Think through what actually needs to be done during construction in order to see how to avoid such a call.</p>
+<p class="p4"><br></p>
+<p class="p3"><b>How do I use MSVS's tr1 so that my code also works with the autograder?</b></p>
+<p class="p3">You'll need different includes; this is a perfect place to practice conditional compilation using the preprocessor. For example:</p>
+<p class="p3">#ifdef _MSC_VER // other possibilities are WIN32 _WIN32 or _WIN64</p>
+<p class="p3">#include &lt;functional&gt;</p>
+<p class="p3">#else</p>
+<p class="p3">#include &lt;tr1/functional&gt;</p>
+<p class="p3">#endif</p>
+<p class="p4"><br></p>
+<p class="p3">In the above code, _MSC_VER is a preprocessor symbol defined in MSVS as being the current version number of the MS C/C++ compiler, so testing for this will get you the MSVS version of the header under MSVS; otherwise, you'll get the gcc version of the header. You can flip the logic around by testing for the presence of the gcc compiler by testing for the presence of its preprocessor symbol for the gcc compiler version number:</p>
+<p class="p4"><br></p>
+<p class="p3">#ifdef __GNUC__ // leading and trailing double underscores</p>
+<p class="p3">#include &lt;tr1/functional&gt;</p>
+<p class="p3">#else</p>
+<p class="p3">#include &lt;functional&gt;</p>
+<p class="p3">#endif</p>
+<p class="p4"><br></p>
+<p class="p3"><b>I'm trying to use the version of tr1 now available for MSVS. What works and what doesn't?</b></p>
+<p class="p3">First, try down-loading and compiling the shared_ptr demos from the course Examples directory. The most troublesome is bind, so also get and compile bind_demo.cpp and shared_ptr_bind_demo.cpp. Note what works and what doesn't. Keep in mind: First, that these templates are cranky in ways that should be fixed in the next Standard. Second, historically the MSVS compiler has followed a rather different approach to implementing templates, so it might have its own pattern of problems.</p>
+<p class="p4"><br></p>
+<p class="p3"><b>Given the issues with Smart_Pointers or shared_ptrs with map containers, how can I simplify things?</b></p>
+<p class="p3">Don't use a map container if you can accomplish the same thing with another container. For example, for some containers, a map is a real advantage, but for others, a set, vector, or list works just as well and doesn't have the pair problem.</p>
+<p class="p4"><br></p>
+<p class="p3"><b>Can I use std::mem_fun and std::bind1st etc with containers of Smart_Pointers?</b></p>
+<p class="p3">No - these components of the Standard Library generally do not know how to automatically make use of the Smart_Pointer class. My suggestions for iterating over containers of Smart_Pointers, in order of increasing geekiness:</p>
+<p class="p3">(1) use explicit loops with Smart_Pointer containers;</p>
+<p class="p3">(2) devise a function object that will call the appropriate function with the Smart_Pointer;</p>
+<p class="p3">(3) write an appropriately templated function object class that will call any member function with the Smart_Pointer;</p>
+<p class="p3">(4) write an adapter that stores any adaptable function object and whose function call operator takes a Smart_Pointer of any type, calls the get() member function, and calls the stored function object using the raw pointer;</p>
+<p class="p3">(5) write a version of mem_fun and bind1st specialized for Smart_Pointers being the dereferenced iterator.</p>
+<p class="p4"><br></p>
+<p class="p3">See the Handout on how the adapters and binders work for some specific background. It would be wise to do #1 or #2 first, and work on the other solutions only after you done enough of the project to know that you have the time to spare.</p>
+<p class="p4"><br></p>
+<p class="p3">Note that another reason to use tr1::shared_ptrs is that tr1::mem_fn and tr1::bind know about shared_ptrs and so will automatically use them if they show up as an input (though - groan! - there are still issues with map containers).</p>
+<p class="p4"><br></p>
+<p class="p4"><br></p>
+<p class="p3"><b>I need a working Project 4 to support Project 5. My Project 4 failed some of the output tests. How can I figure out what's wrong so that I can avoid the same problem in Project 5?</b></p>
+<p class="p3">First, we've reopened the autograder for Project 4 so you can test a corrected version of project 4.</p>
+<p class="p4"><br></p>
+<p class="p3">Here is a list of FCEs (Frequently Committed Errors) for Project 4:</p>
+<p class="p4"><br></p>
+<p class="p3">* Simple departures from specified behavior that can be detected by following the advice in the essay "Testing your Projects" on the course home page. Some of the other FCEs are examples of this one. Focus on determining exactly what the specifications say for each project component or command, and then examine and test your code to see if it actually does what it is supposed to do. While the tests aren't "pure", the name of the test at least gives you an idea about the minimum of what might be involved. Watch for assumptions you might have made that go beyond what the specifications actually say.</p>
+<p class="p4"><br></p>
+<p class="p3">* Fighting code not following the specifications, especially when an Agent is killed. A variety of problems can result, including following bad pointers which can lead to segfaults. Many of the tests involve fighting, even if the test name does not suggest it directly. Compare your code very carefully against the specifications - this is why they are so detailed.</p>
+<p class="p4"><br></p>
+<p class="p3">* Not checking for a name conflict with both Agent and Structure names when creating a new object. (See the spec doc).</p>
+<p class="p4"><br></p>
+<p class="p3">* Not generating the View display correctly, especially two areas: when an asterisk should appear; the axis labels - check and stress test the axis label code especially.</p>
+<p class="p4"><br></p>
+<p class="p3">* Not detecting and handling command errors correctly. Compare your code against the specifications very carefully and test the different error paths and possibilities. See the essay on testing for some concrete suggestions.</p>
+<p class="p4"><br></p>
+<p class="p3">* Segfaults or failure to match the samples on the autograder. Suspect uninitialized variables, especially member variables, and especially pointers. Inspect your code looking for these - note that constructors need to ensure that all member variables are initialized.</p>
+<p class="p4"><br></p>
+<p class="p3">We'll add to these as more problems turn up, without moving this item. If you are stumped, come in for advice.</p>
+<p class="p4"><br></p>
+</body>
+</html>

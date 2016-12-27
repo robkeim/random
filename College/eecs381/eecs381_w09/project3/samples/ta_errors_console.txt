@@ -1,0 +1,112 @@
+Enter command:
+
+
+           d
+Dictionary is empty
+Enter command:  a   mlsmall_dct.txt cta_errors_inp.txt ta_errors_out.txt
+Action list is empty
+Enter command:Unrecognized command!
+Enter command:x z z lsmall_dct.txt cta_errors_inp.txt ta_errors_out.txt
+Unknown cross-reference type!
+Enter command:x i z lsmall_dct.txt cta_errors_inp.txt ta_errors_out.txt
+Could not read an integer!
+Enter command:x i 1 z lsmall_dct.txt cta_errors_inp.txt ta_errors_out.txt
+Could not read an integer!
+Enter command:x i -5 1 lsmall_dct.txt cta_errors_inp.txt ta_errors_out.txt
+Minimum and maximum numbers must be 0 or positive!
+Enter command:x i 1 -5 lsmall_dct.txt cta_errors_inp.txt ta_errors_out.txt
+Minimum and maximum numbers must be 0 or positive!
+Enter command:x i 10 5 lsmall_dct.txt cta_errors_inp.txt ta_errors_out.txt
+Maximum must be greater than or equal to minimum!
+Enter command:xi1 2lsmall_dct.txt cta_errors_inp.txt ta_errors_out.txt
+Input document words:
+None
+Enter command:Enter input dictionary file name:11 words loaded
+Enter command:Enter input document file name:Enter output document file name:
+1: hTe bear said forcefully to hte moose,
+"hTe" is not in the dictionary: Enter command:rThe y
+Enter replacement:Do you want to replace this in rest of document? Enter y or n:"hTe" will be replaced by "The" in the rest of the document
+
+1: The bear said forcefully to hte moose,
+"forcefully" is not in the dictionary: Enter command:sy
+Do you want to skip this in rest of document? Enter y or n:"forcefully" will be skipped for the rest of the document
+
+1: The bear said forcefully to hte moose,
+"hte" is not in the dictionary: Enter command:rthe y
+Enter replacement:Do you want to replace this in rest of document? Enter y or n:"hte" will be replaced by "the" in the rest of the document
+
+2: "I ate a bear, a walrus,and .... 
+"ate" is not in the dictionary: Enter command:    a    a
+
+4:       even a zebra!"
+"even" is not in the dictionary: Enter command:
+5: The moose said equally forcefully to hte bear, "I doubt
+"equally" is not in the dictionary: Enter command:
+
+
+r very naa
+Enter replacement:Do you want to replace this in rest of document? Enter y or n:
+5: The moose said very forcefully to the bear, "I doubt
+"doubt" is not in the dictionary: Enter command:
+6: it."
+"it" is not in the dictionary: Enter command:Document statistics:
+Number of words: 23
+Longest word length: 10
+Number of words containing at least one apostrophe: 0
+Average letters per word: 4.3913
+4 words were added to the dictionary
+3 actions were specified
+Enter command:d
+aardvark
+and
+ate
+bear
+dingo
+doubt
+even
+it
+moose
+said
+saw
+the
+to
+walrus
+zebra
+Dictionary statistics:
+Number of words: 15
+Longest word length: 8
+Number of words containing at least one apostrophe: 0
+Average letters per word: 4.13333
+Enter command:a
+Action list contains 3 actions:
+Skip forcefully
+Replace hTe with The
+Replace hte with the
+Enter command:s
+Enter output dictionary file name:..
+Output file could not be opened!
+Enter command:s
+Enter output dictionary file name:ta_errors_dct.txt
+15 words saved
+Enter command:z e b small_crd.txt hoohah
+Unrecognized command!
+Enter command:e z d hoohah!
+Dictionary emptied
+Action list emptied
+Cross-references emptied
+Enter command:Unrecognized command!
+Enter command:b
+Enter input document file name:nonexistentfile
+Input file could not be opened!
+Enter command:b
+Enter input document file name:small_crd.txt
+Document statistics:
+Number of words: 19
+Longest word length: 8
+Number of words containing at least one apostrophe: 1
+Average letters per word: 3.94737
+16 words were added to the dictionary
+Enter command:   
+    
+            q  
+Done

@@ -1,0 +1,53 @@
+0 Strings using 0 bytes
+
+watch them go in and out of scope
+in test_fn1:
+Ctor: "Good morning!"
+Good morning!
+Ctor: "Good night!"
+Good night!
+2 Strings using 26 bytes
+Dtor: "Good night!"
+Dtor: "Good morning!"
+0 Strings using 0 bytes
+
+initialize and copy-construct
+Ctor: "Hello"
+Copy ctor: "Hello"
+Dtor: "Hello"
+Copy ctor: "Hello"
+Ctor: ""
+
+assign from a C-string
+Assign from C-string:  "this was a C-string"
+Ctor: "this was a C-string"
+Dtor: ""
+
+assign from another String
+Assign from String:  "this was a C-string"
+Copy ctor: "this was a C-string"
+Dtor: "Hello"
+done with assignments: this was a C-string this was a C-string
+3 Strings using 46 bytes
+
+call a function with an argument and returned value
+Copy ctor: "Hello"
+in test_fn2:
+4 Strings using 52 bytes
+Ctor: "Your results may vary!"
+test_fn got Hello and is returning: Your results may vary!
+5 Strings using 75 bytes
+Copy ctor: "Your results may vary!"
+Dtor: "Your results may vary!"
+Assign from String:  "Your results may vary!"
+Copy ctor: "Your results may vary!"
+Dtor: "this was a C-string"
+Dtor: "Your results may vary!"
+Dtor: "Hello"
+function call result: Your results may vary!
+
+OK, that's enough
+3 Strings using 49 bytes
+Dtor: "Your results may vary!"
+Dtor: "this was a C-string"
+Dtor: "Hello"

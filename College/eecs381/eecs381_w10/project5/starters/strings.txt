@@ -1,0 +1,24 @@
+// strings output from bridge view code
+cout << "Bridge view from " <<  << " position " << << " heading " << << endl;
+cout << "Bridge view from " <<  << " sunk at " << << endl;
+
+
+// strings output from Controller
+Error("Map view is already open!");
+Error("Map view is not open!");
+Error("Bridge view is already open for that ship!");
+Error("Bridge view for that ship is not open!"");
+
+
+// strings output from Cruise_ship
+cout <<  << " canceling current cruise" << endl;
+cout <<  << " cruise will start and end at " << << endl;
+cout <<  << " will visit " <<  << endl;
+cout << "\nCruise_ship ";
+cout << "On cruise to " << << endl;
+cout << "Waiting during cruise at " << << endl;
+cout <<  << " cruise is over at " <<  << endl;
+
+// strings output from Warship
+cout << "Attacking absent ship" << endl;
+

@@ -1,0 +1,650 @@
+
+Time 0: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1000.00 tons
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1000.00 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 100.00 tons
+
+Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 0.00 tons, no cargo destinations
+
+Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Time 0: Enter command: 
+Time 0: Enter command: Oil_City will sail on course 26.57 deg, speed 10.00 nm/hr to (0.00, 30.00)
+
+Time 0: Enter command: Valdez will load at Exxon
+
+Time 0: Enter command: Valdez will unload at Bermuda
+Valdez will sail on course 225.00 deg, speed 10.00 nm/hr to (10.00, 10.00)
+
+Time 0: Enter command: Tanker has cargo destinations!
+
+Time 0: Enter command: Ajax will sail on course 180.00 deg, speed 20.00 nm/hr
+
+Time 0: Enter command: Xerxes will sail on course 270.00 deg, speed 20.00 nm/hr
+
+Time 0: Enter command: Ajax now at (15.00, -5.00)
+Island Exxon now has 1200.00 tons
+Oil_City now at (-0.53, 28.94)
+Island Shell now has 1200.00 tons
+Island Treasure_Island now has 105.00 tons
+Valdez now at (22.93, 22.93)
+Xerxes now at (5.00, 25.00)
+
+Time 1: Enter command: 
+Cruiser Ajax at (15.00, -5.00), fuel: 800.00 tons, resistance: 6
+Moving on course 180.00 deg, speed 20.00 nm/hr
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1200.00 tons
+
+Tanker Oil_City at (-0.53, 28.94), fuel: 80.00 tons, resistance: 0
+Moving to (0.00, 30.00) on course 26.57 deg, speed 10.00 nm/hr
+Cargo: 0.00 tons, no cargo destinations
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1200.00 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 105.00 tons
+
+Tanker Valdez at (22.93, 22.93), fuel: 80.00 tons, resistance: 0
+Moving to (10.00, 10.00) on course 225.00 deg, speed 10.00 nm/hr
+Cargo: 0.00 tons, moving to loading destination
+
+Cruiser Xerxes at (5.00, 25.00), fuel: 800.00 tons, resistance: 6
+Moving on course 270.00 deg, speed 20.00 nm/hr
+
+Time 1: Enter command: Ajax stopping at (15.00, -5.00)
+
+Time 1: Enter command: Ajax will attack Xerxes
+
+Time 1: Enter command: Ajax stopped at (15.00, -5.00)
+Ajax is attacking 
+Ajax target is out of range
+Ajax stopping attack
+Island Exxon now has 1400.00 tons
+Oil_City now at (0.00, 30.00)
+Island Shell now has 1400.00 tons
+Island Treasure_Island now has 110.00 tons
+Valdez now at (15.86, 15.86)
+Xerxes now at (-15.00, 25.00)
+
+Time 2: Enter command: 
+Cruiser Ajax at (15.00, -5.00), fuel: 800.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1400.00 tons
+
+Tanker Oil_City at (0.00, 30.00), fuel: 77.64 tons, resistance: 0
+Stopped
+Cargo: 0.00 tons, no cargo destinations
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1400.00 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 110.00 tons
+
+Tanker Valdez at (15.86, 15.86), fuel: 60.00 tons, resistance: 0
+Moving to (10.00, 10.00) on course 225.00 deg, speed 10.00 nm/hr
+Cargo: 0.00 tons, moving to loading destination
+
+Cruiser Xerxes at (-15.00, 25.00), fuel: 600.00 tons, resistance: 6
+Moving on course 270.00 deg, speed 20.00 nm/hr
+
+Time 2: Enter command: Oil_City docked at Shell
+
+Time 2: Enter command: Ajax stopped at (15.00, -5.00)
+Island Exxon now has 1600.00 tons
+Oil_City docked at Shell
+Island Shell now has 1600.00 tons
+Island Treasure_Island now has 115.00 tons
+Valdez now at (10.00, 10.00)
+Valdez docked at Exxon
+Xerxes now at (-35.00, 25.00)
+
+Time 3: Enter command: 
+Cruiser Ajax at (15.00, -5.00), fuel: 800.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1600.00 tons
+
+Tanker Oil_City at (0.00, 30.00), fuel: 77.64 tons, resistance: 0
+Docked at Shell
+Cargo: 0.00 tons, no cargo destinations
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1600.00 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 115.00 tons
+
+Tanker Valdez at (10.00, 10.00), fuel: 43.43 tons, resistance: 0
+Docked at Exxon
+Cargo: 0.00 tons, loading
+
+Cruiser Xerxes at (-35.00, 25.00), fuel: 400.00 tons, resistance: 6
+Moving on course 270.00 deg, speed 20.00 nm/hr
+
+Time 3: Enter command: Xerxes will sail on course 125.54 deg, speed 20.00 nm/hr to (0.00, 0.00)
+
+Time 3: Enter command: Oil_City will load at Shell
+
+Time 3: Enter command: Oil_City will unload at Bermuda
+
+Time 3: Enter command: Ajax stopped at (15.00, -5.00)
+Island Exxon now has 1800.00 tons
+Oil_City docked at Shell
+Island Shell supplied 22.36 tons of fuel
+Oil_City now has 100.00 tons of fuel
+Island Shell supplied 1000.00 tons of fuel
+Oil_City now has 1000.00 of cargo
+Island Shell now has 777.64 tons
+Island Treasure_Island now has 120.00 tons
+Valdez docked at Exxon
+Island Exxon supplied 56.57 tons of fuel
+Valdez now has 100.00 tons of fuel
+Island Exxon supplied 1000.00 tons of fuel
+Valdez now has 1000.00 of cargo
+Xerxes now at (-18.73, 13.38)
+
+Time 4: Enter command: 
+Cruiser Ajax at (15.00, -5.00), fuel: 800.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 743.43 tons
+
+Tanker Oil_City at (0.00, 30.00), fuel: 100.00 tons, resistance: 0
+Docked at Shell
+Cargo: 1000.00 tons, loading
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 777.64 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 120.00 tons
+
+Tanker Valdez at (10.00, 10.00), fuel: 100.00 tons, resistance: 0
+Docked at Exxon
+Cargo: 1000.00 tons, loading
+
+Cruiser Xerxes at (-18.73, 13.38), fuel: 200.00 tons, resistance: 6
+Moving to (0.00, 0.00) on course 125.54 deg, speed 20.00 nm/hr
+
+Time 4: Enter command: Ajax stopped at (15.00, -5.00)
+Island Exxon now has 943.43 tons
+Oil_City docked at Shell
+Oil_City will sail on course 116.57 deg, speed 10.00 nm/hr to (20.00, 20.00)
+Island Shell now has 977.64 tons
+Island Treasure_Island now has 125.00 tons
+Valdez docked at Exxon
+Valdez will sail on course 45.00 deg, speed 10.00 nm/hr to (20.00, 20.00)
+Xerxes now at (-2.45, 1.75)
+
+Time 5: Enter command: 
+Cruiser Ajax at (15.00, -5.00), fuel: 800.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 943.43 tons
+
+Tanker Oil_City at (0.00, 30.00), fuel: 100.00 tons, resistance: 0
+Moving to (20.00, 20.00) on course 116.57 deg, speed 10.00 nm/hr
+Cargo: 1000.00 tons, moving to unloading destination
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 977.64 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 125.00 tons
+
+Tanker Valdez at (10.00, 10.00), fuel: 100.00 tons, resistance: 0
+Moving to (20.00, 20.00) on course 45.00 deg, speed 10.00 nm/hr
+Cargo: 1000.00 tons, moving to unloading destination
+
+Cruiser Xerxes at (-2.45, 1.75), fuel: 0.00 tons, resistance: 6
+Dead in the water
+
+Time 5: Enter command: Ajax will sail on course 315.00 deg, speed 5.00 nm/hr
+
+Time 5: Enter command: Ajax now at (11.46, -1.46)
+Island Exxon now has 1143.43 tons
+Oil_City now at (8.94, 25.53)
+Island Shell now has 1177.64 tons
+Island Treasure_Island now has 130.00 tons
+Valdez now at (17.07, 17.07)
+Xerxes dead in the water at (-2.45, 1.75)
+
+Time 6: Enter command: 
+Cruiser Ajax at (11.46, -1.46), fuel: 750.00 tons, resistance: 6
+Moving on course 315.00 deg, speed 5.00 nm/hr
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1143.43 tons
+
+Tanker Oil_City at (8.94, 25.53), fuel: 80.00 tons, resistance: 0
+Moving to (20.00, 20.00) on course 116.57 deg, speed 10.00 nm/hr
+Cargo: 1000.00 tons, moving to unloading destination
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1177.64 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 130.00 tons
+
+Tanker Valdez at (17.07, 17.07), fuel: 80.00 tons, resistance: 0
+Moving to (20.00, 20.00) on course 45.00 deg, speed 10.00 nm/hr
+Cargo: 1000.00 tons, moving to unloading destination
+
+Cruiser Xerxes at (-2.45, 1.75), fuel: 0.00 tons, resistance: 6
+Dead in the water
+
+Time 6: Enter command: Ship cannot move!
+
+Time 6: Enter command: Ajax will attack Xerxes
+
+Time 6: Enter command: Ajax now at (7.93, 2.07)
+Ajax is attacking 
+Ajax fires
+Xerxes hit with 3, resistance now 3
+Xerxes will attack Ajax
+Island Exxon now has 1343.43 tons
+Oil_City now at (17.89, 21.06)
+Island Shell now has 1377.64 tons
+Island Treasure_Island now has 135.00 tons
+Valdez now at (20.00, 20.00)
+Valdez docked at Bermuda
+Xerxes dead in the water at (-2.45, 1.75)
+Xerxes is attacking 
+Xerxes fires
+Ajax hit with 3, resistance now 3
+
+Time 7: Enter command: Xerxes stopping attack
+
+Time 7: Enter command: 
+Cruiser Ajax at (7.93, 2.07), fuel: 700.00 tons, resistance: 3
+Moving on course 315.00 deg, speed 5.00 nm/hr
+Attacking Xerxes
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1343.43 tons
+
+Tanker Oil_City at (17.89, 21.06), fuel: 60.00 tons, resistance: 0
+Moving to (20.00, 20.00) on course 116.57 deg, speed 10.00 nm/hr
+Cargo: 1000.00 tons, moving to unloading destination
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1377.64 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 135.00 tons
+
+Tanker Valdez at (20.00, 20.00), fuel: 71.72 tons, resistance: 0
+Docked at Bermuda
+Cargo: 1000.00 tons, unloading
+
+Cruiser Xerxes at (-2.45, 1.75), fuel: 0.00 tons, resistance: 3
+Dead in the water
+
+Time 7: Enter command: Ajax now at (4.39, 5.61)
+Ajax is attacking 
+Ajax fires
+Xerxes hit with 3, resistance now 0
+Xerxes will attack Ajax
+Island Exxon now has 1543.43 tons
+Oil_City now at (20.00, 20.00)
+Oil_City docked at Bermuda
+Island Shell now has 1577.64 tons
+Island Treasure_Island now has 140.00 tons
+Valdez docked at Bermuda
+Island Bermuda now has 1000.00 tons
+Xerxes dead in the water at (-2.45, 1.75)
+Xerxes is attacking 
+Xerxes fires
+Ajax hit with 3, resistance now 0
+
+Time 8: Enter command: 
+Cruiser Ajax at (4.39, 5.61), fuel: 650.00 tons, resistance: 0
+Moving on course 315.00 deg, speed 5.00 nm/hr
+Attacking Xerxes
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 1000.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1543.43 tons
+
+Tanker Oil_City at (20.00, 20.00), fuel: 55.28 tons, resistance: 0
+Docked at Bermuda
+Cargo: 1000.00 tons, unloading
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1577.64 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 140.00 tons
+
+Tanker Valdez at (20.00, 20.00), fuel: 71.72 tons, resistance: 0
+Docked at Bermuda
+Cargo: 0.00 tons, unloading
+
+Cruiser Xerxes at (-2.45, 1.75), fuel: 0.00 tons, resistance: 0
+Dead in the water
+Attacking Ajax
+
+Time 8: Enter command: Ajax now at (0.86, 9.14)
+Ajax is attacking 
+Ajax fires
+Xerxes hit with 3, resistance now -3
+Island Exxon now has 1743.43 tons
+Oil_City docked at Bermuda
+Island Bermuda now has 2000.00 tons
+Island Shell now has 1777.64 tons
+Island Treasure_Island now has 145.00 tons
+Valdez docked at Bermuda
+Valdez will sail on course 225.00 deg, speed 10.00 nm/hr to (10.00, 10.00)
+Xerxes sunk
+Xerxes stopping attack
+
+Time 9: Enter command: 
+Cruiser Ajax at (0.86, 9.14), fuel: 600.00 tons, resistance: 0
+Moving on course 315.00 deg, speed 5.00 nm/hr
+Attacking absent ship
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 2000.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1743.43 tons
+
+Tanker Oil_City at (20.00, 20.00), fuel: 55.28 tons, resistance: 0
+Docked at Bermuda
+Cargo: 0.00 tons, unloading
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1777.64 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 145.00 tons
+
+Tanker Valdez at (20.00, 20.00), fuel: 71.72 tons, resistance: 0
+Moving to (10.00, 10.00) on course 225.00 deg, speed 10.00 nm/hr
+Cargo: 0.00 tons, moving to loading destination
+
+Time 9: Enter command: Unrecognized command!
+
+Time 9: Enter command: Ajax now at (-2.68, 12.68)
+Ajax stopping attack
+Island Exxon now has 1943.43 tons
+Oil_City docked at Bermuda
+Oil_City will sail on course 296.57 deg, speed 10.00 nm/hr to (0.00, 30.00)
+Island Shell now has 1977.64 tons
+Island Treasure_Island now has 150.00 tons
+Valdez now at (12.93, 12.93)
+
+Time 10: Enter command: Ship not found!
+
+Time 10: Enter command: 
+Cruiser Ajax at (-2.68, 12.68), fuel: 550.00 tons, resistance: 0
+Moving on course 315.00 deg, speed 5.00 nm/hr
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 2000.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1943.43 tons
+
+Tanker Oil_City at (20.00, 20.00), fuel: 55.28 tons, resistance: 0
+Moving to (0.00, 30.00) on course 296.57 deg, speed 10.00 nm/hr
+Cargo: 0.00 tons, moving to loading destination
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1977.64 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 150.00 tons
+
+Tanker Valdez at (12.93, 12.93), fuel: 51.72 tons, resistance: 0
+Moving to (10.00, 10.00) on course 225.00 deg, speed 10.00 nm/hr
+Cargo: 0.00 tons, moving to loading destination
+
+Time 10: Enter command: Ajax now at (-6.21, 16.21)
+Island Exxon now has 2143.43 tons
+Oil_City now at (11.06, 24.47)
+Island Shell now has 2177.64 tons
+Island Treasure_Island now has 155.00 tons
+Valdez now at (10.00, 10.00)
+Valdez docked at Exxon
+
+Time 11: Enter command: 
+Cruiser Ajax at (-6.21, 16.21), fuel: 500.00 tons, resistance: 0
+Moving on course 315.00 deg, speed 5.00 nm/hr
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 2000.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 2143.43 tons
+
+Tanker Oil_City at (11.06, 24.47), fuel: 35.28 tons, resistance: 0
+Moving to (0.00, 30.00) on course 296.57 deg, speed 10.00 nm/hr
+Cargo: 0.00 tons, moving to loading destination
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 2177.64 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 155.00 tons
+
+Tanker Valdez at (10.00, 10.00), fuel: 43.43 tons, resistance: 0
+Docked at Exxon
+Cargo: 0.00 tons, loading
+
+Time 11: Enter command: Ajax now at (-9.75, 19.75)
+Island Exxon now has 2343.43 tons
+Oil_City now at (2.11, 28.94)
+Island Shell now has 2377.64 tons
+Island Treasure_Island now has 160.00 tons
+Valdez docked at Exxon
+Island Exxon supplied 56.57 tons of fuel
+Valdez now has 100.00 tons of fuel
+Island Exxon supplied 1000.00 tons of fuel
+Valdez now has 1000.00 of cargo
+
+Time 12: Enter command: 
+Cruiser Ajax at (-9.75, 19.75), fuel: 450.00 tons, resistance: 0
+Moving on course 315.00 deg, speed 5.00 nm/hr
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 2000.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1286.86 tons
+
+Tanker Oil_City at (2.11, 28.94), fuel: 15.28 tons, resistance: 0
+Moving to (0.00, 30.00) on course 296.57 deg, speed 10.00 nm/hr
+Cargo: 0.00 tons, moving to loading destination
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 2377.64 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 160.00 tons
+
+Tanker Valdez at (10.00, 10.00), fuel: 100.00 tons, resistance: 0
+Docked at Exxon
+Cargo: 1000.00 tons, loading
+
+Time 12: Enter command: Ajax now at (-13.28, 23.28)
+Island Exxon now has 1486.86 tons
+Oil_City now at (0.00, 30.00)
+Oil_City docked at Shell
+Island Shell now has 2577.64 tons
+Island Treasure_Island now has 165.00 tons
+Valdez docked at Exxon
+Valdez will sail on course 45.00 deg, speed 10.00 nm/hr to (20.00, 20.00)
+
+Time 13: Enter command: 
+Cruiser Ajax at (-13.28, 23.28), fuel: 400.00 tons, resistance: 0
+Moving on course 315.00 deg, speed 5.00 nm/hr
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 2000.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1486.86 tons
+
+Tanker Oil_City at (0.00, 30.00), fuel: 10.56 tons, resistance: 0
+Docked at Shell
+Cargo: 0.00 tons, loading
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 2577.64 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 165.00 tons
+
+Tanker Valdez at (10.00, 10.00), fuel: 100.00 tons, resistance: 0
+Moving to (20.00, 20.00) on course 45.00 deg, speed 10.00 nm/hr
+Cargo: 1000.00 tons, moving to unloading destination
+
+Time 13: Enter command: Ajax will sail on course 95.64 deg, speed 20.00 nm/hr to (20.00, 20.00)
+
+Time 13: Enter command: Valdez stopping at (10.00, 10.00)
+Valdez now has no cargo destinations
+
+Time 13: Enter command: Ajax now at (6.62, 21.32)
+Island Exxon now has 1686.86 tons
+Oil_City docked at Shell
+Island Shell supplied 89.44 tons of fuel
+Oil_City now has 100.00 tons of fuel
+Island Shell supplied 1000.00 tons of fuel
+Oil_City now has 1000.00 of cargo
+Island Shell now has 1688.20 tons
+Island Treasure_Island now has 170.00 tons
+Valdez stopped at (10.00, 10.00)
+
+Time 14: Enter command: 
+Cruiser Ajax at (6.62, 21.32), fuel: 200.00 tons, resistance: 0
+Moving to (20.00, 20.00) on course 95.64 deg, speed 20.00 nm/hr
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 2000.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1686.86 tons
+
+Tanker Oil_City at (0.00, 30.00), fuel: 100.00 tons, resistance: 0
+Docked at Shell
+Cargo: 1000.00 tons, loading
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1688.20 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 170.00 tons
+
+Tanker Valdez at (10.00, 10.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 1000.00 tons, no cargo destinations
+
+Time 14: Enter command: Ajax now at (20.00, 20.00)
+Island Exxon now has 1886.86 tons
+Oil_City docked at Shell
+Oil_City will sail on course 116.57 deg, speed 10.00 nm/hr to (20.00, 20.00)
+Island Shell now has 1888.20 tons
+Island Treasure_Island now has 175.00 tons
+Valdez stopped at (10.00, 10.00)
+
+Time 15: Enter command: 
+Cruiser Ajax at (20.00, 20.00), fuel: 65.54 tons, resistance: 0
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 2000.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1886.86 tons
+
+Tanker Oil_City at (0.00, 30.00), fuel: 100.00 tons, resistance: 0
+Moving to (20.00, 20.00) on course 116.57 deg, speed 10.00 nm/hr
+Cargo: 1000.00 tons, moving to unloading destination
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1888.20 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 175.00 tons
+
+Tanker Valdez at (10.00, 10.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 1000.00 tons, no cargo destinations
+
+Time 15: Enter command: Ajax docked at Bermuda
+
+Time 15: Enter command: Island Bermuda supplied 934.46 tons of fuel
+Ajax now has 1000.00 tons of fuel
+
+Time 15: Enter command: 
+Cruiser Ajax at (20.00, 20.00), fuel: 1000.00 tons, resistance: 0
+Docked at Bermuda
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 1065.54 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1886.86 tons
+
+Tanker Oil_City at (0.00, 30.00), fuel: 100.00 tons, resistance: 0
+Moving to (20.00, 20.00) on course 116.57 deg, speed 10.00 nm/hr
+Cargo: 1000.00 tons, moving to unloading destination
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1888.20 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 175.00 tons
+
+Tanker Valdez at (10.00, 10.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 1000.00 tons, no cargo destinations
+
+Time 15: Enter command: Done

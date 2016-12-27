@@ -1,0 +1,32 @@
+1. Name four different types of security threats to watch out for.
+
+2. Explain how a replay attack works.
+
+3. Consider a challenge-response mechanism, in which a server throws a
+   challenge to a client (such as asking the client to look at an image and
+   read embedded text in the image and reply back with the text) before
+   setting up a connection. Why would this mechanism be useful?
+
+4.How can a web client ensure the authenticity of a web server that it wants
+  to establish a connection with? In particular, how can it prevent someone
+  masquerading as the server?
+
+5. If X wants to send a signed message to Y, and wants to ensure that only Y
+   can read the message, how should it encrypt the message?  (Assume that
+   both X and Y implement a public-key encryption protocol).
+
+6. Is SSL implemented above or below HTTPS?
+
+7a. Suppose you have been given p=3,q=11 for a public key encryption scheme.
+    Find n, lambda, d, and e.  What is the public key?   The private key?
+
+7b. Encrypt 29 using the public key determined above.  A decrypt the
+    resulting ciphertext using the private key.  Show all computations.
+
+8.  Suppose you have chosen to build an asymmetric key encryption scheme using
+    the prime numbers 5 and 11 as the basis.  What would be your public key?
+    What would be the corresponding private key?
+
+9.  Bob wants to send a signed and dated message m to Alice in a way that no
+    eavesdropper can learn the content of m.  How does he do so?
+

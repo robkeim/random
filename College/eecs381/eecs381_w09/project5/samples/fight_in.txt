@@ -1,0 +1,44 @@
+open map
+Zug work Peoria Shire
+Zug work Shire Shire
+Zug attack Bug
+open Shire
+open Zug
+Zug move Shire
+Zug move 15 19
+go
+open amounts
+Zug stop
+Zug move 15 19
+Bug move 15 20
+show
+go
+go
+open health
+close Shire
+Zug attack Bill
+Zug attack Zug
+Zug attack Bug
+status
+show
+go
+status
+close amounts
+go
+status
+show
+go
+status
+show
+Bug move 10 10
+Zug attack Bug
+go
+status
+show
+Bug move 10 10
+go
+status
+show
+Bug move 10 10
+Zug attack Bug
+quit

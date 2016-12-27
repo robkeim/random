@@ -1,0 +1,212 @@
+
+Enter command: pa
+Memory allocations:
+Records: 0
+Collections: 0
+
+Enter command: pL
+Library is empty
+
+Enter command: pC
+Catalog is empty
+
+Enter command: ar DVD Tobruk
+Record 1 added
+
+Enter command: pa
+Memory allocations:
+Records: 1
+Collections: 0
+
+Enter command: ar VHS Showboat
+Record 2 added
+
+Enter command: pa
+Memory allocations:
+Records: 2
+Collections: 0
+
+Enter command: ar DVD        Mars       Attacks!               
+Record 3 added
+
+Enter command: pa
+Memory allocations:
+Records: 3
+Collections: 0
+
+Enter command: ar DVD   Much     Ado   about   Nothing    
+Record 4 added
+
+Enter command: pa
+Memory allocations:
+Records: 4
+Collections: 0
+
+Enter command: ar VHS Zorba the Greek
+Record 5 added
+
+Enter command: pa
+Memory allocations:
+Records: 5
+Collections: 0
+
+Enter command: pL
+Library contains 5 records:
+3: DVD u Mars Attacks!
+4: DVD u Much Ado about Nothing
+2: VHS u Showboat
+1: DVD u Tobruk
+5: VHS u Zorba the Greek
+
+Enter command: fr Zorba the Greek
+5: VHS u Zorba the Greek
+
+Enter command: mr 1 1
+Rating for record 1 changed to 1
+
+Enter command: mr 2 4
+Rating for record 2 changed to 4
+
+Enter command: mr 4 5
+Rating for record 4 changed to 5
+
+Enter command: pr 1
+1: DVD 1 Tobruk
+
+Enter command: dr   Mars          Attacks!    
+Record 3 Mars Attacks! deleted
+
+Enter command: pa
+Memory allocations:
+Records: 4
+Collections: 0
+
+Enter command: pL
+Library contains 4 records:
+4: DVD 5 Much Ado about Nothing
+2: VHS 4 Showboat
+1: DVD 1 Tobruk
+5: VHS u Zorba the Greek
+
+Enter command: pC
+Catalog is empty
+
+Enter command: ac favorites
+Collection favorites added
+
+Enter command: am favorites 5
+Member 5 Zorba the Greek added
+
+Enter command: am favorites 2
+Member 2 Showboat added
+
+Enter command: ac literary
+Collection literary added
+
+Enter command: pc favorites
+Collection favorites contains:
+2: VHS 4 Showboat
+5: VHS u Zorba the Greek
+
+Enter command: pC
+Catalog contains 2 collections:
+Collection favorites contains:
+2: VHS 4 Showboat
+5: VHS u Zorba the Greek
+Collection literary contains: None
+
+Enter command: am literary 4
+Member 4 Much Ado about Nothing added
+
+Enter command: am literary 5
+Member 5 Zorba the Greek added
+
+Enter command: pC
+Catalog contains 2 collections:
+Collection favorites contains:
+2: VHS 4 Showboat
+5: VHS u Zorba the Greek
+Collection literary contains:
+4: DVD 5 Much Ado about Nothing
+5: VHS u Zorba the Greek
+
+Enter command: 
+ar DVD Bleak House
+Record 6 added
+
+Enter command: sA savefile1.txt
+Data saved
+
+Enter command: cC
+All collections deleted
+
+Enter command: cL
+All records deleted
+
+Enter command: pa
+Memory allocations:
+Records: 0
+Collections: 0
+
+Enter command: rA savefile1.txt
+Data loaded
+
+Enter command: pa
+Memory allocations:
+Records: 5
+Collections: 2
+
+Enter command: ar VHS The Money Pit
+Record 7 added
+
+Enter command: pL
+Library contains 6 records:
+6: DVD u Bleak House
+4: DVD 5 Much Ado about Nothing
+2: VHS 4 Showboat
+7: VHS u The Money Pit
+1: DVD 1 Tobruk
+5: VHS u Zorba the Greek
+
+Enter command: pC
+Catalog contains 2 collections:
+Collection favorites contains:
+2: VHS 4 Showboat
+5: VHS u Zorba the Greek
+Collection literary contains:
+4: DVD 5 Much Ado about Nothing
+5: VHS u Zorba the Greek
+
+Enter command: dc literary
+Collection literary deleted
+
+Enter command: pC
+Catalog contains 1 collections:
+Collection favorites contains:
+2: VHS 4 Showboat
+5: VHS u Zorba the Greek
+
+Enter command: dm favorites 2
+Member 2 Showboat deleted
+
+Enter command: pC
+Catalog contains 1 collections:
+Collection favorites contains:
+5: VHS u Zorba the Greek
+
+Enter command: pa
+Memory allocations:
+Records: 6
+Collections: 1
+
+Enter command: cA
+All data deleted
+
+Enter command: pa
+Memory allocations:
+Records: 0
+Collections: 0
+
+Enter command: qq
+All data deleted
+Done

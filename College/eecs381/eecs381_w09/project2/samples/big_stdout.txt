@@ -1,0 +1,24 @@
+Enter command:Enter input document file name:14551 words processed in the input document
+2147 words were added to the dictionary
+Enter command:Enter input document file name:Enter output document file name:
+Task analysis is the process of understanding the user's tsk thoroughly enough to help design a computer 
+
+"tsk" is not in the dictionary: Enter command:Enter replacement:Do you want to replace this in rest of document? Enter y or n:"tsk" will be replaced by "task" in the rest of the document
+
+could not be read by the operator.  A task recomposition can be applied to break the overall tsk situation down into 
+
+"recomposition" is not in the dictionary: Enter command:Enter replacement:Do you want to replace this in rest of document? Enter y or n:
+task situation.  Collecting additional information, e.g. frm interviews or walk-through, can then lead to an 
+
+"frm" is not in the dictionary: Enter command:Enter replacement:Do you want to replace this in rest of document? Enter y or n:
+Austin Product Center, who also provided moxie comments on this chapter.
+
+"moxie" is not in the dictionary: Enter command:Enter replacement:Do you want to replace this in rest of document? Enter y or n:14551 words processed in the input document
+0 words were added to the dictionary
+1 actions were specified
+Enter command:Enter output dictionary file name:2147 words saved
+Enter command:Memory allocations:
+3078 strings with total allocation of 19030 bytes
+2147 dictionary cells in use with total allocation of 3072 cells requiring 36864 bytes
+1 action list cells in use with total allocation of 3 cells requiring 84 bytes
+Enter command:Done

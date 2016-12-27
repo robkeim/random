@@ -1,0 +1,43 @@
+EECS485
+Review Questions, Week 1.
+
+
+
+1) How many HTTP requests would be required to fetch a web page with two embedded GIF files?  How many TCP connections would be made, using HTTP 1.0?  What about HTTP 1.1?
+
+
+2) What are the different parts of a URL?  Where is each interpreted?
+
+
+3) If you have a choice of using PHP or in-browser JavaScript, which would you use for each of the following, and why?
+  a) Drop down menu on mouse-over an image
+  b) Password verification
+  c) Error-checking on a form being filled in (say, testing the format of an email address)
+  d) Adding an item to a shopping cart
+
+
+4) What are the relative benefits of running an Apache-module version of PHP, as opposed to CGI for creating dynamic server-side content?
+
+
+5) We discussed that http servers are deployed as a mixture of threads and processes.  In what scenario might you choose to deploy a system that uses many processes, with very few threads per process?  In what scenario might you choose the reverse, using few processes, with many threads per process?
+
+
+6) Imagine that you are about to visit the home page of Hoozah!, an alternate universe's most popular site.  Hoozah! uses dynamic content on the server to choose news stories which appear immediately.  It also implements drop-down mouse menus on the client.  Its engineers have chosen the standard 3-tier architecture we discussed in class.  Hoozah! is a bit behind the times, and so only supports HTTP 1.0.
+
+All of the following operations take place.  Put them into the correct sequence:
+
+  a) Text representing the news story appears on your screen
+  b) Your browser receives an HTTP 404 code ("Not Found")
+  c) The first database SQL query is executed
+  d) The Hoozah! Apache server receives the first SYN packet from your machine.  
+  e) Some JavaScript code is executed for the first time
+  f) Some PHP code is executed for the first time
+  g) The bytes representing GET "http://hoozah.com/index.html" are placed on the wire for the first time.
+
+
+7) Consider a website for biologists, in which users can view genetic sequences, post comments about them, and read comments that others have left.  How would you design such a site, using the Model-View-Controller model?  What would each component (the M, the V, the C) consist of?
+
+
+8) The same-origin policy prevents client-side JavaScript programs from different sites from interfering with each other.  Describe how poorly-written server-side code can undermine the same-origin policy, allowing JavaScript from site A to modify the HTML from site B.
+
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="949.54">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+  </style>
+</head>
+<body>
+<p class="p1"><b>Project 6 Corrections and Clarifications</b></p>
+<p class="p1"><b>Updated 4/7/10</b></p>
+<p class="p1"><b>Most recent items appear first</b></p>
+<p class="p1"><b>Page numbers refer to the pdf document</b></p>
+<p class="p2"><br></p>
+<p class="p1"><b>NOTICE:</b></p>
+<p class="p1"><b>This document is part of the project specifications.</b></p>
+<p class="p1"><b>Your solution must follow these corrections and clarifications.</b></p>
+<p class="p3"><br></p>
+<p class="p4"><b>P. 1, Option S2. Statistics View contents different from status/describe() output.</b></p>
+<p class="p4">The output produced by the "status" command is what is meant by "statistics" in this context. But the Statistic View is not simply the output of the describe() function.<span class="Apple-converted-space">  </span>Rather, your Statistics View is supposed to fit in with the two existing view types in the Model-View-Controller pattern specified in Project 5, and so must receive updates along the same lines as the P4/P5 views. Therefore, add this restriction to the description of Option S2:</p>
+<p class="p3"><br></p>
+<p class="p4"><i>Add after the first sentence in Option S2:</i></p>
+<p class="p4">Your design and implementation of Statistics View is not allowed to call or depend on the describe() function. Your Statistics View must show the statistics information in a different layout than describe() produces, and you are free to choose to show only an interesting subset of the statistics.<span class="Apple-converted-space"> </span></p>
+<p class="p3"><br></p>
+<p class="p4"><b>P. 1, Option S2. Statistics View: A bit more about the design goal.</b></p>
+<p class="p4"><i>After:</i></p>
+<p class="p4">This must be done in a way that not only is compatible with the existing views, but will also allow creating new views that have mixtures of the previous location information and the new statistics information.<span class="Apple-converted-space"> </span></p>
+<p class="p4"><i>Add:</i></p>
+<p class="p4">Examples: A bridge-like view in which each ship is displayed in a way that shows how much protection it has - something that might be handy in combat. A map-like view in which Tankers and Cruise Ships are displayed in a way that you can tell what their states are: inbound to loading, not on a cruise, etc.<span class="Apple-converted-space">  </span>You are not required to implement such combination views, but your design should make them relatively easy to implement. That is, if your Statistics View shows the protection and these states, it should be possible to create these example combination views without touching the code for Model or the Sim_object family, and only adding the code for the combination view class itself.</p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+</body>
+</html>

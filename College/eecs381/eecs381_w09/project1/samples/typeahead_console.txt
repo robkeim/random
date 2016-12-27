@@ -1,0 +1,106 @@
+
+Enter command: ai Tom Jones 123 ai Elton John 456 ar 1001
+Person Jones added
+
+Enter command: Person John added
+
+Enter command: Room 1001 added
+
+Enter command: ar 1002 ai Bill Jones 000
+Room 1002 added
+
+Enter command: There is already a person with this last name!
+
+Enter command: ar 1001 ai Bill Jones 000
+There is already a room with this number!
+
+Enter command: ai 
+Silas
+              Marner     888
+Person Marner added
+
+Enter command:     p              s          p     i
+Information for 2 rooms:
+--- Room 1001 ---
+No meetings are scheduled
+--- Room 1002 ---
+No meetings are scheduled
+
+Enter command: Marner
+Silas Marner 888
+
+Enter command: ar x555
+Could not read an integer value!
+
+Enter command: ar 5ps
+Room 5 added
+
+Enter command: Information for 3 rooms:
+--- Room 5 ---
+No meetings are scheduled
+--- Room 1001 ---
+No meetings are scheduled
+--- Room 1002 ---
+No meetings are scheduled
+
+Enter command: ar 5.12
+There is already a room with this number!
+
+Enter command: ar 6.12
+Room 6 added
+
+Enter command: Unrecognized command!
+
+Enter command: ar .18 ps
+Could not read an integer value!
+
+Enter command: psar8
+Information for 4 rooms:
+--- Room 5 ---
+No meetings are scheduled
+--- Room 6 ---
+No meetings are scheduled
+--- Room 1001 ---
+No meetings are scheduled
+--- Room 1002 ---
+No meetings are scheduled
+
+Enter command: Room 8 added
+
+Enter command: am810Music
+No room with that number!
+
+Enter command: am8 10Music
+Meeting added at 10
+
+Enter command: ps
+Information for 5 rooms:
+--- Room 5 ---
+No meetings are scheduled
+--- Room 6 ---
+No meetings are scheduled
+--- Room 8 ---
+Meeting time: 10, Topic: Music
+Participants: None
+--- Room 1001 ---
+No meetings are scheduled
+--- Room 1002 ---
+No meetings are scheduled
+
+Enter command: aiTomJones123
+oops!
+it_wants_enough_strings_to_complete_the_command
+Person oops! added
+
+Enter command: pg
+Information for 4 people:
+Elton John 456
+Tom Jones 123
+Silas Marner 888
+TomJones123 oops! it_wants_enough_strings_to_complete_the_command
+
+Enter command: qq
+All meetings deleted
+All rooms deleted
+All persons deleted
+Done

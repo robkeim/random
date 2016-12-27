@@ -1,0 +1,53 @@
+open Merry
+Merry work Sunnybrook Shire
+go
+open amounts
+Bug move 25 25
+Zug move 25 25
+go
+show
+go
+show 
+go
+show 
+go
+show
+open health
+open Zug
+go
+show
+train Fug Soldier 25 25
+Fug attack Zug
+go
+show
+Bug attack Zug
+go
+status 
+show
+go
+status
+train Claude Peasant 18 18
+show
+go
+close amounts
+Merry work Sunnybrook Paduca
+Bug move 20 32
+go
+go
+go
+close Merry
+show
+close Zug
+open Iriel
+show
+Bug move 20 36
+go
+show
+close amounts
+go
+show
+go
+show
+go
+quit
+

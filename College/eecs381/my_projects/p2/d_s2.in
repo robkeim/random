@@ -1,0 +1,13 @@
+[] 5 9
+[] 5 14
+sub 2 3
+sub -5 3
+sub 7 5
+rem 0 5
+rem 8 3
+ins 3 x
+ins 3 3
+ins 14 1
+prang 14 23
+quit
+

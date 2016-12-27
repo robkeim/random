@@ -1,0 +1,26 @@
+ai Tom Jones 123 ai Elton John 456 ar 1001
+ar 1002 ai Bill Jones 000
+ar 1001 ai Bill Jones 000
+ai 
+Silas
+              Marner     888
+
+    p              s          p     i
+
+Marner
+
+ar x555
+ar 5ps
+ar 5.12
+ar 6.12
+ar .18 ps
+psar8
+am810Music
+am8 10Music
+ps
+aiTomJones123
+oops!
+it_wants_enough_strings_to_complete_the_command
+
+pg
+qq

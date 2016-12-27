@@ -1,0 +1,131 @@
+Enter command:Dictionary is empty
+Enter command:Action list is empty
+Enter command:Memory allocations:
+0 strings with total allocation of 0 bytes
+0 dictionary cells in use with total allocation of 3 cells requiring 12 bytes
+0 action list cells in use with total allocation of 3 cells requiring 12 bytes
+Enter command:Enter input dictionary file name:11 words loaded
+Enter command:Enter input document file name:Enter output document file name:
+hTe bear said forcefully to hte moose,
+
+"hTe" is not in the dictionary: Enter command:Enter replacement:Do you want to replace this in rest of document? Enter y or n:"hTe" will be replaced by "The" in the rest of the document
+
+The bear said forcefully to hte moose,
+
+"forcefully" is not in the dictionary: Enter command:Do you want to skip this in rest of document? Enter y or n:"forcefully" will be skipped for the rest of the document
+
+The bear said forcefully to hte moose,
+
+"hte" is not in the dictionary: Enter command:Enter replacement:Do you want to replace this in rest of document? Enter y or n:"hte" will be replaced by "the" in the rest of the document
+
+"In 2005, I ate a bear, a walrus,some Uranium238, plain Plutonium, Carbon-14, and .... 
+
+"In" is not in the dictionary: Enter command:
+"In 2005, I ate a bear, a walrus,some Uranium238, plain Plutonium, Carbon-14, and .... 
+
+"ate" is not in the dictionary: Enter command:
+"In 2005, I ate a bear, a walrus,some Uranium238, plain Plutonium, Carbon-14, and .... 
+
+"some" is not in the dictionary: Enter command:
+"In 2005, I ate a bear, a walrus,some Uranium238, plain Plutonium, Carbon-14, and .... 
+
+"plain" is not in the dictionary: Enter command:
+"In 2005, I ate a bear, a walrus,some Uranium238, plain Plutonium, Carbon-14, and .... 
+
+"Plutonium" is not in the dictionary: Enter command:
+"In 2005, I ate a bear, a walrus,some Uranium238, plain Plutonium, Carbon-14, and .... 
+
+"Carbon" is not in the dictionary: Enter command:
+      even a zebra!"
+
+"even" is not in the dictionary: Enter command:
+The moose said equally forcefully to hte bear, "I doubt
+
+"equally" is not in the dictionary: Enter command:Enter replacement:Do you want to replace this in rest of document? Enter y or n:
+The moose said very forcefully to the bear, "I doubt
+
+"doubt" is not in the dictionary: Enter command:
+it - I don't think you saw teh bear's plutonium."
+
+"it" is not in the dictionary: Enter command:
+it - I don't think you saw teh bear's plutonium."
+
+"don't" is not in the dictionary: Enter command:
+it - I don't think you saw teh bear's plutonium."
+
+"think" is not in the dictionary: Enter command:
+it - I don't think you saw teh bear's plutonium."
+
+"you" is not in the dictionary: Enter command:
+it - I don't think you saw teh bear's plutonium."
+
+"teh" is not in the dictionary: Enter command:Enter replacement:Do you want to replace this in rest of document? Enter y or n:"teh" will be replaced by "the" in the rest of the document
+35 words processed in the input document
+12 words were added to the dictionary
+4 actions were specified
+Enter command:Dictionary contains 23 words:
+aardvark
+and
+ate
+bear
+carbon
+dingo
+don't
+doubt
+even
+in
+it
+moose
+plain
+plutonium
+said
+saw
+some
+the
+think
+to
+walrus
+you
+zebra
+Enter command:Action list contains 4 actions:
+Skip forcefully
+Replace hTe with The
+Replace hte with the
+Replace teh with the
+Enter command:Memory allocations:
+30 strings with total allocation of 159 bytes
+23 dictionary cells in use with total allocation of 24 cells requiring 96 bytes
+4 action list cells in use with total allocation of 6 cells requiring 24 bytes
+Enter command:Enter output dictionary file name:23 words saved
+Enter command:Dictionary emptied
+Action list emptied
+Enter command:Memory allocations:
+0 strings with total allocation of 0 bytes
+0 dictionary cells in use with total allocation of 3 cells requiring 12 bytes
+0 action list cells in use with total allocation of 3 cells requiring 12 bytes
+Enter command:Enter input document file name:19 words processed in the input document
+16 words were added to the dictionary
+Enter command:Enter output dictionary file name:16 words saved
+Enter command:Dictionary contains 16 words:
+aardvark
+all
+and
+at
+bear
+but
+didn't
+dingo
+said
+saw
+tail
+the
+to
+wag
+walrus
+zebra
+Enter command:Memory allocations:
+16 strings with total allocation of 80 bytes
+16 dictionary cells in use with total allocation of 24 cells requiring 96 bytes
+0 action list cells in use with total allocation of 3 cells requiring 12 bytes
+Enter command:Action list is empty
+Enter command:Done

@@ -1,0 +1,558 @@
+                     Project 2--EECS 370 (Winter 2008)
+
+                              Worth: 10 points
+                      Assigned: Tuesday, January 29, 2007
+                    Due: 6:00 pm, Thursday, February 21, 2007
+
+1. Purpose
+
+This project is intended to help you understand how procedure calls work
+in assembly language and to give you experience designing and optimizing a
+finite-state machine for a simple computer. 
+
+2. Problem
+
+This project has two parts.  In the first part, you will write an
+assembly-language program to recursively compute combination(n,r)
+(i.e. n choose r).  In the second part, you will sdimulate the computer at a
+lower, more-detailed level.  Essentially, you will describe a finite-state
+machine for the LC-2K7 in C.
+
+3. Assembly-Language Program to Compute Combination(n,r) (30%)
+
+Write an assembly-language program to recursively compute combination(n,r),
+defined as:
+    
+    combination(n,0) = 1
+    combination(n,n) = 1
+    combination(n,r) = combination(n-1,r) + combination(n-1,r-1);
+
+    0 <= r <= n
+
+Here's a C function to do this; your assembly-language program will follow
+this logic closely.
+
+    int combination(int n, int r)
+    {
+	if (r==0 || n==r) {
+	    return(1);
+	} else {
+	    return(combination(n-1,r) + combination(n-1,r-1));
+	}
+    }
+
+Note that the definition of combination(n,r) is recursive.  Your
+assembly-language program must also use a recursive function call.  That is,
+your program should have a function that calls itself twice (to compute
+combination(n-1,r) and combination(n-1,r-1)) and adds the results together.
+This isn't the most efficient solution (e.g. n>9 will take a LONG time), but
+using recursion will help you understand assembly-language procedure calls and
+stacks.  Your program should input the value n and r from memory locations
+labeled "n" and "r".  The result should be stored in register 3 when the
+program halts.  Straightforward solutions are possible in about 45 lines.  If
+your program is significantly longer than that, you are probably doing
+something wrong.  Your program must be reasonably efficient, i.e. it must
+execute at most 5000 instructions for n=7, r=3 (this is several times slower
+than a good solution).
+
+Passing parameters to subroutines can be confusing in assembly language.
+It's easiest if you make most registers callee-save so the caller can assume
+the subroutine leaves those registers unchanged.  These callee-saved registers
+are typically pushed on the stack at the beginning of the subroutine and popped
+off the stack just before the subroutine returns.
+
+Not all registers can or should be callee-save, however.  For example, one
+register will contain the subroutine's return value.  Also, the jalr instruction
+used to return from the subroutine will leave a register with a different
+value than it held when the subroutine was called.
+
+Here is a small LC-2K7 program that uses a subroutine call.  It takes
+an input and calls a subroutine to compute the quantity 4*input.
+Register 1 is used to pass input to the subroutine; register 3 is used by
+the subroutine to pass the result back.  The current top-of-stack (first
+empty location) is given by stack + register 7.
+
+	lw	0	5	pos1	$5 = 1
+	lw	0	1	input	$1 = memory[input]
+	lw	0	2	subAdr	prepare to call sub4n. $2=sub4n
+	jalr	2	4		call sub4n; $4=return address; $3=answer
+	halt
+sub4n	sw	7	4	stack	save return address on stack
+	add	7	5	7	increment stack pointer
+	sw	7	1	stack	save $1 on stack
+	add	7	5	7	increment stack pointer
+	add	1	1	1	compute 2*input
+	add	1	1	3	compute 4*input
+	lw	0	2	neg1	$2 = -1
+	add	7	2	7	decrement stack pointer
+	lw	7	1	stack	recover original $1
+	add	7	2	7	decrement stack pointer
+	lw	7	4	stack	recover original return address
+	jalr	4	2		return.  $2 is not restored.
+pos1	.fill	1
+neg1	.fill	-1
+subAdr	.fill	sub4n			contains the address of sub4n
+input	.fill	10			input = 10
+stack	.fill	0			beginning of stack (value is irrelevant)
+
+The stack array starts at label "stack" and extends to larger addresses,
+so the label "stack" needs to be the last line in your program.
+
+Make sure your assembly-language program works for the Project 1 solution
+assembler and simulator, since that's how we'll test it.  Programs that don't
+work with the solution assembler/simulator will receive a 0.
+
+
+  Project 1 solution assembler (C source code)
+
+  Project 1 solution simulator (C source code)
+
+
+3.1. Tips
+
+One difficult aspect of this program will be allocating variables
+in the 8 LC-2K7 registers.  To make your job easier, here are the
+register assignments I used--you may use these or choose your own.
+
+    $0	value 0
+    $1	n input to function
+    $2	r input to function
+    $3	return value of function
+    $4	local variable for function
+    $5	stack pointer
+    $6	temporary value (can hold different values at different times, e.g.
+	+1, -1, function address)
+    $7	return address
+
+To have printState print the contents of your stack, you can append a bunch
+of ".fill 0" at the end of your assembly program after the "stack" label.
+
+4. LC-2K7 Register Level
+
+Project 1 described the behavior (architecture) of the LC-2K7.  In this
+project, you will describe an implementation of the LC-2K7.  For this,
+you will need the registers present in the LC-2K7.  The register-level
+diagram of the LC-2K7 may be found on the class web site:
+
+LC-2 register-level diagram (JPG GIF PDF)
+
+The implementation style of the LC-2K7 is quite different than the textbook's
+implementation of MIPS (even though the architectures of MIPS and LC-2K7 are
+very similar).  LC-2K7 uses a system-bus to connect registers together, while
+the textbook uses dedicated, point-to-point wires between components.
+
+The lines and arrows in the project diagram show the paths that data can take
+through the system.  This diagram does not show the control signals.  As an
+example of how data uses the system bus to move between registers, memoryData
+may drive the system bus and programCounter may latch the results.  Assume
+that a register can drive the system bus and have another load that data, all
+in one cycle.
+
+The control unit (not shown) can read the current opcode bits of instrReg, the
+memory ready signal (see Section 6), and the aluResult register (i.e. test if
+aluResult is 0) to make decisions on what next state to go to. The control unit
+can read these values without using the system bus. See the example under item
+#1 in Section 5.
+
+All registers (shaded boxes) can load and drive data (from and to where depends
+on the connections and arrows in the diagram). In addition, the programCounter
+can increment (without using the system bus or ALU), and the ALU can compute
+aluOperand + bus, aluOperand - bus,  ~(state.aluOperand & bus).  Note that ALU
+is not a register--it performs some function on the operands (i.e. you can't
+say ALU=something, but you can say aluResult = aluOperand + bus.  instrReg can
+also drive a sign-extended version of bits 15-0 onto the bus (i.e. bits 15-0
+are from instrReg, bits 31-16 are the same as bit 15).  Use
+convertNum(state.instrReg & 0xFFFF) for this sign-extension.
+
+
+5. Finite-State Machine Description (70%)
+
+A finite-state machine describes in detail the order of events necessary to
+carry out the computer's instructions. As described in Chapter 5 of the course
+textbook, a "big-picture" look at the sequence of a generic instruction would
+be 1) fetch the instruction from the memory, 2) decode the instruction and
+decide what to do, 3) execute the instruction, then repeat. Your job is to
+break down each of these steps to form a detailed finite-state machine that
+shows all data transfers of each instruction.
+
+You will use C to describe the finite-state machine.  Start with the code
+included below and add the part of the simulator that executes instructions
+(the "run" function in the Project 1 solution).
+
+Because C is much more powerful than an ordinary finite-state machine, we will
+place strict limits on how you will describe your finite-state machine in C.
+This will only apply for the part of the program that executes instructions
+(e.g. not for the code that loads the program). The code that executes
+instructions must obey the following rules:
+
+1) Only use if...else-if...else goto for conditional execution (you may not use
+for, while, do, case, ?:). For example:
+
+    if ((instrReg>>22) == ADD) {
+        goto add;
+    }
+
+The only code inside the body of if and else statement should be a goto (and
+possibly debugging printfs).  Hint: the finite-state machine should only have
+three types of if statements.  One is for the instruction decode (the next
+state depends on the instruction); the second is to test if memory is ready
+(see Section 6); the third is for the branch instruction.
+
+The goto represents the next-state function, hence there should be no
+code in a state after a goto section.
+
+2) Every distinct state in the finite-state machine should have a label before
+the C statements in that state (and there should be no extra labels).  Since
+you can execute several different operations in a single cycle (i.e. a single
+state in the finite-state machine), not every line of C code will have a
+label.  For instance, to load the memoryAddress register from the
+programCounter (as part of the instruction fetch), your code would be:
+
+fetch:
+	printState(&state, "fetch");
+	bus = programCounter;
+	memoryAddress = bus;
+
+3) You may only transfer data where there is a connection shown on the
+register diagram.  That's why the example above transfers the programCounter
+data to the memoryAddress register via the system bus.  There is no connection
+between memoryAddress and programCounter, so you may not say memoryAddress =
+programCounter directly.  This will help you to see what can and can't be done
+in a single cycle (e.g. you can't drive the system bus with two different
+values, but you can load multiple registers from the system bus).
+
+4) You can't use the new value of a register until the cycle after you
+write it. For example, if cycle 1 is "A=B", then you can't use the new
+value of A until cycle 2. This is because A doesn't actually get
+written until the end of cycle 1/beginning of cycle 2.  In particular,
+remember that the control unit reads instrReg and aluResult, which are
+registers.  An "exception" to this rule is the return value of
+memoryAccess (see Section 6). In one cycle, you may call memoryAccess
+and then test the return value of memoryAccess to decide which state
+to go to next.  The reason for this "exception" is that the return
+value of memoryAccess is a signal, not the output of a register.
+
+5) The only functions you may use are printf, memoryAccess, convertNum,
+and printState.
+
+6) The only variables you may use are 1) the variables specified in the
+state structure, 2) a variable to hold the return value of memoryAccess, and
+3) the value of the system bus.
+
+7) You may use the normal arithmetic operations (+, -, *, /, %) as well as the
+bit operations in C (& |, << >> ~).
+
+8) You may use printfs wherever you want.
+
+9) You must assume that at the end of any given instruction every register
+other than the programCounter and the register file could be reset.  This
+could happen if an interrupt were to occur.  In that case only the
+architecturally visible things (program counter and register file) would be
+reset to their proper values.  In other words, you may NOT start
+executing an instruction before the previous instruction finished.  This
+includes taking advantage of the next instruction's address being available
+on the bus at the end of the previous instruction.  You may not work on two
+different instructions in the same clock.
+
+10) Given the above limitations, you must execute your program executing as
+few states as possible.  In other words, you must call printState() as few
+times as possible.
+
+6. Memory
+
+For Project 1, you implemented memory as a simple array and accessed it
+directly (e.g. by saying something like data=state.mem[address].  For this
+project, you will still implement memory as an array, but the method of
+accessing memory will be more strictly controlled.
+
+You must use the memoryAccess function (included below) to read or write
+memory.  memoryAccess will often need to be called several times (over several
+cycles) before it successfully reads or writes memory; this models the delay
+involved in accessing memory.  Your finite-state machine will have to look at
+the return value to see if the memory was successfully accessed and either
+retry the memory access or proceed with the next state. If the return value is
+1, then memoryData was successfully loaded (for reading memory) or copied into
+memory (for writing memory). If the return value is 0, then your finite-state
+machine should re-try the memory access.
+
+Note that the only way to access memory is via memoryAddress and memoryData.
+For example, to write a memory location, you must load the memoryData register
+with the data to be written, load the memoryAddress register with the address
+to write to, then do the memory access by calling memoryAccess.
+
+7. Tips
+
+You may find that it is easy to somehow optimize between instructions.  This
+was done in previous semesters.  Don't do it.  (see rule 9, above)  
+
+As a good rule of thumb, every instruction, other than halt, should end in
+going back to the fetch state for the next instruction.
+
+8. Running and Demonstrating Your Program
+
+The function printState (included below) prints the state label and the current
+contents of all memory, registers, and internal registers.  Your program should
+call printState BEFORE executing each state (i.e. right after each label).  See
+the example in item #2 of Section 5.  Your program should also call printState
+just before exiting.  Your final state will look like this:
+
+halt:
+	printState(&state, "halt");
+	exit(0);
+
+Your simulator should be run using the same command format specified in Project
+1, that is:
+
+	simulate program.mc > output
+
+You should use the solution assembler from Project 1 to create the machine-code
+file that your simulator will run (since that's how we'll test it).  Simulators
+that do not accept the right machine code format will receive a 0.
+
+9. Grading, Auto-Grading, and Formatting
+
+We will grade primarily on correctly computing combination, functionality and
+efficiency for the finite-state machine, and following the programming
+limitations for describing the finite-state machine.  If you have any doubts
+about what is an acceptable finite-state machine, ask an instructor during
+office hours.  I expect the newsgroup to have a discussion on this also,
+though the details have to be omitted (since you shouldn't post your actual
+code).
+
+To help you validate your program, your submission will be automatically run
+against several test cases, and the result will be mailed back to you.  You
+then have the option of correcting some problems and re-submitting.  The
+results will not be very illuminating; they won't tell you where your problem
+is or give you the test programs.  The main benefit of doing this is so you
+know to keep working on debugging your program (rather than thinking it's
+perfect and ending up with a 0).  The best way to debug your program is to
+generate your own test cases, figure out the correct answers, and compare your
+program's output to the correct answers.  This is also one of the best ways to
+learn the concepts in the project.
+
+You may submit your program as many times as you like.  
+
+Because all programs will be auto-graded, you must be careful to
+follow the exact formatting rules in the project description:
+
+    1) (combination) Store the result in register 3.
+
+    2) (combination) The two input numbers must be in locations labeled
+	"n" and "r" (lower-case).  Your submitted combination program can
+	use any values for n and r.
+
+    3) (simulator) Don't modify printState or stateStruct at all.  Download
+	this handout into your program electronically (don't re-type it) so you
+	avoid typos.
+
+    4) (simulator) Call printState once before each state executes and once
+	just before the simulator exits.  Do not call printState at any other
+	time.
+
+    5) (simulator) Don't print the sequence "@@@" anywhere except in printState.
+
+    6) (simulator) state.numMemory must be equal to the number of lines in the
+	machine-code file.
+    
+    7) (simulator) Initialize the PC and the 8 LC-2K7 registers to 0.
+        Do not initialize the internal registers (memoryAddress,
+        memoryData, instrReg, aluOperand, and aluResult).
+
+10. Turning in the Project
+
+Use the submit370 program to submit your files.  Here are the files you should
+submit for each project part:
+
+    1) combination (part 2c)
+	a. assembly-language program for computing combination(n,r)
+
+	example:
+	    submit370 2c comb.as
+
+    2) simulator (part 2s)
+        a. C program for your simulator (name should end in ".c")
+
+	example:
+	    submit370 2s simulate.c
+
+Your simulator must be in a single C file.  We will compile your program on a
+Linux workstation using "gcc program.c -lm", so your program should not require
+additional compiler flags or libraries.
+
+We will count the highest score that you receive as the fineal grade for the 
+project (i.e. not necessarily the score for the last submission). However, 
+if you submit after the deadline - you will use your late day(s) and after that
+your submissions will not be considered for grading.
+
+11. Code Fragment for Simulator
+
+Here is some C code that may help you write the simulator.  Again, you should
+take this merely as a hint.  You may have to re-code this to make it do
+exactly what you want, but this should help you get started.  Remember not
+to change stateStruct, printState, or memoryAccess.  For your convenience,
+this code is also available online from the web here 
+without html formatting, so you can directly use it.
+
+/* FSM for LC */
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
+#define NUMMEMORY 65536 /* maximum number of words in memory */
+#define NUMREGS 8 /* number of machine registers */
+#define MAXLINELENGTH 1000
+
+typedef struct stateStruct {
+    int pc;
+    int mem[NUMMEMORY];
+    int reg[NUMREGS];
+    int memoryAddress;
+    int memoryData;
+    int instrReg;
+    int aluOperand;
+    int aluResult;
+    int numMemory;
+} stateType;
+
+void printState(stateType *, char *);
+void run(stateType);
+int memoryAccess(stateType *, int);
+int convertNum(int);
+
+int
+main(int argc, char *argv[])
+{
+    int i;
+    char line[MAXLINELENGTH];
+    stateType state;
+    FILE *filePtr;
+
+    if (argc != 2) {
+	printf("error: usage: %s <machine-code file>n", argv[0]);
+	exit(1);
+    }
+
+    /* initialize memories and registers */
+    for (i=0; i<NUMMEMORY; i++) {
+	state.mem[i] = 0;
+    }
+    for (i=0; i<NUMREGS; i++) {
+	state.reg[i] = 0;
+    }
+
+    state.pc=0;
+
+    /* read machine-code file into instruction/data memory (starting at
+	address 0) */
+
+    filePtr = fopen(argv[1], "r");
+    if (filePtr == NULL) {
+	printf("error: can't open file %s\n", argv[1]);
+	perror("fopen");
+	exit(1);
+    }
+
+    for (state.numMemory=0; fgets(line, MAXLINELENGTH, filePtr) != NULL;
+	state.numMemory++) {
+	if (sscanf(line, "%d", state.mem+state.numMemory) != 1) {
+	    printf("error in reading address %d\n", state.numMemory);
+	    exit(1);
+	}
+	printf("memory[%d]=%d\n", state.numMemory, state.mem[state.numMemory]);
+    }
+
+    printf("\n");
+
+    /* run never returns */
+    run(state);
+
+    return(0);
+}
+
+void
+printState(stateType *statePtr, char *stateName)
+{
+    int i;
+    static int cycle = 0;
+    printf("\n@@@\nstate %s (cycle %d)\n", stateName, cycle++);
+    printf("\tpc %d\n", statePtr->pc);
+    printf("\tmemory:\n");
+	for (i=0; i<statePtr->numMemory; i++) {
+	    printf("\t\tmem[ %d ] %d\n", i, statePtr->mem[i]);
+	}
+    printf("\tregisters:\n");
+	for (i=0; i<NUMREGS; i++) {
+	    printf("\t\treg[ %d ] %d\n", i, statePtr->reg[i]);
+	}
+    printf("\tinternal registers:\n");
+    printf("\t\tmemoryAddress %d\n", statePtr->memoryAddress);
+    printf("\t\tmemoryData %d\n", statePtr->memoryData);
+    printf("\t\tinstrReg %d\n", statePtr->instrReg);
+    printf("\t\taluOperand %d\n", statePtr->aluOperand);
+    printf("\t\taluResult %d\n", statePtr->aluResult);
+}
+
+/*
+ * Access memory:
+ *     readFlag=1 ==> read from memory
+ *     readFlag=0 ==> write to memory
+ * Return 1 if the memory operation was successful, otherwise return 0
+ */
+int
+memoryAccess(stateType *statePtr, int readFlag)
+{
+    static int lastAddress = -1;
+    static int lastReadFlag = 0;
+    static int lastData = 0;
+    static int delay = 0;
+
+    if (statePtr->memoryAddress < 0 || statePtr->memoryAddress >= NUMMEMORY) {
+	printf("memory address out of range\n");
+	exit(1);
+    }
+
+    /*
+     * If this is a new access, reset the delay clock.
+     */
+    if ( (statePtr->memoryAddress != lastAddress) ||
+	     (readFlag != lastReadFlag) ||
+	     (readFlag == 0 && lastData != statePtr->memoryData) ) {
+	delay = statePtr->memoryAddress % 3;
+	lastAddress = statePtr->memoryAddress;
+	lastReadFlag = readFlag;
+	lastData = statePtr->memoryData;
+    }
+
+    if (delay == 0) {
+	/* memory is ready */
+	if (readFlag) {
+	    statePtr->memoryData = statePtr->mem[statePtr->memoryAddress];
+	} else {
+	    statePtr->mem[statePtr->memoryAddress] = statePtr->memoryData;
+	}
+	return(1);
+    } else {
+	/* memory is not ready */
+	delay--;
+	return(0);
+    }
+}
+
+int
+convertNum(int num)
+{
+    /* convert a 16-bit number into a 32-bit integer */
+    if (num & (1 << 15) ) {
+	num -= (1 << 16);
+    }
+    return(num);
+}
+
+void 
+run(stateType state)
+{
+}
+
+
+

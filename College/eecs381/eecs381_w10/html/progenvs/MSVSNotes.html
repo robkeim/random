@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Notes on Using Microsoft Visual Studio</title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="949.54">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Helvetica}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 14.0px Helvetica; min-height: 17.0px}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Courier}
+  </style>
+</head>
+<body>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Helvetica"><b>How to set up a Standard C project</b></h3>
+<p class="p2">First, create a "Win32 Console application" and specify an empty project.<span class="Apple-converted-space"> </span></p>
+<p class="p2">Then create and add at least one source file to the project.<span class="Apple-converted-space"> </span></p>
+<p class="p2">Then apply the following changes to change it from C++ to C:</p>
+<p class="p3"><br></p>
+<p class="p2">1. In the 'Solution Explorer', right-click on the project and select 'Properties'</p>
+<p class="p3"><br></p>
+<p class="p2">2. In 'Configuration Properties -&gt; C/C++ -&gt; Preprocessor'</p>
+<p class="p2"><span class="Apple-converted-space">   </span>Append ';_CRT_SECURE_NO_WARNINGS' to the list of 'Preprocessor Definitions'</p>
+<p class="p3"><br></p>
+<p class="p2">3. In 'Configuration Properties -&gt; C/C++ -&gt; Code Generation'</p>
+<p class="p2"><span class="Apple-converted-space">   </span>Set 'Enable C++ Exceptions' to 'No'</p>
+<p class="p2"><span class="Apple-converted-space">   </span>Set 'Floating Point Model' to 'Strict'</p>
+<p class="p3"><br></p>
+<p class="p2">4. In 'Configuration Properties -&gt; C/C++ -&gt; Language'</p>
+<p class="p2"><span class="Apple-converted-space">   </span>Set 'Disable Language Extensions' to 'Yes'</p>
+<p class="p2"><span class="Apple-converted-space">   </span>Set 'Treat wchat_t as Built-in Type' to 'No'</p>
+<p class="p3"><br></p>
+<p class="p2">5. In 'Configuration Properties -&gt; C/C++ -&gt; Advanced'</p>
+<p class="p2"><span class="Apple-converted-space">   </span>Set 'Compile As' to 'Compile as C Code'</p>
+<p class="p3"><br></p>
+<p class="p2">This will get you relatively close to the C89 standard, but it may still allow<span class="Apple-converted-space"> </span></p>
+<p class="p2">some things that the gcc with our recommended settings would not.<span class="Apple-converted-space"> </span></p>
+<p class="p2">We recommend testing with a build and check with gcc before submitting.<span class="Apple-converted-space"> </span></p>
+<p class="p2">See the "submit example" under Other Information on the Project 1 web page.</p>
+<p class="p3"><br></p>
+<h3 style="margin: 0.0px 0.0px 14.0px 0.0px; font: 14.0px Helvetica"><b>How to set up a Standard C++ project</b></h3>
+<p class="p2">First, create a "Win32 Console application" and specify an empty project.<span class="Apple-converted-space"> </span></p>
+<p class="p2">Then create and add at least one source file to the project.<span class="Apple-converted-space"> </span></p>
+<p class="p2">Then apply the following changes to change make it slightly more standard:</p>
+<p class="p3"><br></p>
+<p class="p2">1. In the 'Solution Explorer', right-click on the project and select 'Properties'</p>
+<p class="p3"><br></p>
+<p class="p2">2. In 'Configuration Properties -&gt; C/C++ -&gt; Code Generation'</p>
+<p class="p2"><span class="Apple-converted-space">   </span>Set 'Floating Point Model' to 'Strict'</p>
+<p class="p3"><br></p>
+<p class="p2">3. In 'Configuration Properties -&gt; C/C++ -&gt; Language'</p>
+<p class="p2"><span class="Apple-converted-space">   </span>Set 'Disable Language Extensions' to 'Yes'</p>
+<p class="p2"><span class="Apple-converted-space">   </span>Set 'Treat wchat_t as Built-in Type' to 'No'</p>
+<p class="p2"><span class="Apple-converted-space">   </span>Set 'Force Conformance In For Loop Scope' to 'Yes'</p>
+<p class="p3"><br></p>
+<p class="p2">This will prevent some non-standard compiler behavior, but it may still allow<span class="Apple-converted-space"> </span></p>
+<p class="p2">some things that the gcc with our recommended settings would not.<span class="Apple-converted-space"> </span></p>
+<p class="p2">We recommend testing with a build and check with gcc before submitting.<span class="Apple-converted-space"> </span></p>
+<p class="p2">See the "submit example" under Other Information on the Project 1 web page.</p>
+<p class="p3"><b></b><br></p>
+<p class="p4"><b>How to use tr1 in Visual Studio C++</b></p>
+<p class="p5"><b></b><br></p>
+<p class="p2">There is a tr1 implementation available for MSVS C++, either as Visual C++ 2008 Feature Pack Release, or from boost.org. See the following link:</p>
+<p class="p3"><br></p>
+<p class="p2"><a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=D466226B-8DAB-445F-A7B4-448B326C48E7&amp;displaylang=en">http://www.microsoft.com/downloads/details.aspx?FamilyId=D466226B-8DAB-445F-A7B4-448B326C48E7&amp;displaylang=en</a></p>
+<p class="p3"><br></p>
+<p class="p2">The tr1 extensions are declared in headers that do not have any tr1 qualifications in them, but just the existing or new header name, such as &lt;memory&gt; for the shared_ptr template. Note that gcc 4.x requires different header names.</p>
+<p class="p3"><br></p>
+<p class="p4"><b>How to automatically switch between MSVS tr1 headers and gcc tr1 headers</b></p>
+<p class="p3"><br></p>
+<p class="p2">Use #ifdef to detect which compiler you are using and then #include the appropriate header. You can determine the compiler by testing for the presence of certain preprocessor symbols defined in that compiler's preprocessor;<span class="Apple-converted-space">  </span>these symbols aren't well documented, so it can be a bit of trick to figure them out. Here is some sample code:</p>
+<p class="p3"><br></p>
+<p class="p6">#ifdef _MSC_VER // other possibilities are WIN32 _WIN32 or _WIN64</p>
+<p class="p6">#include &lt;functional&gt;</p>
+<p class="p6">#else</p>
+<p class="p6">#include &lt;tr1/functional&gt;</p>
+<p class="p6">#endif</p>
+<p class="p3"><br></p>
+<p class="p2">In the above code, _MSC_VER is a preprocessor symbol defined in MSVS as being the current version number of the MS C/C++ compiler, so if it is present, it means the code is being compiled by MSVS, so you will get the MSVS version of the header; otherwise, you'll get the gcc version of the header. You can flip the logic around by testing for the presence of the gcc compiler by testing for the presence of its preprocessor symbol for the gcc compiler version number:</p>
+<p class="p3"><br></p>
+<p class="p6">#ifdef __GNUC__ // leading and trailing double underscores</p>
+<p class="p6">#include &lt;tr1/functional&gt;</p>
+<p class="p6">#else</p>
+<p class="p6">#include &lt;functional&gt;</p>
+<p class="p6">#endif</p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+</body>
+</html>

@@ -1,0 +1,15 @@
+show
+zoom 0
+zoom 4
+show
+pan 10 a show
+pan 10 10 show
+size 4
+show
+size a
+size 40
+size 30
+show
+default
+show
+quit

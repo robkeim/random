@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="949.43">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+  </style>
+</head>
+<body>
+<p class="p1"><b>Project 5 Corrections and Clarifications</b></p>
+<p class="p1"><b>Updated 4/1/09</b></p>
+<p class="p1"><b>Most recent items appear first</b></p>
+<p class="p1"><b>Page numbers refer to the pdf document</b></p>
+<p class="p2"><br></p>
+<p class="p1"><b>NOTICE:</b></p>
+<p class="p1"><b>This document is part of the project specifications.</b></p>
+<p class="p1"><b>Your solution must follow these corrections and clarifications.</b></p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+<p class="p4"><b>P. 4. Clarification of Archer behavior in update.</b></p>
+<p class="p4">So as to not force a code design , this specification did not name specific functions to call, and so was not completely explicit. Here is a paraphrase:</p>
+<p class="p4">The Archer will check the target state, the target range, hit the target, and check again, and stop the attack if necessary, just like Soldier,<span class="Apple-converted-space">  </span>(see step 2.4), but if as a result, the target is either dead or out of range, Archer will then look for a new target.</p>
+<p class="p3"><b></b><br></p>
+<p class="p3"><b></b><br></p>
+<p class="p4"><b>P. 1. Purpose. Reminder that the class design can be altered.</b></p>
+<p class="p4"><i>The project document states:</i></p>
+<p class="p4">While the design is under your control, you are expected to make good use of the OOP concepts and code quality guidelines and recommendations presented thus far in the course. While you are free to modify Project 4 as needed, you should not have to make any substantial changes at all to the Sim_object class hierarchy. Rather, you will be adding to this hierarchy, designing a new class hierarchy for View, and modifying Model and Controller to accommodate these. In other words, your Project 5 solution should be clearly based on Project 4's.</p>
+<p class="p4"><i>This information means that you can modify the Project 4 classes as needed to meet the Project 5 specifications.</i></p>
+<p class="p3"><br></p>
+<p class="p4"><b>P. 1. Step 1, first paragraph: Typo in step number.</b></p>
+<p class="p4"><i>Change</i>:<span class="Apple-converted-space"> </span></p>
+<p class="p4">and choose wisely which services you will have Model provide to support the remaining steps - especially in Step 5, where a new class will need to be able to determine which objects are closest to it, meaning it will need access to information held by Model.</p>
+<p class="p4"><i>To</i>:<span class="Apple-converted-space"> </span></p>
+<p class="p4">and choose wisely which services you will have Model provide to support the remaining steps - especially in Step 4, where a new class will need to be able to determine which objects are closest to it, meaning it will need access to information held by Model.</p>
+<p class="p3"><br></p>
+<p class="p4"><b>P. 5. Clarification of p5_main.cpp.<span class="Apple-converted-space"> </span></b></p>
+<p class="p4">The p5_main.cpp file can be based directly on the supplied p4_main.cpp file, but once Model has been turned into a Singleton, main() should not create a Model object, nor should Controller take a Model&amp; constructor parameter - it doesn't need to. See the note in Step 1, page 1.<span class="Apple-converted-space">  </span>To remove any confusion, a p5_main.cpp file has been added to the starters directory. Your project should use it as-is.</p>
+<p class="p3"><br></p>
+<p class="p3"><br></p>
+</body>
+</html>

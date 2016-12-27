@@ -1,0 +1,357 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1"><title>Assignment 2</title>
+</head><body><h1>Assignment 2</h1>
+<p>Due Monday, January 25, 2010.
+</p>
+<h2>Part 1 (40 points): Schema creation and loading data </h2>
+<p>In this task you will start construction of your website.  You will
+develop an online photo album service. Your website should have
+registered users (people), each identified by a unique username.
+For each person you should also maintain a password, a first name, a
+last name, and an email address.  Each person may create/update/destroy
+as many albums that he or she owns as he or she would like.  Each album
+has a unique id, a title, a date created, a date last updated, owner's
+username and a field that specifies the permissions to this album
+("public" or "private").  Each album may have zero or more photos.
+Within the context of a particular album, a photo has a sequence
+number and a caption.  Photos can be used within multiple albums
+(shared) and in all instances they will have the same URL, date taken,
+and format ("GIF", "JPG", etc.).
+</p>
+<p>An initial relational schema for the data you will need is as follows
+(primary key is underlined):
+</p>
+<ul><li>User (<u>username</u>
+, firstname, lastname, password, email)</li>
+
+<li>Album (<u>albumid</u>
+, title, created, lastupdated, access, username)</li>
+<li>Contain (<u>albumid</u>
+, <u>url</u>
+, caption, sequencenum)</li>
+<li>Photo (<u>url</u>
+, format, date)</li>
+
+<li>AlbumAccess (<u>albumid</u>
+, username)</li>
+</ul>
+<h3>Part 1a (30 points): Create tables </h3>
+<p>You have to map the above schema to relations.  In mapping the schema
+to relations you must stick to the following guidelines:
+</p>
+<ul><li>username/password/firstname/lastname are all at most 20 characters.</li>
+<li>email is at most 40 characters</li>
+<li>titles are at most 50 characters</li>
+<li>captions are at most 255 characters</li>
+
+<li>web addresses (URLs) may be up to 255 characters</li>
+<li>all dates should be the SQL date type</li>
+<li>format should be a fixed length 3 characters</li>
+<li>the album id should be an integer</li>
+<li>the sequence number should be an integer</li>
+<li>access should be at most 10 characters</li>
+<li>define suitable primary keys</li>
+<li>add foreign key constraints</li>
+</ul>
+
+<h3>Part 1b (10 points): Loading tables </h3>
+<p>Use the following information when loading your tables.  Please make up
+any information which is not given to you but do not leave fields blank.
+</p>
+<p>The website currently has three users.
+</p>
+<p>The first has username "sportslover".  His real name is Paul Walker.
+His email address is sportslover@hotmail.com.  He created two albums;
+the first one is titled "I love football" which is public.
+</p>
+<p>This album consists of the following images:
+</p>
+<ul><li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/sports/f1.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/sports/f1.jpg</a>
+</li>
+
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/sports/f2.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/sports/f2.jpg</a>
+</li>
+
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/sports/f3.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/sports/f3.jpg</a>
+</li>
+
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/sports/f4.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/sports/f4.jpg</a>
+</li>
+
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/sports/f5.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/sports/f5.jpg</a>
+</li>
+
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/sports/f6.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/sports/f6.jpg</a>
+</li>
+</ul>
+
+
+<p>Paul also has another album called "I also love football", which is also
+public. It contains the following pictures:
+</p>
+<ul>
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/sports/s1.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/sports/s1.jpg</a>
+</li>
+
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/sports/s2.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/sports/s2.jpg</a>
+</li>
+
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/sports/s3.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/sports/s3.jpg</a>
+</li>
+
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/sports/s4.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/sports/s4.jpg</a>
+</li>
+
+
+</ul>
+<p>The second has username "traveler".  Her real name is Rebecca Travolta.
+Her email address is rebt@explorer.org.  She created one album called
+"Around The World", which contains the following images:
+</p>
+
+<ul><li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/travel/EiffelTower.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/travel/EiffelTower.jpg</a>
+</li>
+
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/travel/WashingtonDC.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/travel/WashingtonDC.jpg</a>
+</li>
+
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/travel/GreatWall.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/travel/GreatWall.jpg</a>
+</li>
+
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/travel/Stonehenge.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/travel/Stonehenge.jpg</a>
+</li>
+
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/travel/TajMahal.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/travel/TajMahal.jpg</a>
+</li>
+
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/travel/Persepolis.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/travel/Persepolis.jpg</a>
+</li>
+
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/travel/Seoul.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/travel/Seoul.jpg</a>
+</li>
+
+</ul>
+
+<p>The third has username "spacejunkie".  His real name is Bob Spacey.
+His email address is bspace@spacejunkies.net.  He used the site to create
+one private album titled "Cool Space Shots", which contains:
+</p>
+<ul><li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/space/EagleNebula.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/space/EagleNebula.jpg</a>
+</li>
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/space/HelixNebula.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/space/HelixNebula.jpg</a>
+</li>
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/space/OrionNebula.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/space/OrionNebula.jpg</a>
+</li>
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/space/MilkyWay.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/space/MilkyWay.jpg</a>
+</li>
+<li><a href="http://www-personal.umich.edu/%7Evahed/eecs485/pa2/space/GalaxyCollision.jpg">http://www-personal.umich.edu/~vahed/eecs485/pa2/space/GalaxyCollision.jpg</a>
+</li>
+
+</ul>
+<h3>MySQL Database </h3>
+<p> For this assignment each group will use its own database named as
+the group name. Each group will have all privileges on its databases
+and no access to other databases on MySQL server. To run MySQL use the
+following command:
+</p>
+<pre>/usr/bin/mysql -u <i>username</i> -p<i>password</i>  <i>db_name</i></pre>
+Here <b>-u</b> identifies your username for MySQL, and  <b>-p</b> should be immediately followed by your password. Finally <i>db_name</i> identifies the database you want to use:
+<ul>
+<li> <i>username</i>: groupname </li>
+<li> <i>password</i>: secret string </li>
+<li> <i>db_name</i>: groupname</li>
+</ul>
+
+
+
+<p>From here, you may directly type SQL statements into the
+prompt, or use the <code>source</code>  command of the monitor to execute
+SQL script files.  If you run a script multiple times, you
+may need to drop tables or delete tuples from a table. Refer to
+<a href="http://dev.mysql.com/doc/mysql/en/SQL_Syntax.html">http://dev.mysql.com/doc/mysql/en/SQL_Syntax.html</a>
+ as to how to do these operations in MySQL.
+</p>
+<h3>Deliverables </h3>
+<p>Put all of the necessary SQL statements to create and populate your tables in
+a file called <code>pa2/tables.sql</code>
+.
+</p>
+<h2>Part 2 (60 points): Building a photo album website </h2>
+<p>In this part we will start working on our database-backed website.
+You will learn how to use PHP to interact with MySQL database
+to generate dynamic webpages. By the end of this assignment you
+should feel comfortable using HTML, PHP and MySQL in concert. You
+may use the following beginner's guide to get familiar with HTML:
+</p><ul><li>
+<a href="http://www.w3schools.com/html/html_intro.asp">http://www.w3schools.com/html/html_intro.asp</a>
+</li></ul>
+<p></p>
+<p>Your photo album website is meant to be used by a small number of users with a simple interface.
+Start thinking of the overall design of your website. In particular
+you will need to worry about a clean navigation interface, ease
+of editing albums and in the next assignment on access control and
+security. For some web design tips, please refer to the Appendix.
+</p>
+<h3>Part 2a (5 points): Getting started </h3>
+<p>Create a script <code>index.php</code>
+
+ in your pa2 sub-directory which
+will serve as the homepage for the website. A good way to have
+consistent interface design is to create a PHP file, say <code>lib.php</code>
+,
+that you include in all your PHP scripts. In <code>lib.php</code>
+ you can
+create functions such <code>page_header($title)</code>
+, <code>page_footer()</code>
+,
+<code>db_connect()</code>
+
+ and other functions. For information on how
+to use the PHP include/require functions, you may refer to
+<a href="http://www.php.net/manual/en/function.include.php">http://www.php.net/manual/en/function.include.php</a>
+.
+</p>
+<h4>index.php </h4>
+<p>The index.php should contain a proper &lt;title&gt; tag, other &lt;meta&gt; tags,
+a header and footer for the page, some text describing the website
+and a list of users whose albums can be browsed. There should be a
+hyperlink to each of the users' album lists.
+</p>
+<h4>viewalbumlist.php </h4>
+
+<p>This page will take as a parameter the username, and provide a list
+of his or her albums. Albums that are public will contain hyperlinks
+for previewing the album.  Private albums will have no hyperlinks.
+</p>
+<h3>Part 2b (25 points): Editing albums </h3>
+<p>Now you have to create at least two PHP pages as described below. (You
+can create more PHP files that you intend to call or link to).
+</p>
+<h4>editalbumlist.php </h4>
+<p>Presents the user with a list of his or her albums. Here is a very
+basic interface (this is for your reference only; you can have a
+fancier design):
+</p>
+<table><tbody><tr><td>Album</td>
+<td>Access</td>
+</tr>
+<tr><td>Summer 2003 in Las Vegas</td>
+
+<td>Public</td>
+<td>[Edit]</td>
+<td>[Delete]</td>
+</tr>
+<tr><td>Spring break 2004 in Yellowstone</td>
+<td>Public</td>
+<td>[Edit]</td>
+<td>[Delete]</td>
+</tr>
+<tr><td>Thanksgiving 2003</td>
+
+<td>Public</td>
+<td>[Edit]</td>
+<td>[Delete]</td>
+</tr>
+<tr><td>New: <code>______________</code>
+</td>
+<td><code>________</code>
+</td>
+<td>[Add]</td>
+</tr>
+
+</tbody></table>
+<p>When the user clicks on [Delete] or [Edit], you can encode the albumid
+and any other parameters into the URL (i.e. GET method). Note that
+when you delete an album, you should also delete pictures in that
+album as long as they are not included elsewhere.
+</p>
+<h4>editalbum.php </h4>
+<p>This should enable the user to perform the following operations:
+</p>
+<ul><li>Change access (private/public).</li>
+<li>Add pictures to the album. If a picture is already in the database,
+you simply need to attach it to this album. If the picture doesn't
+appear in the database, you need to add it to the Photo table and
+attach it to the album.</li>
+<li>Delete pictures from the album.</li>
+<li>You should automatically assign a sequence number to a picture,
+which is one larger than the largest sequence number in the album
+currently.</li>
+<li>You should automatically figure out the format of the image from the given URL.</li>
+
+</ul>
+<h3>Part 2c (25 points): Viewing picture albums </h3>
+<h4>viewalbum.php </h4>
+<p>This script is used to get a thumbnail view of the pictures in the
+album ordered by the sequence number. Clicking on the image should
+take you to viewpicture.php
+</p>
+<h4>viewpicture.php </h4>
+<p>This script shows the full sized picture. It may also have navigational
+elements to go to the next and/or previous picture in the album.
+</p>
+<h3>Part 2d (5 points): Spruce it up </h3>
+<p>A good website should be easy to understand, simple to use and and
+have a good selection of colors, fonts and backgrounds. Create a
+proper theme for your website and make sure that all your pages are
+consistent with your look and feel.  Do not worry too much about
+artistic creativity; however, using programmatic skills for ensuring
+consistency of the interface and ease of use will be tested.
+</p>
+<h3>Deliverables </h3>
+
+<p>We have split the functionality into specific files only as a
+guideline.  We give you the flexibility to split the control flow in
+any way you like.  Make sure that all these functions are present:
+</p>
+<ul><li>Browsing list of users</li>
+<li>Browsing albums for a particular user</li>
+<li>Thumbnail view of an album</li>
+<li>Picture with prev/next links</li>
+<li>Editing the list of albums with delete and add</li>
+<li>Editing an album -- changing access level, adding/deleting pictures</li>
+</ul>
+<p>Nothing needs to be turned in for this assignment; all evaluation
+will be done by examining your website through a web browser, and
+checking your PHP code directly on your machines.  Please do not
+modify your code after the due date, or else we will assume your
+submission is late.
+</p>
+
+<h2>Extra Credit</h2>
+Extra credit is given to the groups that can add one or more of the following functionalities to their websites. <b> Groups of 4 people are required to do a least 2 of the following in addition to the assignment requirements</b>.
+<ul>
+<li> Each photo can have a number of comments. Visitors can post new comments and read previous ones.</li>
+<li> A visitor can email a photo to an email address. </li>
+<li> The actual image bytes are stored in and loaded from the database itself and not the URLs</li>
+</ul>
+
+<h2>Appendix: Web Design Tips </h2>
+<p>The first step in building a website is to sit down and think long and
+hard about what purpose the site serves and who is going to use it.
+If you are building a website for a customer you will typically sit
+down with your client and discuss these matters.  If you are building
+a site for yourself, you should still go through this exercise.
+</p>
+<ul><li>Who will visit your website? Are there multiple classes or
+categories of users? You should consider issues such as demographics
+(gender, age, geographical location, etc.) and typical use (business,
+personal, professional, etc.).</li>
+<li>Why do people visit your site? Why wouldn't they use a traditional
+photo album? Does each class of users have a different need or purpose?
+</li>
+<li>How does your site make money? </li>
+<li>Now that you've identified the main purpose each class of users has
+for visiting your site, it's time to focus on detail. What specific
+features or functionality should your site provide to cater to each
+class of users? What additional information would your site need to
+contain beyond the tables described below?</li>
+<li>What is the typical interaction each class of users would follow in your site?  Which pages do they visit?  In what order? </li>
+<li>Draw a site map, which indicates the navigation pattern between
+pages. In this diagram include some indication of the navigation you
+plan to allow. Which pages will be linked to which pages? </li>
+<li>Design the look and feel of your site, especially the main page.
+What is the style, tone, mood, etc. that your site conveys? What
+language do you use (professional, colloquial, humorous, serious, etc.)?</li>
+</ul>
+</body></html>

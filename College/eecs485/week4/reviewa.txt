@@ -1,0 +1,76 @@
+1. Name four different types of security threats to watch out for.
+
+masquerade, data-modification, eavesdropping, denial of service, ....
+
+
+2. Explain how a replay attack works.
+
+Record communication, and replay (selected portions of) it at a later time.
+Replay attacks can sometimes be prevented by using unmodifiable timestamps 
+that the server tests.
+
+
+3. Consider a challenge-response mechanism, in which a server throws a
+   challenge to a client (such as asking the client to look at an image and
+   read embedded text in the image and reply back with the text) before
+   setting up a connection. Why would this mechanism be useful?
+
+This type of mechanism is good for defending against replay attacks, provided
+the challenge is different each time, and the response is correspondingly
+different.  If the challenge is recycled, such a system is vulnerable to a 
+replay attack.
+
+
+4.How can a web client ensure the authenticity of a web server that it wants
+  to establish a connection with? In particular, how can it prevent someone
+  masquerading as the server?
+
+The server should authenticate itself using a digital signature.  Standards
+like SSL and TLS do this.  A certificate authority will be necessary to
+communicate the signer's public key securely.
+
+
+5. If X wants to send a signed message to Y, and wants to ensure that only Y
+   can read the message, how should it encrypt the message?  (Assume that
+   both X and Y implement a public-key encryption protocol).
+
+pub_Y(priv_X(m)) for message m
+
+
+6. Is SSL implemented above or below HTTPS?
+
+SSL is implemented below HTTP (and above above TCP).  The combination of SSL
+and HTTP is called HTTPS.
+
+
+7a. Suppose you have been given p=3,q=11 for a public key encryption scheme.
+    Find n, lambda, d, and e.  What is the public key?   The private key?
+
+n = pq = 33
+lambda = (p-1)(q-1) = 20
+A choice you can make is d=3, e=7.
+Public key = 3,33.  Private key = 7,33.
+
+b. Encrypt 29 using the public key determined above.  A decrypt the
+   resulting ciphertext using the private key.  Show all computations.
+
+m = 29.  c = m^3 (mod 33) = [m (mod 33)]*[m^2 (mod 33)] (mod 33)
+	   = 29 * 16 (mod 33)  =  2
+
+c = 2.   m = c^7 (mod 33) = 2*4*16 (mod 33) = 128 (mod 33) = 29
+
+
+8.  Suppose you have chosen to build an asymmetric key encryption scheme using
+    the prime numbers 5 and 11 as the basis.  What would be your public key?
+    What would be the corresponding private key?
+
+lambda = 40.  d=e=9 satisfies mathematically, but is not satisfactory, since we
+really want the private and public keys to be different.
+d=11=121 has the same problem.
+d=17, e=33 does the job.
+
+
+9.  Bob wants to send a signed and dated message m to Alice in a way that no
+    eavesdropper can learn the content of m.  How does he do so?
+
+Send pub_Alice (m, priv_Bob(h(m), date))

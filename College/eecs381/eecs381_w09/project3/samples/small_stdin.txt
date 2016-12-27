@@ -1,0 +1,57 @@
+d
+a
+l
+small_dct.txt
+c
+small_inp.txt
+small_out.txt
+r
+The
+y
+s
+y
+r
+the
+y
+a
+a
+a
+a
+a
+a
+a
+r
+very
+n
+a
+a
+a
+a
+a
+r
+the
+y
+d
+a
+x a
+x s 1 23
+x r 0 12
+x i 1 99
+x ' 1 99
+x w forcefully
+x w bear
+s
+small_dct1.txt
+e
+x i 1 99
+x a
+b
+small_crd.txt
+s
+small_dct2.txt
+d
+x i 1 99
+x a
+x s 1 99
+x r 1 99
+q

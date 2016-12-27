@@ -1,0 +1,46 @@
+create Princess Cruise_ship 0 0
+status
+Princess destination Exxon 10
+Princess destination Exxon 20
+Princess position 10 10 10
+Princess destination Exxon 10
+go
+status
+go
+status
+go
+go
+status
+go
+status
+go
+go
+go
+go
+go
+go
+go
+go
+go
+go
+go
+go
+go
+go
+go
+status
+go
+go
+go
+go
+status
+go
+go
+go
+go
+go
+status
+go
+status
+go
+quit

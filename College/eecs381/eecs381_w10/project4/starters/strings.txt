@@ -1,0 +1,120 @@
+/* Text strings emitted and Error expections thrown by Model */
+cout << "Model constructed" << endl;
+cout << "Model destructed" << endl;
+Error("Island not found!")
+Error("Ship not found!")
+
+
+/* Text strings emitted and Error exceptions thrown by View */
+cout << "View constructed" << endl;
+cout << "View destructed" << endl;
+cout << ", ";
+cout <<  << " outside the map" << endl;
+cout << "Display size: " <<  << ", scale: " <<  << ", origin: " <<  << endl;
+Error("New map size is too big!")
+Error("New map size is too small!")
+Error("New map scale must be positive!")
+
+
+/* Text strings emitted and Error exceptions thrown by Controller */
+cout << "Controller constructed" << endl;
+cout << "Controller destructed" << endl;
+cout << "\nTime " <<  << ": Enter command: ";
+cout << "Done" << endl;
+Error("Unrecognized command!")
+Error("Name is already in use!")
+Error("Invalid heading entered!")
+Error("Negative speed entered!")
+Error("Expected an integer!")
+Error("Expected a double!")
+
+/* Error exceptions emitted by Ship_factory */
+Error("Trying to create ship of unknown type!")
+
+/* Text strings and Error exceptions emitted by Ship */
+cout << "Ship " << << " constructed" << endl;
+cout << "Ship "<< << " destructed" << endl;
+cout << << " will sail on " << << " to " << << endl;
+cout << << " will sail on " << << endl;
+cout << << " stopping at " << << endl;
+cout << << " docked at " << << endl;
+cout << << " now has " << << " tons of fuel" << endl;
+cout << << " hit with " << << ", resistance now " << << endl;
+// produced by update function:
+cout << << " sinking" << endl;
+cout << << " sunk" << endl;
+cout << << " on the bottom" << endl;
+cout << << " now at " << << endl;
+cout << << " stopped at " << << endl;
+cout << << " docked at " << << endl;
+cout << << " dead in the water at " << << endl;
+// produced by describe function
+cout << << " at " << ;
+cout << " sinking" << endl;
+cout << " sunk" << endl;
+cout << " on the bottom" << endl;
+cout << ", fuel: " << << " tons" << ", resistance: " << << endl;
+cout << "Moving to " << << " on " << << endl;
+cout << "Moving on " << << endl;
+cout << "Docked at " << << endl;
+cout << "Stopped" << endl;
+cout << "Dead in the water" << endl;
+
+Error("Can't dock!")
+Error("Must be docked!")
+Error("Cannot load at a destination!")
+Error("Cannot unload at a destination!")
+Error("Cannot attack!")
+Error("Ship cannot move!")
+Error("Ship cannot go that fast!")
+
+/* Text strings and Error exceptions emitted by Tanker */
+cout << "Tanker " <<  << " constructed" << endl;
+cout << "Tanker " <<  << " destructed" << endl;
+cout <<  << " will load at " <<  << endl;
+cout <<  << " will unload at " <<  << endl;
+cout << << " now has no cargo destinations" << endl;
+cout <<  << " now has " <<  << " of cargo" << endl;
+// produced by describe function:
+cout << "\nTanker ";
+cout << "Cargo: " <<  << " tons";
+cout << ", no cargo destinations";
+cout << ", loading";
+cout << ", unloading";
+cout << ", moving to loading destination";
+cout << ", moving to unloading destination";
+
+
+Error("Tanker has cargo destinations!")
+Error("Load and unload cargo destinations are the same!")
+
+
+/* Text strings emitted and Error exceptions thrown by Warship */
+cout << "Warship " <<  << " constructed" << endl;
+cout << "Warship "  <<  << " destructed" << endl;
+cout <<  << " will attack " <<  << endl;
+cout <<  << " stopping attack" << endl;
+cout <<  << " is attacking " << endl;
+cout <<  << " fires" << endl;
+// produced by describe function
+cout << "Attacking " <<  << endl;
+Error("Cannot attack!")
+Error("Warship may not attack itself!")
+Error("Was not attacking!")
+
+
+/* Text strings emitted by Cruiser (no exceptions thrown) */
+cout << "Cruiser " <<  << " destructed" << endl;
+cout << "Cruiser " <<  << " constructed" << endl;
+cout << "\nCruiser ";
+cout << << " target is out of range" << endl;
+
+
+/* Text strings emitted by Island (no Error exceptions thrown) */
+cout << "Island " <<  << " constructed" << endl;
+cout << "Island " <<  << " destructed" << endl;
+cout << "Island " <<  << " supplied " <<  << " tons of fuel" << endl;
+cout << "Island " <<  << " now has " <<  << " tons" << endl;
+// produced by describe function
+cout << "\nIsland " <<  << " at position " <<  << endl;
+cout << "Fuel available: " <<  << " tons" << endl;

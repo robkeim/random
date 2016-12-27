@@ -1,0 +1,548 @@
+
+Time 0: Enter command: 
+Time 0: Enter command: Merry: I'm on the way
+
+Time 0: Enter command: Merry: I'm there!
+Farm Rivendale now has 52.00
+Farm Sunnybrook now has 52.00
+
+Time 1: Enter command: 
+Time 1: Enter command: Bug: I'm on the way
+
+Time 1: Enter command: Zug: I'm on the way
+
+Time 1: Enter command: Bug: step...
+Merry: Collected 35.00
+Merry: I'm on the way
+Farm Rivendale now has 54.00
+Farm Sunnybrook now has 19.00
+Zug: step...
+
+Time 2: Enter command: Local view for: Merry
+     . . . . . . . . . 
+     . . . . . . . . . 
+  33 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . * . . . . 
+  27 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . . . . . . 
+  21 . . . . . . . . . 
+    -9    -3     3
+Current Amounts:
+--------------
+Merry: 35.00
+Paduca: 0.00
+Pippin: 0.00
+Rivendale: 54.00
+Shire: 0.00
+Sunnybrook: 19.00
+--------------
+
+Time 2: Enter command: Bug: step...
+Merry: step...
+Farm Rivendale now has 56.00
+Farm Sunnybrook now has 21.00
+Zug: I'm there!
+
+Time 3: Enter command: Local view for: Merry
+     . . . . . . . . . 
+     . . . . . . . . . 
+  31 . . . . . . . . . 
+     . . Su. . . . . . 
+     . . . . Me. . . . 
+  25 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . . . . . . 
+  19 . . . . . . . . . 
+    -5     1     7
+Current Amounts:
+--------------
+Merry: 35.00
+Paduca: 0.00
+Pippin: 0.00
+Rivendale: 56.00
+Shire: 0.00
+Sunnybrook: 21.00
+--------------
+
+Time 3: Enter command: Bug: I'm there!
+Merry: step...
+Farm Rivendale now has 58.00
+Farm Sunnybrook now has 23.00
+
+Time 4: Enter command: Local view for: Merry
+     . . . . . . . . . 
+     . . . . . . . . . 
+  29 Su. . . . . . . . 
+     . . . . . . . . . 
+     . . . . Me. . . . 
+  23 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . . . . . . 
+  17 . . . . . . . . . 
+    -0     6    12
+Current Amounts:
+--------------
+Merry: 35.00
+Paduca: 0.00
+Pippin: 0.00
+Rivendale: 58.00
+Shire: 0.00
+Sunnybrook: 23.00
+--------------
+
+Time 4: Enter command: Merry: step...
+Farm Rivendale now has 60.00
+Farm Sunnybrook now has 25.00
+
+Time 5: Enter command: Local view for: Merry
+     . . . . . . . . . 
+     . . . . . . . . . 
+  26 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . Me. . . . 
+  20 . . . . . . . . . 
+     . . . . . . . Sh. 
+     . . . . . . . . . 
+  14 . . . . . . . . . 
+     4    10    16
+Current Amounts:
+--------------
+Merry: 35.00
+Paduca: 0.00
+Pippin: 0.00
+Rivendale: 60.00
+Shire: 0.00
+Sunnybrook: 25.00
+--------------
+
+Time 5: Enter command: 
+Time 5: Enter command: 
+Time 5: Enter command: Merry: step...
+Farm Rivendale now has 62.00
+Farm Sunnybrook now has 27.00
+
+Time 6: Enter command: Local view for: Merry
+     . . . . . . . . . 
+     . . . . . . . . . 
+  24 . . . . . . . . * 
+     . . . . . . . . . 
+     . . . . Me. . . . 
+  18 . . . . . Sh. . . 
+     . . . . . . . . . 
+     . . . . . . . . . 
+  12 . . . . . . . . . 
+     9    15    21
+Current Amounts:
+--------------
+Merry: 35.00
+Paduca: 0.00
+Pippin: 0.00
+Rivendale: 62.00
+Shire: 0.00
+Sunnybrook: 27.00
+--------------
+Current Health:
+--------------
+Bug: 5.00
+Iriel: 5.00
+Merry: 5.00
+Pippin: 5.00
+Zug: 5.00
+--------------
+Local view for: Zug
+     . . . . . . . . . 
+     . . . . . . . Pa. 
+  28 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . * . . . . 
+  22 . . . . . . . . . 
+     Me. Sh. . . . . . 
+     . . . . . . . . . 
+  16 . . . . . . . . . 
+    16    22    28
+
+Time 6: Enter command: 
+Time 6: Enter command: Fug: I'm attacking!
+
+Time 6: Enter command: Fug: Clang!
+Zug: Ouch!
+Zug: I'm attacking!
+Merry: I'm there!
+Farm Rivendale now has 64.00
+Farm Sunnybrook now has 29.00
+Zug: Clang!
+Fug: Ouch!
+
+Time 7: Enter command: Local view for: Merry
+     . . . . . . . . . 
+     . . . . . . . * . 
+  23 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . * . . . . 
+  17 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . . . . . . 
+  11 . . . . . . . . . 
+    11    17    23
+Current Amounts:
+--------------
+Merry: 35.00
+Paduca: 0.00
+Pippin: 0.00
+Rivendale: 64.00
+Shire: 0.00
+Sunnybrook: 29.00
+--------------
+Current Health:
+--------------
+Bug: 5.00
+Fug: 3.00
+Iriel: 5.00
+Merry: 5.00
+Pippin: 5.00
+Zug: 3.00
+--------------
+Local view for: Zug
+     . . . . . . . . . 
+     . . . . . . . Pa. 
+  28 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . * . . . . 
+  22 . . . . . . . . . 
+     . . * . . . . . . 
+     . . . . . . . . . 
+  16 . . . . . . . . . 
+    16    22    28
+
+Time 7: Enter command: Bug: I'm attacking!
+
+Time 7: Enter command: Bug: Clang!
+Zug: Ouch!
+Fug: Clang!
+Zug: Arrggh!
+Fug: I triumph!
+Merry: Deposited 35.00
+Merry: I'm on the way
+Farm Rivendale now has 66.00
+Farm Sunnybrook now has 31.00
+
+Time 8: Enter command: Soldier Bug at (25.00, 25.00)
+   Health is 5
+   Stopped
+   Attacking dead target
+Soldier Fug at (25.00, 25.00)
+   Health is 3
+   Stopped
+   Not attacking
+Archer Iriel at (20.00, 38.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (20.00, 20.00)
+   Health is 5
+   Moving at speed 5.00 to (0.00, 30.00)
+   Carrying 0.00
+   Inbound to source Sunnybrook
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (5.00, 10.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 66.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 35.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 31.00
+
+Time 8: Enter command: Local view for: Merry
+     . . . . . . . . . 
+     . . . . . . . * . 
+  23 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . * . . . . 
+  17 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . . . . . . 
+  11 . . . . . . . . . 
+    11    17    23
+Current Amounts:
+--------------
+Merry: 0.00
+Paduca: 0.00
+Pippin: 0.00
+Rivendale: 66.00
+Shire: 35.00
+Sunnybrook: 31.00
+--------------
+Current Health:
+--------------
+Bug: 5.00
+Fug: 3.00
+Iriel: 5.00
+Merry: 5.00
+Pippin: 5.00
+--------------
+Local view for: Zug
+     . . . . . . . . . 
+     . . . . . . . Pa. 
+  28 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . * . . . . 
+  22 . . . . . . . . . 
+     . . * . . . . . . 
+     . . . . . . . . . 
+  16 . . . . . . . . . 
+    16    22    28
+
+Time 8: Enter command: Bug: Target is dead
+Merry: step...
+Farm Rivendale now has 68.00
+Farm Sunnybrook now has 33.00
+
+Time 9: Enter command: Soldier Bug at (25.00, 25.00)
+   Health is 5
+   Stopped
+   Not attacking
+Soldier Fug at (25.00, 25.00)
+   Health is 3
+   Stopped
+   Not attacking
+Archer Iriel at (20.00, 38.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (15.53, 22.24)
+   Health is 5
+   Moving at speed 5.00 to (0.00, 30.00)
+   Carrying 0.00
+   Inbound to source Sunnybrook
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (5.00, 10.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 68.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 35.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 33.00
+
+Time 9: Enter command: 
+Time 9: Enter command: Local view for: Merry
+     . . . . . . . . . 
+     . . . . . . . . . 
+  25 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . Me. . . . 
+  19 . . . . . . Sh. . 
+     . . . . . Cl. . . 
+     . . . . . . . . . 
+  13 . . . . . . . . . 
+     7    13    19
+Current Amounts:
+--------------
+Claude: 0.00
+Merry: 0.00
+Paduca: 0.00
+Pippin: 0.00
+Rivendale: 68.00
+Shire: 35.00
+Sunnybrook: 33.00
+--------------
+Current Health:
+--------------
+Bug: 5.00
+Claude: 5.00
+Fug: 3.00
+Iriel: 5.00
+Merry: 5.00
+Pippin: 5.00
+--------------
+Local view for: Zug
+     . . . . . . . . . 
+     . . . . . . . Pa. 
+  28 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . * . . . . 
+  22 . . . . . . . . . 
+     . . Sh. . . . . . 
+     . Cl. . . . . . . 
+  16 . . . . . . . . . 
+    16    22    28
+
+Time 9: Enter command: Merry: step...
+Farm Rivendale now has 70.00
+Farm Sunnybrook now has 35.00
+
+Time 10: Enter command: 
+Time 10: Enter command: Merry: I'm stopped
+Merry: I'm on the way
+
+Time 10: Enter command: Bug: I'm on the way
+
+Time 10: Enter command: Bug: step...
+Merry: step...
+Farm Rivendale now has 72.00
+Farm Sunnybrook now has 37.00
+
+Time 11: Enter command: Bug: I'm there!
+Iriel: I'm attacking!
+Merry: step...
+Farm Rivendale now has 74.00
+Farm Sunnybrook now has 39.00
+
+Time 12: Enter command: Iriel: Twang!
+Bug: Ouch!
+Bug: I'm attacking!
+Merry: I'm there!
+Farm Rivendale now has 76.00
+Farm Sunnybrook now has 41.00
+
+Time 13: Enter command: 
+Time 13: Enter command: Current Health:
+--------------
+Bug: 4.00
+Claude: 5.00
+Fug: 3.00
+Iriel: 5.00
+Merry: 5.00
+Pippin: 5.00
+--------------
+Local view for: Zug
+     . . Bu. . . . . . 
+     . . . . . . . Pa. 
+  28 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . Fu. . . . 
+  22 . . . . . . . . . 
+     . . Sh. . . . . . 
+     . Cl. . . . . . . 
+  16 . . . . . . . . . 
+    16    22    28
+
+Time 13: Enter command: 
+Time 13: Enter command: 
+Time 13: Enter command: Current Health:
+--------------
+Bug: 4.00
+Claude: 5.00
+Fug: 3.00
+Iriel: 5.00
+Merry: 5.00
+Pippin: 5.00
+--------------
+Local view for: Iriel
+     . . . . . . . . . 
+     . . . . . . . . . 
+  41 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . Ir. . . . 
+  35 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . Bu. . . . 
+  29 . . . . . . . . . 
+    11    17    23
+
+Time 13: Enter command: Bug: I'm on the way
+
+Time 13: Enter command: Bug: I'm there!
+Bug: Clang!
+Iriel: Ouch!
+Iriel: I'm going to run away to Paduca
+Iriel: I'm on the way
+Iriel: step...
+Iriel: Twang!
+Bug: Ouch!
+Merry: Collected 35.00
+Merry: I'm on the way
+Farm Rivendale now has 78.00
+Farm Sunnybrook now has 8.00
+
+Time 14: Enter command: Current Health:
+--------------
+Bug: 3.00
+Claude: 5.00
+Fug: 3.00
+Iriel: 3.00
+Merry: 5.00
+Pippin: 5.00
+--------------
+Local view for: Iriel
+     . . . . . . . . . 
+     . . . . . . . . . 
+  38 . . . . . . . . . 
+     . . Bu. . . . . . 
+     . . . . Ir. . . . 
+  32 . . . . . . . . . 
+     . . . . . . . Pa. 
+     . . . . . . . . . 
+  26 . . . . . . . . . 
+    15    21    27
+
+Time 14: Enter command: No view of that name is open!
+
+Time 14: Enter command: Bug: Target is now out of range
+Iriel: step...
+Iriel: Target is now out of range
+Merry: step...
+Farm Rivendale now has 80.00
+Farm Sunnybrook now has 10.00
+
+Time 15: Enter command: Current Health:
+--------------
+Bug: 3.00
+Claude: 5.00
+Fug: 3.00
+Iriel: 3.00
+Merry: 5.00
+Pippin: 5.00
+--------------
+Local view for: Iriel
+     . . . . . . . . . 
+     . . . . . . . . . 
+  35 Bu. . . . . . . . 
+     . . . . . . . . . 
+     . . . . Ir. . . . 
+  29 . . . . . Pa. . . 
+     . . . . . . . . . 
+     . . . Fu. . . . . 
+  23 . . . . . . . . . 
+    19    25    31
+
+Time 15: Enter command: Iriel: I'm there!
+Merry: step...
+Farm Rivendale now has 82.00
+Farm Sunnybrook now has 12.00
+
+Time 16: Enter command: Current Health:
+--------------
+Bug: 3.00
+Claude: 5.00
+Fug: 3.00
+Iriel: 3.00
+Merry: 5.00
+Pippin: 5.00
+--------------
+Local view for: Iriel
+     . . . . . . . . . 
+     . . . . . . . . . 
+  33 . . . . . . . . . 
+     . . . . . . . . . 
+     . . . . * . . . . 
+  27 . . . . . . . . . 
+     . . Fu. . . . . . 
+     . . . . . . . . . 
+  21 . . . . . . . . . 
+    21    27    33
+
+Time 16: Enter command: Merry: step...
+Farm Rivendale now has 84.00
+Farm Sunnybrook now has 14.00
+
+Time 17: Enter command: Done

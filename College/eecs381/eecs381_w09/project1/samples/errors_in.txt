@@ -1,0 +1,28 @@
+xyz
+ai Tom Jones 123
+ai Bill Jones 000
+pi Bob
+ar 1001
+ar 1001
+ar x1001
+ar -1001
+am 1001 10 Silly_Stuff
+am 1001 10 Important_Stuff
+am 1001 x10 Important_Stuff
+am 1001 6 Important_Stuff
+ap 1001 10 Bob
+dp 1001 10 Bob
+ap 1001 10 Jones
+ap 1001 10 Jones
+dp 1001 10 Jones
+dp 1001 10 Jones
+ap 1001 10 Jones
+pm 1001 3
+pm 1002 10
+pr 23
+ps
+dg
+di Jones
+ld nonexistent_file.txt
+ld invalid_file.txt
+qq

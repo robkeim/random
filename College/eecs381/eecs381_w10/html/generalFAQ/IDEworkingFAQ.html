@@ -1,0 +1,31 @@
+<!--This file created by ClarisWorks HTML Filter 2.0-->
+<HTML>
+<HEAD>
+<META NAME=GENERATOR CONTENT="ClarisWorks HTML Filter 2.0">
+<TITLE>IDEworkingFAQ</TITLE>
+</HEAD>
+<BODY  >
+
+<P ALIGN=CENTER><B>FAQs about working with your IDE.<BR>
+</P>
+
+<P><BR>
+</B>These apply to more than one IDE. Be sure to check the main course web pages under your specific IDE.<BR>
+<BR>
+<B>My program runs but the output window disappears instantly when the program terminates.  How can I make it wait for me?<BR>
+</B><BR>
+This is a stupid &quot;feature&quot; of some of the Wintel IDEs.  Fortunately, it is easy to fix.   Simply have your program ask for some input before the final return from your main function. For example:<BR>
+<BR>
+cout &lt;&lt; &quot;Enter any character to terminate.&quot; &lt;&lt; endl; <BR>
+<BR>
+char junk; <BR>
+<BR>
+cin &gt;&gt; junk;<BR>
+<BR>
+return 0;  // return from main function<BR>
+<BR>
+<B><BR>
+</B></P>
+</BODY>
+</HTML>
+

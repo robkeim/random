@@ -1,0 +1,202 @@
+
+Enter command: Memory allocations:
+Records: 0
+Collections: 0
+Containers: 3
+Container items in use: 0
+Container items allocated: 9
+C-strings: 0 bytes total
+
+Enter command: Library is empty
+
+Enter command: Catalog is empty
+
+Enter command: Record 1 added
+
+Enter command: Memory allocations:
+Records: 1
+Collections: 0
+Containers: 3
+Container items in use: 2
+Container items allocated: 9
+C-strings: 11 bytes total
+
+Enter command: Record 2 added
+
+Enter command: Memory allocations:
+Records: 2
+Collections: 0
+Containers: 3
+Container items in use: 4
+Container items allocated: 9
+C-strings: 24 bytes total
+
+Enter command: Record 3 added
+
+Enter command: Memory allocations:
+Records: 3
+Collections: 0
+Containers: 3
+Container items in use: 6
+Container items allocated: 9
+C-strings: 42 bytes total
+
+Enter command: Record 4 added
+
+Enter command: Memory allocations:
+Records: 4
+Collections: 0
+Containers: 3
+Container items in use: 8
+Container items allocated: 19
+C-strings: 69 bytes total
+
+Enter command: Record 5 added
+
+Enter command: Memory allocations:
+Records: 5
+Collections: 0
+Containers: 3
+Container items in use: 10
+Container items allocated: 19
+C-strings: 89 bytes total
+
+Enter command: Library contains 5 records:
+3: DVD u Mars Attacks!
+4: DVD u Much Ado about Nothing
+2: VHS u Showboat
+1: DVD u Tobruk
+5: VHS u Zorba the Greek
+
+Enter command: 5: VHS u Zorba the Greek
+
+Enter command: Rating for record 1 changed to 1
+
+Enter command: Rating for record 2 changed to 4
+
+Enter command: Rating for record 4 changed to 5
+
+Enter command: 1: DVD 1 Tobruk
+
+Enter command: Record 3 Mars Attacks! deleted
+
+Enter command: Memory allocations:
+Records: 4
+Collections: 0
+Containers: 3
+Container items in use: 8
+Container items allocated: 19
+C-strings: 71 bytes total
+
+Enter command: Library contains 4 records:
+4: DVD 5 Much Ado about Nothing
+2: VHS 4 Showboat
+1: DVD 1 Tobruk
+5: VHS u Zorba the Greek
+
+Enter command: Catalog is empty
+
+Enter command: Collection favorites added
+
+Enter command: Member 5 Zorba the Greek added
+
+Enter command: Member 2 Showboat added
+
+Enter command: Collection literary added
+
+Enter command: Collection favorites contains:
+2: VHS 4 Showboat
+5: VHS u Zorba the Greek
+
+Enter command: Catalog contains 2 collections:
+Collection favorites contains:
+2: VHS 4 Showboat
+5: VHS u Zorba the Greek
+Collection literary contains: None
+
+Enter command: Member 4 Much Ado about Nothing added
+
+Enter command: Member 5 Zorba the Greek added
+
+Enter command: Catalog contains 2 collections:
+Collection favorites contains:
+2: VHS 4 Showboat
+5: VHS u Zorba the Greek
+Collection literary contains:
+4: DVD 5 Much Ado about Nothing
+5: VHS u Zorba the Greek
+
+Enter command: Record 6 added
+
+Enter command: Data saved
+
+Enter command: All collections deleted
+
+Enter command: All records deleted
+
+Enter command: Memory allocations:
+Records: 0
+Collections: 0
+Containers: 3
+Container items in use: 0
+Container items allocated: 9
+C-strings: 0 bytes total
+
+Enter command: Data loaded
+
+Enter command: Memory allocations:
+Records: 5
+Collections: 2
+Containers: 5
+Container items in use: 16
+Container items allocated: 25
+C-strings: 106 bytes total
+
+Enter command: Library contains 5 records:
+7: DVD u Bleak House
+8: DVD 5 Much Ado about Nothing
+9: VHS 4 Showboat
+10: DVD 1 Tobruk
+11: VHS u Zorba the Greek
+
+Enter command: Catalog contains 2 collections:
+Collection favorites contains:
+9: VHS 4 Showboat
+11: VHS u Zorba the Greek
+Collection literary contains:
+8: DVD 5 Much Ado about Nothing
+11: VHS u Zorba the Greek
+
+Enter command: Collection literary deleted
+
+Enter command: Catalog contains 1 collections:
+Collection favorites contains:
+9: VHS 4 Showboat
+11: VHS u Zorba the Greek
+
+Enter command: Member 9 Showboat deleted
+
+Enter command: Catalog contains 1 collections:
+Collection favorites contains:
+11: VHS u Zorba the Greek
+
+Enter command: Memory allocations:
+Records: 5
+Collections: 1
+Containers: 4
+Container items in use: 12
+Container items allocated: 22
+C-strings: 97 bytes total
+
+Enter command: All data deleted
+
+Enter command: Memory allocations:
+Records: 0
+Collections: 0
+Containers: 3
+Container items in use: 0
+Container items allocated: 9
+C-strings: 0 bytes total
+
+Enter command: All data deleted
+Done

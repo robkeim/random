@@ -1,0 +1,25 @@
+show
+pan -20 -10
+show
+zoom 1
+show
+zoom 5
+show
+pan -20 -20
+show
+size 15
+show
+size 1
+size 40
+zoom -20
+default
+show
+size x4
+zoom x15.3
+size    10   zoom
+15 pan -20
+10 show
+show
+size show show show
+size 10 default show
+quit

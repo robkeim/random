@@ -1,0 +1,530 @@
+
+Time 0: Enter command: 
+Time 0: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1000.00 tons
+
+Cruise_ship Princess at (0.00, 0.00), fuel: 500.00 tons, resistance: 0
+Stopped
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1000.00 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 100.00 tons
+
+Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 0.00 tons, no cargo destinations
+
+Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Time 0: Enter command: Princess will sail on course 45.00 deg, speed 10.00 nm/hr to (10.00, 10.00)
+Princess will visit Exxon
+Princess cruise will start and end at Exxon
+
+Time 0: Enter command: Princess canceling current cruise
+Ship cannot go that fast!
+
+Time 0: Enter command: Princess will sail on course 45.00 deg, speed 10.00 nm/hr to (10.00, 10.00)
+Princess will visit Exxon
+Princess cruise will start and end at Exxon
+
+Time 0: Enter command: Princess canceling current cruise
+Princess will sail on course 45.00 deg, speed 10.00 nm/hr to (10.00, 10.00)
+Princess will visit Exxon
+Princess cruise will start and end at Exxon
+
+Time 0: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 1200.00 tons
+Princess now at (7.07, 7.07)
+Island Shell now has 1200.00 tons
+Island Treasure_Island now has 105.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 1: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1200.00 tons
+
+Cruise_ship Princess at (7.07, 7.07), fuel: 480.00 tons, resistance: 0
+Moving to (10.00, 10.00) on course 45.00 deg, speed 10.00 nm/hr
+On cruise to Exxon
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1200.00 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 105.00 tons
+
+Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 0.00 tons, no cargo destinations
+
+Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Time 1: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 1400.00 tons
+Princess now at (10.00, 10.00)
+Princess docked at Exxon
+Island Shell now has 1400.00 tons
+Island Treasure_Island now has 110.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 2: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1400.00 tons
+
+Cruise_ship Princess at (10.00, 10.00), fuel: 471.72 tons, resistance: 0
+Docked at Exxon
+Waiting during cruise at Exxon
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1400.00 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 110.00 tons
+
+Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 0.00 tons, no cargo destinations
+
+Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Time 2: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 1600.00 tons
+Princess docked at Exxon
+Island Exxon supplied 28.28 tons of fuel
+Princess now has 500.00 tons of fuel
+Island Shell now has 1600.00 tons
+Island Treasure_Island now has 115.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 3: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 1771.72 tons
+Princess docked at Exxon
+Island Shell now has 1800.00 tons
+Island Treasure_Island now has 120.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 4: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1771.72 tons
+
+Cruise_ship Princess at (10.00, 10.00), fuel: 500.00 tons, resistance: 0
+Docked at Exxon
+Waiting during cruise at Exxon
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1800.00 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 120.00 tons
+
+Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 0.00 tons, no cargo destinations
+
+Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Time 4: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 1971.72 tons
+Princess docked at Exxon
+Princess will sail on course 45.00 deg, speed 10.00 nm/hr to (20.00, 20.00)
+Princess will visit Bermuda
+Island Shell now has 2000.00 tons
+Island Treasure_Island now has 125.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 5: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1971.72 tons
+
+Cruise_ship Princess at (10.00, 10.00), fuel: 500.00 tons, resistance: 0
+Moving to (20.00, 20.00) on course 45.00 deg, speed 10.00 nm/hr
+On cruise to Bermuda
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 2000.00 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 125.00 tons
+
+Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 0.00 tons, no cargo destinations
+
+Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Time 5: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 2171.72 tons
+Princess now at (17.07, 17.07)
+Island Shell now has 2200.00 tons
+Island Treasure_Island now has 130.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 6: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 2371.72 tons
+Princess now at (20.00, 20.00)
+Princess docked at Bermuda
+Island Shell now has 2400.00 tons
+Island Treasure_Island now has 135.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 7: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 2571.72 tons
+Princess docked at Bermuda
+Island Bermuda supplied 0.00 tons of fuel
+Princess now has 471.72 tons of fuel
+Island Shell now has 2600.00 tons
+Island Treasure_Island now has 140.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 8: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 2771.72 tons
+Princess docked at Bermuda
+Island Shell now has 2800.00 tons
+Island Treasure_Island now has 145.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 9: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 2971.72 tons
+Princess docked at Bermuda
+Princess will sail on course 296.57 deg, speed 10.00 nm/hr to (0.00, 30.00)
+Princess will visit Shell
+Island Shell now has 3000.00 tons
+Island Treasure_Island now has 150.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 10: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 3171.72 tons
+Princess now at (11.06, 24.47)
+Island Shell now has 3200.00 tons
+Island Treasure_Island now has 155.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 11: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 3371.72 tons
+Princess now at (2.11, 28.94)
+Island Shell now has 3400.00 tons
+Island Treasure_Island now has 160.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 12: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 3571.72 tons
+Princess now at (0.00, 30.00)
+Princess docked at Shell
+Island Shell now has 3600.00 tons
+Island Treasure_Island now has 165.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 13: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 3771.72 tons
+Princess docked at Shell
+Island Shell supplied 73.01 tons of fuel
+Princess now has 500.00 tons of fuel
+Island Shell now has 3726.99 tons
+Island Treasure_Island now has 170.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 14: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 3971.72 tons
+Princess docked at Shell
+Island Shell now has 3926.99 tons
+Island Treasure_Island now has 175.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 15: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 4171.72 tons
+Princess docked at Shell
+Princess will sail on course 116.57 deg, speed 10.00 nm/hr to (50.00, 5.00)
+Princess will visit Treasure_Island
+Island Shell now has 4126.99 tons
+Island Treasure_Island now has 180.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 16: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 4371.72 tons
+Princess now at (8.94, 25.53)
+Island Shell now has 4326.99 tons
+Island Treasure_Island now has 185.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 17: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 4571.72 tons
+Princess now at (17.89, 21.06)
+Island Shell now has 4526.99 tons
+Island Treasure_Island now has 190.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 18: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 4771.72 tons
+Princess now at (26.83, 16.58)
+Island Shell now has 4726.99 tons
+Island Treasure_Island now has 195.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 19: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 4971.72 tons
+Princess now at (35.78, 12.11)
+Island Shell now has 4926.99 tons
+Island Treasure_Island now has 200.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 20: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 4971.72 tons
+
+Cruise_ship Princess at (35.78, 12.11), fuel: 420.00 tons, resistance: 0
+Moving to (50.00, 5.00) on course 116.57 deg, speed 10.00 nm/hr
+On cruise to Treasure_Island
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 4926.99 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 200.00 tons
+
+Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 0.00 tons, no cargo destinations
+
+Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Time 20: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 5171.72 tons
+Princess now at (44.72, 7.64)
+Island Shell now has 5126.99 tons
+Island Treasure_Island now has 205.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 21: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 5371.72 tons
+Princess now at (50.00, 5.00)
+Princess docked at Treasure_Island
+Island Shell now has 5326.99 tons
+Island Treasure_Island now has 210.00 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 22: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 5571.72 tons
+Princess docked at Treasure_Island
+Island Treasure_Island supplied 111.80 tons of fuel
+Princess now has 500.00 tons of fuel
+Island Shell now has 5526.99 tons
+Island Treasure_Island now has 103.20 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 23: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 5771.72 tons
+Princess docked at Treasure_Island
+Island Shell now has 5726.99 tons
+Island Treasure_Island now has 108.20 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 24: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 5771.72 tons
+
+Cruise_ship Princess at (50.00, 5.00), fuel: 500.00 tons, resistance: 0
+Docked at Treasure_Island
+Waiting during cruise at Treasure_Island
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 5726.99 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 108.20 tons
+
+Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 0.00 tons, no cargo destinations
+
+Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Time 24: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 5971.72 tons
+Princess docked at Treasure_Island
+Princess will sail on course 277.13 deg, speed 10.00 nm/hr to (10.00, 10.00)
+Princess will visit Exxon
+Island Shell now has 5926.99 tons
+Island Treasure_Island now has 113.20 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 25: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 6171.72 tons
+Princess now at (40.08, 6.24)
+Island Shell now has 6126.99 tons
+Island Treasure_Island now has 118.20 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 26: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 6371.72 tons
+Princess now at (30.15, 7.48)
+Island Shell now has 6326.99 tons
+Island Treasure_Island now has 123.20 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 27: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 6571.72 tons
+Princess now at (20.23, 8.72)
+Island Shell now has 6526.99 tons
+Island Treasure_Island now has 128.20 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 28: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 6771.72 tons
+Princess now at (10.31, 9.96)
+Island Shell now has 6726.99 tons
+Island Treasure_Island now has 133.20 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 29: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 6771.72 tons
+
+Cruise_ship Princess at (10.31, 9.96), fuel: 420.00 tons, resistance: 0
+Moving to (10.00, 10.00) on course 277.13 deg, speed 10.00 nm/hr
+On cruise to Exxon
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 6726.99 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 133.20 tons
+
+Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 0.00 tons, no cargo destinations
+
+Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Time 29: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 6971.72 tons
+Princess now at (10.00, 10.00)
+Princess docked at Exxon
+Princess cruise is over at Exxon
+Island Shell now has 6926.99 tons
+Island Treasure_Island now has 138.20 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 30: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 6971.72 tons
+
+Cruise_ship Princess at (10.00, 10.00), fuel: 419.38 tons, resistance: 0
+Docked at Exxon
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 6926.99 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 138.20 tons
+
+Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 0.00 tons, no cargo destinations
+
+Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Time 30: Enter command: Ajax stopped at (15.00, 15.00)
+Island Exxon now has 7171.72 tons
+Princess docked at Exxon
+Island Shell now has 7126.99 tons
+Island Treasure_Island now has 143.20 tons
+Valdez stopped at (30.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 31: Enter command: Done

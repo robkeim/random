@@ -1,0 +1,43 @@
+Review Questions
+March 12, 2010
+
+You will not be tested on the "Topics in Web Search Research" material.
+
+
+1) Explain briefly each of the following auction types.  How do they differ?
+
+Ascending bid auction
+
+
+Descending bid auction
+
+
+Sealed-bid first-price auction
+
+
+Sealed-bid second-price auction
+
+
+
+2) Explain why a bidder in a second-price auction should always bid the same amount as his valuation of the auction item.
+
+
+3) Explain why this is not true of a bidder in a first-price auction.
+
+
+4) "Sniping" is the Ebay practice of increasing one's bid dramatically right before the end of the auction.
+Recall that Ebay auctions are sealed-bid second-price auctions (aka, Vickrey auctions).
+
+Why is sniping nonsensical, from the perspective of standard auction/game-theoretic analysis of Vickrey auctions?
+
+Give at least one reason why sniping is nonetheless observed in practice.  For each reason, what part of the analysis of
+a Vickrey auction is flawed?
+
+
+
+5) What are two practices that made Google ad auctions different from the original Overture ad auctions?
+
+
+
+
+

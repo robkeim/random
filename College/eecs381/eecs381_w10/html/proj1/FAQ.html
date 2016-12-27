@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="949.54">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 14.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    span.s1 {font: 12.0px Courier}
+  </style>
+</head>
+<body>
+<p class="p1"><b>Project 1 Frequently Asked Questions</b></p>
+<p class="p1"><b>Updated 1/28/10</b></p>
+<p class="p1"><b>The most recent items appear first.</b></p>
+<p class="p2"><br></p>
+<p class="p3"><b>My code is passing the output correctness tests but is failing some of the mix-and-match style component tests.<span class="Apple-converted-space">  </span>How can I figure this out?</b></p>
+<p class="p3">First look at the commented sample autograder feedback on the project home page and the explanation of the autograder error messages linked to from the course home page.</p>
+<p class="p2"><br></p>
+<p class="p3">If your program works as a whole, but then fails in the component tests, it usually means that one of your components deviates from the spec and one of your other components also deviates from the spec in a way that compensates for the first deviation. When one of my components is substituted for the other component, the first deviation is revealed.<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p3">Most often these problems involve a component that is not actually following the specified interface - so the relationship between the components is incorrect.</p>
+<p class="p2"><br></p>
+<p class="p3">Finding this sort of problem by banging on your whole program with run-time tests won't help, or even following the code with a debugger. The compensating deviations will make everything look right.<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p3">A good way to find this sort of problem is <b><i>code inspection</i></b> -- study your code compared to the specifications. Look at the spec - e.g. for the ordered-container interface - and then inspect your code - is it <i>trying</i> to do <i>exactly</i> what the specifications say it should do?<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p3">An example of code inspection: the specs call for reading and validating each command parameter before reading the next one. Does your code actually do that? For every command? You can find a violation by eyeballing your code carefully a lot faster than run-time testing.</p>
+<p class="p2"><br></p>
+<p class="p3">Of course, the code could be trying to do the right thing and doing it wrong, but very often, the code is not trying to do the right thing after all, so of course it doesn't work like it is supposed to.<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p3">To find these things, you have to look at your code with a skeptical eye - something is wrong somewhere, you just have to find it; assuming your code is correct just makes it harder to see. Assuming that it is wrong somewhere is far more helpful.</p>
+<p class="p2"><br></p>
+<p class="p3"><b>Some of the mix-and-match tests involve segfaults. How can I debug that when they don't show up in my own tests?<span class="Apple-converted-space"> </span></b></p>
+<p class="p3">segfaults generally mean that your code is following (dereferencing) bad pointers; lack of them when only your code is involved generally means you have a compensating-deviations situation.</p>
+<p class="p2"><br></p>
+<p class="p3">Since we are throwing void * values around, the compiler can't help find discrepancies like: I'm giving your function a void pointer to X per spec, but your function code deviates from spec and thinks it has gotten a void pointer to Y. The function ends up following a bad pointer - and boom!</p>
+<p class="p2"><br></p>
+<p class="p3">Try the code inspection route, but focus attention on your code immediately on each side of the component interface functions - do they agree not just with each other, but with the spec?</p>
+<p class="p2"><b></b><br></p>
+<p class="p3"><b>Just how do I read a title? The correction to the sample has confused me.</b></p>
+<p class="p3">The specifications in the project document are correct. It is supposed to be simple, but the instructor's first solution incorrectly merged the following two cases:</p>
+<p class="p2"><br></p>
+<p class="p3">1. If you are reading from the console (stdin), and reading the parameters for add-record, you should read the medium string with scanf; this will leave the stream pointing to the first whitespace after the medium. You should then simply read with fgets at this point. This will read all the characters starting with that first whitespace up to and including the newline character (or to the maximum number). Note that the space(s) separating the medium string from the first word of the title will thus appear at the beginning of the string that fgets gives you, counting against the total number of characters that fgets reads and stores. You then compact it. A similar approach should be followed for the other commands that take a title.</p>
+<p class="p2"><br></p>
+<p class="p3">2. If you are reading a title from a file, the following situation will arise: You first read some datum from the file that is the last value on a line (like the number of records in a collection), leaving the stream pointing to the whitespace after the datum - probably just a newline. The title starts on the next line. If you simply read with fgets after reading the datum, it will start with the whitespace after the datum, and read it - probably getting only the newline and immediately stopping - the title won't get read. So fix this by reading the datum, then read and consume whitespace (including the newline), then do the fgets, which will start at the beginning of the next line - where the title starts. The title should have been saved in its compacted form, with no leading whitespace. Hint: <b>ungetc</b> is helpful here.</p>
+<p class="p2"><br></p>
+<p class="p3"><b>I'm confused about the relationship between "item pointers" and "data pointers."</b></p>
+<p class="p3">A careful re-reading of the project document might help, along with consulting your lecture notes when I overviewed how the containers work. Here is brief paraphrase that might help. I suggest you draw a picture of the various objects, the pointer variables involved, and with connecting arrows.</p>
+<p class="p2"><br></p>
+<p class="p3">First, both are void * pointers so that they can be used to point to any type of container item or data object. The client code "knows" what the data objects are, and casts pointers to data objects (like Record *) to and from the void * type when interacting with the container.</p>
+<p class="p2"><br></p>
+<p class="p3">The client code gives the container a data pointer when calling the OC_insert function. The container stores the data pointer in one of its internal "items". The item is list node in the list implementation, and an array cell in the array implementation.</p>
+<p class="p2"><br></p>
+<p class="p3">An item pointer is a pointer to a list node in the list implementation, and a pointer to an individual array cell in the array implementation. The OC function code, when given an item pointer, will cast it to a pointer to a node in the list implementation, or a pointer to a array cell, in the array implementation. When returning an item pointer, an OC function will cast a pointer to node to void * in the list implementation, and a pointer to array cell to void * in the array implementation, and return the void * result as the item pointer.</p>
+<p class="p2"><br></p>
+<p class="p3">Now suppose the client code gets an item pointer from OC_find_item. It can then provide this item pointer to OC_delete_item, to tell the container which item to remove from the container. In the list implementation, the item pointer points to the node to cut out of the list. In the array implementation, it points to the array cell that we want overwritten by moving the cells that follow it up by one.</p>
+<p class="p2"><br></p>
+<p class="p3">Or the client code can give the item pointer to OC_get_data_ptr, which will look into the item and return the data pointer stored in the item. In the list implementation, OC_get_data_ptr simply returns the data pointer stored in the node pointed to by the item pointer. In the array implementation, OC_get_data_ptr simply returns the data pointer stored in the array cell pointed to by the item pointer. The client code can then cast the data pointer to the right type (say Record *) to then access the data object.</p>
+<p class="p2"><br></p>
+<p class="p3">If you might remember using the STL, the item pointer corresponds roughly to an iterator - it points to an item in the container, except you can't change it yourself (e.g. no ++), you can only get it from the find function. The data pointer in the item corresponds to what you get when you dereference the iterator, except you have do this with the OC_get_data_ptr function.</p>
+<p class="p2"><br></p>
+<p class="p3"><b>I want to use binary search in my array implementation - but I'm not sure how to use it for OC_insert().</b></p>
+<p class="p3">The C Standard Library includes a binary search function, <span class="s1">bsearch</span>, but it will not tell you where to insert an item if it is not present. Fortunately, there is a simple modification to the binary search algorithm that will give you both whether or not the item is present, and if it is not, where it should be put. This is a good justification for writing your own, more general-purpose, binary search function. For example, refer to the example binary search function in K&amp;R, p. 58 - if you drop out of the loop, the item was not found, but the place where it should be inserted would be high + 1.</p>
+<p class="p2"><br></p>
+<p class="p3"><b>What compiler, version, and options are being used by the autograder?</b></p>
+<p class="p3">gcc 4.1.2, with options the same as in the supplied makefile.</p>
+<p class="p3">Before submitting your code, you should upload to a CAEN workstation and try compiling your code with gcc 4.1.2 or later with the same compiler options. Check for a match on at least the samples to help detect any discrepancies. See the submit-example on the project main page.</p>
+<p class="p2"><br></p>
+</body>
+</html>

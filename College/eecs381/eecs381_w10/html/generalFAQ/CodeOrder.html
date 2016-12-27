@@ -1,0 +1,92 @@
+<!--This file created by ClarisWorks HTML Filter 2.0-->
+<HTML>
+<HEAD>
+<META NAME=GENERATOR CONTENT="ClarisWorks HTML Filter 2.0">
+<TITLE>CodeOrder</TITLE>
+</HEAD>
+<BODY  >
+
+<P ALIGN=CENTER><B>Arranging Declarations and Definitions<BR>
+</B></P>
+
+<P><BR>
+<BR>
+The order in which you declare or define classes and functions has to obey the fundamental rule:<BR>
+<BR>
+<I>The compiler has to have seen a declaration or a definition of a variable, class, or function before you try to use it. </I><BR>
+<BR>
+That is, if you use a variable in an expression, the compiler has to have seen a declaration or definition of it, such as int i;  If you call a function, the compiler must have seen at least a declaration (function prototype) of the function already, if not the entire function code (the definition).  If you declare a variable to be of some class type, like Cart_vector, the compiler must have seen the class declaration (e.g class Cart_vector {blah blah}; ) already.<BR>
+<BR>
+If you break this rule, the compiler will give you either an &quot;unknown identifier&quot; sort of error, or depending on your IDE, might think you are trying to use something that it saw in a default header file.<BR>
+<BR>
+Declaring a function with a prototype means that you can then put the code for that function (the &quot;definition&quot;) anywhere you want.  The prototype tells the compiler everything it needs to know in order to compile your calls to that function.<BR>
+<BR>
+Once you keep the compiler happy, the second consideration has to do with readability to humans such as yourself or other programmers.  This is a matter of taste and style.<BR>
+<BR>
+Real programmers put declarations of classes and functions in separate header files, and then the function code in separate source files, a header and source file for each class or group of related classes.  This breaks the code up into easy to re-use independent pieces that are also small and easier to read.<BR>
+<BR>
+But if you are stuck with putting everything into one source file, follow these rules.  <BR>
+<BR>
+The best place to put member functions that you define outside the class, and non-member functions that are closely related to a class, is just after the class declaration, so that the reader can tell that these go together.  Don't make the reader rummage through the code in search of all the pieces of a class.<BR>
+<BR>
+Put the classes in a &quot;building-block&quot; order for the compiler, and a meaningful order for the humans.  For example, suppose the Gold_Mine class uses the Cart_point class, and the Miner uses the Gold_Mine and Town_Hall classes.  A point is conceptually simpler for humans than a vector, so Cart_Point should appear before Cart_Vector.  <BR>
+<BR>
+Finally, the functions that are called by main make up a traditional function hierarchy, and so should appear in our standard &quot;top-down&quot; reading order for human benefit.<BR>
+<BR>
+-----------<BR>
+<BR>
+struct Cart_point<BR>
+{<BR>
+blah blah<BR>
+};<BR>
+<BR>
+double Cart_distance(Cart_point p1, Cart_point p2)<BR>
+{<BR>
+blah blah<BR>
+}<BR>
+<BR>
+struct Cart_vector<BR>
+{<BR>
+};<BR>
+<BR>
+functions closely related to Cart_vector class<BR>
+<BR>
+class Gold_Mine<BR>
+{<BR>
+};<BR>
+<BR>
+class Town_Hall<BR>
+{<BR>
+};<BR>
+<BR>
+class Miner<BR>
+{<BR>
+};<BR>
+<BR>
+Miner member functions defined outside the class<BR>
+bool Miner::update()<BR>
+{<BR>
+}<BR>
+<BR>
+prototypes for functions called by main<BR>
+<BR>
+int main ()<BR>
+{<BR>
+<BR>
+<BR>
+<BR>
+}<BR>
+<BR>
+functions called by main<BR>
+-----------<BR>
+<BR>
+Most people would consider it silly to put prototypes in for functions like Cart_distance given that the definition is going to appear right away.  Notice that you can't declare Cart_distance until the compiler has seen Cart_point!  So the only place the prototype could be placed is just before the definition anyway!  <BR>
+<BR>
+If your compiler warns about the missing prototype,<BR>
+either ignore or turn off the warning.<BR>
+<BR>
+<BR>
+</P>
+</BODY>
+</HTML>
+

@@ -1,0 +1,60 @@
+Enter command:b
+Enter input document file name:length_problems_crd.txt
+84 words processed in the input document
+48 words were added to the dictionary
+Enter command:c
+Enter input document file name:length_problems_inp.txt
+Enter output document file name:length_problems_out.txt
+
+This is a short line, just to get storted.
+
+"storted" is not in the dictionary: Enter command:r
+Enter replacement:started
+Do you want to replace this in rest of document? Enter y or n:y
+"storted" will be replaced by "started" in the rest of the document
+
+Is "syzygy" really a word?
+
+"syzygy" is not in the dictionary: Enter command:r
+Enter replacement:pseudosyzygy
+Do you want to replace this in rest of document? Enter y or n:y
+"syzygy" will be replaced by "pseudosyzygy" in the rest of the document
+
+sm, but on the other hand, the line could contain even more long words, so that it was extremely long to an utterly amazing ext
+"sm" is not in the dictionary: Enter command:s
+Do you want to skip this in rest of document? Enter y or n:n
+
+sm, but on the other hand, the line could contain even more long words, so that it was extremely long to an utterly amazing ext
+"ext" is not in the dictionary: Enter command:s
+Do you want to skip this in rest of document? Enter y or n:n
+
+ent.
+
+"ent" is not in the dictionary: Enter command:s
+Do you want to skip this in rest of document? Enter y or n:n
+Warning: "syzygy" was not replaced because the maximum line length would be exceeded.
+
+This is another long line, with short word in the middle of it, brillig, that if replaced, might result in a bad line length.
+
+"another" is not in the dictionary: Enter command:a
+
+This is another long line, with short word in the middle of it, brillig, that if replaced, might result in a bad line length.
+
+"brillig" is not in the dictionary: Enter command:r
+Enter replacement:supercalifragilisticexpialwhatever
+Replacement word will exceed maximum line length!
+Enter command:r
+Enter replacement:slithy
+Do you want to replace this in rest of document? Enter y or n:n
+110 words processed in the input document
+1 words were added to the dictionary
+2 actions were specified
+Enter command:s
+Enter output dictionary file name:length_problems_dct.txt
+49 words saved
+Enter command:a
+Action list contains 2 actions:
+Replace storted with started
+Replace syzygy with pseudosyzygy
+Enter command:q
+Done

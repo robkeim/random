@@ -1,0 +1,151 @@
+Script started on Thu 15 Apr 2010 12:11:07 PM EDT
+> ./p6exe 
+
+Time 0: Enter command: create Rescue Refueler -10 -10
+
+Time 0: Enter command: Valdez destination Shell 10
+Valdez will sail on course 270.00 deg, speed 10.00 nm/hr to (0.00, 30.00)
+
+Time 0: Enter command: go
+Ajax stopped at (15.00, 15.00)
+Island Exxon now has 1200.00 tons
+Rescue stopped at (-10.00, -10.00)
+Island Shell now has 1200.00 tons
+Island Treasure_Island now has 105.00 tons
+Valdez now at (20.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 1: Enter command: go
+Ajax stopped at (15.00, 15.00)
+Island Exxon now has 1400.00 tons
+Rescue stopped at (-10.00, -10.00)
+Island Shell now has 1400.00 tons
+Island Treasure_Island now has 110.00 tons
+Valdez now at (10.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 2: Enter command: go
+Ajax stopped at (15.00, 15.00)
+Island Exxon now has 1600.00 tons
+Rescue stopped at (-10.00, -10.00)
+Island Shell now has 1600.00 tons
+Island Treasure_Island now has 115.00 tons
+Valdez now at (0.00, 30.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 3: Enter command: Valdez destination Exxon 10
+Valdez will sail on course 153.43 deg, speed 10.00 nm/hr to (10.00, 10.00)
+
+Time 3: Enter command: REs  escue fuel Valdez
+Can only refuel ships that are dead in the water!
+
+Time 3: Enter command: go
+Ajax stopped at (15.00, 15.00)
+Island Exxon now has 1800.00 tons
+Rescue stopped at (-10.00, -10.00)
+Island Shell now has 1800.00 tons
+Island Treasure_Island now has 120.00 tons
+Valdez now at (4.47, 21.06)
+Xerxes stopped at (25.00, 25.00)
+
+Time 4: Enter command: go
+Ajax stopped at (15.00, 15.00)
+Island Exxon now has 2000.00 tons
+Rescue stopped at (-10.00, -10.00)
+Island Shell now has 2000.00 tons
+Island Treasure_Island now has 125.00 tons
+Valdez now at (8.94, 12.11)
+Valdez now has no cargo destinations
+Xerxes stopped at (25.00, 25.00)
+
+Time 5: Enter command: go
+Ajax stopped at (15.00, 15.00)
+Island Exxon now has 2200.00 tons
+Rescue stopped at (-10.00, -10.00)
+Island Shell now has 2200.00 tons
+Island Treasure_Island now has 130.00 tons
+Valdez dead in the water at (8.94, 12.11)
+Valdez now has no cargo destinations
+Xerxes stopped at (25.00, 25.00)
+
+Time 6: Enter command: Rescue fuel Valdez
+Rescue will sail on course 40.59 deg, speed 10.00 nm/hr to (8.94, 12.11)
+Rescue is going to refuel Valdez
+
+Time 6: Enter command: go
+Ajax stopped at (15.00, 15.00)
+Island Exxon now has 2400.00 tons
+Rescue now at (-3.49, -2.41)
+Rescue traveling to refuel Valdez
+Island Shell now has 2400.00 tons
+Island Treasure_Island now has 135.00 tons
+Valdez dead in the water at (8.94, 12.11)
+Valdez now has no cargo destinations
+Xerxes stopped at (25.00, 25.00)
+
+Time 7: Enter command: go
+Ajax stopped at (15.00, 15.00)
+Island Exxon now has 2600.00 tons
+Rescue now at (3.01, 5.19)
+Rescue traveling to refuel Valdez
+Island Shell now has 2600.00 tons
+Island Treasure_Island now has 140.00 tons
+Valdez dead in the water at (8.94, 12.11)
+Valdez now has no cargo destinations
+Xerxes stopped at (25.00, 25.00)
+
+Time 8: Enter command: go
+Ajax stopped at (15.00, 15.00)
+Island Exxon now has 2800.00 tons
+Rescue now at (8.94, 12.11)
+Rescue refueled Valdez with 100.00 tons of fuel
+Island Shell now has 2800.00 tons
+Island Treasure_Island now has 145.00 tons
+Valdez stopped at (8.94, 12.11)
+Xerxes stopped at (25.00, 25.00)
+
+Time 9: Enter command: status
+
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 2800.00 tons
+
+Refueler Rescue at (8.94, 12.11), fuel: 41.77 tons, resistance: 0
+Stopped
+Cargo: 900.00 tons
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 2800.00 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 145.00 tons
+
+Tanker Valdez at (8.94, 12.11), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 0.00 tons, no cargo destinations
+
+Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Time 9: Enter command: Valdez destination Exxon 10
+Valdez will sail on course 153.43 deg, speed 10.00 nm/hr to (10.00, 10.00)
+
+Time 9: Enter command: go
+Ajax stopped at (15.00, 15.00)
+Island Exxon now has 3000.00 tons
+Rescue stopped at (8.94, 12.11)
+Island Shell now has 3000.00 tons
+Island Treasure_Island now has 150.00 tons
+Valdez now at (10.00, 10.00)
+Xerxes stopped at (25.00, 25.00)
+
+Time 10: Enter command: quit
+Done
+> exit
+
+Script done on Thu 15 Apr 2010 12:12:35 PM EDT

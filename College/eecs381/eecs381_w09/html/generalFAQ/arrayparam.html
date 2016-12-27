@@ -1,0 +1,71 @@
+<!--This file created by ClarisWorks HTML Filter 2.0-->
+<HTML>
+<HEAD>
+<META NAME=GENERATOR CONTENT="ClarisWorks HTML Filter 2.0">
+<TITLE>Array Parameters</TITLE>
+</HEAD>
+<BODY  >
+
+<P><B>How do I pass an array to a function? How do I return it?<BR>
+</B><BR>
+The C/C++ compiler treats the name of an array as the address of where the array starts in memory. An array name is effectively a &quot;constant pointer&quot; - it can be used like a pointer, but you are not allowed to change it.<BR>
+<BR>
+If you call a function with an array name as an argument, then the corresponding parameter in the function gets the address of the array upon entry into the function.  Subscripting this parameter name is then subscripting into the caller's array. So the array is not copied, only its starting address is given to the function.<BR>
+<BR>
+You have to tell the compiler that the parameter is an array, but the size of the array doesn't matter (for 1-D arrays), since only the address of where the array starts is needed (C/C++ doesn't keep track of how long the<BR>
+array is - that's *your* problem).  There are complications when more dimensions are involved.<BR>
+<BR>
+Since the function is actually accessing the caller's array, it can put values into it that the caller then gets when the function returns.  There is no way in C/C++ to return an array-type variable from a function.  So to give array values back to a caller, you always modify the caller's array.<BR>
+<BR>
+<B>For example:<BR>
+<BR>
+</B>int main()<BR>
+{<BR>
+   int ary[10];  // caller declares a one-dimensional array of ints<BR>
+<BR>
+   ary[3] = 5; // put a value of 5 into the fourth cell<BR>
+<BR>
+   foo(ary);  // call foo with the array name, which is starting address of array<BR>
+<BR>
+   cout &lt;&lt; ary[3] &lt;&lt; endl;  // output value put there by foo, which is 8<BR>
+}<BR>
+<BR>
+// declare parameter of foo to be an array of ints - <BR>
+// size of the array does not have to be specified - ignored if it is<BR>
+<BR>
+void foo(int a[] )  <BR>
+{<BR>
+  a[3] = a[3] + 3;  // add 3 to the value in the 4th cell of caller's array<BR>
+<BR>
+  return;<BR>
+}<BR>
+<BR>
+<BR>
+<B>Some more explanation<BR>
+</B><BR>
+Since an array name is a constant pointer to where the array starts, you can also use a pointer-type parameter in the function and get the same result.<BR>
+<BR>
+So this definition of foo would also work:<BR>
+<BR>
+// foo takes an argument of type pointer to int<BR>
+void foo(int * a )  <BR>
+{<BR>
+  a[3] = a[3] + 3;  // add 3 to the value in the 4th cell of caller's array<BR>
+<BR>
+  return;<BR>
+}<BR>
+<BR>
+This approach is very heavily used with C strings, as you will see.  <BR>
+<BR>
+<B>C&#146;s dirty secret about arrays<BR>
+</B><BR>
+The C/C++ compiler actually translates the subscripting operator directly into pointer expressions. Have you see the following?<BR>
+<BR>
+   a[i] is the same thing as *(a + i)<BR>
+<BR>
+<BR>
+<BR>
+</P>
+</BODY>
+</HTML>
+

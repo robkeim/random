@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="949.54">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Courier}
+    span.s1 {font: 10.0px Monaco}
+  </style>
+</head>
+<body>
+<p class="p1"><b>Project 1 Corrections and Clarifications</b></p>
+<p class="p1"><b>Updated 1/27/10</b></p>
+<p class="p1"><b>Most recent items appear first</b></p>
+<p class="p1"><b>Page numbers refer to the pdf document</b></p>
+<p class="p2"><br></p>
+<p class="p1"><b>NOTICE:</b></p>
+<p class="p1"><b>This document is part of the project specifications.</b></p>
+<p class="p1"><b>Your solution must follow these corrections and clarifications.</b></p>
+<p class="p3"><br></p>
+<p class="p4"><b>Page 5, Item #1 under Save File Format and Load Input Rules. Micro typo.</b></p>
+<p class="p4"><i>Change:</i></p>
+<p class="p5">scanf</p>
+<p class="p4"><i>To:</i></p>
+<p class="p5">fscanf</p>
+<p class="p4">in the first and third bulleted paragraphs. This correction is to avoid any confusion - the idea was probably clear.</p>
+<p class="p3"><b></b><br></p>
+<p class="p4"><b>Samples. Defect: Overlong title was not read correctly in original samples.</b></p>
+<p class="p4">The sample files named "typeahead_out.txt" and "typeahead_console.txt" were incorrect due to a defect in the original instructor's solution which resulted in one more character being read than specified in an overlong title. The samples have been corrected as of 9:25 AM 1/26/10. Please download a fresh copy of these two files. The autograder tests have been correspondingly corrected, although at the time of this change, only a few people were possibly affected.</p>
+<p class="p3"><br></p>
+<p class="p4"><b>P. 2 #3, description of &lt;title&gt;, P. 4 fourth bullet about title. An empty title is possible.</b></p>
+<p class="p4">If the title is read as described, it is possible to create a read with an empty title. However, this possibility is not supposed to be tested for by the autograder.</p>
+<p class="p3"><br></p>
+<p class="p4"><b>P. 6, starter makefile. Container implementation file names discrepancy.</b></p>
+<p class="p4">The names given to the .c files for the array and list implementations in the project document disagree with those in the supplied makefile. The makefile names are correct.</p>
+<p class="p4"><i>Throughout the project document, change:</i></p>
+<p class="p4">Ordered_list.c, Ordered_array.c</p>
+<p class="p4"><i>To:</i></p>
+<p class="p4">Ordered_container_list.c, Ordered_container_array.c</p>
+<p class="p3"><br></p>
+<p class="p4"><b>Ordered_container.h, last paragraph in initial block comment about validity of pointer values. Client code may want the data_ptr to be NULL.</b></p>
+<p class="p4">Using assert() throughout the Ordered_container code is a good way to help you catch your programming errors if you accidentally give the OC functions a NULL pointer to a container or item. However, the client code might want to hand in a NULL pointer to a data object - it can do so as long as it also supplies an ordering function that knows what to do with a NULL data object pointer - e.g. always put it at the beginning of the container or something like that. So your Ordered_container code should not make an assertion that a data pointer supplied to Ordered_container must be non-NULL - that's the client's business.</p>
+<p class="p3"><br></p>
+<p class="p4"><b>Important</b>: In general, the autograder tests are not supposed to test for undefined behavior, because it is, well, <i>undefined</i> - what would the correct behavior be? This means that the autograder will not test for what happens if we give your OC functions a NULL pointer to a container. This correction was necessary to clarify that giving the OC functions a NULL data pointer is a valid possibility <i>as far as Ordered_container is concerned.</i></p>
+<p class="p3"><br></p>
+<p class="p4"><b>Ordered_container.h, comment for OC_find_item_arg. Supplied comparison function must define a ordering consistent with the container ordering.</b></p>
+<p class="p4">The purpose of this function is to allow you to do the same kind of search as OC_find_item(), but more conveniently. That is, you can supply just the key value of the sought-for item instead of creating a dummy "probe" data object containing the key value you are interested in. Thus the ordering implied by the supplied comparison function is assumed to be consistent with the ordering used for OC_insert() and OC_find_item(). This allows for example, binary search to be used for both find functions in the array implementation. The effects of violating this assumption are not defined.</p>
+<p class="p3"><br></p>
+<p class="p4"><b>Ordered_container.h, at end of 3rd paragraph in initial block comment. Duplicate items not allowed.</b></p>
+<p class="p4"><i>Add the following:</i></p>
+<p class="p4">Each data object pointed to by an item in the container is assumed to be unique in the container. That is, there are not supposed to be two items in the container whose data objects are equal according to the comparison function. The results of violating this assumption are undefined.</p>
+<p class="p4"><i>Explanation:</i></p>
+<p class="p4">Because the interface is so restricted, having duplicate data objects in the container would be extremely clumsy and difficult to work with, which is beside the point of the project. This restriction is not implemented in the container code itself, but rather by never adding an item to the container without first checking to be sure a matching item is not already in the container.</p>
+<p class="p3"><br></p>
+<p class="p4"><b>P. 7, under <i>Ordered_array</i>. Item pointer for array implementation cannot contain an index value.</b></p>
+<p class="p4"><i>Change</i>:</p>
+<p class="p4">The cells of the array are designated to the client code by casting the address or index of a cell to/from a void *.</p>
+<p class="p4"><i>To</i>:</p>
+<p class="p4">The cells of the array are designated to the client code by casting the address of a cell to/from a void *.</p>
+<p class="p4"><i>Explanation</i>:</p>
+<p class="p4">The index (subscript) of a cell can't be interpreted without the starting address of the array. The function <span class="s1">OC_get_data_ptr</span> takes only a single parameter, the item pointer, so there is no way for it to get the additional information needed to use a subscript value packed into the item pointer.</p>
+<p class="p3"><br></p>
+</body>
+</html>

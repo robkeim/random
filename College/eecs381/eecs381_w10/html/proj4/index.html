@@ -1,0 +1,108 @@
+<HTML>
+<HEAD> <TITLE>EECS 381: Project 4 Main Page</TITLE> </HEAD>
+
+<body !BGCOLOR="#FFFFFF" !text="#000000" !link="0000ff" !vlink="ff0000">
+
+
+<center>
+<H1>Project 4</H1>
+</center>
+
+<hr>
+
+<p>
+The project documents will be added to this page as they become available. If you get a page that says "not yet available," it should become available in the future. Ask about it only if we announced that it was supposed to be available.
+<p>
+<b>Note:</b>Files listed as "pdf" can be viewed or downloaded and printed
+at high-quality with Adobe's Acrobat Reader. 
+<p>
+Files listed as text are plain ASCII text files. The should display in your
+browser with correct formatting, but can also be downloaded from the course
+file server; downloading with an ftp utility set to ASCII text mode is recommended for code and sample 
+files to avoid line-ending problems.
+<hr>
+<p>
+
+
+<H2>Documents</H2>
+<ul>
+<li> <a href="project4/doc.pdf">Project Document (pdf)</a>
+<li> <a href="corrections.html">Project Corrections & Clarifications</a>
+<li> <a href="FAQ.html">Frequently Asked Questions (FAQ)</a>
+</ul>
+<H2> Component Specification Files</H2>
+Because of the large number, these files are not listed separately here, but can be found in the "starters" directory in the project4
+directory, following the link below or downloading directly from the file server. These files define the modules and their interfaces. The comments provide details on what each module and function does. 
+<p>
+<ul>
+<li> The source files named with "skeleton" provide code that your project must use, but you will add your own code to complete the file. 
+See the comments for instructions.
+<li> The header and source files not named with "skeleton" should be downloaded and used in your project as-is, without modification. 
+<li> <a href="project4/starters/strings.txt"> strings.txt (text)</a> <BR>
+This is a text file containing the character string constants that were used in 
+the instructor's solution to generate the output message text. You can avoid 
+typing errors by downloading this file and then copy-pasting these into your program.
+<li> <a href="project4/starters/"> The "starters" directory (multiple text files)</a> <BR>
+</ul>
+<p>
+<H2>Behavior Samples</H2>
+<p> 
+The following sample behavior files illustrate the program behavior and contain
+all of the different output message text strings produced by the program. Your program should match these samples <b>exactly</b> so that you can be sure it is producing all of the different kinds of messages correctly. However, these samples are <b>not</b> a complete test of your program. Your program will be tested for a large number of other possible inputs and input sequences. The console interaction files are a capture of the console display during the program run. The in.txt and out.txt files are for you to use with redirected I/O. When given the in.tx file redirected to cin, your program's cout redirected to a file should match the out.txt file exactly.
+<p> 
+The following sample illustrates the behavior of the program when "status" is used after almost every "go" command, with no "show" commands. Your program should reproduce the output file exactly.
+<ul>
+<li> <a href="project4/samples/status_console.txt"> Status Sample Behavior console interaction (text)</a> status_console.txt<BR>
+<li> <a href="project4/samples/status_in.txt"> Status Sample Behavior input file (text)</a> status_in.txt<BR>
+<li> <a href="project4/samples/status_out.txt"> Status Sample Behavior output file (text)</a> status_out.txt<BR>
+</ul>
+<p> 
+The following sample illustrates the behavior of the program when "show" is used after 
+many of the "go" commands, using the same sequence of ship commands as in the first sample. However, some type-ahead is also used.
+Your program should reproduce the output file exactly. 
+If your program reproduces "status" but not this sample, it indicates that your Ship positions and
+behavior is correct (for the sample), but your View output is not correct, or your code isn't doing type-ahead properly,
+<ul>
+<li> <a href="project4/samples/show_console.txt"> Show Sample Behavior console interaction (text)</a> show_console.txt<BR>
+<li> <a href="project4/samples/show_in.txt"> Show Sample Behavior input file (text)</a> show_in.txt<BR>
+<li> <a href="project4/samples/show_out.txt"> Show Sample Behavior output file (text)</a> show_out.txt<BR>
+</ul>
+<p> 
+The following sample shows the behavior and errors messages produced by the view-controlling commands, and also illustrates the type-ahead behavior of the program. Your program should reproduce the output file exactly. 
+<ul>
+<li> <a href="project4/samples/view_console.txt"> View-control Sample Behavior console interaction (text)</a> view_console.txt.txt<BR>
+<li> <a href="project4/samples/view_in.txt"> View-control Sample Behavior input file (text)</a> view_in.txt<BR>
+<li> <a href="project4/samples/view_out.txt"> View-control Sample Behavior output file (text)</a> view_out.txt<BR>
+</ul>
+<p> 
+The following sample shows most  of the error messages produced by the program 
+(a couple are included in the first sample and the remainder in the view-controlling sample). 
+Some type-ahead is also used.
+Your program should reproduce the output file exactly.
+<ul>
+<li> <a href="project4/samples/errors_console.txt"> Errors Sample Behavior console interaction (text)</a> errors_console.txt<BR>
+<li> <a href="project4/samples/errors_in.txt"> Errors Sample Behavior input file (text)</a> errors_in.txt<BR>
+<li> <a href="project4/samples/errors_out.txt"> Errors Sample Behavior output file (text)</a> errors_out.txt<BR>
+</ul>
+
+<p>
+These samples demonstrate the program behavior and are supposed to contain every possible type of output message.
+It is <b>not</b> a complete test of your program. Your program will be tested for a large number of other possible inputs and input sequences.
+The console outputs are a saved copy of a 
+console (shell) window after entering the commands by hand. 
+The stdin input file is suitable for redirecting input, and the stdout output can be compared with the redirected output of your program.  Your program should match the stdout output.
+</ul>
+
+<H2>Other Information</H2>
+<p> 
+<p> 
+At the top level of the file server you can find the redirect_io module that you can use to redirect I/O from a C++ program on 
+any platform. You can use this to help test your program's output against the supplied samples. The instructions are in the header file.
+<p>
+<p>
+
+<!--
+-->
+</body>
+</html>
+

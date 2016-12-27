@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="949.54">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    span.s1 {font: 12.0px Courier}
+  </style>
+</head>
+<body>
+<p class="p1"><b>Project 3 Frequently Asked Questions (FAQ)</b></p>
+<p class="p2"><br></p>
+<p class="p1"><b>Updated 2/23/2010</b></p>
+<p class="p1"><b>The most recent items appear first.</b></p>
+<p class="p2"><br></p>
+<p class="p3"><b>I'm trying to use the tolower function in an STL algorithm and get awful compiler errors. Help!</b></p>
+<p class="p3">Some implementations of the C Standard Library implement several functions like tolower as macros to avoid function call overhead (this is allowed by the C Standard).<span class="Apple-converted-space">  </span>Since a macro is not a function, when the compiler tries to instantiate the algorithm function template using it, the result is a nasty mess. Unfortunately, gcc is often one of the offenders. Since the goal of this project is to use STL algorithms as much as possible (even if not the best overall solution), the simplest and guaranteed-to-work<span class="Apple-converted-space">  </span>cross-platform approach is to write a simple function or function object class that simply wraps tolower() and use that in the STL algorithm call.<span class="Apple-converted-space"> </span></p>
+<p class="p4"><b></b><br></p>
+<p class="p3"><b>I'm trying to use a set container and my code compiles just fine in MSVS, but I'm getting confusing error messages from gcc. What's going on?</b></p>
+<p class="p3">First, look at the gcc error message and see if it is seems to be complaining about not finding a match for a call to a function, with a near match that differs only in the constness of a member function or the constness of a reference parameter. If so, read on.</p>
+<p class="p4"><br></p>
+<p class="p3">Second, review your lecture notes and the C++ Coding Standands about const correctness and how it relates to containers and their contents. If you are using a <span class="s1">set</span> container, you are committed to not disordering the contents. A set container is supposed to protect its contents from direct modification. You got this error because your code looked suspicious to gcc but not MSVS, and in this case, it is gcc that is right.</p>
+<p class="p4"><br></p>
+<p class="p3">Some explanation: The original Standard was vague about how the objects in <span class="s1">std::set </span>should be protected against being modified. A correction to the Standard was quickly agreed on, and will be official in the next version. The idea is that a <span class="s1">set&lt;&gt;</span> should maintain constness of its contents not by making them const objects, but by requiring that both <span class="s1">iterator</span> and <span class="s1">const_iterator</span> be constant iterators. That is, a plain <span class="s1">iterator</span> would behave the same as a <span class="s1">const_iterator</span> if you try to modify the objects in the container with an iterator, namely, it would produce a compile error. It looks like the library with the current MSVS does not conform to the correction, but the gcc 4.x library does, which means on this issue, the gcc 4.x is closer to what is supposed to happen than MSVS seems to be.</p>
+<p class="p4"><br></p>
+<p class="p3">How to fix this: First, try fixing your set-accessing code so that it only declares <span class="s1">const_iterators</span> into the <span class="s1">set</span> container - e.g. put the returned value from the <span class="s1">find</span> function into a <span class="s1">const_iterator</span> not a plain <span class="s1">iterator.</span> Now MSVS and gcc should treat at least part of the code the same way.<span class="Apple-converted-space"> </span></p>
+<p class="p4"><br></p>
+<p class="p3">Second, consider whether you can do what you want with the container under this restriction. Are you trying to modify the object while it is in the <span class="s1">set</span> container? If so, what about the object are you trying to modify?</p>
+<p class="p4"><br></p>
+<p class="p3">If it is the key field, then your approach is flat wrong - you'll disorder the container. The only way to handle this is with the copy-remove-change-insert approach: Make a copy of the object, remove the object from the container, change the copy, then insert the changed object into the container.</p>
+<p class="p4"><br></p>
+<p class="p3">If it is not the key field, then you are trying to do something which according to the set definition could still be dangerous - if you change the object, it might still disorder the container! (Who knows what evil lurks in the member functions?) The set template definition and the compiler will be trying to keep you out of trouble. As discussed in lecture, you have three options:</p>
+<p class="p4"><br></p>
+<p class="p3">1. Follow the drill that always works with ordered containers: copy-remove-change-insert.</p>
+<p class="p3">2. Don't use a <span class="s1">set</span> container to hold <b><i>objects</i></b> that have to be modified - use another container type instead. You still have to take care not to disorder the container if the key field can be modified, but the container won't be interfering,</p>
+<p class="p3">3. Change to a <span class="s1">set</span> container that holds <b><i>pointers to the objects</i> </b>instead of the objects - and again make sure your code can't possibly disorder the container by changing the key field of the pointed-to-objects.</p>
+<p class="p4"><br></p>
+<p class="p3"><b>What compiler, version, and options are being used by the autograder?</b></p>
+<p class="p3">gcc 4.1.2, with compile options of</p>
+<p class="p3">g++ -ansi -pedantic -Wall</p>
+<p class="p3">Before submitting your code, you should upload to a CAEN workstation and try compiling your code with g++ 4.1.2 or later with the same compiler options. Check for a match on at least the samples to help detect any discrepancies.</p>
+<p class="p4"><br></p>
+<p class="p4"><br></p>
+<p class="p4"><br></p>
+</body>
+</html>

@@ -1,0 +1,52 @@
+XML
+
+1. What is the difference between a valid document and a well-formed one?
+
+2. Can a document that does not specify a DTD be valid?
+
+3. What is the benefit of separating display from semantic content?
+
+4. Which kind of parser has greater memory requirements, a DOM parser or a
+   SAX parser?  Why may you sometimes prefer the one with greater memory
+   requirements? 
+
+5. Under what circumstances would the two XPath expressions below return the same result:
+	/book//author
+ 	/book/*/author
+
+6. Consider the following DTD: 
+ ------------------------------------------------------------------------------------
+ <!ELEMENT Bibliography (Book)* >
+ <!ELEMENT Book (title, author+, abstract) >
+ <!ATTLIST Book year CDATA #IMPLIED >
+
+ <!ELEMENT title (#PCDATA) >
+ <!ELEMENT author (firstName, lastName, email?, website?, (officePhone | mobilePhone)*)>
+ <!ELEMENT abstract (#PCDATA | bold | italic | underline)+ >
+
+ <!ELEMENT firstName (#PCDATA) >
+ <!ELEMENT lastName (#PCDATA) >
+ <!ELEMENT email (#PCDATA) >
+ <!ELEMENT website (#PCDATA) >
+ <!ELEMENT officePhone (#PCDATA) >
+ <!ELEMENT mobilePhone (#PCDATA) >
+ <!ELEMENT bold (#PCDATA) >
+ <!ELEMENT italic (#PCDATA) >
+ <!ELEMENT underline (#PCDATA) >
+-------------------------------------------------------------------------------------
+
+  a) Can the author element have more than one email subelement?
+   
+  b) Can you have an empty Bibliography element? (i.e. "<bibliography> </bibliography>")
+
+  c) Can an author element be specified without a lastname subelement?
+
+  d) Can an abstract element be empty? 
+
+  e) What does the XPath query "//author[email]" do? Specify the elements that this
+     query outputs. 
+
+   f) What does the following XQuery do: (notice the "bibliography//book" in the FOR clause)
+	for $b in bibliography//book
+	where $b/@year > 2004
+	return <book> {$b/title} </book>

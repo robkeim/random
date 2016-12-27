@@ -1,0 +1,7 @@
+/* add/modify/delete/load/save command messages */
+"Enter data file name: "
+
+/******** Error messages *********/
+/* more than one module */
+"Invalid data found in file!"
+

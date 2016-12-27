@@ -1,0 +1,137 @@
+Sim_object Exxon constructed
+Island Exxon constructed
+Sim_object Shell constructed
+Island Shell constructed
+Sim_object Bermuda constructed
+Island Bermuda constructed
+Sim_object Ajax constructed
+Track_base constructed
+Ship Ajax constructed
+Warship Ajax constructed
+Cruiser Ajax constructed
+Sim_object Xerxes constructed
+Track_base constructed
+Ship Xerxes constructed
+Warship Xerxes constructed
+Cruiser Xerxes constructed
+Sim_object Valdez constructed
+Track_base constructed
+Ship Valdez constructed
+Tanker Valdez constructed
+Model constructed
+Controller constructed
+View constructed
+
+Time 0: Enter command: throttle up to full speed
+Unrecognized command!
+
+Time 0: Enter command: create Oil_City Torpedo_boat -5 20
+Trying to create ship of unknown type!
+
+Time 0: Enter command: create Valdez Tanker -5 20
+Name is already in use!
+
+Time 0: Enter command: Ajax attack Oil_City
+Ship not found!
+
+Time 0: Enter command: Oil_City destination Cuba
+Unrecognized command!
+
+Time 0: Enter command: Valdez destination Cuba 10
+Island not found!
+
+Time 0: Enter command: Valdez destination Bermuda 1x0
+Valdez will sail on course 225.00 deg, speed 1.00 nm/hr to (20.00, 20.00)
+
+Time 0: Enter command: Unrecognized command!
+
+Time 0: Enter command: Valdez load_at Bermuda
+Valdez will load at Bermuda
+
+Time 0: Enter command: Valdez unload_at Bermuda
+Load and unload cargo destinations are the same!
+
+Time 0: Enter command: Valdez unload_at Exxon
+Valdez will unload at Exxon
+Valdez will sail on course 225.00 deg, speed 10.00 nm/hr to (20.00, 20.00)
+
+Time 0: Enter command: Ajax attack Ajax
+Warship may not attack itself!
+
+Time 0: Enter command: Ajax course 369 10 Ajax course XXX 10
+Invalid heading entered!
+
+Time 0: Enter command: Ajax course 359 -10
+Negative speed entered!
+
+Time 0: Enter command: size x1
+Expected an integer!
+
+Time 0: Enter command: Ajax course xyz 10
+Expected a double!
+
+Time 0: Enter command: zoom xyz
+Expected a double!
+
+Time 0: Enter command: Ajax stop_attacking
+Unrecognized command!
+
+Time 0: Enter command: Ajax stop_attack
+Was not attacking!
+
+Time 0: Enter command: Ajax dock_at Bermuda
+Can't dock!
+
+Time 0: Enter command: Ajax refuel
+Must be docked!
+
+Time 0: Enter command: Ajax load_at Bermuda
+Cannot load at a destination!
+
+Time 0: Enter command: Ajax unload_at Bermuda
+Cannot unload at a destination!
+
+Time 0: Enter command: Valdez attack Ajax
+Cannot attack!
+
+Time 0: Enter command: Valdex stop_attack
+Unrecognized command!
+
+Time 0: Enter command: Valdez stop_attack
+Cannot attack!
+
+Time 0: Enter command: Valdez destination Bermuda 15
+Tanker has cargo destinations!
+
+Time 0: Enter command: Valdez stop
+Valdez stopping at (30.00, 30.00)
+Valdez now has no cargo destinations
+
+Time 0: Enter command: Valdez destination Bermuda 15
+Ship cannot go that fast!
+
+Time 0: Enter command: quit
+View destructed
+Done
+Controller destructed
+Cruiser Ajax destructed
+Warship Ajax destructed
+Ship Ajax destructed
+Track_base destructed
+Sim_object Ajax destructed
+Island Bermuda destructed
+Sim_object Bermuda destructed
+Island Exxon destructed
+Sim_object Exxon destructed
+Island Shell destructed
+Sim_object Shell destructed
+Tanker Valdez destructed
+Ship Valdez destructed
+Track_base destructed
+Sim_object Valdez destructed
+Cruiser Xerxes destructed
+Warship Xerxes destructed
+Ship Xerxes destructed
+Track_base destructed
+Sim_object Xerxes destructed
+Model destructed

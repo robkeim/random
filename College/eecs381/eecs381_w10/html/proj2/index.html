@@ -1,0 +1,138 @@
+<HTML>
+<HEAD> <TITLE>EECS 381: Project 2 Main Page</TITLE> </HEAD>
+
+<body !BGCOLOR="#FFFFFF" !text="#000000" !link="0000ff" !vlink="ff0000">
+
+
+<center>
+<H1>Project 2</H1>
+</center>
+
+<hr>
+
+<p>
+The project documents will be added to this page as they become available. If you get a page that says "not yet available," 
+it should become available in the future. Ask about it only if we announced that it was supposed to be available.
+<p>
+<b>Note:</b>Files listed as "pdf" can be viewed or downloaded and printed
+at high-quality with Adobe's Acrobat Reader. 
+<p>
+Files listed as text are plain ASCII text files. The should display in your
+browser with correct formatting, but can also be downloaded from the course
+file server; downloading with an ftp utility set to ASCII text mode is recommended for code and sample 
+files to avoid problems involved with platform-specific end-of-line differences.
+<hr>
+<p>
+
+
+<H2>Documents</H2>
+<ul>
+<li> <a href="project2/doc.pdf">Project Document (pdf)</a>
+<li> <a href="corrections.html">Project Corrections & Clarifications</a>
+<li> <a href="FAQ.html">Frequently Asked Questions (FAQ)</a>
+</ul>
+<H2> Component Specification Files</H2>
+<p>
+The header files below are "skeleton" files that provide code that your project must use, but you will add your own code to complete the file. 
+The component header files for Ordered_list, Record, Collection, and String specify the public interface of these components.
+<B><I>You may not modify the public interface of these components.</I></B> In addition, some private members are specified to guide your
+implementation. See the comments in the file for instructions, and the project document for more explanation.
+<ul>
+<li> <a href="project2/starters/skeleton_Ordered_list.h">Ordered_list skeleton header file</a>
+<li> <a href="project2/starters/skeleton_Record.h">Record skeleton header file</a>
+<li> <a href="project2/starters/skeleton_Collection.h">Collection skeleton header file</a>
+<li> <a href="project2/starters/skeleton_String.h">String skeleton header file</a>
+<li> <a href="project2/starters/skeleton_Utility.h">Utility skeleton header file</a><BR>
+<li> <a href="project2/starters/skeleton_p2_globals.h">p2_globals skeleton header file</a><BR>
+Use the specified names for the global variables in this project.
+<li> <a href="project2/starters/strings.txt"> strings.txt (text)</a> <BR>
+This is a text file containing the character string constants that were used in 
+the instructor's solution to generate the output message text. You can avoid 
+typing errors by downloading this file and then copy-pasting the strings into your program.
+</ul>
+<H2> Additional Starter Files</H2>
+<p>
+The following files are useful, but are not part of the specifications.
+<ul>
+<li> <a href="project2/starters/Makefile"> Makefile (text)</a> 
+Uses variables to simplify changing compiler options and files.<BR>
+The recommended options for g++ in this course are specified. The no-elide-constructor option is used only for this project.
+Note that this makefile assumes that all of your header and source files are in the same directory as the makefile. See also the main course page for links to a tutorial on makefile, the gcc documentation (including all the compiler options), and a tutorial on the Unix debugger, gdb.
+See also the main course page for links to a tutorial on makefile, the gcc documentation (including all the compiler options), 
+and a tutorial on the Unix debugger, gdb.
+<li> <a href="project2/demos/Ordered_list_demo.cpp"> Ordered_list_demo.cpp (text)</a> <BR>
+This is a demo of the Ordered_list template, showing a variety of features and how to use them.
+<li> <a href="project2/demos/String_demo1.cpp">String demo1.cpp (text)</a> Illustrates some string capabilities and allocation in action.
+<li> <a href="project2/demos/String_demo2.cpp">String demo2.cpp (text)</a> Demonstrates exceptions from String functions.
+<li> <a href="project2/demos/String_demo3.cpp">String demo3.cpp (text)</a> Demonstrates String operations as revealed by the monitoring facilities. <p>
+Simple programs like the above are what you should use as a "test harness" to test your components separately and systematically. However, these are demos - not complete tests.
+
+</ul>
+<H2>Behavior Samples</H2>
+<p>
+The following sample behavior files illustrate the program behavior and contain
+all of the different output message text strings produced by the program (see the strings.txt file). 
+Your program should match these samples <b>exactly</b> so that you can be sure it is producing all of the different kinds of messages correctly. 
+However, these samples are <b>not</b> a complete test of your program. 
+Your program will be tested for a large number of other possible inputs and input sequences. 
+<p>
+The console interaction files are a capture of the console display during the program run. 
+The _in.txt and _out.txt files are for you to use with redirected I/O. When given the _in.txt file, your program's stdout output should match the _out.txt file exactly. The other output files are written during the  by the program, and your program should produce files that match <b>exactly</b> with these samples. 
+<p> 
+The following sample illustrates the "normal" behavior of the program and contains the corresponding messages. 
+Your program should reproduce the output files exactly.
+<ul>
+<li> <a href="project2/samples/normal_console.txt"> normal_console.txt</a> Normal behavior console interaction (text)<BR>
+<li> <a href="project2/samples/normal_in.txt"> normal_in.txt</a>  Normal behavior stdin input file <BR>
+<li> <a href="project2/samples/normal_out.txt"> normal_out.txt</a> Normal behavior stdout output file (text) <BR>
+<li> <a href="project2/samples/savefile1.txt"> savefile1.txt</a> Normal behavior save file <BR>
+</ul>
+<p> 
+The following sample shows the error messages produced by the program. 
+Your program should reproduce the output file exactly.
+<ul>
+<li> <a href="project2/samples/badfile.txt"> badfile.txt</a> A bogus "save" file for the restore command that contains invalid data for demonstration purposes<BR>
+<li> <a href="project2/samples/errors_console.txt"> errors_console.txt</a> Errors behavior console interaction<BR>
+<li> <a href="project2/samples/errors_in.txt"> errors_in.txt</a> Errors behavior stdin input file<BR>
+<li> <a href="project2/samples/errors_out.txt"> errors_out.txt</a> Errors behavior stdout output file<BR>
+</ul>
+
+<p> 
+The following sample illustrates the behavior of the program when you input strings that are very long, excess whitespace and use "type-ahead." 
+Your program should reproduce the stdout files exactly. <ul>
+<li> <a href="project2/samples/typeahead_console.txt"> typeahead_console.txt</a> Type-ahead behavior console interaction<BR>
+<li> <a href="project2/samples/typeahead_in.txt"> typeahead_in.txt</a> Type-ahead behavior stdin input file<BR>
+<li> <a href="project2/samples/typeahead_out.txt"> typeahead_out.txt</a>Type-ahead behavior stdout output file<BR>
+</ul>
+
+<p>
+These samples demonstrate the program behavior and are supposed to contain every possible type of output message string so that you can prevent your autograder score from being affected by spelling errors and typos.
+<p>
+<b>These samples are not a complete test of your program!!!</b> Your program will be tested for a large number of other possible inputs and input sequences. You must devise your own complete test set to find the bugs in your code.
+<p>
+The console outputs are a saved copy of a 
+console window after entering the commands by hand. The stdin input file is suitable for redirecting input, and the stdout output can be compared with the redirected output of your program.  Your program should match the stdout output.
+<p> 
+See the course web page for how to compare files and redirect I/O. In the examples directory on the file server you can find the redirect_io module that you can use to redirect I/O from a C++ program on 
+any platform. You can use this to help test your program's output against the supplied samples. The instructions are in the header file.
+<p>
+</ul>
+
+<H2>Autograder submission and responses</H2>
+<p>
+It is a good idea to test on your components as you develop them (see the project document). You can get an autograder evaluation
+of the components before you have finished the entire project. To do this, submit ALL of the required project files, even if they are empty.
+The autograder will build and test whatever parts of the program that it can. Notice that
+the component tests generally will not work unless your p2_globals module is correct.
+<!--
+<p>
+For a walkthrough on how to check your code before submitting and what the results of submitting should look like, see <a href="submit_example.txt">submit example</a>.
+<p>
+For an explanation of the autograder feedback for this project, see <a href="AGoutput.txt">AGoutput</a>.
+<p>
+-->
+
+
+</body>
+</html>
+

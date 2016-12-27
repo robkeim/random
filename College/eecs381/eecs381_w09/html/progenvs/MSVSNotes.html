@@ -1,0 +1,60 @@
+<HTML>
+<HEAD> <TITLE>Notes on Using Microsoft Visual Studio</TITLE> </HEAD>
+<body BGCOLOR="#FFFFFF" text="#000000" link="0000ff" vlink="ff0000">
+<body>
+
+<H3>How to set up a Standard C project</H3>
+
+<pre>
+First, create a "Win32 Console application" and specify an empty project. 
+Then create and add at least one source file to the project. 
+Then apply the following changes to change it from C++ to C:
+
+1. In the 'Solution Explorer', right-click on the project and select 'Properties'
+
+2. In 'Configuration Properties -> C/C++ -> Preprocessor'
+   Append ';_CRT_SECURE_NO_WARNINGS' to the list of 'Preprocessor Definitions'
+
+3. In 'Configuration Properties -> C/C++ -> Code Generation'
+   Set 'Enable C++ Exceptions' to 'No'
+   Set 'Floating Point Model' to 'Strict'
+
+4. In 'Configuration Properties -> C/C++ -> Language'
+   Set 'Disable Language Extensions' to 'Yes'
+   Set 'Treat wchat_t as Built-in Type' to 'No'
+
+5. In 'Configuration Properties -> C/C++ -> Advanced'
+   Set 'Compile As' to 'Compile as C Code'
+
+This will get you relatively close to the C89 standard, but it may still allow 
+some things that the gcc with our recommended settings would not. 
+We recommend testing with a build and check with gcc before submitting. 
+See the "submit example" under Other Information on the Project 1 web page.
+
+</pre>
+
+<H3>How to set up a Standard C++ project</H3>
+
+<pre>
+First, create a "Win32 Console application" and specify an empty project. 
+Then create and add at least one source file to the project. 
+Then apply the following changes to change make it slightly more standard:
+
+1. In the 'Solution Explorer', right-click on the project and select 'Properties'
+
+2. In 'Configuration Properties -> C/C++ -> Code Generation'
+   Set 'Floating Point Model' to 'Strict'
+
+3. In 'Configuration Properties -> C/C++ -> Language'
+   Set 'Disable Language Extensions' to 'Yes'
+   Set 'Treat wchat_t as Built-in Type' to 'No'
+   Set 'Force Conformance In For Loop Scope' to 'Yes'
+
+This will prevent some non-standard compiler behavior, but it may still allow 
+some things that the gcc with our recommended settings would not. 
+We recommend testing with a build and check with gcc before submitting. 
+See the "submit example" under Other Information on the Project 1 web page.
+
+</pre>
+</body>
+</html>

@@ -1,0 +1,33 @@
+Week 10 Reading.
+
+Recommendation Systems
+
+The Wikipedia intro to Collaborative Filtering:
+http://en.wikipedia.org/wiki/Collaborative_filtering
+
+A paper about item-centric collaborative filtering:
+http://www10.org/cdrom/papers/pdf/p519.pdf
+
+Also, check out these visualizations of the Netflix data:
+http://www.flickr.com/photos/chef_ele/sets/72157600111346295/
+
+
+Data Mining
+The Wikipedia descriptions of Supervised and Unsupervised Learning:
+http://en.wikipedia.org/wiki/Supervised_learning
+http://en.wikipedia.org/wiki/Unsupervised_learning
+
+The Apriori algorithm paper:
+http://rakesh.agrawal-family.com/papers/vldb94apriori.pdf
+
+
+Some optional material:
+
+Unfortunately, there is not a great online text for data-mining/machine-learning.  If you want a good traditional text, my favorite is:
+http://www.amazon.com/Machine-Learning-Tom-M-Mitchell/dp/0070428077
+
+Also good:  http://www.amazon.com/Pattern-Classification-2nd-Richard-Duda/dp/0471056693
+
+
+
+

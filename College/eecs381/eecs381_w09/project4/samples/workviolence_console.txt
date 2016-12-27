@@ -1,0 +1,758 @@
+Sim_object Rivendale constructed
+Structure Rivendale constructed
+Farm Rivendale constructed
+Sim_object Sunnybrook constructed
+Structure Sunnybrook constructed
+Farm Sunnybrook constructed
+Sim_object Shire constructed
+Structure Shire constructed
+Town_Hall Shire constructed
+Sim_object Paduca constructed
+Structure Paduca constructed
+Town_Hall Paduca constructed
+Sim_object Pippin constructed
+Agent Pippin constructed
+Peasant Pippin constructed
+Sim_object Merry constructed
+Agent Merry constructed
+Peasant Merry constructed
+Sim_object Zug constructed
+Agent Zug constructed
+Soldier Zug constructed
+Sim_object Bug constructed
+Agent Bug constructed
+Soldier Bug constructed
+
+Time 0: Enter command: show
+Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
+  38 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  32 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . Su. . . . . . . . . Zu. . . . Pa. . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  26 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . Me. . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  20 . . . . . . . . . . . . Bu. . Sh. . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  14 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . Pi. . Ri. . . . . . . . . . . . . . 
+   8 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+   2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  -4 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+ -10 . . . . . . . . . . . . . . . . . . . . . . . . . 
+   -10    -4     2     8    14    20    26    32    38
+
+Time 0: Enter command: Merry work Pippin Paduca
+Structure not found!
+
+Time 0: Enter command: Merry attack Pippin
+Merry: Sorry, I can't attack!
+
+Time 0: Enter command: Merry work Shire Shire 
+Merry: I can't move food to and from the same place!
+
+Time 0: Enter command: Merry work Shire Paduca
+Merry: I'm on the way
+
+Time 0: Enter command: go go
+Merry: step...
+Farm Rivendale now has 52.00
+Farm Sunnybrook now has 52.00
+
+Time 1: Enter command: Merry: step...
+Farm Rivendale now has 54.00
+Farm Sunnybrook now has 54.00
+
+Time 2: Enter command: Pippin work Rivendale Shire
+Pippin: I'm on the way
+
+Time 2: Enter command: go
+Merry: step...
+Pippin: I'm there!
+Farm Rivendale now has 56.00
+Farm Sunnybrook now has 56.00
+
+Time 3: Enter command: status
+Soldier Bug at (15.00, 20.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (14.55, 21.36)
+   Health is 5
+   Moving at speed 5.00 to (20.00, 20.00)
+   Carrying 0.00
+   Inbound to source Shire
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (10.00, 10.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+   Collecting at source Rivendale
+Farm Rivendale at (10.00, 10.00)
+   Food available: 56.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 56.00
+Soldier Zug at (20.00, 30.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 3: Enter command: go go status
+Merry: step...
+Pippin: Collected 35.00
+Pippin: I'm on the way
+Farm Rivendale now has 23.00
+Farm Sunnybrook now has 58.00
+
+Time 4: Enter command: Merry: I'm there!
+Pippin: step...
+Farm Rivendale now has 25.00
+Farm Sunnybrook now has 60.00
+
+Time 5: Enter command: Soldier Bug at (15.00, 20.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (20.00, 20.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+   Collecting at source Shire
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (13.54, 13.54)
+   Health is 5
+   Moving at speed 5.00 to (20.00, 20.00)
+   Carrying 35.00
+   Outbound to destination Shire
+Farm Rivendale at (10.00, 10.00)
+   Food available: 25.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 60.00
+Soldier Zug at (20.00, 30.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 5: Enter command: show
+Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
+  38 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  32 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . Su. . . . . . . . . Zu. . . . Pa. . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  26 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  20 . . . . . . . . . . . . Bu. . * . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  14 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . Pi. . . . . . . . . . . . . 
+     . . . . . . . . . . Ri. . . . . . . . . . . . . . 
+   8 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+   2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  -4 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+ -10 . . . . . . . . . . . . . . . . . . . . . . . . . 
+   -10    -4     2     8    14    20    26    32    38
+
+Time 5: Enter command: go status
+Merry: Waiting 
+Pippin: step...
+Farm Rivendale now has 27.00
+Farm Sunnybrook now has 62.00
+
+Time 6: Enter command: Soldier Bug at (15.00, 20.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (20.00, 20.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+   Collecting at source Shire
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (17.07, 17.07)
+   Health is 5
+   Moving at speed 5.00 to (20.00, 20.00)
+   Carrying 35.00
+   Outbound to destination Shire
+Farm Rivendale at (10.00, 10.00)
+   Food available: 27.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 62.00
+Soldier Zug at (20.00, 30.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 6: Enter command: go
+Merry: Waiting 
+Pippin: I'm there!
+Farm Rivendale now has 29.00
+Farm Sunnybrook now has 64.00
+
+Time 7: Enter command: status
+Soldier Bug at (15.00, 20.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (20.00, 20.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+   Collecting at source Shire
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (20.00, 20.00)
+   Health is 5
+   Stopped
+   Carrying 35.00
+   Depositing at destination Shire
+Farm Rivendale at (10.00, 10.00)
+   Food available: 29.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 64.00
+Soldier Zug at (20.00, 30.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 7: Enter command: go status
+Merry: Waiting 
+Pippin: Deposited 35.00
+Pippin: I'm on the way
+Farm Rivendale now has 31.00
+Farm Sunnybrook now has 66.00
+
+Time 8: Enter command: Soldier Bug at (15.00, 20.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (20.00, 20.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+   Collecting at source Shire
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (20.00, 20.00)
+   Health is 5
+   Moving at speed 5.00 to (10.00, 10.00)
+   Carrying 0.00
+   Inbound to source Rivendale
+Farm Rivendale at (10.00, 10.00)
+   Food available: 31.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 35.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 66.00
+Soldier Zug at (20.00, 30.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 8: Enter command: go
+Merry: Collected 35.00
+Merry: I'm on the way
+Pippin: step...
+Farm Rivendale now has 33.00
+Farm Sunnybrook now has 68.00
+
+Time 9: Enter command: status
+Soldier Bug at (15.00, 20.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (20.00, 20.00)
+   Health is 5
+   Moving at speed 5.00 to (30.00, 30.00)
+   Carrying 35.00
+   Outbound to destination Paduca
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 0.00
+Peasant Pippin at (16.46, 16.46)
+   Health is 5
+   Moving at speed 5.00 to (10.00, 10.00)
+   Carrying 0.00
+   Inbound to source Rivendale
+Farm Rivendale at (10.00, 10.00)
+   Food available: 33.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 68.00
+Soldier Zug at (20.00, 30.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 9: Enter command: go
+Merry: step...
+Pippin: step...
+Farm Rivendale now has 35.00
+Farm Sunnybrook now has 70.00
+
+Time 10: Enter command: show
+Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
+  38 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  32 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . Su. . . . . . . . . Zu. . . . Pa. . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  26 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . Me. . . . . . . . 
+  20 . . . . . . . . . . . . Bu. . Sh. . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  14 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . Pi. . . . . . . . . . . . . 
+     . . . . . . . . . . Ri. . . . . . . . . . . . . . 
+   8 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+   2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  -4 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+ -10 . . . . . . . . . . . . . . . . . . . . . . . . . 
+   -10    -4     2     8    14    20    26    32    38
+
+Time 10: Enter command: go go go go show
+Merry: step...
+Pippin: I'm there!
+Farm Rivendale now has 37.00
+Farm Sunnybrook now has 72.00
+
+Time 11: Enter command: Merry: I'm there!
+Pippin: Collected 35.00
+Pippin: I'm on the way
+Farm Rivendale now has 4.00
+Farm Sunnybrook now has 74.00
+
+Time 12: Enter command: Merry: Deposited 35.00
+Merry: I'm on the way
+Pippin: step...
+Farm Rivendale now has 6.00
+Farm Sunnybrook now has 76.00
+
+Time 13: Enter command: Merry: step...
+Pippin: step...
+Farm Rivendale now has 8.00
+Farm Sunnybrook now has 78.00
+
+Time 14: Enter command: Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
+  38 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  32 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . Su. . . . . . . . . Zu. . . . Pa. . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  26 . . . . . . . . . . . . . . . . . . Me. . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  20 . . . . . . . . . . . . Bu. . Sh. . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . Pi. . . . . . . . . . . 
+  14 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . Ri. . . . . . . . . . . . . . 
+   8 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+   2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  -4 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+ -10 . . . . . . . . . . . . . . . . . . . . . . . . . 
+   -10    -4     2     8    14    20    26    32    38
+
+Time 14: Enter command: Bug move 20 20
+Bug: I'm on the way
+
+Time 14: Enter command: go
+Bug: I'm there!
+Merry: step...
+Pippin: I'm there!
+Farm Rivendale now has 10.00
+Farm Sunnybrook now has 80.00
+
+Time 15: Enter command: Bug attack Pippin
+Bug: I'm attacking!
+
+Time 15: Enter command: go
+Bug: Clang!
+Pippin: Ouch!
+Merry: I'm there!
+Pippin: Deposited 35.00
+Pippin: I'm on the way
+Farm Rivendale now has 12.00
+Farm Sunnybrook now has 82.00
+
+Time 16: Enter command: go
+Bug: Clang!
+Pippin: Ouch!
+Merry: Collected 35.00
+Merry: I'm on the way
+Pippin: step...
+Farm Rivendale now has 14.00
+Farm Sunnybrook now has 84.00
+
+Time 17: Enter command: status
+Soldier Bug at (20.00, 20.00)
+   Health is 5
+   Stopped
+   Attacking Pippin
+Peasant Merry at (20.00, 20.00)
+   Health is 5
+   Moving at speed 5.00 to (30.00, 30.00)
+   Carrying 35.00
+   Outbound to destination Paduca
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 35.00
+Peasant Pippin at (16.46, 16.46)
+   Health is 1
+   Moving at speed 5.00 to (10.00, 10.00)
+   Carrying 0.00
+   Inbound to source Rivendale
+Farm Rivendale at (10.00, 10.00)
+   Food available: 14.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 84.00
+Soldier Zug at (20.00, 30.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 17: Enter command: go
+Bug: Target is now out of range
+Merry: step...
+Pippin: step...
+Farm Rivendale now has 16.00
+Farm Sunnybrook now has 86.00
+
+Time 18: Enter command: Bug attack Pippin
+Bug: Target is out of range!
+
+Time 18: Enter command: go
+Merry: step...
+Pippin: I'm there!
+Farm Rivendale now has 18.00
+Farm Sunnybrook now has 88.00
+
+Time 19: Enter command: go go go
+Merry: I'm there!
+Pippin: Collected 18.00
+Pippin: I'm on the way
+Farm Rivendale now has 2.00
+Farm Sunnybrook now has 90.00
+
+Time 20: Enter command: Merry: Deposited 35.00
+Merry: I'm on the way
+Pippin: step...
+Farm Rivendale now has 4.00
+Farm Sunnybrook now has 92.00
+
+Time 21: Enter command: Merry: step...
+Pippin: step...
+Farm Rivendale now has 6.00
+Farm Sunnybrook now has 94.00
+
+Time 22: Enter command: go Bug attack Pippin
+Merry: step...
+Pippin: I'm there!
+Farm Rivendale now has 8.00
+Farm Sunnybrook now has 96.00
+
+Time 23: Enter command: Bug: I'm attacking!
+
+Time 23: Enter command: go
+Bug: Clang!
+Pippin: Arrggh!
+Bug: I triumph!
+Merry: I'm there!
+Farm Rivendale now has 10.00
+Farm Sunnybrook now has 98.00
+
+Time 24: Enter command: status
+Soldier Bug at (20.00, 20.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (20.00, 20.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+   Collecting at source Shire
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 70.00
+Peasant Pippin at (20.00, 20.00)
+   Is dead
+   Carrying 18.00
+   Depositing at destination Shire
+Farm Rivendale at (10.00, 10.00)
+   Food available: 10.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 98.00
+Soldier Zug at (20.00, 30.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 24: Enter command: go
+Merry: Waiting 
+Farm Rivendale now has 12.00
+Farm Sunnybrook now has 100.00
+Peasant Pippin destructed
+Agent Pippin destructed
+Sim_object Pippin destructed
+
+Time 25: Enter command: status
+Soldier Bug at (20.00, 20.00)
+   Health is 5
+   Stopped
+   Not attacking
+Peasant Merry at (20.00, 20.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+   Collecting at source Shire
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 70.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 12.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 100.00
+Soldier Zug at (20.00, 30.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 25: Enter command: show
+Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
+  38 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  32 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . Su. . . . . . . . . Zu. . . . Pa. . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  26 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  20 . . . . . . . . . . . . . . . * . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  14 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . Ri. . . . . . . . . . . . . . 
+   8 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+   2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  -4 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+ -10 . . . . . . . . . . . . . . . . . . . . . . . . . 
+   -10    -4     2     8    14    20    26    32    38
+
+Time 25: Enter command: train Merry Soldier 10 10
+Name is already in use!
+
+Time 25: Enter command: train Merry Grenadier 10 10
+Name is already in use!
+
+Time 25: Enter command: train Harry Grenadier 10 10
+Trying to create agent of unknown type!
+
+Time 25: Enter command: build Harry Grenadier 10 10
+Trying to create structure of unknown type!
+
+Time 25: Enter command: train Harry Peasant 10 10
+Sim_object Harry constructed
+Agent Harry constructed
+Peasant Harry constructed
+
+Time 25: Enter command: show
+Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
+  38 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  32 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . Su. . . . . . . . . Zu. . . . Pa. . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  26 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  20 . . . . . . . . . . . . . . . * . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  14 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . * . . . . . . . . . . . . . . 
+   8 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+   2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  -4 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+ -10 . . . . . . . . . . . . . . . . . . . . . . . . . 
+   -10    -4     2     8    14    20    26    32    38
+
+Time 25: Enter command: build Paduca Town_Hall 25 25
+Name is already in use!
+
+Time 25: Enter command: build Paduca Castle 25 25
+Name is already in use!
+
+Time 25: Enter command: build Camelot Castle 25x 25
+Expected a double!
+
+Time 25: Enter command: build Camelot Town_Hall x25 25
+Expected a double!
+
+Time 25: Enter command: build Camelot Town_Hall 25 25
+Sim_object Camelot constructed
+Structure Camelot constructed
+Town_Hall Camelot constructed
+
+Time 25: Enter command: Harry work Camelot Paduca
+Harry: I'm on the way
+
+Time 25: Enter command: go
+Harry: step...
+Merry: Waiting 
+Farm Rivendale now has 14.00
+Farm Sunnybrook now has 102.00
+
+Time 26: Enter command: status
+Soldier Bug at (20.00, 20.00)
+   Health is 5
+   Stopped
+   Not attacking
+Town_Hall Camelot at (25.00, 25.00)
+   Contains 0.00
+Peasant Harry at (13.54, 13.54)
+   Health is 5
+   Moving at speed 5.00 to (25.00, 25.00)
+   Carrying 0.00
+   Inbound to source Camelot
+Peasant Merry at (20.00, 20.00)
+   Health is 5
+   Stopped
+   Carrying 0.00
+   Collecting at source Shire
+Town_Hall Paduca at (30.00, 30.00)
+   Contains 70.00
+Farm Rivendale at (10.00, 10.00)
+   Food available: 14.00
+Town_Hall Shire at (20.00, 20.00)
+   Contains 0.00
+Farm Sunnybrook at (0.00, 30.00)
+   Food available: 102.00
+Soldier Zug at (20.00, 30.00)
+   Health is 5
+   Stopped
+   Not attacking
+
+Time 26: Enter command: show
+Display size: 25, scale: 2.00, origin: (-10.00, -10.00)
+  38 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  32 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . Su. . . . . . . . . Zu. . . . Pa. . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  26 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . Ca. . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  20 . . . . . . . . . . . . . . . * . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  14 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . Ha. . . . . . . . . . . . . 
+     . . . . . . . . . . Ri. . . . . . . . . . . . . . 
+   8 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+   2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+  -4 . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+     . . . . . . . . . . . . . . . . . . . . . . . . . 
+ -10 . . . . . . . . . . . . . . . . . . . . . . . . . 
+   -10    -4     2     8    14    20    26    32    38
+
+Time 26: Enter command: quit
+Done
+Soldier Bug destructed
+Agent Bug destructed
+Sim_object Bug destructed
+Town_Hall Camelot destructed
+Structure Camelot destructed
+Sim_object Camelot destructed
+Peasant Harry destructed
+Agent Harry destructed
+Sim_object Harry destructed
+Peasant Merry destructed
+Agent Merry destructed
+Sim_object Merry destructed
+Town_Hall Paduca destructed
+Structure Paduca destructed
+Sim_object Paduca destructed
+Farm Rivendale destructed
+Structure Rivendale destructed
+Sim_object Rivendale destructed
+Town_Hall Shire destructed
+Structure Shire destructed
+Sim_object Shire destructed
+Farm Sunnybrook destructed
+Structure Sunnybrook destructed
+Sim_object Sunnybrook destructed
+Soldier Zug destructed
+Agent Zug destructed
+Sim_object Zug destructed

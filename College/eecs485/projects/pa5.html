@@ -1,0 +1,139 @@
+<html><head><!-- meta not allowed --><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
+</head><body>
+<h1>Assignment 5: XML import and export</h1>
+
+<p>
+Due Friday, February 26, 2010, at 11:55PM.
+</p>
+
+<p>
+As described in class, one important use for XML is exchanging data 
+between organizations.  
+This is the situation where company A
+and company B each have a database with similar information, and
+they want to share this information.  To do so they get together
+and choose a set of tags that describe the information they want
+to send to each other.  Let's take our photo album scenario for
+example.  You can imagine that users might want album information
+in places other than your site: on a desktop application, on a smartphone,
+on another album website, etc.  This assignment will give
+you practice with packaging database information as XML messages
+(files) for outbound transfers and loading information into the
+database from incoming XML messages.
+</p>
+
+<p>
+This assignment consists of two parts (i) exporting data from
+your database into XML and (ii) importing data from XML to your
+database. You will also use XSL to translate XML into HTML that
+can be rendered in a browser.
+</p>
+
+<h2>
+Part 1:
+What is XML?
+</h2>
+
+
+
+<p>
+Here are a set of resources which you may find useful:
+</p>
+
+<ul><li>
+<a href="http://www.w3schools.com/xml/default.asp">XML
+Tutorial</a> - Read about XML syntax, elements, attributes,
+validation, namespaces. No need to read about JavaScript or other programming issues.</li>
+<li>
+
+<a href="http://www.w3.org/TR/xslt">W3C
+XML Stylesheet Language Spec</a> and <a href="http://www.w3schools.com/xsl/xsl_languages.asp">A Simple
+XSL Tutorial</a>.</li>
+<li>
+<a href="http://us2.php.net/xml">XML Parser Functions in
+PHP</a> (Event-driven XML Parser).</li>
+</ul><h2>
+Part 2:
+Export data to XML
+</h2>
+
+
+
+<p>
+On your album editing page, add a new link for each album.  This link
+is used to display an XML page containing all the information
+about this album.  By &quot;display&quot; we mean that you should print
+this XML page to the screen as you would any other page from a
+PHP script.  (You can find a <a href="http://www.eecs.umich.edu/~michjc/eecs485/simple_album.xml">sample XML file here</a>.)  If you have correctly extracted the data and your XML is well-formed,
+a modern browser will render it in a tree.
+</p>
+
+<p>
+Second, add a link that allows users to load a new album from an XML
+file, as discussed in Part 4.
+</p>
+
+<h2>
+Part 3:
+Make it pretty
+</h2>
+
+<p>
+Download this <a href="http://www.eecs.umich.edu/~michjc/eecs485/pa5_sample.xsl">sample XSLT stylesheet</a>
+file.  Create your own XSLT file based on the one provided.
+Experiment with different styles; come up with something interesting
+and that fits in with the theme of your site.
+</p>
+
+<p>
+Modify your album editing page such that the user can choose whether
+the XML page is displayed with the stylesheet applied or not.  To
+apply the style sheet, include a reference to the XSL file in your XML
+output:
+</p>
+
+<pre>&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;pa5.xsl&quot;?&gt;
+
+</pre>
+
+<h2>
+Part 4:
+Import data from XML
+</h2>
+
+
+
+<p>
+When the user clicks on the link to load a new album, he or she
+should be presented with a form.  This form has just one text field
+used to specify a URL for an XML file containing all the information
+about the album to load.  You can assume that the user types a
+valid URL that points to a well-formed and valid XML file which
+has the same format as the <a href="http://www.eecs.umich.edu/~michjc/eecs485/simple_album.xml">sample
+XML page</a>.  (Extra credit: add proper error checking to remove that
+assumption.)  When he or she clicks submit, this album should be
+loaded and stored in the database.  The person loading the album
+(obviously) becomes its owner.  As with assignment 2, when you add
+a photo to the database you should first check if it already exists
+there so that duplicate entries are not created for the same photo.
+</p>
+
+<h2>Extra Credit</h2>
+
+Here are extra credit opportunities for this assignment.  Groups of more than 3 people should do at least two on this list.
+<ul><li>Add error-checking to XML processing to detect whether file is well-formed and valid.
+</li><li>Add error-checking to test whether XML file obeys the format described by the sample file above.
+</li><li>Allow the user to select different &quot;themes&quot; for rendering the XML, by substituting several different XSLT files.
+</li></ul><p>
+
+</p><h2>Submit your assignment</h2>
+
+<p>
+When you have completed the assignment, please send an email to vahed@umich.edu, listing the extra credit items completed.
+As always, do not touch files in the pa5 subdirectory after the deadline.
+
+</p>
+
+
+</body></html>

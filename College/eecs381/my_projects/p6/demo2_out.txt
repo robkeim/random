@@ -1,0 +1,68 @@
+
+Time 0: Enter command: Created group MyGroup
+
+Time 0: Enter command: Name is already in use!
+
+Time 0: Enter command: Created group OtherGroup
+
+Time 0: Enter command: Added Ajax to group MyGroup
+
+Time 0: Enter command: Added Valdez to group OtherGroup
+
+Time 0: Enter command: Added OtherGroup to group MyGroup
+
+Time 0: Enter command: Object already in group!
+
+Time 0: Enter command: Ajax removed from group MyGroup
+
+Time 0: Enter command: Object does not have a child with the given name
+
+Time 0: Enter command: Added Ajax to group MyGroup
+
+Time 0: Enter command: 
+Cruiser Ajax at (15.00, 15.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Island Bermuda at position (20.00, 20.00)
+Fuel available: 0.00 tons
+
+Island Exxon at position (10.00, 10.00)
+Fuel available: 1000.00 tons
+
+Island Shell at position (0.00, 30.00)
+Fuel available: 1000.00 tons
+
+Island Treasure_Island at position (50.00, 5.00)
+Fuel available: 100.00 tons
+
+Tanker Valdez at (30.00, 30.00), fuel: 100.00 tons, resistance: 0
+Stopped
+Cargo: 0.00 tons, no cargo destinations
+
+Cruiser Xerxes at (25.00, 25.00), fuel: 1000.00 tons, resistance: 6
+Stopped
+
+Time 0: Enter command: Ajax will sail on course 45.00 deg, speed 10.00 nm/hr to (100.00, 100.00)
+Valdez will sail on course 45.00 deg, speed 10.00 nm/hr to (100.00, 100.00)
+
+Time 0: Enter command: Ajax now at (22.07, 22.07)
+Island Exxon now has 1200.00 tons
+Island Shell now has 1200.00 tons
+Island Treasure_Island now has 105.00 tons
+Valdez now at (37.07, 37.07)
+Xerxes stopped at (25.00, 25.00)
+
+Time 1: Enter command: Ajax stopping at (22.07, 22.07)
+
+Time 1: Enter command: Ajax stopped at (22.07, 22.07)
+Island Exxon now has 1400.00 tons
+Island Shell now has 1400.00 tons
+Island Treasure_Island now has 110.00 tons
+Valdez now at (44.14, 44.14)
+Xerxes stopped at (25.00, 25.00)
+
+Time 2: Enter command: OtherGroup removed from group MyGroup
+
+Time 2: Enter command: Ajax will sail on course 225.00 deg, speed 10.00 nm/hr to (10.00, 10.00)
+
+Time 2: Enter command: Done

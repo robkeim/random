@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="949.43">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 14.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+  </style>
+</head>
+<body>
+<p class="p1"><b>Autograder Ouput and Error Messages</b></p>
+<p class="p1"><b>Updated 3/3/09</b></p>
+<p class="p2"><br></p>
+<p class="p3"><b>passed</b></p>
+<p class="p3">Your program or program components produced behavior that matched the correct solution on this test.</p>
+<p class="p2"><br></p>
+<p class="p3"><b>FAILED</b></p>
+<p class="p3">Your program (or its components) executed without crashing or hanging (indicated by other messages), but its behavior did not match the correct solution.Validate your code against the specifications. If your code matched the provided samples in your development environment, but failed the corresponding sample tests on the autograder, it almost certainly means that your code is relying on platform-specific undefined behavior. See the other troubleshooting suggestions.<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p3"><b>Compile or link error messages</b></p>
+<p class="p3">The autograder uses gcc/g++ and makefiles to build an executable of your whole program, and then additional executables for any component tests where your components are combined with our testing drivers or project components. If a build succeeds, you will get none of the compiler or linker messages. But if a build fails, your feedback email will contain all of the compiler and linker error messages and warnings for that build. Some of the warnings might differ from your own version of gcc, and are often not important, but any error messages are critical. Study them to determine the problem.<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p3"><b>make: *** No rule to make target X ...</b></p>
+<p class="p3">This is a message from the make utility that the autograder uses to build executables. Usually this is caused by failing to submit one of the required files that is needed to compile the component named X. Check to make sure you have supplied all the specified files (and to be safe, only the specified files).</p>
+<p class="p2"><br></p>
+<p class="p3"><b>SEG. FAULT</b></p>
+<p class="p3">The program attempted to access an invalid virtual memory address. Both this and BUS ERROR are usually due to "wild pointers" - e.g. uninitialized pointers, garbage addresses, dereferencing null pointers. etc.</p>
+<p class="p2"><br></p>
+<p class="p3"><b>BUS ERROR</b></p>
+<p class="p3">The Unix SIGBUS error, in the context of this class, almost certainly indicates that your program attempted to access data with an invalid address alignment, or more generally, an impossible memory address. Both this and the SEG. FAULT error are usually due to "wild pointers" - e.g. uninitialized pointers, garbage addresses, dereferencing null pointers. etc.</p>
+<p class="p2"><br></p>
+<p class="p3"><b>ASSERT FAILED</b></p>
+<p class="p3">The Unix SIGABRT condition arose, which indicates that assert(), abort(), or terminate() was called. An uncaught exception would cause terminate() to be called. In the context of this course, SIGABRT usually means an assert statement "fired", so that is what we call it in the autograder output.</p>
+<p class="p2"><br></p>
+<p class="p3"><b>TIMED OUT</b></p>
+<p class="p3">You exceeded a predefined runtime limit. In some project tests, this would happen if your code was grossly inefficient for the amount of data involved (like using a O(n^2) algorithm). More often, it is due to your program hanging in a loop of some sort. If your program fails to respond correctly to all input commands and fails to handle incorrect commands properly, it can get out of step with our testing script and never see the quit command that terminates the script - and just loops forever, doing something like spitting out the unrecognized command error message.</p>
+<p class="p2"><br></p>
+<p class="p3"><b>FILE LIMIT</b></p>
+<p class="p3">You exceeded a predefined limit for data output to stdout. Infinite loops that generate output sometimes cause this message rather than TIMED OUT. See TIMED OUT.</p>
+<p class="p2"><br></p>
+</body>
+</html>

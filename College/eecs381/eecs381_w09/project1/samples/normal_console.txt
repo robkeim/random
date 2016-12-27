@@ -1,0 +1,178 @@
+
+Enter command: pa
+Memory allocations:
+C-strings: 0 bytes total
+Person structs: 0
+Meeting structs: 0
+Room structs: 0
+List structs: 2
+List Node structs: 0
+
+Enter command: pg
+List of people is empty
+
+Enter command: ps
+List of rooms is empty
+
+Enter command: ai Tom Jones 123
+Person Jones added
+
+Enter command: ai Silas Marner 456
+Person Marner added
+
+Enter command: ai Elton John 789
+Person John added
+
+Enter command: pi Marner
+Silas Marner 456
+
+Enter command: pg
+Information for 3 people:
+Elton John 789
+Tom Jones 123
+Silas Marner 456
+
+Enter command: ar 1001
+Room 1001 added
+
+Enter command: ar 1002
+Room 1002 added
+
+Enter command: am 1001 10 Music
+Meeting added at 10
+
+Enter command: am 1001 2 Literature
+Meeting added at 2
+
+Enter command: ap 1001 10 Jones
+Participant Jones added
+
+Enter command: ap 1001 10 John
+Participant John added
+
+Enter command: pr 1001
+--- Room 1001 ---
+Meeting time: 10, Topic: Music
+Participants:
+Elton John 789
+Tom Jones 123
+Meeting time: 2, Topic: Literature
+Participants: None
+
+Enter command: pr 1002
+--- Room 1002 ---
+No meetings are scheduled
+
+Enter command: pm 1001 10
+Meeting time: 10, Topic: Music
+Participants:
+Elton John 789
+Tom Jones 123
+
+Enter command: pm 1001 2
+Meeting time: 2, Topic: Literature
+Participants: None
+
+Enter command: sd normal_save1.txt
+Data saved
+
+Enter command: ld normal_save1.txt
+Data loaded
+
+Enter command: ps
+Information for 2 rooms:
+--- Room 1001 ---
+Meeting time: 10, Topic: Music
+Participants:
+Elton John 789
+Tom Jones 123
+Meeting time: 2, Topic: Literature
+Participants: None
+--- Room 1002 ---
+No meetings are scheduled
+
+Enter command: pa
+Memory allocations:
+C-strings: 63 bytes total
+Person structs: 3
+Meeting structs: 2
+Room structs: 2
+List structs: 6
+List Node structs: 9
+
+Enter command: rm 1001 10 1002 3
+Meeting rescheduled to room 1002 at 3
+
+Enter command: ps
+Information for 2 rooms:
+--- Room 1001 ---
+Meeting time: 2, Topic: Literature
+Participants: None
+--- Room 1002 ---
+Meeting time: 3, Topic: Music
+Participants:
+Elton John 789
+Tom Jones 123
+
+Enter command: di Marner
+Person Marner deleted
+
+Enter command: dp 1002 3 John
+Participant John deleted
+
+Enter command: ps
+Information for 2 rooms:
+--- Room 1001 ---
+Meeting time: 2, Topic: Literature
+Participants: None
+--- Room 1002 ---
+Meeting time: 3, Topic: Music
+Participants:
+Tom Jones 123
+
+Enter command: dm 1002 3
+Meeting at 3 deleted
+
+Enter command: pr 1002
+--- Room 1002 ---
+No meetings are scheduled
+
+Enter command: dr 1001
+Room 1001 deleted
+
+Enter command: sd normal_save2.txt
+Data saved
+
+Enter command: ld normal_save2.txt
+Data loaded
+
+Enter command: ps
+Information for 1 rooms:
+--- Room 1002 ---
+No meetings are scheduled
+
+Enter command: ds
+All meetings deleted
+
+Enter command: dg
+All persons deleted
+
+Enter command: da
+All meetings deleted
+All rooms deleted
+All persons deleted
+
+Enter command: pa
+Memory allocations:
+C-strings: 0 bytes total
+Person structs: 0
+Meeting structs: 0
+Room structs: 0
+List structs: 2
+List Node structs: 0
+
+Enter command: qq
+All meetings deleted
+All rooms deleted
+All persons deleted
+Done

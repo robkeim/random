@@ -1,0 +1,76 @@
+<!--This file created by ClarisWorks HTML Filter 2.0-->
+<HTML>
+<HEAD>
+<META NAME=GENERATOR CONTENT="ClarisWorks HTML Filter 2.0">
+<TITLE>Misaddressing_Memory</TITLE>
+</HEAD>
+<BODY  >
+
+<P><B>OK, how did my program misaddress memory?<BR>
+</B><BR>
+There are many wonderful ways to misaddress memory.  Here are some of the most popular ones:<BR>
+<BR>
+<B>Overflowing an array by miscalculating an array subscript. <BR>
+</B><BR>
+Remember that a C/C++ array of size N is subscripted from 0 to N-1; subscripting with N is an easy error to make. Using a negative subscript happens sometimes also. For reasons of efficiency, C/C++ does not check array subscript values for validity!<BR>
+<BR>
+<B>Using an uninitialized pointer.  <BR>
+</B><BR>
+If a pointer variable has garbage in it, and you store into memory using the pointer, then you clobbered some random place in memory. Often you will get a warning from the compiler if you use a pointer variable without initializing it, but there are plenty of loopholes.<BR>
+<BR>
+<B>Incrementing a pointer past the end of a block of allocated memory.  <BR>
+</B><BR>
+This is similar to the array subscript problem.  Nothing stops your code from using a pointer to access memory that isn't yours.<BR>
+<BR>
+<B>Not allocating memory.  <BR>
+</B><BR>
+You certainly refer to allocated memory with a pointer variable, but just declaring a pointer variable doesn't allocate any memory (except for pointer variable itself).  A common beginner's error is to write:<BR>
+<BR>
+char * input_buffer;<BR>
+<BR>
+cin &gt;&gt; input_buffer;<BR>
+<BR>
+Your program compiles and may even run.  But the input is being stored into memory at whatever random address happened to be lying around in the pointer variable.  Chances are you will be storing the input on top of something, and eventually you will come to grief.  <BR>
+<BR>
+Try this instead:<BR>
+<BR>
+char input_buffer[200];<BR>
+<BR>
+cin &gt;&gt; input_buffer;<BR>
+<BR>
+Now there is a 200-byte space allocated to store the input into. The array name &quot;input_buffer&quot; acts like a constant pointer to that space.<BR>
+<BR>
+This would also work - the space is allocated from the free store (or &quot;heap&quot;) instead of the function call stack:<BR>
+<BR>
+char * input_buffer = new char[200];<BR>
+...<BR>
+cin &gt;&gt; input_buffer;<BR>
+<BR>
+<BR>
+<B>Not allocating enough memory.  <BR>
+</B><BR>
+This is really easy to do with strings.  Suppose you have a char array containing a string that you want to copy into an allocated block of memory.  Your code should look something like:<BR>
+<BR>
+ word_pointer = new char[strlen(buffer) +1];<BR>
+<BR>
+See the +1? The strlen function counts the number of characters in the C string in the buffer, and returns the count.  BUT the null byte ('\0') that marks the end of the string is NOT counted.  So &quot;foo&quot; has length 3.  But to store &quot;foo&quot; in memory takes 4 bytes! You have to add one to get enough space for the null byte.  Leaving off the +1 is a very common mistake.<BR>
+<BR>
+<B>Overflowing an input buffer.  <BR>
+</B><BR>
+In the above example, we have left space for an input string 199 bytes in length, reserve one for the null byte terminator. But what if your demented user types in too much? You can't stop it!  This is a form of the bugs of array overflow or incrementing a pointer past the end.  This is unlikely with a buffer of size 200, but a high probability with one of, say, size 20.<BR>
+<BR>
+<B>Dereferencing a zero pointer.  <BR>
+</B><BR>
+The pointer value of 0 is used to mean &quot;this pointer points at nothing.&quot;  Address 0 on almost every computer is reserved for use by the hardware or OS (e.g. for interrupt handling) . So it can never be the address of anything your program could validly create or process. For this reason, a pointer value of 0 is customarily used as a code to mean it didn't work, it isn't valid, don't use, etc.  But nothing stops your program from trying to use it anyway! If you try to access or store using address 0, you are again trashing memory or reading garbage.  Storing at address 0 is a guaranteed crash or catastrophe, because most OS's have vital organs in the low memory addresses.<BR>
+<BR>
+<B>Using memory that is no longer yours.  <BR>
+</B><BR>
+If you have returned a piece of allocated memory to the system with free or delete, you are making it available for recycling.  So you should NEVER refer to it again.  Nothing stops you - C/C++ assumes you know what you are doing!  But if you access or store at that address again, some other part of the program or the system may be using it, and you will either get garbage or trash somebody else's data. Some programmers set the pointer variable to 0 after free or delete to make it definite that the address of the freed memory can't be used again, and to make the attempt to do so more obvious.<BR>
+<BR>
+A related error: A function returns a pointer to a local variable. The local variable is on the stack, and its memory is available for recycling as soon as the function returns and the stack is popped.  You access the pointed-to memory, but a later function call may also use the same space! Talk about confusing!<BR>
+<B><BR>
+<A HREF="Finding_Misaddressing_Bugs.html"><FONT COLOR="#0000DD"><U>How can I find misaddressing bugs?</A></U></FONT> <BR>
+</B></P>
+</BODY>
+</HTML>
+

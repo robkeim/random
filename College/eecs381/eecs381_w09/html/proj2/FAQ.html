@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="949.43">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; text-align: center; font: 14.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Courier}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Courier}
+    span.s1 {font: 12.0px Courier}
+  </style>
+</head>
+<body>
+<p class="p1"><b>Project 2 Frequently Asked Questions</b></p>
+<p class="p1"><b>Updated 2/11/09</b></p>
+<p class="p1"><b>The most recent items appear first.</b></p>
+<p class="p2"><br></p>
+<p class="p3"><b>My code does not pass some of the component tests, and I don't know why.</b></p>
+<p class="p3">Of course there are a lot of reasons, but here is something that might help.</p>
+<p class="p2"><br></p>
+<p class="p3">The <b>first</b> set of component tests are named like "X Tester." These use a testing driver to test your single component X. Basically, the testing drivers are a much more elaborate version of the "demos" on the project page. Our testing driver calls the functions in your X component and we compare the results with our version of the component. These tests see if your X component has the specified interface and behavior, all by itself.</p>
+<p class="p2"><br></p>
+<p class="p3">The <b>second</b> set of component tests are named like "Our X using thorough feature test". These test whether your whole project is compatible with our component, which it will be if your code assumes only the specified interface and behavior. We build a complete spell checker program by linking together <i>your</i> modules but using <i>our</i> X module instead of yours. Then we run the same test inputs through this hybrid program as in the regular (Check of Output Correctness) "thorough features" test that involves only your code (Test 14).<span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p3">If your program has a defect in the logic in p2.cpp and so does not pass the regular thorough features test #14, which uses 100% of your code, then the chances that it will pass this same test when using one of our components is very low - because we are still using your defective p2.cpp.</p>
+<p class="p2"><br></p>
+<p class="p3">In other words, if your submission fails the thorough features test #14, but passes the "X Tester" component tests, and it fails the "Our X using thorough feature" tests, then work on your p2.cpp to pass Test 14 - that's almost certainly where the problem lies.</p>
+<p class="p2"><b></b><br></p>
+<p class="p3"><b>I get different results than the posted String_demo1 output for the statement</b></p>
+<p class="p4">if ("Tom" &gt; "Dick")</p>
+<p class="p3"><b>What's wrong?</b></p>
+<p class="p3">Nothing's wrong. To understand what is happening here review the following:</p>
+<p class="p3">1. How string literals are treated by the compiler.</p>
+<p class="p3">2. What operators can be overloaded.</p>
+<p class="p3">Then consider what is happening in this statement and how it might easily be platform specific. Hint: It has nothing to do with how your String class works.</p>
+<p class="p2"><br></p>
+<p class="p3"><b>I am getting a confusing error on a statement in Ordered_array where I try to return an Iterator from the find function, defined outside the class declaration, as in:</b></p>
+<p class="p5">template &lt;typename T&gt;</p>
+<p class="p5">Iterator Ordered_array&lt;T&gt;::find ... etc</p>
+<p class="p3"><b>The error from g++ is</b></p>
+<p class="p3">"expected constructor, destructor, or type conversion before 'Ordered_array'</p>
+<p class="p3"><b>What does this mean?</b></p>
+<p class="p2"><br></p>
+<p class="p3">There are two issues here. First, the <span class="s1">Iterator</span> class is like the Standard Library container iterators: their declarations are nested in the container class declarations. So, <i>outside</i> the class declaration, the full name of the Iterator class has to include the fact that it is <i>nested</i> within the <span class="s1">Ordered_array</span> template class with the template parameter, as in:</p>
+<p class="p5">Ordered_array&lt;T&gt;::Iterator</p>
+<p class="p2"><br></p>
+<p class="p3">In this sort of statement a second problem arises (see the lecture notes on templates; Stroustrup mentions it as well). You have to tell the compiler that</p>
+<p class="p5">Ordered_array&lt;T&gt;::Iterator</p>
+<p class="p3">is the name of a <i>type</i>, as opposed to e.g. the name of a static member variable of the <span class="s1">Ordered_array</span> class which would have the same syntax. To do this, stick <span class="s1">typename</span> in front of the full name of the <span class="s1">Iterator</span> type, as in:</p>
+<p class="p2"><br></p>
+<p class="p5">template &lt;typename T&gt;</p>
+<p class="p5"><b>typename</b> Ordered_array&lt;T&gt;::Iterator Ordered_array&lt;T&gt;::find ... etc</p>
+<p class="p2"><br></p>
+<p class="p3"><i>Explanation: </i>This is called a "dependent template type" problem. The compiler has to figure out how to interpret <span class="s1">Ordered_array&lt;T&gt;::Iterator</span>, and this <i>depends</i> on what the <span class="s1">Ordered_array</span> template contains, which might <i>depend</i> on how <span class="s1">Ordered_array</span> gets instantiated for type <span class="s1">T</span> (it doesn't in this case, but the compiler can't tell - at least not easily). If you tell the compiler that <span class="s1">Iterator</span> is the name of a type, then it knows what to do. This is why the <span class="s1">typename</span> keyword was added to C++; previously, compilers always assumed it was the name of a type, which made other possibilities impossible to code.</p>
+<p class="p2"><br></p>
+<p class="p3">The final result is clumsy, but this is because the function is being defined <i>outside</i> the class declaration. If you define a function <i>inside</i> the class declaration, the <span class="s1">typename</span> keyword and <span class="s1">Ordered_array&lt;T&gt;:: </span>scope qualifiers for <span class="s1">Iterator</span> return types aren't needed - the context tells the compiler what's going on.</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p3"><b>How do I set up a Standard C++ project in Apple's Xcode IDE?</b></p>
+<p class="p3">See the main course web page under Programming Environment Information, Notes on using Xcode.</p>
+<p class="p2"><br></p>
+<p class="p3"><b>How do I set up a Standard C++ project in Microsoft Visual Studio?</b></p>
+<p class="p3">See the main course web page under Programming Environment Information, Notes on using MS Visual Studio.</p>
+<p class="p2"><br></p>
+<p class="p3"><b>What compiler, version, and options are being used by the autograder?</b></p>
+<p class="p3">gcc 4.1.1, with compile options like those in the provided makefile</p>
+<p class="p2"><br></p>
+<p class="p3">-pedantic -ansi -Wall -fno-elide-constructors</p>
+<p class="p2"><br></p>
+<p class="p3">Especially if you are using Windows or Mac OS X, before submitting your code, you should upload to a CAEN workstation and try compiling your code with gcc 4.1.1 or a later version with the same compiler options. Test with at least the samples and check for an exact match on output to help detect any platform-specific problems.</p>
+<p class="p2"><br></p>
+<p class="p3">Use the supplied makefile, or do a quick-and-dirty build as follows: make sure the only files in the current directory are the ones you plan to submit. Enter:</p>
+<p class="p2"><br></p>
+<p class="p3">g++ -pedantic -ansi -Wall -fno-elide-constructors *.cpp</p>
+<p class="p2"><br></p>
+<p class="p3">This will compile and link together all the source files in the directory and build an executable named a.out, which you can execute with:</p>
+<p class="p2"><br></p>
+<p class="p3">./a.out</p>
+<p class="p2"><br></p>
+</body>
+</html>

@@ -1,0 +1,115 @@
+Review Questions.
+EECS485
+Information Retrieval and Web Search
+
+
+1. A critical decision in the design of an inverted index is what operations it makes possible without recourse to the original document texts.  Consider three choices of inverted index:
+   i.   Each posting entry simply indicates the document-identifier.
+   ii.  Each posting entry indicates the document-identifier and number of times the term appears, but no positional information.
+   iii. Each posting entry indicates the document-identifier and exact position information for where the term appears (measured as offset from the start of the document).
+
+   Give an example of a type of IR query that would be possible using ONLY the inverted index.  You may not examine the original documents.
+   a.  Using index (iii), but not possible using undex (ii).
+
+   b.  Using index (ii), but not possible using undex (i).
+
+   c.  Are there indexed retrievals that require fetching the actual documents
+   even with index (iii).  Why or why not?
+
+
+Solution: (a)  Possible queries include phrase queries, or using ranking that weights close-elements more heavily.
+          (b)  tf-idf would fall into this category - it requires term-counting.
+          (c)  In principle, no.  Every document can be reconstructed from the inverted index.  However, in practice doing so might be extremely computationally difficult.  For example, summary-snippets can be generated from the inverted index, but in practice are always computed from the original documents.
+
+
+
+2.  Suppose you are launching a crawler for your brand-new search engine.  What might be some good starting points.  Why?
+
+Yahoo, Wikipedia, DMOZ.  Any website that links broadly to the entire Web and has links of high quality.
+
+
+3.  Consider the following short "documents".
+
+i) "A short universal sentence"
+ii) "The universal science"
+iii) "A universal truth is that science can progress only with adequate resources devoted to intellectual enterprise"
+
+For all questions below, assume that we have removed "stop words" and are left with the following term set:
+universal, truth, science, progress, adequate, resources, devoted, intellectual, enterprise, short, sentence
+
+a)  Build vectors that show which terms appear in which documents.  Ignore term frequency and term weights.
+1 0 0 0 0 0 0 0 0 1 1  (length sqrt(3))
+1 0 1 0 0 0 0 0 0 0 0  (length sqrt(2))
+1 1 1 1 1 1 1 1 1 0 0  (length sqrt(9) == 3)
+
+
+b)  Given the query "science universal", compute the normalized vector similarity between the query and each of the three documents.  Assume that the system uses an implicit boolean AND, so we should only examine documents where ALL search terms are present.
+
+The query vector is:  1 0 1 0 0 0 0 0 0 0 0 
+
+  i: 1/sqrt(6)
+ ii: 1
+iii: sqrt(2)/3
+
+c)  Draw the inverted index for the document corpus.
+
+universal -> {i,ii,iii}
+truth -> {iii}
+science -> {ii, iii}
+progress -> {iii}
+...
+enterprise -> {iii}
+short -> {i}
+sentence -> {i}
+
+
+d)  Suppose I choose a slightly-crazy similarity measure, in which the distance between two documents is equal to the number of terms that appear in only one of the two divided by the total number of terms.  Two identical documents thus have distance zero, and two completely disjoint documents have distance 1. With this metric, find the distances between the three documents identified above.
+
+dist(i,ii) = 3/11
+dist(i,iii) = 10/11
+dist(ii,iii) = 7/11
+
+
+4.  Why might you want a search engine to return documents that do not contain all
+the query terms you specify?  How would you modify the standard "intersection"
+style inverted-index lookup to do this?
+
+It's possible that under tf-idf scoring, a document might be very relevant to your
+query even if it does not contain all of the terms.  There's nothing forcing us
+to observe strict Boolean-predicate satisfaction.  We can simply modify the inverted-index
+processing to score all documents in which *any* search term appears.
+
+
+5.  Describe how one can build an information-retrieval system with perfect recall, as long as precision is not important.
+
+Emit everything!
+
+
+6.  For a given query, your search engine computes a ranking of all the known URLs.  Imagine that out of the top-10 URLs, the relevant ones are: 1, 2, 4, 6, and 9.  Compute precision and recall if you were to emit 3, 7, and 10 results.
+
+At position 3, there are 2 correct items and 1 incorrect one.
+P ==  2/3 == 0.666
+R ==  2/5 == 0.4
+
+At position 7, there are 4 correct items and 3 incorrect ones.
+P == 4/7 == 0.57
+R == 4/5 == 0.8
+
+At position 10, there are 5 correct items and 5 incorrect ones.
+P == 5/10 == 0.5
+R == 5/5 == 1.0
+
+
+7.  Your search engine computes a ranking of 5 web pages: 2, 3, 5, 1, 4.  According to your crack staff of Web-page-examiners, the best ordering is 3, 5, 2, 1, 4.  What is the Kendall's Tau distance between your ranking and the best one?
+
+Here, N = 5, so there are 0.5*(n)*(n-1) possible pairs, or 10 possible pairs.
+
+The correct orderings are: (2, 1), (2, 4), (3, 5), (3, 1), (3, 4), (5, 1), (5, 4), (1, 4).
+The incorrect orderings are: (2, 3), (2, 5).
+
+Thus, the value is (8 - 2) / 10 == 0.6.
+
+
+
+
+

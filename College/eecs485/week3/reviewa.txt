@@ -1,0 +1,166 @@
+1. What happens if the refresh button is used during a session implemented with
+   the URL-encoding scheme?
+
+The request sent to the server is identical to the preceding one, and hence
+includes the exact same session identification information.  So there is no
+problem as long as the original request had a valid session id.  If not, this
+page initiated a new session, and a refresh of the page will start yet
+another new session.  (This may not be too bad since not too much work is
+likely to have taken place in the new session without loading any other pages).
+
+
+2. What happens if the back button is used during a session implemented with
+   the URL-encoding scheme?
+
+No problem -- the previous page was probably cached, so the request
+never even gets to the server.  But if it did, it would be an exact
+repeat of the original request, as in the preceding question.  This is
+usually not a problem, unless one backs to the very first page in the
+session and see the problem mentioned above.  We could see a problem even
+before this if the session state encoded in the URL includes more state
+than just a session identifier.  With such a design, we could see the
+session state encoded in the request be inconsistent with the actual
+state as recorded at the server somewhere, and bad things can happen.
+
+
+3. Suppose user A copies a session-encoding-enhanced URL that looks interesting
+   and emails it to a friend B.  Suppose B gets this email within a few
+   seconds, and clicks on this URL right away.  How can you ensure that B
+   establishes a new session with the server rather than being folded into
+   A's session? 
+
+Not possible using URL encoding alone.  If B presents a valid session
+encoding before A's session has terminated, there is no way for the
+server, based solely on the session encoding in the URL, to determine
+that the request from B should belong to a different session.  One way to
+decrease the likelihood of this problem is to encode additional
+identifying information, such as A's IP address, in the URL extension.
+If B presents a different IP address than the one encoded, the server can
+start a new session.  Since B can easily spoof its IP address, and other
+identifying information, this scheme does not eliminate the problem, it
+just makes it less likely to happen inadvertently.  (Once A's
+session has terminated, this problem does not arise -- B's request
+encodes a non-existent session, and so is used to initiate a new
+session).  Cookies do not have this problem.
+
+
+4. Suppose a client decides to present cookies in a non-deterministic manner:
+    when making an HTTP request, it collects all the cookies it is supposed to 
+    include in the request, and then, for each, flips a coin to decide whether
+    actually to send it.  Given a user log in session, what could the server do
+    to keep itself from getting confused by this aberrant client behavior?
+
+Keep only the user identification in the cookie, and merge identities
+whenever two cookies are presented with different info.  All other state
+information is stored on the server.  Some requests may arrive with no
+cookies at all, probabilistically.  So there is no way around initiating new
+sessions for these, and performing a merge later on.
+
+
+5. You have been asked to write a web server that uses cookies to implement
+    sessions for clients that accept cookies, and to use URL modification for
+    clients that do not.  Consider an HTTP {\sf GET} request from a brand new
+    client, with no cookie included, requesting a basic (unextended) URL.  List
+    the steps you will take to establish a session.  (Keep in mind that HTTP is
+    asymmetric -- there is no way for the server side to initiate a transfer:
+    the server has to wait for a request from the client).  
+
+There is no way to tell whether a client is accepting cookies without
+actually trying to set one, and waiting for a subsequent request.  So
+the safest way to handle the scenario presented is to follow both
+courses of action: set cookie and modify URL.  On a subsequent request,
+if both the cookie and the modified URLs are presented, the latter can
+be disregarded (or used to cross-validate the cookie).  
+
+If you are dying to know right away whether the client accepts cookies,
+you could try to force a new HTTP request by using a redirection, or an
+immediate refresh.  This may not work if the client has placed limits on
+refresh or redirection, or if the client insists on sending cookies only
+with an original request and not a redirected one.
+
+
+6. Session state can be maintained in a cookie, in a server-process variable (in PHP), or in
+a back-end database.  What are the advantages and drawbacks of each?
+
+Cookies should just be used for identification -- maintaining state in
+cookies is almost always bad as discussed in the chapter.  State in server
+process session state variables is the easiest to implement, and most
+efficient, and hence used widely.  Drawbacks are that state can be lost upon
+server machine or process crash.  Also, if there are multiple server
+processes, subsequent requests may come to different processes and state stored in 
+one process will not be available to the others.  Storing session state in a 
+back-end database solves these difficulties, but introduces a potentially 
+significant performance penalty.  Most often, the database is used only to 
+store persistent interaction history (which may be written once at the end 
+of the session, for instance) rather than state as it evolves through each 
+HTTP request within a session.  
+
+
+---------------------------
+
+7. Imagine that you have a small collection of machines that need to communicate
+   with each other, but not to any other machines.  They are all located in the same
+   building.  What changes would you make to TCP/IP to make their network connections
+   more efficient?  What is the likely performance impact if the connections are
+   "HTTP-like", consisting of short-lived transfers of few bytes?  What if the connections 
+   are long-lasting and transfer large amounts of data (gigabytes or more)?
+
+There are a few changes you can make.  Because congestion is unlikely, modify the slow-start/AIMD
+algorithm to reach network capacity more quickly.  
+
+Also, because packets are unlikely to be substantially delayed within your own network, it
+may be worthwhile to reduce the TTL (time to live) value.  This value controls how long TCP will 
+wait for a lost packet before considering it dead and retransmitting.  By reducing the value, 
+senders will retransmit earlier.  However, you should be losing extremely few packets in this
+deployment, so modifying TTL may not have a big impact.
+
+Note that all of these changes together may put a high load on your network.  You should be
+wary of inducing congestion-collapse-like behavior.  But as long as you closely observe your
+own network structure, these modifications can probably be done safely.  (Note that if one
+of your machines tries to connect to the outside world, it should use "standard" TCP, not
+your flavor of it.)
+
+If the connections are HTTP-like, and thus the TCP connections are short-lived, then avoiding the 
+slow initial transfer period should improve transfer times substantially.  If the connections
+are long-lasting, then this inefficient start period accounts for a relatively small percentage
+of your total possible bandwidth, and so modifying this congestion-control part of TCP will
+not have as big an impact.  The TTL improvement will only come into play if packets are lost.
+
+
+8. Nagle's Algorithm is an extension to TCP that briefly delays sending small packets, in order
+   to give the sending application more time to add data, yielding a better ratio of data payload
+   to TCP header information.  Describe the likely behavior of Nagle's Algorithm in each of
+   the following applications:
+   a) Bulk one-way file transfer
+   b) Video conferencing
+   c) Interactive terminal
+   d) HTTP, standard Web browsing
+   e) Remote audio recording (a microphone sends its recording via TCP to be stored remotely)
+
+
+a) Nagle's algorithm will probably not have much impact on file transfer; all payloads are being filled up, so it never gets to do its work.
+
+b) Video conferencing is very sensitive to packet-delay, making Nagle's algorithm undesirable.  On the other hand, video conferencing also generates large amounts of data, so Nagle is probably unnecessary.
+
+c) A remote interactive terminal is where Nagle's Algorithm can make the connection much more efficient, but very annoying for the user.  Each side in this application generates very little data, but users at keyboards are very sensitive to packet-delay.
+
+d) Because HTTP transmissions tend to be "all-at-once", Nagle is not tremendously useful.  In other words, waiting around a brief amount of time may not yield a lot more data to place in the payload.  The one possible exception is in the case of an overloaded HTTP server that is replying to a request very slowly.  On the other hand, HTTP is only moderately sensitive to delayed packets.
+
+e) Remote audio recording is Nagle's sweet spot.  Data is very bursty, with potentially-long periods of slow data trickles.  The application is not sensitive to packet delay, so Nagle can delay packet transmission with no user penalty.
+
+
+
+9) Compare and contrast two scenarios:
+   a) A browser user attemtps to visit a given URL, and the remote Apache server is too overloaded to read the HTTP request.
+   b) A browser user attempts to visit a given URL, and the remote Apache server is overloaded.  It has enough time to read the HTTP request, but not to perform the task that the user has requested.
+
+   In each scenario, describe what is happening on the network connection, what the client software is doing, what the server is doing, and what the user sees onscreen.  Which scenario is preferable?  Which scenario uses the network most efficiently?
+
+
+In case a, the server becomes overloaded in a way that TCP flow control can detect and react to.  As the server's TCP buffer fills with unprocessed bytes, the server's advertised TCP window will shrink, and the client will put fewer bytes to the wire.  Depending on how loaded the server is, the bytes that are received may or may not be acknowledged; if the server machine is so debilitated that it cannot even acknowledge received IP packets, then the client may believe that they are lost and retransmit.
+
+In case b, the server is overloaded, but TCP believes that bytes are being "processed" by the application and so enables the client to keep sending.  The bytes in this case are definitely being ACK'ed by the server, so the client does not retransmit, but keeps sending new bytes.  (The server's application is reading bytes out of its TCP buffer, so the advertised window to the client does not shrink.)
+
+
+Case B does not place extra load on the network, unlike a possible outcome of case A.  For better or for worse, case B does not ask the client to slow down its transmission; although this means the client's data may be more quickly transferred, the server may not want to deal with the client's flood just yet.  All in all, case B is probably preferable, though not overwhelmingly so.
+

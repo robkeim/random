@@ -1,0 +1,46 @@
+<!--This file created by ClarisWorks HTML Filter 2.0-->
+<HTML>
+<HEAD>
+<META NAME=GENERATOR CONTENT="ClarisWorks HTML Filter 2.0">
+<TITLE>ErrormsgFAQ</TITLE>
+</HEAD>
+<BODY  >
+
+<P ALIGN=CENTER><B>FAQs about C/C++ Compiler/Linker Error Messages.<BR>
+<BR>
+</B>Last Updated 10/10/08<B><BR>
+<BR>
+</P>
+
+<P><BR>
+I get a gazillion error messages from the compiler. What did I do to deserve this?</B><BR>
+<BR>
+You probably made a mistake near the beginning of your program that turned the rest of your program into gibberish as far as the compiler was concerned.  Leaving off a terminator punctuation, like a double-quote, a '}', or a semicolon is an easy way to trash the rest of your program.  Also, messing up a declaration or a #include will often result in tons of error messages.  <BR>
+<BR>
+To find the problem, don't try to deal with all those messages! Instead, focus on the first one or two. These probably identify the original problem.  Correct that problem, and then compile again right away. Most of the gazillion error messages should disappear, allowing you to see the remaining &quot;real&quot; error messages. Repeat until you get relief.<BR>
+<BR>
+<B>The compiler is giving me an error message on a line that looks perfectly good.  Is this a bug in the compiler?<BR>
+</B><BR>
+Almost certainly not.  This is a common result.  Often the compiler doesn't know there is a problem until it has gone a little further into your program. So it reports an error on the line where it realized that something is wrong, not where you made the error.  Look for an error in the line or lines just before the one identified in the error message.  <BR>
+<B><BR>
+I am getting an error message from the linker saying something like &quot;unresolved external reference&quot; or &quot;undefined&quot; blah-blah.  What does this mean?<BR>
+</B><BR>
+First, be sure that it is a message from the linker, not the compiler. An &quot;undefined&quot; compiler error message is probably complaining about your using an undeclared variable or function.<BR>
+<BR>
+But the linker runs after the compiler has finished.  It is trying to assemble your whole program, looking at each point where a function is called, locating the code for that function in either your program or the library object modules, and then patching the address of the function code into the call. <BR>
+<BR>
+This message results when the linker can not find a function that matches the call. Somewhere in the gobbledegook of the message you should be able to make out the name of the function it was looking for (possibly mangled, depending on your programming environment), and where the missing function was called from.<BR>
+<BR>
+Perhaps you forgot to define the function (supply the actual code for it).  Perhaps you spelled the name of the function differently in the definition than you did in either the calls or the function prototype.  The information in the message should help you track it down.<B><BR>
+</B><BR>
+<B>I'm using MSVC and I got a link error message:<BR>
+<BR>
+error LNK2001: unresolved external symbol _WinMain@32<BR>
+</B><BR>
+Your project is the wrong kind. You told MSVC you were building a Windows application instead of a Console application. WinMain is the substitute for main in a Windows application. Start a new project of the right type, and move your code over into it.<BR>
+<BR>
+<BR>
+</P>
+</BODY>
+</HTML>
+

@@ -1,0 +1,13 @@
+Hi everyone,
+
+There are textbooks on TCP/IP, but you shouldn't buy a whole text to support just a single lecture.  I think the best freely-available resource is Chapter 4 of this IBM-published text:
+http://www.redbooks.ibm.com/redbooks/pdfs/gg243376.pdf
+
+We didn't discuss the UDP protocol, and we won't have it on exams.  Feel free to skip those parts.  However, it's pretty straightforward.  UDP is basically a "transport layer wrapper" around IP packets.  On the internet, UDP is mainly used in multimedia applications where timely delivery of information is more important than reliable in-order delivery.  (HTTP, of course, uses TCP.)
+
+The IBM text doesn't cover AIMD.  For that, I'd take a look at the (short) Wikipedia article:
+http://en.wikipedia.org/wiki/Additive_increase/multiplicative_decrease
+
+You might also find useful this interactive demo of how the sliding window algorithm for flow control works in different packet-loss scenarios:
+http://www3.rad.com/networks/2004/sliding_window/index.html,  click on "Sliding Window Demo" at left-hand side.
+

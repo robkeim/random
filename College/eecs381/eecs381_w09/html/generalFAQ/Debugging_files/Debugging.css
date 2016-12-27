@@ -1,0 +1,53 @@
+.Body {
+    color: #000000;
+    font-family: 'Times-Roman', 'Times', 'Times New Roman', 'serif';
+    font-size: 12pt;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    letter-spacing: 0;
+    line-height: 14pt;
+    margin-bottom: 0pt;
+    margin-left: 0pt;
+    margin-right: 0pt;
+    margin-top: 0pt;
+    opacity: 1.00;
+    padding-bottom: 6pt;
+    padding-top: 0pt;
+    text-align: left;
+    text-decoration: none;
+    text-indent: 0pt;
+    text-transform: none;
+}
+.Sub_heading {
+    color: #000000;
+    font-family: 'Helvetica-Bold', 'Helvetica', 'Arial', 'sans-serif';
+    font-size: 12pt;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: bold;
+    letter-spacing: 0;
+    line-height: 14pt;
+    margin-bottom: 0pt;
+    margin-left: 0pt;
+    margin-right: 0pt;
+    margin-top: 0pt;
+    opacity: 1.00;
+    padding-bottom: 0pt;
+    padding-top: 6pt;
+    text-align: left;
+    text-decoration: none;
+    text-indent: 0pt;
+    text-transform: none;
+}
+.Normal {
+    width: 468pt;
+}
+div {
+    overflow: visible;
+}
+img {
+    border: none;
+}
+.searchtext {
+}
