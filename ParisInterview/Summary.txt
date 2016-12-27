@@ -1,0 +1,38 @@
+This was the interview loop I had when applying to work on Groove Music in Paris, France.
+
+Informationals:
+  - Brooks Cutter
+  - Thomas Religieux
+  - Peter Hansen
+
+Technical writing:
+  - Find cheese
+
+Phone screen - Sébastien Peray:
+  - Implement a queue using only a stack
+  - Find duplicate files in a directory
+
+Interview 1 - Sébastien Peray:
+  - Implement a queue data structure
+
+Interview 2 - Sebastien Leang:
+  - Implement pattern matching regex
+  - Implement a search in a sorted 2d array
+
+Interview 3 - Jérôme Beck:
+  - Implement a function to return the value of a roman numeral
+  - Implement a function to return a list of hotels in a given radius
+
+Interview 4 + Lunch - Karim Jouini:
+  - An array of size n contains the numbers 1 -> n that have been scrambled.  Additional some values have been set to zero.  Find the missing values
+  - Given a list of points and a desired point, find the m closest points
+  - Given a point and unlimited pre-computation power find the m closest points
+
+Interview 5 + Lunch - Sylvain Biancardini
+  - Find the number of occurances of a set of strings in an array of strings
+  - Merge two sorted arrays together
+  - How would you design a distrubted cache?
+  - Write an algorithm to determine the distance between two friends for Facebook
+
+ASAP:
+  - Jamel Gafsi
