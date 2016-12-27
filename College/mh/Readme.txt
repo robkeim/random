@@ -1,0 +1,1 @@
+I created this script when I was playing Mousehunt (Facebook game) to see how my friends were doing.

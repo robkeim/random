@@ -1,0 +1,1 @@
+I created these scripts to help a friend that was manually parsing/extracting information from text files.
