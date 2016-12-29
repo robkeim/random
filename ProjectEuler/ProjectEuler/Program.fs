@@ -6,6 +6,7 @@ open System
 let main argv =
     //Problem12.triangleNumber
     //Problem19.numSundays
+    //Problem24.millionthPermutation
     //Problem25.thousandDigitFibonacci
     //Problem30.digitFifthPowers
     //Problem31.numCoins

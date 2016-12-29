@@ -51,6 +51,7 @@
     <None Include="App.config" />
     <Compile Include="Problem12.fs" />
     <Compile Include="Problem19.fs" />
+    <Compile Include="Problem24.fs" />
     <Compile Include="Problem25.fs" />
     <Compile Include="Problem30.fs" />
     <Compile Include="Problem31.fs" />
