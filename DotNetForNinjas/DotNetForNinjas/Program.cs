@@ -6,9 +6,11 @@ namespace DotNetForNinjas
     {
         public static void Main(string[] args)
         {
-            // ReferenceAndValueTypes
-            var example = new ReferenceAndValueTypes();
-            example.ClassVsStruct();
+            // Reference and value types
+            // ReferenceAndValueTypes.ClassVsStruct();
+
+            // Reference types
+            ReferenceTypes.PassByValue();
 
             Console.WriteLine("\ndone!");
             Console.ReadLine();

@@ -21,61 +21,59 @@ namespace DotNetForNinjas
     // Passing parameters: https://msdn.microsoft.com/en-us/library/0f66670z.aspx
     // Value types: https://msdn.microsoft.com/en-us/library/s1ax56ch.aspx
     // Passing value types: https://msdn.microsoft.com/en-us/library/9t0za5es.aspx
-    // Reference types: https://msdn.microsoft.com/en-us/library/490f96s2.aspx
-    // Passing reference types: https://msdn.microsoft.com/en-us/library/s6938f28.aspx
-    public class ReferenceAndValueTypes
+    public static class ReferenceAndValueTypes
     {
         /// <summary>
         /// This highlights the difference between reference types and value types in C#.
         /// </summary>
-        public void ClassVsStruct()
+        public static void ClassVsStruct()
         {
             // Class
             Console.WriteLine("--- class ---");
-            var classExample = new ClassExample { Value = 1 };
-            Console.WriteLine($"Before: {classExample}");
-            UpdateValue(classExample, 2);
-            Console.WriteLine($"After: {classExample}");
+            var exampleClass = new ExampleClass { Value = 1 };
+            Console.WriteLine($"Before: {exampleClass}");
+            UpdateValue(exampleClass, 2);
+            Console.WriteLine($"After: {exampleClass}");
 
             Console.ReadKey();
 
             // Struct
             Console.WriteLine("\n--- struct ---");
-            var sructExample = new StructExample { Value = 3 };
-            Console.WriteLine($"Before: {sructExample}");
-            UpdateValue(sructExample, 4);
-            Console.WriteLine($"After: {sructExample}");
+            var exampleStruct = new ExampleStruct { Value = 3 };
+            Console.WriteLine($"Before: {exampleStruct}");
+            UpdateValue(exampleStruct, 4);
+            Console.WriteLine($"After: {exampleStruct}");
         }
 
-        private void UpdateValue(IValue valueToUpdate, int newValue)
+        private static void UpdateValue(IValue valueToUpdate, int newValue)
         {
             valueToUpdate.Value = newValue;
             Console.WriteLine($"In function: {valueToUpdate}");
         }
-    }
 
-    public class ClassExample : IValue
-    {
-        public int Value { get; set; }
-
-        public override string ToString()
+        public class ExampleClass : IValue
         {
-            return Value.ToString();
+            public int Value { get; set; }
+
+            public override string ToString()
+            {
+                return Value.ToString();
+            }
         }
-    }
 
-    public struct StructExample : IValue
-    {
-        public int Value { get; set; }
-
-        public override string ToString()
+        public struct ExampleStruct : IValue
         {
-            return Value.ToString();
-        }
-    }
+            public int Value { get; set; }
 
-    public interface IValue
-    {
-        int Value { get; set; }
+            public override string ToString()
+            {
+                return Value.ToString();
+            }
+        }
+
+        public interface IValue
+        {
+            int Value { get; set; }
+        }
     }
 }

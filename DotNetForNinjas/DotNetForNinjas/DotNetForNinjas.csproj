@@ -43,9 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PassByReferenceOrValue.cs" />
+    <Compile Include="ReferenceAndValueTypes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReferenceTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
