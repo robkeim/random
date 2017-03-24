@@ -16,6 +16,9 @@ namespace DotNetForNinjas
             // ValueTypes.PassByValue();
             // ValueTypes.PassByReference();
 
+            // The out keyword
+            // OutKeyword.RealWorldOutExample();
+
             Console.WriteLine("\ndone!");
             Console.ReadLine();
         }
