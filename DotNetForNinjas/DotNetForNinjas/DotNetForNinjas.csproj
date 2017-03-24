@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Keywords\OutKeyword.cs" />
     <Compile Include="Keywords\RefKeyword.cs" />
+    <Compile Include="Keywords\VarKeyword.cs" />
     <Compile Include="Reference and Value\ReferenceAndValueTypes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
