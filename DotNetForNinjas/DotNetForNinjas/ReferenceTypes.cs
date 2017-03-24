@@ -58,7 +58,7 @@ namespace DotNetForNinjas
         /// </summary>
         public static void PassByReference()
         {
-            Console.WriteLine("--- update reference with ref in class ---");
+            Console.WriteLine("--- update reference with ref keyword ---");
             var exampleClass = new ExampleClass { Value = 1 };
             Console.WriteLine($"Before: {exampleClass}");
             UpdateReferenceWithRef(ref exampleClass, 2);

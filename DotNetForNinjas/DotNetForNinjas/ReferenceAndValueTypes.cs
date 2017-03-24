@@ -2,25 +2,6 @@
 
 namespace DotNetForNinjas
 {
-    // In C#, there are two different types reference types and value types.
-    //
-    // Reference types include:
-    // - classes
-    // - interfaces
-    // - delegates
-    //
-    // Value types include:
-    // - structs
-    // - enums
-    //
-    // In functions, all parameters can either be passed by reference or by value.
-    // By default, all parameters are passed by value and the ref and out keywords
-    // are used to pass something by reference.
-    //
-    // For more information you can look at these links:
-    // Passing parameters: https://msdn.microsoft.com/en-us/library/0f66670z.aspx
-    // Value types: https://msdn.microsoft.com/en-us/library/s1ax56ch.aspx
-    // Passing value types: https://msdn.microsoft.com/en-us/library/9t0za5es.aspx
     public static class ReferenceAndValueTypes
     {
         /// <summary>

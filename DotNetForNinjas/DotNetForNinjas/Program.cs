@@ -10,7 +10,11 @@ namespace DotNetForNinjas
             // ReferenceAndValueTypes.ClassVsStruct();
 
             // Reference types
-            ReferenceTypes.PassByValue();
+            // ReferenceTypes.PassByValue();
+
+            // Value types
+            // ValueTypes.PassByValue();
+            // ValueTypes.PassByReference();
 
             Console.WriteLine("\ndone!");
             Console.ReadLine();
