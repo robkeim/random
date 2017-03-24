@@ -25,5 +25,13 @@ namespace DotNetForNinjas
             Console.WriteLine("\ndone!");
             Console.ReadLine();
         }
+
+        private static int? GetValueFromQueryString(string queryString)
+        {
+            int result;
+            return int.TryParse(queryString, out result)
+                ? (int?)result
+                : null;
+        }
     }
 }

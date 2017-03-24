@@ -6,7 +6,7 @@ namespace DotNetForNinjas
     // https://msdn.microsoft.com/en-us/library/bb383973.aspx
     public static class VarKeyword
     {
-        private static void HowToUseVar()
+        private static void HowToUse()
         {
             // Var is a "shortcut" to avoid having to declare the type of the variable
             int a = 0;
