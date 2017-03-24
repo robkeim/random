@@ -18,6 +18,9 @@ namespace DotNetForNinjas
 
             // The out keyword
             // OutKeyword.RealWorldOutExample();
+            
+            // The ref keyword
+            // RefKeyword.RealWorldExample();
 
             Console.WriteLine("\ndone!");
             Console.ReadLine();
