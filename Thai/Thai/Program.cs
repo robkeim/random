@@ -16,13 +16,19 @@ namespace Thai
             {
                 googleClient.Encoding = Encoding.UTF8;
 
-                foreach (var englishPhrase in File.ReadAllLines(@"c:\users\rkeim\desktop\input.txt"))
+                foreach (var englishPhrase in File.ReadAllLines(@"c:\users\rkeim\desktop\thai\input.txt"))
                 {
                     Console.WriteLine($"{englishPhrase}");
-                    var result = googleClient.DownloadString($"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=th&dt=t&q={HttpUtility.UrlEncode(englishPhrase)}");
-                    var match = Regex.Match(result, "\"(.*?)\"");
+                    var googleResult = googleClient.DownloadString($"https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=th&dt=t&q={HttpUtility.UrlEncode(englishPhrase)}");
+                    var match = Regex.Match(googleResult, "\"(.*?)\"");
                     var thaiPhrase = match.Groups[1].ToString();
-                    soundOfTextClient.DownloadFile($"http://soundoftext.com/static/sounds/th/{HttpUtility.UrlEncode(thaiPhrase)}.mp3", $@"c:\users\rkeim\desktop\{englishPhrase} - {thaiPhrase}.mp3");
+                    var encodedThaiPhrase = HttpUtility.UrlEncode(thaiPhrase);
+
+                    // This first call is required to populate the cache where the sound is retrieved in the following call
+                    soundOfTextClient.Headers.Add("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
+                    soundOfTextClient.UploadString("http://soundoftext.com/sounds", $"text={encodedThaiPhrase}&lang=th");
+                    
+                    soundOfTextClient.DownloadFile($"http://soundoftext.com/static/sounds/th/{encodedThaiPhrase}.mp3", $@"c:\users\rkeim\desktop\thai\{englishPhrase} - {thaiPhrase}.mp3");
                 }
             }
 
