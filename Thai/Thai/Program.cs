@@ -54,7 +54,9 @@ namespace Thai
                     var match = Regex.Match(line, "(.*?) - (.*)");
 
                     Console.WriteLine(match.Groups[1]);
-                    var encodedThaiText = HttpUtility.UrlEncode(match.Groups[2].ToString());
+                    var thaiText = match.Groups[2].ToString()
+                        .Replace(" ", "_");
+                    var encodedThaiText = HttpUtility.UrlEncode(thaiText);
 
                     // This first call is required to populate the cache where the sound is retrieved in the following call
                     soundOfTextClient.Headers.Add("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
