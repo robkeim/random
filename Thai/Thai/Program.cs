@@ -54,13 +54,16 @@ namespace Thai
                     var match = Regex.Match(line, "(.*?) - (.*)");
 
                     Console.WriteLine(match.Groups[1]);
-                    var thaiText = match.Groups[2].ToString()
-                        .Replace(" ", "_");
+                    var thaiText = match.Groups[2].ToString();
                     var encodedThaiText = HttpUtility.UrlEncode(thaiText);
 
                     // This first call is required to populate the cache where the sound is retrieved in the following call
                     soundOfTextClient.Headers.Add("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
                     soundOfTextClient.UploadString("http://soundoftext.com/sounds", $"text={encodedThaiText}&lang=th");
+
+                    // The download links have spaces replaced by underscores
+                    thaiText = thaiText.Replace(" ", "_");
+                    encodedThaiText = HttpUtility.UrlEncode(thaiText);
 
                     // Remove invalid characters from path before saving file
                     var path = line
