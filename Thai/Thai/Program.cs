@@ -13,8 +13,8 @@ namespace Thai
 
         public static void Main(string[] args)
         {
-            Translate();
-            //DownloadAudio();
+            //Translate();
+            DownloadAudio();
 
             Console.WriteLine("\ndone!");
             Console.ReadLine();
@@ -68,7 +68,8 @@ namespace Thai
                     // Remove invalid characters from path before saving file
                     var path = line
                         .Replace("/", " or ")
-                        .Replace("?", string.Empty);
+                        .Replace("?", string.Empty)
+                        .Replace(":", " ");
 
                     soundOfTextClient.DownloadFile($"http://soundoftext.com/static/sounds/th/{encodedThaiText}.mp3", Path.Combine(RootDir, "audio", $"{path}.mp3"));
                 }
