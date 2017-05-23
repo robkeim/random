@@ -62,7 +62,7 @@ namespace Thai
                     soundOfTextClient.UploadString("http://soundoftext.com/sounds", $"text={encodedThaiText}&lang=th");
 
                     // The download links have spaces replaced by underscores
-                    thaiText = thaiText.Replace(" ", "_");
+                    thaiText = thaiText.Replace(" ", "_").Trim();
                     encodedThaiText = HttpUtility.UrlEncode(thaiText);
 
                     // Remove invalid characters from path before saving file
