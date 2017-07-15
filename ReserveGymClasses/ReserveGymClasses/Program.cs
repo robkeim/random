@@ -5,6 +5,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace ReserveGymClasses
 {
@@ -41,7 +42,11 @@ namespace ReserveGymClasses
                     }
 
                     Console.WriteLine("done!");
-                    Console.ReadLine();
+
+                    if (Debugger.IsAttached)
+                    {
+                        Console.ReadLine();
+                    }
                 }
             }
             catch (Exception e)

@@ -34,7 +34,7 @@ namespace ReserveGymClasses
                 Console.WriteLine("To: {0}", string.Join(",", to));
                 Console.WriteLine("Subject: {0}", subject);
                 Console.WriteLine("Body:");
-                Console.WriteLine(body.Replace("<br />", "\n").Replace("<b>", "").Replace("</b>", "").Replace("&nbsp;", ""));
+                Console.WriteLine(body?.Replace("<br />", "\n")?.Replace("<b>", "")?.Replace("</b>", "")?.Replace("&nbsp;", ""));
                 Console.WriteLine("--------------------------------------------------------------");
             }
 
