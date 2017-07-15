@@ -145,7 +145,7 @@ namespace ReserveGymClasses
                 subject += "Error";
             }
 
-            Email.SendEmailAsync(new[] { "robkeim@gmail.com" }, subject, exception?.ToString()).Wait();
+            Email.SendEmail("robkeim@gmail.com", subject, exception?.ToString());
         }
     }
 }

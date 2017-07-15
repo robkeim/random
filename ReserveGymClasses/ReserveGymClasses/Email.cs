@@ -19,19 +19,19 @@ namespace ReserveGymClasses
     {
         private static readonly object lockObj = new object();
 
-        private static Task SendEmailAsync(string email, string subject, string body)
+        public static void SendEmail(string recipient, string subject, string body)
         {
-            return SendEmailAsync(new[] { email }, subject, body);
+            SendEmail(new[] { recipient }, subject, body);
         }
 
-        public static Task SendEmailAsync(IEnumerable<string> rawTo, string subject, string body)
+        public static void SendEmail(IEnumerable<string> recipientsRaw, string subject, string body)
         {
-            var to = rawTo.OrderBy(email => email).Distinct().ToList();
+            var recipients = recipientsRaw.OrderBy(email => email).Distinct().ToList();
             
             lock (lockObj)
             {
                 Console.WriteLine("--------------------------------------------------------------");
-                Console.WriteLine("To: {0}", string.Join(",", to));
+                Console.WriteLine("To: {0}", string.Join(",", recipients));
                 Console.WriteLine("Subject: {0}", subject);
                 Console.WriteLine("Body:");
                 Console.WriteLine(body?.Replace("<br />", "\n")?.Replace("<b>", "")?.Replace("</b>", "")?.Replace("&nbsp;", ""));
@@ -42,7 +42,7 @@ namespace ReserveGymClasses
             {
                 if (Program.EmailStatus == EmailStatus.OnlyToMe)
                 {
-                    to = new List<string> { "robkeim@gmail.com" };
+                    recipients = new List<string> { "robkeim@gmail.com" };
                 }
 
                 var client = new SmtpClient("smtp.gmail.com", 587)
@@ -51,27 +51,28 @@ namespace ReserveGymClasses
                     EnableSsl = true
                 };
 
-                var message = new MailMessage
+                using (client)
                 {
-                    From = new MailAddress("robkeim@gmail.com"),
-                    Subject = subject,
-                    Body = body,
-                    IsBodyHtml = true
-                };
+                    var message = new MailMessage
+                    {
+                        From = new MailAddress("robkeim@gmail.com"),
+                        Subject = subject,
+                        Body = body,
+                        IsBodyHtml = true
+                    };
 
-                foreach (var email in to)
-                {
-                    message.To.Add(new MailAddress(email));
+                    foreach (var email in recipients)
+                    {
+                        message.To.Add(new MailAddress(email));
+                    }
+
+                    client.SendMailAsync(message).Wait();
                 }
-
-                return client.SendMailAsync(message);
             }
             else
             {
                 Console.WriteLine("Email sending disabled");
             }
-
-            return Task.CompletedTask;
         }
     }
 }
