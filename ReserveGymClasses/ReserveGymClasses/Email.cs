@@ -4,7 +4,6 @@ using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Threading.Tasks;
 
 namespace ReserveGymClasses
 {
@@ -66,7 +65,10 @@ namespace ReserveGymClasses
                         message.To.Add(new MailAddress(email));
                     }
 
-                    client.SendMailAsync(message).Wait();
+                    if (!client.SendMailAsync(message).Wait((int)TimeSpan.FromSeconds(30).TotalMilliseconds))
+                    {
+                        throw new TimeoutException("Sending email didn't complete");
+                    }
                 }
             }
             else
