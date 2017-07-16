@@ -6,6 +6,7 @@ using OpenQA.Selenium;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace ReserveGymClasses
 {
@@ -29,16 +30,20 @@ namespace ReserveGymClasses
                     var dayToSelect = DateTime.Now.Day + 6;
 
                     SelectDay(driver, dayToSelect);
-                    var classToReserve = FindClass(driver);
+                    var classesToReserve = FindClases(driver);
 
-                    if (classToReserve != null)
+                    if (classesToReserve == null || !classesToReserve.Any())
                     {
-                        ReserveClass(driver, classToReserve);
-                        SendEmail();
+                        SendEmail(noClassAvailable: true);
                     }
                     else
                     {
-                        SendEmail(noClassAvailable: true);
+                        // TODO rkeim: emails should be consolidated to 1x/day
+                        foreach (var classtoReserve in classesToReserve)
+                        {
+                            ReserveClass(driver, classtoReserve);
+                            SendEmail();
+                        }
                     }
 
                     Console.WriteLine("done!");
@@ -75,7 +80,7 @@ namespace ReserveGymClasses
             driver.WaitForPageLoad();
         }
 
-        private static IWebElement FindClass(ChromeDriver driver)
+        private static IWebElement[] FindClases(ChromeDriver driver)
         {
             IReadOnlyCollection<IWebElement> elements = null;
 
@@ -88,9 +93,9 @@ namespace ReserveGymClasses
 
             DriverExtensions.RetryUntilSuccess(func);
 
-            var minutesRegex = new Regex(@"12:(\d{2})pm", RegexOptions.Compiled);
+            var timeRegex = new Regex(@"(\d\d?:\d{2}[ap]m)", RegexOptions.Compiled);
             
-            var validClass = elements.FirstOrDefault(e => {
+            var validClass = elements.Where(e => {
                 var innerText = e.GetAttribute("innerText");
 
                 if (!innerText.Contains("Pilates Reformer"))
@@ -98,19 +103,29 @@ namespace ReserveGymClasses
                     return false;
                 }
 
-                var match = minutesRegex.Match(innerText);
+                var match = timeRegex.Match(innerText);
 
                 if (!match.Success)
                 {
-                    return false;
+                    throw new FormatException($"Unable to find time in: {innerText}");
                 }
-
-                var minutes = int.Parse(match.Groups[1].ToString());
                 
-                return minutes >= 15 && minutes <= 45;
+                var time = ParseTimeForCurrentDay(match.Groups[1].ToString());
+
+                var minLunch = ParseTimeForCurrentDay("12:15pm");
+                var maxLunch = ParseTimeForCurrentDay("1:00pm");
+                var minEvening = ParseTimeForCurrentDay("6:30pm");
+
+                return (minLunch <= time && time <= maxLunch) // During lunch
+                        || time >= minEvening; // In the evening
             });
 
-            return validClass;
+            return validClass.ToArray();
+        }
+
+        private static DateTimeOffset ParseTimeForCurrentDay(string input)
+        {
+            return DateTimeOffset.ParseExact(input, "h:mmtt", CultureInfo.CurrentCulture);
         }
 
         private static void ReserveClass(ChromeDriver driver, IWebElement classToReserve)
