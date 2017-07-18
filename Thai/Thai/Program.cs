@@ -53,6 +53,11 @@ namespace Thai
                 {
                     var match = Regex.Match(line, "(.*?) - (.*)");
 
+                    if (!match.Success)
+                    {
+                        throw new FormatException($"Unrecognized format for line: {line}");
+                    }
+
                     Console.WriteLine(match.Groups[2]);
                     var thaiText = match.Groups[1].ToString().Trim();
                     var encodedThaiText = HttpUtility.UrlEncode(thaiText);
