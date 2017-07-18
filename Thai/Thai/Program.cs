@@ -42,8 +42,34 @@ namespace Thai
                 }
             }
         }
-
+        
         private static void DownloadAudio()
+        {
+            Console.WriteLine("\nDownloading audio...");
+
+            using (var client = new WebClient())
+            {
+                foreach (var line in File.ReadAllLines(Path.Combine(RootDir, "_translations.txt")))
+                {
+                    var match = Regex.Match(line, "(.*?) - (.*)");
+
+                    Console.WriteLine(match.Groups[1]);
+                    var thaiText = match.Groups[2].ToString().Trim();
+                    var encodedThaiText = HttpUtility.UrlEncode(thaiText);
+                    
+                    // Remove invalid characters from path before saving file
+                    var path = line
+                        .Replace("/", " or ")
+                        .Replace("?", string.Empty)
+                        .Replace(":", " ");
+
+                    client.DownloadFile($"http://translate.google.com/translate_tts?ie=UTF-8&q={encodedThaiText}&tl=th-th&client=tw-ob", Path.Combine(RootDir, "audio", $"{path}.mp3"));
+                }
+            }
+        }
+
+        // I used this method before I realized Google's TTS API was freely available for short text
+        private static void DownloadAudio2()
         {
             Console.WriteLine("\nDownloading audio...");
 
