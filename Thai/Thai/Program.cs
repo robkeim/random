@@ -53,8 +53,8 @@ namespace Thai
                 {
                     var match = Regex.Match(line, "(.*?) - (.*)");
 
-                    Console.WriteLine(match.Groups[1]);
-                    var thaiText = match.Groups[2].ToString().Trim();
+                    Console.WriteLine(match.Groups[2]);
+                    var thaiText = match.Groups[1].ToString().Trim();
                     var encodedThaiText = HttpUtility.UrlEncode(thaiText);
                     
                     // Remove invalid characters from path before saving file
