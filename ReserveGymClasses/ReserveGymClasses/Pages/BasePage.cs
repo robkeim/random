@@ -17,9 +17,11 @@ namespace ReserveGymClasses.Pages
         {
             var element = _driver.FindElement(By.CssSelector("header a.language"));
 
+            DriverExtensions.RetryUntilSuccess(() => element.Displayed);
+
             if (element.GetAttribute("class").Contains("english"))
             {
-                element.Click();
+                DriverExtensions.RetryUntilSuccess(() => element.Click());
             }
             else
             {

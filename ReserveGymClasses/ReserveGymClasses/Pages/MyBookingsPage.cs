@@ -48,6 +48,8 @@ namespace ReserveGymClasses.Pages
                 results.Add(int.Parse(match.Groups[1].ToString()));
             }
 
+            Logger.Log($"Classes already reserved on: {string.Join(", ", results)}");
+
             return results.ToArray();
         }
     }

@@ -50,10 +50,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassToBook.cs" />
     <Compile Include="DriverExtensions.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Pages\BasePage.cs" />
+    <Compile Include="Pages\BookAClassPage.cs" />
     <Compile Include="Pages\MyBookingsPage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
