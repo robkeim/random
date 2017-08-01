@@ -62,6 +62,11 @@ namespace ReserveGymClasses
                         IsBodyHtml = true
                     };
 
+                    foreach (var path in DriverExtensions.GetScreenshotPaths())
+                    {
+                        message.Attachments.Add(new Attachment(path));
+                    };
+
                     foreach (var email in recipients)
                     {
                         message.To.Add(new MailAddress(email));

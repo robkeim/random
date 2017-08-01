@@ -4,6 +4,7 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System.Diagnostics;
 using System.IO;
+using System.Collections.Generic;
 
 namespace ReserveGymClasses
 {
@@ -102,6 +103,7 @@ namespace ReserveGymClasses
             }
         }
 
+        // TODO rkeim: move screenshot code to a separate class
         private static int screenshotNumber = 0;
         private static string screenshotFormat = DateTimeOffset.Now.ToString("yyyy-MM-dd-HHmm");
         public static void TakeScreenshot(this ChromeDriver driver)
@@ -116,6 +118,18 @@ namespace ReserveGymClasses
 
             var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
             screenshot.SaveAsFile($@".\screenshots\{screenshotFormat}_{screenshotNumber++}.png", ScreenshotImageFormat.Png);
+        }
+
+        public static string[] GetScreenshotPaths()
+        {
+            var results = new List<string>(screenshotNumber);
+
+            for (var i = 0; i < screenshotNumber; i++)
+            {
+                results.Add($@".\screenshots\{screenshotFormat}_{i}.png");
+            }
+
+            return results.ToArray();
         }
     }
 }

@@ -85,6 +85,7 @@ namespace ReserveGymClasses.Pages
             element = element.GetParent();
             element.Click();
             _driver.WaitForPageLoad();
+            _driver.TakeScreenshot();
         }
 
         private ClassToBook[] FindClasses(bool isWeekendDay)

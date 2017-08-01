@@ -8,12 +8,18 @@ namespace ReserveGymClasses
 {
     public class Program
     {
-        public static EmailStatus EmailStatus = EmailStatus.Enabled;
+        public static EmailStatus EmailStatus = EmailStatus.Disabled;
 
         public static void Main(string[] args)
         {
             try
             {
+                // The program is going to run hourly but this will prevent me from getting spammed every hour
+                if (!Debugger.IsAttached && DateTime.Now.Hour == 22)
+                {
+                    EmailStatus = EmailStatus.Enabled;
+                }
+
                 var options = new ChromeOptions();
                 options.AddArgument("--start-maximized");
 
