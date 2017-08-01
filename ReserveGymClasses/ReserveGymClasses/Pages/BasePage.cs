@@ -22,6 +22,7 @@ namespace ReserveGymClasses.Pages
             if (element.GetAttribute("class").Contains("english"))
             {
                 DriverExtensions.RetryUntilSuccess(() => element.Click());
+                _driver.WaitForPageLoad();
             }
             else
             {

@@ -40,8 +40,6 @@ namespace ReserveGymClasses.Pages
         private void BookClassesForDay(DateTimeOffset day)
         {
             SelectDay(day.Day);
-            // TODO remove the need for this sleep by waiting for the loading
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5));
             var classesToBook = FindClasses();
 
             Logger.Log($"\n{day.Day}:");

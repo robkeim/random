@@ -83,15 +83,21 @@ namespace ReserveGymClasses
             }
 
             // Wait for JQuery
-            if (!wait.Until(d => (bool)((IJavaScriptExecutor)d).ExecuteScript("return (window.jQuery != null) && (jQuery.active === 0)")))
+            if (!wait.Until(d => ((IJavaScriptExecutor)d).ExecuteScript("return (window.jQuery != null) && (jQuery.active === 0)").Equals(true)))
             {
                 throw new TimeoutException($"JQuery did not complete loading");
             }
 
             // Wait for Ajax calls
-            if (!wait.Until(d => (bool)((IJavaScriptExecutor)d).ExecuteScript("return $.active == 0")).Equals(true))
+            if (!wait.Until(d => ((IJavaScriptExecutor)d).ExecuteScript("return $.active == 0")).Equals(true))
             {
                 throw new TimeoutException($"Ajax calls did not complete");
+            }
+
+            // Wait for Angular (inspired from here: https://stackoverflow.com/a/41617476)
+            if (!wait.Until(d => ((IJavaScriptExecutor)d).ExecuteScript("return (window.angular !== undefined) && (angular.element(document.body).injector() !== undefined) && (angular.element(document.body).injector().get('$http').pendingRequests.length === 0)").Equals(true)))
+            {
+                throw new TimeoutException($"Angular did not complete");
             }
         }
     }
