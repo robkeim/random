@@ -40,7 +40,7 @@ namespace ReserveGymClasses.Pages
         private void BookClassesForDay(DateTimeOffset day)
         {
             SelectDay(day.Day);
-            var classesToBook = FindClasses();
+            var classesToBook = FindClasses(IsWeekendDay(day.DayOfWeek));
 
             Logger.Log($"\n{day.Day}:");
 
@@ -60,6 +60,11 @@ namespace ReserveGymClasses.Pages
                     ReserveClass(classToBook.Element);
                 }
             }
+        }
+
+        private static bool IsWeekendDay(DayOfWeek dayOfWeek)
+        {
+            return dayOfWeek == DayOfWeek.Saturday || dayOfWeek == DayOfWeek.Sunday;
         }
 
         private void SelectDay(int day)
@@ -82,7 +87,7 @@ namespace ReserveGymClasses.Pages
             _driver.WaitForPageLoad();
         }
 
-        private ClassToBook[] FindClasses()
+        private ClassToBook[] FindClasses(bool isWeekendDay)
         {
             IReadOnlyCollection<IWebElement> elements = null;
 
@@ -114,16 +119,25 @@ namespace ReserveGymClasses.Pages
 
                 var foo = match.Groups[1].ToString();
 
-                // TODO times should be filtered differently during the week and on the weekend
                 var time = ParseTimeForCurrentDay(match.Groups[1].ToString());
+                bool isValidTime;
 
-                var minLunch = ParseTimeForCurrentDay("12:15pm");
-                var maxLunch = ParseTimeForCurrentDay("1:00pm");
-                var minEvening = ParseTimeForCurrentDay("6:45pm");
-                var maxEvening = ParseTimeForCurrentDay("7:30pm");
+                if (isWeekendDay)
+                {
+                    var minTime = ParseTimeForCurrentDay("11:00am");
 
-                var isValidTime = (minLunch <= time && time <= maxLunch) // During lunch
-                                    || (time >= minEvening && time <= maxEvening); // In the evening
+                    isValidTime = time >= minTime;
+                }
+                else
+                {
+                    var minLunch = ParseTimeForCurrentDay("12:15pm");
+                    var maxLunch = ParseTimeForCurrentDay("1:00pm");
+                    var minEvening = ParseTimeForCurrentDay("6:45pm");
+                    var maxEvening = ParseTimeForCurrentDay("7:30pm");
+
+                    isValidTime = (minLunch <= time && time <= maxLunch) // During lunch
+                                        || (time >= minEvening && time <= maxEvening); // In the evening
+                }
 
                 if (!isValidTime)
                 {
