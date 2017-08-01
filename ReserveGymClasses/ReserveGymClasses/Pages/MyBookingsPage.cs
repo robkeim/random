@@ -18,6 +18,7 @@ namespace ReserveGymClasses.Pages
         public int[] GetBookedDays()
         {
             _driver.GoToUrlAndWaitForPageLoad(url);
+            _driver.TakeScreenshot();
 
             IWebElement table = null;
 

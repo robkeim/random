@@ -14,7 +14,10 @@ namespace ReserveGymClasses
         {
             try
             {
-                using (var driver = new ChromeDriver())
+                var options = new ChromeOptions();
+                options.AddArgument("--start-maximized");
+
+                using (var driver = new ChromeDriver(options))
                 {
                     var username = ConfigurationManager.AppSettings["Username"];
                     var password = ConfigurationManager.AppSettings["Password"];

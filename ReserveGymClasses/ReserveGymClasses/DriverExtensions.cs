@@ -3,6 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System.Diagnostics;
+using System.IO;
 
 namespace ReserveGymClasses
 {
@@ -99,6 +100,22 @@ namespace ReserveGymClasses
             {
                 throw new TimeoutException($"Angular did not complete");
             }
+        }
+
+        private static int screenshotNumber = 0;
+        private static string screenshotFormat = DateTimeOffset.Now.ToString("yyyy-MM-dd-HHmm");
+        public static void TakeScreenshot(this ChromeDriver driver)
+        {
+            if (!Directory.Exists(@".\screenshots"))
+            {
+                Directory.CreateDirectory(@".\screenshots");
+            }
+
+            // Scroll the the bottom of the scrollable header minus the status header
+            driver.ExecuteScript("$(window).scrollTop($('.vaPageHeader')[0].scrollHeight - $('header').height())");
+
+            var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+            screenshot.SaveAsFile($@".\screenshots\{screenshotFormat}_{screenshotNumber++}.png", ScreenshotImageFormat.Png);
         }
     }
 }
