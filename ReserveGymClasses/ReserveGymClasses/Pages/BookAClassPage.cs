@@ -23,7 +23,10 @@ namespace ReserveGymClasses.Pages
 
             var now = DateTimeOffset.UtcNow;
 
-            var daysToReserve = Enumerable.Range(1, 7)
+            //  Reservations can be made starting at 10PM for a week in advance
+            var maxDaysInFuture = DateTimeOffset.Now.Hour >= 22 ? 8 : 7;
+
+            var daysToReserve = Enumerable.Range(1, maxDaysInFuture)
                 .Select(i => now.AddDays(i))
                 .Where(i => !alreadyReservedDays.Contains(i.Day))
                 .ToArray();
