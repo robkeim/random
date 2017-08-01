@@ -104,6 +104,7 @@ namespace ReserveGymClasses
         }
 
         // TODO rkeim: move screenshot code to a separate class
+        // TODO rkeim: do we want to cleanup the screenshots automatically?
         private static int screenshotNumber = 0;
         private static string screenshotFormat = DateTimeOffset.Now.ToString("yyyy-MM-dd-HHmm");
         public static void TakeScreenshot(this ChromeDriver driver)
@@ -115,9 +116,12 @@ namespace ReserveGymClasses
 
             // Scroll the the bottom of the scrollable header minus the status header
             driver.ExecuteScript("$(window).scrollTop($('.vaPageHeader')[0].scrollHeight - $('header').height())");
+            driver.ExecuteScript("document.body.style.zoom = '70%';");
 
             var screenshot = ((ITakesScreenshot)driver).GetScreenshot();
             screenshot.SaveAsFile($@".\screenshots\{screenshotFormat}_{screenshotNumber++}.png", ScreenshotImageFormat.Png);
+
+            driver.ExecuteScript("document.body.style.zoom = '100%';");
         }
 
         public static string[] GetScreenshotPaths()

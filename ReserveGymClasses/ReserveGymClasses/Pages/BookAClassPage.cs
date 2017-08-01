@@ -85,6 +85,13 @@ namespace ReserveGymClasses.Pages
             element = element.GetParent();
             element.Click();
             _driver.WaitForPageLoad();
+
+            // Filter to only Pilates
+            elements = _driver.FindElementsByTagName("a");
+            element = elements.Single(e => e.GetAttribute("innerText").Trim() == "Pilates");
+            element.Click();
+            _driver.WaitForPageLoad();
+
             _driver.TakeScreenshot();
         }
 
