@@ -3,7 +3,7 @@
 
   "name": "Sweeper",
   "description": "This extension clears the local/session storage as well as the cookies for thr current tab",
-  "version": "1.0",
+  "version": "0.0.0.1",
 
   "browser_action": {
     "default_icon": "broom.png"
