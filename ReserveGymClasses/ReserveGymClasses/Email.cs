@@ -39,6 +39,8 @@ namespace ReserveGymClasses
 
             if (Program.EmailStatus != EmailStatus.Disabled)
             {
+                body = body.Replace("\n", "<br />").Replace("\t", "&nbsp;&nbsp;&nbsp;&nbsp;");
+
                 if (Program.EmailStatus == EmailStatus.OnlyToMe)
                 {
                     recipients = new List<string> { "robkeim@gmail.com" };

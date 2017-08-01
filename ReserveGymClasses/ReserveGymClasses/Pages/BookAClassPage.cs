@@ -38,10 +38,10 @@ namespace ReserveGymClasses.Pages
         {
             SelectDay(day.Day);
             // TODO remove the need for this sleep by waiting for the loading
-            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(1));
+            System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5));
             var classesToBook = FindClasses();
 
-            Logger.Log(day.Day.ToString());
+            Logger.Log($"\n{day.Day}:");
 
             foreach (var classToBook in classesToBook)
             {
@@ -51,7 +51,7 @@ namespace ReserveGymClasses.Pages
                 }
                 else if (classToBook.IsBooked)
                 {
-                    Logger.Log($"\t{classToBook.Time}: already booked");
+                    Logger.Log($"\t{classToBook.Time}: fully booked");
                 }
                 else
                 {
@@ -118,10 +118,11 @@ namespace ReserveGymClasses.Pages
 
                 var minLunch = ParseTimeForCurrentDay("12:15pm");
                 var maxLunch = ParseTimeForCurrentDay("1:00pm");
-                var minEvening = ParseTimeForCurrentDay("6:30pm");
+                var minEvening = ParseTimeForCurrentDay("6:45pm");
+                var maxEvening = ParseTimeForCurrentDay("7:30pm");
 
                 var isValidTime = (minLunch <= time && time <= maxLunch) // During lunch
-                                    || time >= minEvening; // In the evening
+                                    || (time >= minEvening && time <= maxEvening); // In the evening
 
                 if (!isValidTime)
                 {
@@ -159,6 +160,7 @@ namespace ReserveGymClasses.Pages
             var book = tmp.FindElement(By.CssSelector("button[ng-click='vm.makeBooking()']"));
 
             DriverExtensions.RetryUntilSuccess(() => book.Click());
+            // TODO rkeim: need to dismiss the dialog here
         }
     }
 }
