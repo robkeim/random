@@ -183,6 +183,8 @@ namespace ReserveGymClasses.Pages
             var book = tmp.FindElement(By.CssSelector("button[ng-click='vm.makeBooking()']"));
 
             DriverExtensions.RetryUntilSuccess(() => book.Click());
+            _driver.WaitForPageLoad();
+            _driver.TakeScreenshot();
             // TODO rkeim: need to dismiss the dialog here
         }
     }
