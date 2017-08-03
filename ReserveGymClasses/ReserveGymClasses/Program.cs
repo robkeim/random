@@ -36,9 +36,18 @@ namespace ReserveGymClasses
                     myBookingsPage.ChangeLanguageToEnglish();
                     var bookedDays = myBookingsPage.GetBookedDays();
 
-                    var bookAClassPage = new BookAClassPage(driver);
-                    bookAClassPage.ChangeLanguageToEnglish();
-                    bookAClassPage.BookClasses(bookedDays);
+                    // The maximum number of "hot" classes you can book at any time is three
+                    // so there's no need to try to reserve as the reservations will fail
+                    if (bookedDays.Length >= 3)
+                    {
+                        Logger.Log("Maximum number of bookings reached, can't book additional classes");
+                    }
+                    else
+                    {
+                        var bookAClassPage = new BookAClassPage(driver);
+                        bookAClassPage.ChangeLanguageToEnglish();
+                        bookAClassPage.BookClasses(bookedDays);
+                    }
 
                     SendEmail();
 
@@ -52,13 +61,15 @@ namespace ReserveGymClasses
             }
             catch (Exception e) when (!Debugger.IsAttached)
             {
+                // Always send an email when there's an exception
+                EmailStatus = EmailStatus.Enabled;
                 SendEmail(success: false, exception: e);
             }
         }
 
         private static void SendEmail(bool success = true, Exception exception = null)
         {
-            var today = DateTime.Now.AddDays(6).ToString("MMM d");
+            var today = DateTimeOffset.Now.ToString("MMM d");
             var subject = $"[VirginActive][{today}] ";
 
             if (success)

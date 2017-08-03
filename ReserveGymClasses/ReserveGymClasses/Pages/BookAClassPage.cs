@@ -56,6 +56,8 @@ namespace ReserveGymClasses.Pages
                 }
                 else
                 {
+                    // Always send an email when there's a class to be booked
+                    Program.EmailStatus = EmailStatus.Enabled;
                     Logger.Log($"\t{classToBook.Time}: ready to book!");
                     ReserveClass(classToBook.Element);
                 }
