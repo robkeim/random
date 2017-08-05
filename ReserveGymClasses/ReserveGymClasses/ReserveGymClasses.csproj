@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassToBook.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="DriverExtensions.cs" />
     <Compile Include="Email.cs" />
     <Compile Include="Logger.cs" />

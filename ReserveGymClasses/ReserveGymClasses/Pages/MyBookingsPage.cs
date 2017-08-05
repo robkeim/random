@@ -39,6 +39,11 @@ namespace ReserveGymClasses.Pages
                     continue;
                 }
 
+                if (!row.GetAttribute("innerText").Contains(Constants.PilatesReformer))
+                {
+                    continue;
+                }
+
                 var match = regex.Match(day);
 
                 if (!match.Success)

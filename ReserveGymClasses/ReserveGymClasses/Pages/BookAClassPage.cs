@@ -115,7 +115,7 @@ namespace ReserveGymClasses.Pages
             var validClasses = elements.Select(e => {
                 var innerText = e.GetAttribute("innerText");
 
-                if (!innerText.Contains("Pilates Reformer"))
+                if (!innerText.Contains(Constants.PilatesReformer))
                 {
                     return null;
                 }
