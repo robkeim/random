@@ -12,6 +12,8 @@ namespace ReserveGymClasses
 
         public static void Main(string[] args)
         {
+            ScreenshotManager screenshotManager = null;
+
             try
             {
                 // The program is going to run hourly but this will prevent me from getting spammed every hour
@@ -22,9 +24,12 @@ namespace ReserveGymClasses
 
                 var options = new ChromeOptions();
                 options.AddArgument("--start-maximized");
+                options.AddArgument("disable-infobars"); // Disable the bar saying Chrome is being controlled by automation software
 
                 using (var driver = new ChromeDriver(options))
                 {
+                    screenshotManager = new ScreenshotManager(driver);
+
                     var username = ConfigurationManager.AppSettings["Username"];
                     var password = ConfigurationManager.AppSettings["Password"];
 
@@ -32,7 +37,7 @@ namespace ReserveGymClasses
                     driver.Login(username: username, usernameSelector: "#memberID",
                         password: password, passwordSelector: "#password", submitButtonSelector: "form[name='loginForm'] button");
 
-                    var myBookingsPage = new MyBookingsPage(driver);
+                    var myBookingsPage = new MyBookingsPage(driver, screenshotManager);
                     myBookingsPage.ChangeLanguageToEnglish();
                     var bookedDays = myBookingsPage.GetBookedDays();
 
@@ -44,12 +49,12 @@ namespace ReserveGymClasses
                     }
                     else
                     {
-                        var bookAClassPage = new BookAClassPage(driver);
+                        var bookAClassPage = new BookAClassPage(driver, screenshotManager);
                         bookAClassPage.ChangeLanguageToEnglish();
                         bookAClassPage.BookClasses(bookedDays);
                     }
 
-                    SendEmail();
+                    SendEmail(screenshotManager.GetScreenshotPaths());
 
                     Console.WriteLine("done!");
 
@@ -63,11 +68,15 @@ namespace ReserveGymClasses
             {
                 // Always send an email when there's an exception
                 EmailStatus = EmailStatus.Enabled;
-                SendEmail(success: false, exception: e);
+                SendEmail(screenshotManager?.GetScreenshotPaths(), success: false, exception: e);
+            }
+            finally
+            {
+                screenshotManager?.Dispose();
             }
         }
 
-        private static void SendEmail(bool success = true, Exception exception = null)
+        private static void SendEmail(string[] screenshotPaths, bool success = true, Exception exception = null)
         {
             var today = DateTimeOffset.Now.ToString("MMM d");
             var subject = $"[VirginActive][{today}] ";
@@ -83,7 +92,7 @@ namespace ReserveGymClasses
 
             var body = $"{Logger.GetLogMessages()}\n{exception?.ToString()}";
 
-            Email.SendEmail("robkeim@gmail.com", subject, body);
+            Email.SendEmail("robkeim@gmail.com", subject, body, screenshotPaths);
         }
     }
 }

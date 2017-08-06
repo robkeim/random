@@ -10,15 +10,15 @@ namespace ReserveGymClasses.Pages
     {
         private string url = $"{rootDir}/#/mybookings";
 
-        public MyBookingsPage(ChromeDriver driver)
-            : base(driver)
+        public MyBookingsPage(ChromeDriver driver, ScreenshotManager screenshotManager)
+            : base(driver, screenshotManager)
         {
         }
 
         public int[] GetBookedDays()
         {
             _driver.GoToUrlAndWaitForPageLoad(url);
-            _driver.TakeScreenshot();
+            _screenshotManager.TakeScreenshot();
 
             IWebElement table = null;
 

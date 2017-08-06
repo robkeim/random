@@ -18,12 +18,12 @@ namespace ReserveGymClasses
     {
         private static readonly object lockObj = new object();
 
-        public static void SendEmail(string recipient, string subject, string body)
+        public static void SendEmail(string recipient, string subject, string body, string[] screenshotPaths = null)
         {
-            SendEmail(new[] { recipient }, subject, body);
+            SendEmail(new[] { recipient }, subject, body, screenshotPaths);
         }
 
-        public static void SendEmail(IEnumerable<string> recipientsRaw, string subject, string body)
+        public static void SendEmail(IEnumerable<string> recipientsRaw, string subject, string body, string[] screenshotPaths = null)
         {
             var recipients = recipientsRaw.OrderBy(email => email).Distinct().ToList();
             
@@ -52,6 +52,8 @@ namespace ReserveGymClasses
                     EnableSsl = true
                 };
 
+                var attachments = new List<Attachment>();
+
                 using (client)
                 {
                     var message = new MailMessage
@@ -62,19 +64,35 @@ namespace ReserveGymClasses
                         IsBodyHtml = true
                     };
 
-                    foreach (var path in DriverExtensions.GetScreenshotPaths())
+                    if (screenshotPaths != null)
                     {
-                        message.Attachments.Add(new Attachment(path));
-                    };
+                        foreach (var path in screenshotPaths)
+                        {
+                            var attachment = new Attachment(path);
+                            attachments.Add(attachment);
+
+                            message.Attachments.Add(attachment);
+                        };
+                    }
 
                     foreach (var email in recipients)
                     {
                         message.To.Add(new MailAddress(email));
                     }
 
-                    if (!client.SendMailAsync(message).Wait((int)TimeSpan.FromSeconds(30).TotalMilliseconds))
+                    try
                     {
-                        throw new TimeoutException("Sending email didn't complete");
+                        if (!client.SendMailAsync(message).Wait((int)TimeSpan.FromSeconds(30).TotalMilliseconds))
+                        {
+                            throw new TimeoutException("Sending email didn't complete");
+                        }
+                    }
+                    finally
+                    {
+                        foreach (var attachment in attachments)
+                        {
+                            attachment.Dispose();
+                        }
                     }
                 }
             }

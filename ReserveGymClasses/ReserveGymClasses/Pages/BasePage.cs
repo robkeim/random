@@ -6,10 +6,12 @@ namespace ReserveGymClasses.Pages
     public class BasePage
     {
         protected readonly ChromeDriver _driver;
+        protected readonly ScreenshotManager _screenshotManager;
         protected const string rootDir = "https://mylocker.virginactive.co.th";
 
-        public BasePage(ChromeDriver driver)
+        public BasePage(ChromeDriver driver, ScreenshotManager screenshotManager)
         {
+            _screenshotManager = screenshotManager;
             _driver = driver;
         }
 

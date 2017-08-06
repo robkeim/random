@@ -12,8 +12,8 @@ namespace ReserveGymClasses.Pages
     {
         private string url = $"{rootDir}/#/bookaclass";
 
-        public BookAClassPage(ChromeDriver driver)
-            : base(driver)
+        public BookAClassPage(ChromeDriver driver, ScreenshotManager screenshotManager)
+            : base(driver, screenshotManager)
         {
         }
 
@@ -94,7 +94,7 @@ namespace ReserveGymClasses.Pages
             element.Click();
             _driver.WaitForPageLoad();
 
-            _driver.TakeScreenshot();
+            _screenshotManager.TakeScreenshot();
         }
 
         private ClassToBook[] FindClasses(bool isWeekendDay)
@@ -186,7 +186,7 @@ namespace ReserveGymClasses.Pages
 
             DriverExtensions.RetryUntilSuccess(() => book.Click());
             _driver.WaitForPageLoad();
-            _driver.TakeScreenshot();
+            _screenshotManager.TakeScreenshot();
             // TODO rkeim: need to dismiss the dialog here
         }
     }
