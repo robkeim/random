@@ -26,12 +26,12 @@ namespace ReserveGymClasses
             }
 
             // De-zoom to show the whole page
-            _driver.ExecuteScript("document.body.style.zoom = document.body.style.zoom=top.window.screen.height / document.body.scrollHeight;");
+            _driver.ExecuteScriptAndWaitUntilFinished("document.body.style.zoom = document.body.style.zoom=top.window.screen.height / document.body.scrollHeight;");
 
             var screenshot = _driver.GetScreenshot();
             screenshot.SaveAsFile(Path.Combine(screenshotOutputDirectory, $"{screenshotFormat}_{screenshotNumber++}.png"), ScreenshotImageFormat.Png);
 
-            _driver.ExecuteScript("document.body.style.zoom = 1;");
+            _driver.ExecuteScriptAndWaitUntilFinished("document.body.style.zoom = 1;");
         }
 
         public string[] GetScreenshotPaths()

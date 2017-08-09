@@ -100,5 +100,14 @@ namespace ReserveGymClasses
                 throw new TimeoutException($"Angular did not complete");
             }
         }
+
+        public static void ExecuteScriptAndWaitUntilFinished(this ChromeDriver driver, string script)
+        {
+            var wait = new WebDriverWait(driver, defaultTimeout);
+            if (!wait.Until(d => ((IJavaScriptExecutor)d).ExecuteScript($"{script}; return true;").Equals(true)))
+            {
+                throw new TimeoutException($"Script did not complete");
+            }
+        }
     }
 }

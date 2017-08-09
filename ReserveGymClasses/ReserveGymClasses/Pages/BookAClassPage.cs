@@ -60,6 +60,7 @@ namespace ReserveGymClasses.Pages
                     Program.EmailStatus = EmailStatus.Enabled;
                     Logger.Log($"\t{classToBook.Time}: ready to book!");
                     ReserveClass(classToBook.Element);
+                    break;
                 }
             }
         }
@@ -180,6 +181,7 @@ namespace ReserveGymClasses.Pages
             var tmp = classToReserve.FindElement(By.XPath(@"./following-sibling::*"));
             var linkToPopup = tmp.FindElement(By.CssSelector("a"));
             linkToPopup.Click();
+            _driver.WaitForPageLoad();
 
             tmp = _driver.FindElementByCssSelector("div.modal-dialog");
             var book = tmp.FindElement(By.CssSelector("button[ng-click='vm.makeBooking()']"));
@@ -187,7 +189,12 @@ namespace ReserveGymClasses.Pages
             DriverExtensions.RetryUntilSuccess(() => book.Click());
             _driver.WaitForPageLoad();
             _screenshotManager.TakeScreenshot();
-            // TODO rkeim: need to dismiss the dialog here
+
+            var okButton = tmp.FindElements(By.CssSelector("div.modal-footer button"))
+                .Single(b => b.Displayed);
+
+            okButton.Click();
+            _driver.WaitForPageLoad();
         }
     }
 }
