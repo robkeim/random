@@ -29,6 +29,7 @@ namespace MyShuttle.Web.App_Start
         private static void InitializeContainer(Container container)
         {
             container.Register<MyShuttle.Data.ICarrierRepository, MyShuttle.Data.CarrierRepository>();
+            container.Register<MyShuttle.Data.MyShuttleContext>(() => new MyShuttle.Data.MyShuttleContext(), Lifestyle.Scoped);
         }
     }
 }

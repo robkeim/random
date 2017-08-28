@@ -32,8 +32,8 @@
         /// <returns></returns>
         private static void CreateDefaultUser(MyShuttleContext context)
         {
-            var login = string.IsNullOrEmpty(ConfigurationManager.AppSettings["DefaultUsername"]) ? "igorsych" : ConfigurationManager.AppSettings["DefaultUsername"];
-            var password = string.IsNullOrEmpty(ConfigurationManager.AppSettings["DefaultPassword"]) ? "P@ssw0rd" : ConfigurationManager.AppSettings["DefaultPassword"];
+            var login = string.IsNullOrEmpty(ConfigurationManager.AppSettings["DefaultUsername"]) ? "aspnetuser" : ConfigurationManager.AppSettings["DefaultUsername"];
+            var password = string.IsNullOrEmpty(ConfigurationManager.AppSettings["DefaultPassword"]) ? "@Cir9hvc6!w" : ConfigurationManager.AppSettings["DefaultPassword"];
 
             if (!(context.Users.Any(u => u.UserName == login)))
             {
