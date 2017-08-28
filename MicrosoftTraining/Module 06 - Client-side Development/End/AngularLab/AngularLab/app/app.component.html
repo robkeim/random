@@ -1,0 +1,22 @@
+﻿<h2>{{pageTitle}}</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Registration</th>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Colour</th>
+            <th>Year</th>
+        </tr>
+    </thead>
+
+    <tr *ngFor='let vehicle of vehicles'>
+        <td>{{vehicle.registration}}</td>
+        <td>{{vehicle.make}}</td>
+        <td>{{vehicle.model}}</td>
+        <td>{{vehicle.colour}}</td>
+        <td>{{vehicle.year}}</td>
+    </tr>
+</table>
+
+<div *ngIf="errorMessage">{{errorMessage}}</div>
