@@ -36,6 +36,8 @@ namespace WhoDidIt
                   .ToDictionary(grp => grp.Key, g => g.Select(kvp => kvp.Key).OrderBy(v => v).ToArray())
                   .OrderByDescending(kvp => kvp.Key)
                   .ToArray();
+            
+            Console.WriteLine("Final summary:");
 
             foreach (var entry in entries)
             {
