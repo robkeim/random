@@ -12,6 +12,8 @@ namespace PromoValidator
 {
     public class Program
     {
+        public const string COUNTRY_CELL_NAME = "Country";
+
         public static void Main(string[] args)
         {
             Stopwatch stopwatch = Stopwatch.StartNew();
@@ -23,8 +25,7 @@ namespace PromoValidator
                 using (var excelRange = new ExcelRange(fileName))
                 {
                     var products = ReadProducts(excelRange.Range);
-                    HydrateProducts(products);
-
+                    HydrateProducts(products, excelRange.Range);
                     WriteProducts(products, excelRange.Range);
                 }
             }
@@ -82,8 +83,10 @@ namespace PromoValidator
             return products.ToArray();
         }
 
-        private static void HydrateProducts(Product[] products)
+        private static void HydrateProducts(Product[] products, Excel.Range range)
         {
+            var lazadaUrl = GetLazadaUrl(range);
+
             ServicePointManager.UseNagleAlgorithm = true;
             ServicePointManager.Expect100Continue = true;
             ServicePointManager.CheckCertificateRevocationList = false;
@@ -101,7 +104,7 @@ namespace PromoValidator
                     {
                         webRequest.Proxy = null;
 
-                        var url = $"http://www.lazada.co.th/catalog/?q={product.Sku}";
+                        var url = $"{lazadaUrl}/catalog/?q={product.Sku}";
                         var html = webRequest.DownloadString(url);
 
                         var productPageUrlRegex = new Regex($"data-sku-simple=\"{product.Sku}\".*?url: '(.*?)'", RegexOptions.Singleline);
@@ -110,7 +113,7 @@ namespace PromoValidator
 
                         if (match.Success)
                         {
-                            product.ProductPageUrl = $"http://www.lazada.co.th{match.Groups[1]}";
+                            product.ProductPageUrl = $"{lazadaUrl}{match.Groups[1]}";
                             html = webRequest.DownloadString(product.ProductPageUrl);
 
                             match = priceRegex.Match(html);
@@ -169,6 +172,25 @@ namespace PromoValidator
                     range.Cells[product.RowNum, 3] = "N/A";
                     range.Cells[product.RowNum, 3].Interior.Color = Excel.XlRgbColor.rgbYellow;
                 }
+            }
+        }
+
+        private static string GetLazadaUrl(Excel.Range range)
+        {
+            var country = range.get_Range(COUNTRY_CELL_NAME).Text.ToString();
+
+            switch (country)
+            {
+                case "Thailand":
+                    return "http://www.lazada.co.th";
+                case "Indonesia":
+                    return "http://www.lazada.co.id";
+                case "Philippines":
+                    return "http://www.lazada.com.ph";
+                case "Singapore":
+                    return "http://www.lazada.sg";
+                default:
+                    throw new ArgumentOutOfRangeException($"Invalid country: {country}");
             }
         }
     }
