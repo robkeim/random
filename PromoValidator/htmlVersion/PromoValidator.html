@@ -1,7 +1,6 @@
 <!--
 	TODO rkeim:
 	- add strict validation
-	- cleanup code
 	- make html pretty
 	- add input field
 	- add ability to select country
@@ -44,88 +43,92 @@
 					{ sku: "PH777HAAA6U3E2ANTH-14510133", price: 5 },
 				];
 			};
-		
+			
+			function getLazadaUrl() {
+				return "http://www.lazada.co.th";
+			}
+			
+			function getCrossDomainUrl(target) {
+				return "http://allorigins.us/get?url=" + encodeURIComponent(target) + "&callback=?";
+			}
+			
 			$(document).ready(function(){
 				var table = $("#results");
+				var skusAndExpectedPrices = getSkusAndExpectedPrices();
+				var lazadaUrl = getLazadaUrl();
 				
-				$.each(getSkusAndExpectedPrices(), function() {
+				// Fill in table with skus to validate
+				$.each(skusAndExpectedPrices, function() {
 					table.append('<tr data-sku="' + this.sku + '"><td>' + this.sku + '</td><td>' + this.price + '</td><td></td><td></td><td></td><td></td></tr>');
 				});
 				
-				$.each(getSkusAndExpectedPrices(), function() {
-				
-				var foo = "http://www.lazada.co.th/catalog/?q=" + this.sku;
-				
-				var origUrl = "http://allorigins.us/get?url=" + encodeURIComponent(foo) + "&callback=?";
-
-				var row = $("[data-sku=\"" + this.sku + "\"]");
-				
-				$.ajax({
-					url: origUrl,
-					sku: this.sku
-				}).done(function(data) {
-					
-					var match1 = data.match(/data-sku-simple=\\"PH777HAAA6U3E2ANTH-14510133\\".+?url: '(.+?)'/);
-					//                       data-sku-simple=\\"PH777HAAA6U3DMANTH-14510117\\".+?url: '(.+?)'
-					
-					var tmp = "data-sku-simple=\\\\\"" + this.sku + "\\\\\".+?url: '(.+?)'";
-
-					var match = data.match(tmp);
-					
-					if (!match)
-					{
-						row.find(":nth-child(3)").html("N/A");
-						row.find(":nth-child(3)").addClass("notFound");
-						row.find(":nth-child(4)").html("N/A");
-						row.find(":nth-child(4)").addClass("notFound");
-						row.find(":nth-child(5)").html("Product not found");
-						row.find(":nth-child(5)").addClass("notFound");
-						return;
-					}
-					var url = "http://www.lazada.co.th" + match[1];
-					
-					
-					var newUrl = "http://allorigins.us/get?url=" + encodeURIComponent(url) + "&callback=?"
-					
-					row.find(":nth-child(1)").html("<a href=\"" + url + "\">" + this.sku + "</a>");
-
+				$.each(skusAndExpectedPrices, function() {
+					// Do a search to find the product page
+					var searchUrl = getCrossDomainUrl(lazadaUrl + "/catalog/?q=" + this.sku);
+					var row = $("[data-sku=\"" + this.sku + "\"]");
 					
 					$.ajax({
-					url: newUrl
-				}).done(function(data) {
-					var match = data.match(/<span id=\\"product_price\\" class=\\"hidden\\">(.*?)<\/span>/);
-					var price = match[1];
-					row.find(":nth-child(3)").html(price);
-					
-					var actualPrice = parseFloat(price);
-					var expectedPrice = parseFloat(row.find(":nth-child(2)").html());
-					
-					if (actualPrice < expectedPrice) {
-						row.find(":nth-child(3)").addClass("tooCheap");
-					} else if (actualPrice > expectedPrice) {
-						row.find(":nth-child(3)").addClass("tooExpensive");
-					}
-					
-					match = data.match(/<h1.*>(.*?)<\/h1>/);
-					
-					var title = $.trim(match[1].replace(/\\n/g, "").replace("&nbsp;", ""));
-					
-					row.find(":nth-child(5)").html(title);
-					
-					match = data.match(/<div class=\\"outofstock oosWrapper\\" style=\\"display: block\\">/);
-					
-					if (match) {
-						var el = row.find(":nth-child(4)");
-						el.html("No");
-						el.addClass("outOfStock");
-					} else {
-						row.find(":nth-child(4)").html("Yes");
-					}
-					
-				});
-					
-				});
-				
+						url: searchUrl,
+						sku: this.sku
+					}).done(function(data) {
+						var match = data.match("data-sku-simple=\\\\\"" + this.sku + "\\\\\".+?url: '(.+?)'");
+						
+						if (!match) {
+							var element = row.find(":nth-child(3)");
+							element.html("N/A");
+							element.addClass("notFound");
+							
+							element = row.find(":nth-child(4)");
+							element.html("N/A");
+							element.addClass("notFound");
+							
+							element = row.find(":nth-child(5)");
+							element.html("Product not found");
+							element.addClass("notFound");
+							
+							// Stop processing (because we don't have a product page)
+							return;
+						}
+						
+						// Navigate to the product page to find the price and stock availability
+						var productPageUrl = lazadaUrl + match[1];
+						row.find(":nth-child(1)").html("<a href=\"" + productPageUrl + "\">" + this.sku + "</a>");
+						productPageUrl = getCrossDomainUrl(productPageUrl);
+						
+						$.ajax({
+							url: productPageUrl
+						}).done(function(data) {
+							// Process price
+							var match = data.match(/<span id=\\"product_price\\" class=\\"hidden\\">(.*?)<\/span>/);
+							var price = match[1];
+							row.find(":nth-child(3)").html(price);
+							
+							var actualPrice = parseFloat(price);
+							var expectedPrice = parseFloat(row.find(":nth-child(2)").html());
+							
+							if (actualPrice < expectedPrice) {
+								row.find(":nth-child(3)").addClass("tooCheap");
+							} else if (actualPrice > expectedPrice) {
+								row.find(":nth-child(3)").addClass("tooExpensive");
+							}
+							
+							// Process product name
+							match = data.match(/<h1.*>(.*?)<\/h1>/);
+							var title = $.trim(match[1].replace(/\\n/g, "").replace("&nbsp;", ""));
+							row.find(":nth-child(5)").html(title);
+							
+							// Process stock availability
+							match = data.match(/<div class=\\"outofstock oosWrapper\\" style=\\"display: block\\">/);
+							
+							if (match) {
+								var el = row.find(":nth-child(4)");
+								el.html("No");
+								el.addClass("outOfStock");
+							} else {
+								row.find(":nth-child(4)").html("Yes");
+							}
+						});
+					});
 				});
 			});
 		</script>
