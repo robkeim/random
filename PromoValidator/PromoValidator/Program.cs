@@ -120,11 +120,16 @@ namespace PromoValidator
 
                             if (!match.Success)
                             {
-                                Console.WriteLine("No price found");
+                                Console.WriteLine("No price found"); // TODO rkeim: handle this case
                             }
                             else
                             {
                                 product.ActualPrice = double.Parse(match.Groups[1].ToString());
+                            }
+
+                            if (html.Contains("<div class=\"outofstock oosWrapper\" style=\"display: block\">"))
+                            {
+                                product.OutOfStock = true;
                             }
                         }
                         else
@@ -151,7 +156,7 @@ namespace PromoValidator
                 if (product.ProductPageUrl != null)
                 {
                     range.Cells[product.RowNum, 3] = product.ActualPrice;
-                    range.Hyperlinks.Add(range.Cells[product.RowNum, 4], product.ProductPageUrl);
+                    range.Hyperlinks.Add(range.Cells[product.RowNum, 5], product.ProductPageUrl);
 
                     if (product.ActualPrice < product.ExpectedPrice)
                     {
@@ -165,12 +170,24 @@ namespace PromoValidator
                     {
                         // No need to color the cell if the prices are equal
                     }
+
+                    if (product.OutOfStock)
+                    {
+                        range.Cells[product.RowNum, 4] = "Yes";
+                        range.Cells[product.RowNum, 4].Interior.Color = Excel.XlRgbColor.rgbRed;
+                    }
+                    else
+                    {
+                        range.Cells[product.RowNum, 4] = "No";
+                    }
                 }
                 else
                 {
-                    range.Cells[product.RowNum, 4] = "Product not found";
+                    range.Cells[product.RowNum, 5] = "Product not found";
                     range.Cells[product.RowNum, 3] = "N/A";
                     range.Cells[product.RowNum, 3].Interior.Color = Excel.XlRgbColor.rgbYellow;
+                    range.Cells[product.RowNum, 4] = "N/A";
+                    range.Cells[product.RowNum, 4].Interior.Color = Excel.XlRgbColor.rgbYellow;
                 }
             }
         }

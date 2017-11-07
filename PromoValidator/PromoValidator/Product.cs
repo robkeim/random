@@ -10,6 +10,8 @@
 
         public double ActualPrice { get; set; }
 
+        public bool OutOfStock { get; set; }
+
         public string ProductPageUrl { get; set; }
     }
 }
