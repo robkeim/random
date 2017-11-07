@@ -1,0 +1,89 @@
+<html>
+	<head>
+		<title>Promo validator v2.0</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	</head>
+	<body>
+		<script>
+			function getSkusAndExpectedPrices() {
+				return [
+					{ sku: "PH777HAAA6U3E2ANTH-14510133", price: 690 },
+				];
+			};
+		
+			$(document).ready(function(){
+				console.log("doc ready");
+				
+				var table = $("#results");
+				
+				$.each(getSkusAndExpectedPrices(), function() {
+					table.append('<tr data-sku="' + this.sku + '"><td>' + this.sku + '</td><td>' + this.price + '</td><td></td><td></td><td></td></tr>');
+				});
+				
+				//return;
+				
+				$.each(getSkusAndExpectedPrices(), function() {
+				
+				var foo = "http://www.lazada.co.th/catalog/?q=" + this.sku;
+				
+				var origUrl = "http://allorigins.us/get?url=" + encodeURIComponent(foo) + "&callback=?";
+
+				var row = $("[data-sku=\"" + this.sku + "\"]");
+				
+				$.ajax({
+					url: origUrl,
+					sku: this.sku
+				}).done(function(data) {
+					
+					var match1 = data.match(/data-sku-simple=\\"PH777HAAA6U3E2ANTH-14510133\\".+?url: '(.+?)'/);
+					//                       data-sku-simple=\\"PH777HAAA6U3DMANTH-14510117\\".+?url: '(.+?)'
+					
+					var tmp = "data-sku-simple=\\\\\"" + this.sku + "\\\\\".+?url: '(.+?)'";
+
+					var match = data.match(tmp);
+					
+					if (!match)
+					{
+						row.find(":nth-child(4)").html("Product not found");
+						return;
+					}
+					var url = "http://www.lazada.co.th" + match[1];
+					
+					
+					var newUrl = "http://allorigins.us/get?url=" + encodeURIComponent(url) + "&callback=?"
+					
+					row.find(":nth-child(4)").html("<a href=\"" + url + "\">" + url + "</a>");
+					
+					console.log("newUrl: " + newUrl);
+					
+					
+					$.ajax({
+					url: newUrl
+				}).done(function(data) {
+					//$("body").html(data);
+					
+					
+					var match = data.match(/<span id=\\"product_price\\" class=\\"hidden\\">(.*?)<\/span>/);
+					var price = match[1];
+					row.find(":nth-child(3)").html(price);
+					
+				});
+					
+				});
+				
+				});
+				
+				
+				console.log("ending doc ready");
+			});
+		</script>
+		<table id="results">
+			<tr>
+				<th>Sku</th>
+				<th>Expected price</th>
+				<th>Actual price</th>
+				<th>Url</th>
+			</tr>
+		</table>
+	</body>
+</html>
