@@ -1,26 +1,56 @@
+<!--
+	TODO rkeim:
+	- add strict validation
+	- cleanup code
+	- make html pretty
+	- add input field
+	- add ability to select country
+	- add instructions
+	- add tips
+	- add key
+-->
+
 <html>
 	<head>
 		<title>Promo validator v2.0</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<style>
+			table {
+				table-layout:fixed;
+			}
+			
+			td {
+				width:1px;
+				white-space:nowrap;
+			}
+			
+			.outOfStock, .tooExpensive {
+				background-color: red;
+			}
+			
+			.tooCheap {
+				background-color: orange;
+			}
+			
+			.notFound {
+				background-color: yellow;
+			}
+		</style>
 	</head>
 	<body>
 		<script>
 			function getSkusAndExpectedPrices() {
 				return [
-					{ sku: "PH777HAAA6U3E2ANTH-14510133", price: 690 },
+					{ sku: "PH777HAAA6U3E2ANTH-14510133", price: 5 },
 				];
 			};
 		
 			$(document).ready(function(){
-				console.log("doc ready");
-				
 				var table = $("#results");
 				
 				$.each(getSkusAndExpectedPrices(), function() {
-					table.append('<tr data-sku="' + this.sku + '"><td>' + this.sku + '</td><td>' + this.price + '</td><td></td><td></td><td></td></tr>');
+					table.append('<tr data-sku="' + this.sku + '"><td>' + this.sku + '</td><td>' + this.price + '</td><td></td><td></td><td></td><td></td><td></td></tr>');
 				});
-				
-				//return;
 				
 				$.each(getSkusAndExpectedPrices(), function() {
 				
@@ -44,7 +74,14 @@
 					
 					if (!match)
 					{
-						row.find(":nth-child(4)").html("Product not found");
+						row.find(":nth-child(3)").html("N/A");
+						row.find(":nth-child(3)").addClass("notFound");
+						row.find(":nth-child(4)").html("N/A");
+						row.find(":nth-child(4)").addClass("notFound");
+						row.find(":nth-child(5)").html("N/A");
+						row.find(":nth-child(5)").addClass("notFound");
+						row.find(":nth-child(6)").html("Product not found");
+						row.find(":nth-child(6)").addClass("notFound");
 						return;
 					}
 					var url = "http://www.lazada.co.th" + match[1];
@@ -52,29 +89,46 @@
 					
 					var newUrl = "http://allorigins.us/get?url=" + encodeURIComponent(url) + "&callback=?"
 					
-					row.find(":nth-child(4)").html("<a href=\"" + url + "\">" + url + "</a>");
-					
-					console.log("newUrl: " + newUrl);
-					
+					row.find(":nth-child(6)").html("<a href=\"" + url + "\">" + url + "</a>");
+
 					
 					$.ajax({
 					url: newUrl
 				}).done(function(data) {
-					//$("body").html(data);
-					
-					
 					var match = data.match(/<span id=\\"product_price\\" class=\\"hidden\\">(.*?)<\/span>/);
 					var price = match[1];
 					row.find(":nth-child(3)").html(price);
 					
+					var actualPrice = parseFloat(price);
+					var expectedPrice = parseFloat(row.find(":nth-child(2)").html());
+					
+					if (actualPrice < expectedPrice) {
+						row.find(":nth-child(3)").addClass("tooCheap");
+					} else if (actualPrice > expectedPrice) {
+						row.find(":nth-child(3)").addClass("tooExpensive");
+					}
+					
+					match = data.match(/<h1.*>(.*?)<\/h1>/);
+					
+					var title = $.trim(match[1].replace(/\\n/g, "").replace("&nbsp;", ""));
+					
+					row.find(":nth-child(5)").html(title);
+					
+					match = data.match(/<div class=\\"outofstock oosWrapper\\" style=\\"display: block\\">/);
+					
+					if (match) {
+						var el = row.find(":nth-child(4)");
+						el.html("No");
+						el.addClass("outOfStock");
+					} else {
+						row.find(":nth-child(4)").html("Yes");
+					}
+					
 				});
 					
 				});
 				
 				});
-				
-				
-				console.log("ending doc ready");
 			});
 		</script>
 		<table id="results">
@@ -82,6 +136,8 @@
 				<th>Sku</th>
 				<th>Expected price</th>
 				<th>Actual price</th>
+				<th>Stock available</th>
+				<th>Product name</th>
 				<th>Url</th>
 			</tr>
 		</table>
