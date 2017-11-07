@@ -3,7 +3,6 @@
 	- add strict validation
 	- make html pretty
 	- add input field
-	- add ability to select country
 -->
 
 <html>
@@ -42,6 +41,21 @@
 			};
 			
 			function getLazadaUrl() {
+				var value = $("#country").val();
+				
+				switch (value) {
+					case "Thailand":
+						return "http://www.lazada.co.th";
+					case "Indonesia":
+						return "http://www.lazada.co.id";
+					case "Philippines":
+						return "http://www.lazada.com.ph";
+					case "Singapore":
+						return "http://www.lazada.sg";
+					default:
+						throw "Invalid country";
+				}
+			
 				return "http://www.lazada.co.th";
 			}
 			
@@ -153,6 +167,14 @@
 				<td class="tooExpensive">Price higher than expensive or product out of stock</td>
 			</tr>
 		</table>
+		<h1>Input</h1>
+		Select country:
+		<select id="country">
+			<option value="Thailand">Thailand</option>
+			<option value="Indonesia">Indonesia</option>
+			<option value="Philippines">Philippines</option>
+			<option value="Singapore">Singapore</option>
+		</select>
 		<h1>Results</h1>
 		<table id="results">
 			<tr>
