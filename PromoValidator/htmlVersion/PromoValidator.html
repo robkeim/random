@@ -1,10 +1,11 @@
 <!--
-	TODO rkeim:
-	- add strict validation
-	- make html pretty
-	- add input field
+Version history:
+	v2.0 -> Re-write in HTML, add out of stock, and product name
+	v1.3 -> Fix comparisons for decimal values and cleanup formatting
+	v1.2 -> Add support for other countries
+	v1.1 -> Fix bug where macro writes in other Excel files
+	v1.0 -> Initial version
 -->
-
 <html>
 	<head>
 		<title>Promo validator v2.0</title>
@@ -33,11 +34,17 @@
 		</style>
 	</head>
 	<body>
+		<!-- NOTE: everything is in the same file to facilitate sharing this code with non-developers -->
 		<script>
+			"use strict";
+			
 			function getSkusAndExpectedPrices() {
-				return [
-					{ sku: "PH777HAAA6U3E2ANTH-14510133", price: 5 },
-				];
+				var input = $.trim($("#input").val());
+
+				return input.split("\n").map(function(line) {
+					var split = line.split("\t");
+					return { sku: split[0], price: split[1] };
+				});
 			};
 			
 			function getLazadaUrl() {
@@ -63,7 +70,7 @@
 				return "http://allorigins.us/get?url=" + encodeURIComponent(target) + "&callback=?";
 			}
 			
-			$(document).ready(function(){
+			function validatePrices() {
 				var table = $("#results");
 				var skusAndExpectedPrices = getSkusAndExpectedPrices();
 				var lazadaUrl = getLazadaUrl();
@@ -141,7 +148,7 @@
 						});
 					});
 				});
-			});
+			}
 		</script>
 		<h1>Instructions</h1>
 		<ol>
@@ -150,11 +157,13 @@
 			<li>Select country</li>
 			<li>Click "Validate prices"</li>
 		</ol>
+		
 		<h1>Tips</h1>
 		<ul>
 			<li>Make sure your computer is plugged in and not running on battery (to make the program run faster)</li>
 			<li>Don't try to validate more than 200 skus at once</li>
 		</ul>
+		
 		<h1>Legend</h1>
 		<table>
 			<tr>
@@ -167,14 +176,25 @@
 				<td class="tooExpensive">Price higher than expensive or product out of stock</td>
 			</tr>
 		</table>
+		
 		<h1>Input</h1>
 		Select country:
+		<br />
 		<select id="country">
 			<option value="Thailand">Thailand</option>
 			<option value="Indonesia">Indonesia</option>
 			<option value="Philippines">Philippines</option>
 			<option value="Singapore">Singapore</option>
 		</select>
+		<br />
+		<br />
+		Skus and expected prices:
+		<br />
+		<textarea id="input" rows="10" cols="100"></textarea>
+		<br />
+		<br />
+		<button type="button" onclick="validatePrices()">Validate prices</button>
+		
 		<h1>Results</h1>
 		<table id="results">
 			<tr>
