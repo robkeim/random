@@ -38,7 +38,7 @@ Version history:
 		<script>
 			"use strict";
 			
-			function getSkusAndExpectedPrices() {
+			function getSkusAndPromoPrices() {
 				var input = $.trim($("#input").val());
 
 				return input.split("\n").map(function(line) {
@@ -72,15 +72,15 @@ Version history:
 			
 			function validatePrices() {
 				var table = $("#results");
-				var skusAndExpectedPrices = getSkusAndExpectedPrices();
+				var skusAndPromoPrices = getSkusAndPromoPrices();
 				var lazadaUrl = getLazadaUrl();
 				
 				// Fill in table with skus to validate
-				$.each(skusAndExpectedPrices, function() {
+				$.each(skusAndPromoPrices, function() {
 					table.append('<tr data-sku="' + this.sku + '"><td>' + this.sku + '</td><td>' + this.price + '</td><td></td><td></td><td></td><td></td></tr>');
 				});
 				
-				$.each(skusAndExpectedPrices, function() {
+				$.each(skusAndPromoPrices, function() {
 					// Do a search to find the product page
 					var searchUrl = getCrossDomainUrl(lazadaUrl + "/catalog/?q=" + this.sku);
 					var row = $("[data-sku=\"" + this.sku + "\"]");
@@ -110,7 +110,7 @@ Version history:
 						
 						// Navigate to the product page to find the price and stock availability
 						var productPageUrl = lazadaUrl + match[1];
-						row.find(":nth-child(1)").html("<a href=\"" + productPageUrl + "\">" + this.sku + "</a>");
+						row.find(":nth-child(1)").html("<a href=\"" + productPageUrl + "\" target=\"blank\">" + this.sku + "</a>");
 						productPageUrl = getCrossDomainUrl(productPageUrl);
 						
 						$.ajax({
@@ -122,11 +122,11 @@ Version history:
 							row.find(":nth-child(3)").html(price);
 							
 							var actualPrice = parseFloat(price);
-							var expectedPrice = parseFloat(row.find(":nth-child(2)").html());
+							var promoPrice = parseFloat(row.find(":nth-child(2)").html());
 							
-							if (actualPrice < expectedPrice) {
+							if (actualPrice < promoPrice) {
 								row.find(":nth-child(3)").addClass("tooCheap");
-							} else if (actualPrice > expectedPrice) {
+							} else if (actualPrice > promoPrice) {
 								row.find(":nth-child(3)").addClass("tooExpensive");
 							}
 							
@@ -152,8 +152,8 @@ Version history:
 		</script>
 		<h1>Instructions</h1>
 		<ol>
-			<li>Prepare an Excel with two columns (Lazada Sku and expected price)</li>
-			<li>Copy/paste values into the form</li>
+			<li>Copy/paste Lazada sku and promo price in two columns in an Excel file</li>
+			<li>Copy/paste those values into the form below</li>
 			<li>Select country</li>
 			<li>Click "Validate prices"</li>
 		</ol>
@@ -188,7 +188,7 @@ Version history:
 		</select>
 		<br />
 		<br />
-		Skus and expected prices:
+		Skus and promo prices:
 		<br />
 		<textarea id="input" rows="10" cols="100"></textarea>
 		<br />
@@ -199,7 +199,7 @@ Version history:
 		<table id="results">
 			<tr>
 				<th>Sku</th>
-				<th>Expected price</th>
+				<th>Promo price</th>
 				<th>Actual price</th>
 				<th>Stock available</th>
 				<th>Product name</th>
