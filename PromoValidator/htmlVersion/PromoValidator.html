@@ -1,5 +1,6 @@
 <!--
 Version history:
+	v2.2 -> Add ability to run a new set of skus
 	v2.1 -> Fix bug when price contains commas
 	v2.0 -> Re-write in HTML, add out of stock, and product name
 	v1.3 -> Fix comparisons for decimal values and cleanup formatting
@@ -77,6 +78,7 @@ Version history:
 			
 			function validatePrices() {
 				var table = $("#results");
+				table.find("tr").slice(1).remove();
 				var skusAndPromoPrices = getSkusAndPromoPrices();
 				var lazadaUrl = getLazadaUrl();
 				
@@ -160,13 +162,13 @@ Version history:
 			<li>Copy/paste Lazada sku and promo price in two columns in an Excel file</li>
 			<li>Copy/paste those values into the form below</li>
 			<li>Select country</li>
-			<li>Click "Validate prices"</li>
+			<li>Click "Validate prices" (takes roughly 2 minutes per 100 skus, but you can work on other things while waiting)</li>
 		</ol>
 		
 		<h1>Tips</h1>
 		<ul>
 			<li>Make sure your computer is plugged in and not running on battery (to make the program run faster)</li>
-			<li>Don't try to validate more than 200 skus at once</li>
+			<li>Don't try to validate more than 500 skus at once</li>
 		</ul>
 		
 		<h1>Legend</h1>
