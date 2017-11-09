@@ -1,5 +1,6 @@
 <!--
 Version history:
+	v2.1 -> Fix bug when price contains commas
 	v2.0 -> Re-write in HTML, add out of stock, and product name
 	v1.3 -> Fix comparisons for decimal values and cleanup formatting
 	v1.2 -> Add support for other countries
@@ -8,7 +9,7 @@ Version history:
 -->
 <html>
 	<head>
-		<title>Promo validator v2.0</title>
+		<title>Promo validator v2.1</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<style>
 			table {
@@ -70,6 +71,10 @@ Version history:
 				return "http://allorigins.us/get?url=" + encodeURIComponent(target) + "&callback=?";
 			}
 			
+			function parseFloatWithCommas(input) {
+				return parseFloat(input.replace(",", ""))
+			}
+			
 			function validatePrices() {
 				var table = $("#results");
 				var skusAndPromoPrices = getSkusAndPromoPrices();
@@ -121,8 +126,8 @@ Version history:
 							var price = match[1];
 							row.find(":nth-child(3)").html(price);
 							
-							var actualPrice = parseFloat(price);
-							var promoPrice = parseFloat(row.find(":nth-child(2)").html());
+							var actualPrice = parseFloatWithCommas(price);
+							var promoPrice = parseFloatWithCommas(row.find(":nth-child(2)").html());
 							
 							if (actualPrice < promoPrice) {
 								row.find(":nth-child(3)").addClass("tooCheap");
