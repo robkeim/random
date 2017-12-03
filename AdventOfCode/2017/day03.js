@@ -115,7 +115,7 @@ function part2(input) {
     let curY = 0;
 
     let squareNum = 2;
-    let squares = new Set();
+    let squares = {};
     squares['0_0'] = 1;
     let curDir = 'R';
     let numInCurDirection = 1;
