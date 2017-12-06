@@ -13,6 +13,12 @@ For example:
 - 111221 becomes 312211 (three 1s, two 2s, and one 1).
 
 Starting with the digits in your puzzle input, apply this process 40 times. What is the length of the result?
+
+--- Part Two ---
+
+Neat, right? You might also enjoy hearing John Conway talking about this sequence (that's Conway of Conway's Game of Life fame).
+
+Now, starting again with the digits in your puzzle input, apply this process 50 times. What is the length of the new result?
  */
 
 const Utils = require('./utils.js');
@@ -50,6 +56,15 @@ function part1(input) {
     return result.length;
 }
 
+function part2(input) {
+    let result = input;
+    for (let i = 0; i < 50; i++) {
+        result = encodeSequence(result);
+    }
+
+    return result.length;
+}
+
 function runPart1() {
     Utils.assertAreEqual('11', encodeSequence('1'));
     Utils.assertAreEqual('21', encodeSequence('11'));
@@ -61,4 +76,10 @@ function runPart1() {
     console.log(part1('1113222113'));
 }
 
+function runPart2() {
+    // Answer: XXX
+    console.log(part2('1113222113'));
+}
+
 runPart1();
+runPart2();
