@@ -96,4 +96,10 @@ function runPart1() {
     console.log(part1('vzbxkghb'));
 }
 
+function runPart2() {
+    // Answer: vzcaabcc
+    console.log(part1('vzbxxyzz'));
+}
+
 runPart1();
+runPart2();
