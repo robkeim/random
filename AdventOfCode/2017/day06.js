@@ -20,6 +20,14 @@ For example, imagine a scenario with only four memory banks:
 At this point, we've reached a state we've seen before: 2 4 1 2 was already seen. The infinite loop is detected after the fifth block redistribution cycle, and so the answer in this example is 5.
 
 Given the initial block counts in your puzzle input, how many redistribution cycles must be completed before a configuration is produced that has been seen before?
+
+ --- Part Two ---
+
+Out of curiosity, the debugger would also like to know the size of the loop: starting from a state that has already been seen, how many block redistribution cycles must be performed before that same state is seen again?
+
+In the example above, 2 4 1 2 is seen again after four cycles, and so the answer in that example would be 4.
+
+How many cycles are in the infinite loop that arises from the configuration in your puzzle input?
  */
 
 const Utils = require('./utils.js');
@@ -30,7 +38,6 @@ function part1(input) {
 
     while (true) {
         let position = nodes.join('_');
-        console.log(position);
 
         if (positions.has(position)) {
             return positions.size;
@@ -63,4 +70,46 @@ function runPart1() {
     console.log(part1('4\t10\t4\t1\t8\t4\t9\t14\t5\t1\t14\t15\t0\t15\t3\t5'));
 }
 
+function part2(input) {
+    let nodes = input.split('\t').map(v => parseInt(v));
+    let positions = new Set();
+    let iteration = 1;
+    let positionIteration = {};
+
+    while (true) {
+        let position = nodes.join('_');
+
+        if (positions.has(position)) {
+            return positions.size - positionIteration[position] + 1;
+        } else {
+            positionIteration[position] = iteration++;
+            positions.add(position);
+        }
+
+        let index = 0;
+        let maxValue = -1;
+
+        for (let i = 0; i < nodes.length; i++) {
+            if (nodes[i] > maxValue) {
+                maxValue = nodes[i];
+                index = i;
+            }
+        }
+
+        nodes[index] = 0;
+
+        for (let i = 0; i < maxValue; i++) {
+            nodes[(index + 1 + i) % nodes.length]++;
+        }
+    }
+}
+
+function runPart2() {
+    Utils.assertAreEqual(4, part2('0\t2\t7\t0'));
+
+    // Answer: 8038
+    console.log(part2('4\t10\t4\t1\t8\t4\t9\t14\t5\t1\t14\t15\t0\t15\t3\t5'));
+}
+
 runPart1();
+runPart2();
