@@ -10,6 +10,14 @@ For example, suppose you have containers of size 20, 15, 10, 5, and 5 liters. If
 - 15, 5, and 5
 
 Filling all containers entirely, how many different combinations of containers can exactly fit all 150 liters of eggnog?
+
+--- Part Two ---
+
+While playing with all the containers in the kitchen, another load of eggnog arrives! The shipping and receiving department is requesting as many containers as you can spare.
+
+Find the minimum number of containers that can exactly fit all 150 liters of eggnog. How many different ways can you fill that number of containers and still hold exactly 150 litres?
+
+In the example above, the minimum number of containers was two. There were three ways to use that many containers, and so the answer there would be 3.
  */
 
 const Utils = require('./utils.js');
@@ -56,4 +64,43 @@ function runPart1() {
     console.log(part1(150, '50\n44\n11\n49\n42\n46\n18\n32\n26\n40\n21\n7\n18\n43\n10\n47\n36\n24\n22\n40'));
 }
 
+function part2(numLiters, input) {
+    const jars = input.split('\n').map(v => parseInt(v));
+
+    let combinations = getCombinations(jars.length);
+    let result = 0;
+    let minNumJars = Number.MAX_SAFE_INTEGER;
+
+    for (let i = 0; i < combinations.length; i++) {
+        let total = 0;
+
+        for (let j = 0; j < jars.length; j++) {
+            if (combinations[i][j]) {
+                total += jars[j];
+            }
+        }
+
+        if (total === numLiters) {
+            let numJars = combinations[i].filter(v => v === 1).length;
+
+            if (numJars < minNumJars) {
+                minNumJars = numJars;
+                result = 1;
+            } else if (numJars === minNumJars) {
+                result++;
+            }
+        }
+    }
+
+    return result;
+}
+
+function runPart2() {
+    Utils.assertAreEqual(3, part2(25, '20\n15\n10\n5\n5'));
+
+    // Answer: 57
+    console.log(part2(150, '50\n44\n11\n49\n42\n46\n18\n32\n26\n40\n21\n7\n18\n43\n10\n47\n36\n24\n22\n40'));
+}
+
 runPart1();
+runPart2();
