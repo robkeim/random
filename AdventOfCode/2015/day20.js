@@ -24,6 +24,12 @@ House 9 got 130 presents.
 The first house gets 10 presents: it is visited only by Elf 1, which delivers 1 * 10 = 10 presents. The fourth house gets 70 presents, because it is visited by Elves 1, 2, and 4, for a total of 10 + 20 + 40 = 70 presents.
 
 What is the lowest house number of the house to get at least as many presents as the number in your puzzle input?
+
+--- Part Two ---
+
+The Elves decide they don't want to visit an infinite number of houses. Instead, each Elf will stop after delivering presents to 50 houses. To make up for it, they decide to deliver presents equal to eleven times their number at each house.
+
+With these changes, what is the new lowest house number of the house to get at least as many presents as the number in your puzzle input?
  */
 
 const Utils = require('./utils.js');
@@ -55,4 +61,34 @@ function runPart1() {
     console.log(part1(36000000));
 }
 
+function part2(input) {
+    let houses = [];
+
+    for (let elf = 1; elf <= input; elf++) {
+        for (let i = 1; i <= 50; i++) {
+            let index = elf * i;
+
+            if (index > input) {
+                break;
+            }
+
+            houses[index] = (houses[index] || 0) + (11 * elf);
+        }
+    }
+
+    for (let i = 0; i < houses.length; i++) {
+        if (houses[i] >= input) {
+            return i;
+        }
+    }
+
+    throw Error('Selected array size too small');
+}
+
+function runPart2() {
+    // Answer: 884520
+    console.log(part2(36000000));
+}
+
 runPart1();
+runPart2();
