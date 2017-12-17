@@ -24,6 +24,13 @@ Then, choosing to use 44 teaspoons of butterscotch and 56 teaspoons of cinnamon 
 Multiplying these together (68 * 80 * 152 * 76, ignoring calories for now) results in a total score of 62842880, which happens to be the best score possible given these ingredients. If any properties had produced a negative total, it would have instead become zero, causing the whole score to multiply to zero.
 
 Given the ingredients in your kitchen and their properties, what is the total score of the highest-scoring cookie you can make?
+
+ --- Part Two ---
+Your cookie recipe becomes wildly popular! Someone asks if you can make another recipe that has exactly 500 calories per cookie (so they can use it as a meal replacement). Keep the rest of your award-winning process the same (100 teaspoons, same ingredients, same scoring system).
+
+For example, given the ingredients above, if you had instead selected 40 teaspoons of butterscotch and 60 teaspoons of cinnamon (which still adds to 100), the total calorie count would be 40*8 + 60*3 = 500. The total score would go down, though: only 57600000, the best you can do in such trying circumstances.
+
+Given the ingredients in your kitchen and their properties, what is the total score of the highest-scoring cookie you can make with a calorie total of 500?
  */
 
 const Utils = require('./utils.js');
@@ -96,4 +103,59 @@ function runPart1() {
     console.log(part1('Sprinkles: capacity 2, durability 0, flavor -2, texture 0, calories 3\nButterscotch: capacity 0, durability 5, flavor -3, texture 0, calories 3\nChocolate: capacity 0, durability 0, flavor 5, texture -1, calories 8\nCandy: capacity 0, durability -1, flavor 0, texture 5, calories 8'));
 }
 
+function part2(input) {
+    const regex = /[a-zA-Z]+: capacity (-?\d+), durability (-?\d+), flavor (-?\d+), texture (-?\d+), calories (-?\d)+/;
+
+    let ingredients = input.split('\n').map(line => {
+        let match = regex.exec(line);
+
+        if (!match) {
+            throw Error('Invalid line format: ' + line);
+        }
+
+        return [parseInt(match[1]), parseInt(match[2]), parseInt(match[3]), parseInt(match[4]), parseInt(match[5])];
+    });
+
+    let possibilities = getPossibilities(ingredients.length, 100, []);
+
+    let bestScore = Number.MIN_SAFE_INTEGER;
+    for (let i = 0; i < possibilities.length; i++) {
+        let capacity = 0;
+        let durability = 0;
+        let flavor = 0;
+        let texture = 0;
+        let calories = 0;
+
+        for (let j = 0; j < possibilities[i].length; j++) {
+            capacity += ingredients[j][0] * possibilities[i][j];
+            durability += ingredients[j][1] * possibilities[i][j];
+            flavor += ingredients[j][2] * possibilities[i][j];
+            texture += ingredients[j][3] * possibilities[i][j];
+            calories += ingredients[j][4] * possibilities[i][j];
+        }
+
+        capacity = Math.max(0, capacity);
+        durability = Math.max(0, durability);
+        flavor = Math.max(0, flavor);
+        texture = Math.max(0, texture);
+        calories = Math.max(0, calories);
+
+        let score = capacity * durability * flavor * texture;
+
+        if (calories === 500 && score > bestScore) {
+            bestScore = score;
+        }
+    }
+
+    return bestScore;
+}
+
+function runPart2() {
+    Utils.assertAreEqual(57600000, part2('Butterscotch: capacity -1, durability -2, flavor 6, texture 3, calories 8\nCinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3'));
+
+    // Answer: 1766400
+    console.log(part2('Sprinkles: capacity 2, durability 0, flavor -2, texture 0, calories 3\nButterscotch: capacity 0, durability 5, flavor -3, texture 0, calories 3\nChocolate: capacity 0, durability 0, flavor 5, texture -1, calories 8\nCandy: capacity 0, durability -1, flavor 0, texture 5, calories 8'));
+}
+
 runPart1();
+runPart2();
