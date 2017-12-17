@@ -1,3 +1,20 @@
+function permutations(arr) {
+    let result = [];
+    for(let i = 0; i < arr.length; i++) {
+        let rest = permutations(arr.slice(0, i).concat(arr.slice(i + 1)));
+
+        if (rest.length === 0) {
+            result.push([arr[i]]);
+        } else {
+            for (let j = 0; j < rest.length; j++) {
+                result.push([arr[i]].concat(rest[j]));
+            }
+        }
+    }
+
+    return result;
+}
+
 module.exports = {
     assertAreEqual: (expected, actual) => {
         if (expected === actual) {
@@ -8,6 +25,8 @@ module.exports = {
             throw Error('Unexpected results');
         }
     },
+
+    permutations: permutations,
 
     // Algorithm copied from here:
     // http://www.webtoolkit.info/javascript-md5.html#.WiLFDUqWY2w
