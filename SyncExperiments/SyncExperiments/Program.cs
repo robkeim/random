@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using Newtonsoft.Json.Linq;
 
@@ -7,34 +9,55 @@ namespace SyncExperiments
 {
     public class Program
     {
+        public static Dictionary<string, Experiment> _experiments = new Dictionary<string, Experiment>();
+
         public static void Main(string[] args)
         {
-            Console.WriteLine("Prod:");
-            var json = GetRunningExperiments(true);
-            ExtractExperimentNames(json, true);
-
-            Console.WriteLine("\nDev:");
-            json = GetRunningExperiments(false);
-            ExtractExperimentNames(json);
+            Console.WriteLine("Fetching prod experiments...");
+            ExtractExperiments(GetRunningExperiments(true), true);
+            Console.WriteLine("Fetching dev experiments...");
+            ExtractExperiments(GetRunningExperiments(false));
+            Console.WriteLine();
+            PrintSummary();
 
             Console.WriteLine("\ndone!");
             Console.ReadLine();
         }
-
-        private static void ExtractExperimentNames(string json, bool prod = false)
+        
+        private static void ExtractExperiments(string json, bool prod = false)
         {
             dynamic obj = JObject.Parse(json);
             obj = obj.result;
 
             for (int i = 0; i < obj.Count; i++)
             {
-                string experimentName = obj[i].experimentName;
+                string name = obj[i].experimentName;
 
-                if (experimentName.ToUpperInvariant().StartsWith("HALO-"))
+                if (name.ToUpperInvariant().StartsWith("HALO-"))
                 {
-                    TimeSpan length = DateTime.Now - DateTime.Parse(obj[i].startDate.ToString());
+                    string description = obj[i].description;
+                    var startDate = DateTimeOffset.Parse(obj[i].startDate.ToString());
 
-                    Console.WriteLine($"{experimentName} - {Math.Floor(length.TotalDays)} days - {obj[i].description}");
+                    Experiment exp;
+
+                    if (!_experiments.TryGetValue(name, out exp))
+                    {
+                        exp = new Experiment();
+                    }
+
+                    exp.Name = name;
+                    exp.Description = description;
+
+                    if (prod)
+                    {
+                        exp.ProdStartDate = startDate;
+                    }
+                    else
+                    {
+                        exp.DevStartDate = startDate;
+                    }
+
+                    _experiments[name] = exp;
                 }
             }
         }
@@ -50,6 +73,31 @@ namespace SyncExperiments
             using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
             {
                 return streamReader.ReadToEnd();
+            }
+        }
+
+        private static void PrintSummary()
+        {
+            var now = DateTimeOffset.UtcNow;
+            var exps = _experiments.Values.OrderBy(e => e.Name).ToArray();
+
+            foreach (var exp in exps)
+            {
+                var description = exp.Description.Length > 100
+                    ? $"{exp.Description.Substring(0, 100)}..."
+                    : exp.Description;
+
+                var devDate = exp.DevStartDate != null
+                    ? $"{Math.Round((now - exp.DevStartDate.Value).TotalDays, 0)} days"
+                    : "No current run";
+
+                var prodDate = exp.ProdStartDate != null
+                    ? $"{Math.Round((now - exp.ProdStartDate.Value).TotalDays, 0)} days"
+                    : "No current run";
+
+                Console.WriteLine($"\n{exp.Name} - {description}");
+                Console.WriteLine($"    Dev:  {devDate}");
+                Console.WriteLine($"    Prod: {prodDate}");
             }
         }
     }
