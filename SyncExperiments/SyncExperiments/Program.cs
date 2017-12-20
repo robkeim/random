@@ -15,8 +15,10 @@ namespace SyncExperiments
         {
             Console.WriteLine("Fetching prod experiments...");
             ExtractExperiments(GetRunningExperiments(true), true);
+
             Console.WriteLine("Fetching dev experiments...");
             ExtractExperiments(GetRunningExperiments(false));
+
             Console.WriteLine();
             PrintSummary();
 
@@ -37,10 +39,8 @@ namespace SyncExperiments
                 {
                     string description = obj[i].description;
                     var startDate = DateTimeOffset.Parse(obj[i].startDate.ToString());
-
-                    Experiment exp;
-
-                    if (!_experiments.TryGetValue(name, out exp))
+                    
+                    if (!_experiments.TryGetValue(name, out Experiment exp))
                     {
                         exp = new Experiment();
                     }
@@ -87,17 +87,26 @@ namespace SyncExperiments
                     ? $"{exp.Description.Substring(0, 100)}..."
                     : exp.Description;
 
-                var devDate = exp.DevStartDate != null
+                var devDateText = exp.DevStartDate != null
                     ? $"{Math.Round((now - exp.DevStartDate.Value).TotalDays, 0)} days"
-                    : "No current run";
+                    : "NO ACTIVE RUN";
 
                 var prodDate = exp.ProdStartDate != null
-                    ? $"{Math.Round((now - exp.ProdStartDate.Value).TotalDays, 0)} days"
-                    : "No current run";
+                    ? Math.Round((now - exp.ProdStartDate.Value).TotalDays, 0)
+                    : (double?)null;
 
-                Console.WriteLine($"\n{exp.Name} - {description}");
-                Console.WriteLine($"    Dev:  {devDate}");
-                Console.WriteLine($"    Prod: {prodDate}");
+                var prodDateText = exp.ProdStartDate != null
+                    ? $"{Math.Round((now - exp.ProdStartDate.Value).TotalDays, 0)} days"
+                    : "NO ACTIVE RUN";
+
+                Console.WriteLine($"\n{exp.Name}: {description}");
+                Console.WriteLine($"    Dev:  {devDateText}");
+                Console.WriteLine($"    Prod: {prodDateText}");
+
+                if (prodDate.HasValue && prodDate.Value > 45)
+                {
+                    Console.WriteLine("    LONG RUNNING EXPERIMENT");
+                }
             }
         }
     }
