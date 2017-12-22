@@ -8,4 +8,4 @@ module.exports = {
             throw Error('Unexpected results');
         }
     }
-}
+};
