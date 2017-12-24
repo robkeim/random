@@ -24,6 +24,7 @@ function part1(input) {
     let registers = {};
     let index = 0;
     let totalMul = 0;
+    registers['a'] = 1;
 
     while (index >= 0 && index < instructions.length) {
         let match = regex.exec(instructions[index]);
@@ -96,4 +97,24 @@ function runPart1() {
     console.log(part1('set b 99\nset c b\njnz a 2\njnz 1 5\nmul b 100\nsub b -100000\nset c b\nsub c -17000\nset f 1\nset d 2\nset e 2\nset g d\nmul g e\nsub g b\njnz g 2\nset f 0\nsub e -1\nset g e\nsub g b\njnz g -8\nsub d -1\nset g d\nsub g b\njnz g -13\njnz f 2\nsub h -1\nset g b\nsub g c\njnz g 2\njnz 1 3\nsub b -17\njnz 1 -23'));
 }
 
+// I needed assistance from the forums on this one. I incorrectly decoded the assembly
+function runPart2() {
+    // Answer: 913
+    let b = (99 * 100) + 100000;
+    let c = b + 17000;
+    let h = 0;
+
+    for (let i = b; i <= c; i += 17) {
+        for (let j = 2; j <= Math.sqrt(i); j++) {
+            if (i % j === 0) {
+                h++; // This value isn't prime so count it
+                break;
+            }
+        }
+    }
+
+    console.log(h);
+}
+
 runPart1();
+runPart2();
