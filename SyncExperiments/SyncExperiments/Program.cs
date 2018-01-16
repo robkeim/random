@@ -139,31 +139,23 @@ namespace SyncExperiments
 
         private static void PrintSummary()
         {
-            var now = DateTimeOffset.UtcNow;
             var exps = _experiments.Values.OrderBy(e => e.Name).ToArray();
 
             foreach (var exp in exps)
             {
-                var description = exp.Description.Length > 100
-                    ? $"{exp.Description.Substring(0, 100)}..."
-                    : exp.Description;
-
-                var devDateText = exp.Dev != null
-                    ? $"{Math.Round((now - exp.Dev.StartDate).TotalDays, 0)} days"
-                    : "NO ACTIVE RUN";
-
-                var prodDate = exp.Prod != null
-                    ? Math.Round((now - exp.Prod.StartDate).TotalDays, 0)
-                    : (double?)null;
-
-                var prodDateText = exp.Prod != null
-                    ? $"{Math.Round((now - exp.Prod.StartDate).TotalDays, 0)} days"
-                    : "NO ACTIVE RUN";
-
-                Console.WriteLine($"\n{exp.Name}: {description}");
-                Console.WriteLine($"    Dev:  {FormatExperimentDetails(exp.Dev)}");
-                Console.WriteLine($"    Prod: {FormatExperimentDetails(exp.Prod)}");
+                PrintExperiment(exp);
             }
+        }
+
+        private static void PrintExperiment(Experiment exp)
+        {
+            var description = exp.Description.Length > 100
+                ? $"{exp.Description.Substring(0, 100)}..."
+                : exp.Description;
+
+            Console.WriteLine($"\n{exp.Name}: {description}");
+            Console.WriteLine($"    Dev:  {FormatExperimentDetails(exp.Dev)}");
+            Console.WriteLine($"    Prod: {FormatExperimentDetails(exp.Prod)}");
         }
 
         private static string FormatExperimentDetails(ExperimentDetails expDetails)
