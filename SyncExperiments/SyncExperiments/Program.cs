@@ -114,6 +114,7 @@ namespace SyncExperiments
             expDetails.AllClusters = bool.Parse(obj["allClustersFlag"].ToString());
             expDetails.FlatB = (obj["integrationVariant"] ?? string.Empty).ToString() == "B";
             expDetails.TrafficRate = int.Parse(obj["trafficRate"].ToString());
+            expDetails.InEvaluation = bool.Parse(obj["isEvaluationRun"].ToString());
 
         }
 
@@ -157,13 +158,18 @@ namespace SyncExperiments
             exps = exps.Except(expsToIntegrate).ToArray();
             
             // Running experiments
-            var runningExps = exps.Where(e => e.Prod != null && e.Prod.AllClusters && !e.Prod.FlatB && e.Prod.TrafficRate == 100);
+            var runningExps = exps.Where(e => e.Prod != null && e.Prod.AllClusters && !e.Prod.FlatB && e.Prod.TrafficRate == 100 && !e.Prod.InEvaluation);
             exps = exps.Except(runningExps).ToArray();
-            
+
+            // Evaluation run
+            var evaluationRunExps = exps.Where(e => e.Prod != null && e.Prod.AllClusters && !e.Prod.FlatB && e.Prod.TrafficRate == 100 && e.Prod.InEvaluation);
+            exps = exps.Except(evaluationRunExps).ToArray();
+
             PrintExperiments(unequalExps, "Invalid configuration");
             PrintExperiments(exps, "Unknown configuration");
             PrintExperiments(expsInDevelopment, "In development");
             PrintExperiments(runningExps, "Running");
+            PrintExperiments(evaluationRunExps, "Evaluation run");
             PrintExperiments(expsToIntegrate, "Awaiting integration");
         }
 

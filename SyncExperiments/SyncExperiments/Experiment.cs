@@ -24,5 +24,7 @@ namespace SyncExperiments
         public int TrafficRate { get; set; }
 
         public bool FlatB { get; set; }
+
+        public bool InEvaluation { get; set; }
     }
 }
