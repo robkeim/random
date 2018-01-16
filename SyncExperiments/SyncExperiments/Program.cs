@@ -141,6 +141,35 @@ namespace SyncExperiments
         {
             var exps = _experiments.Values.OrderBy(e => e.Name).ToArray();
 
+            var unequalExps = exps.Where(e => !Equals(e.Prod, e.Dev));
+            exps = exps.Except(unequalExps).ToArray();
+
+            PrintExperiments(unequalExps, "Unequal");
+
+            PrintExperiments(exps, "Remaining");
+        }
+
+        private static bool Equals(ExperimentDetails exp1, ExperimentDetails exp2)
+        {
+            if (exp1 == null && exp2 == null)
+            {
+                return true;
+            }
+
+            if (exp1 == null || exp2 == null)
+            {
+                return false;
+            }
+
+            return exp1.AllClusters == exp2.AllClusters
+                   && exp1.FlatB == exp2.FlatB
+                   && exp1.TrafficRate == exp2.TrafficRate;
+        }
+
+        private static void PrintExperiments(IEnumerable<Experiment> exps, string title)
+        {
+            Console.WriteLine($"\n=== {title} ===");
+
             foreach (var exp in exps)
             {
                 PrintExperiment(exp);
