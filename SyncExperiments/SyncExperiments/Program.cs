@@ -9,7 +9,7 @@ namespace SyncExperiments
 {
     public class Program
     {
-        public static Dictionary<string, Experiment> _experiments = new Dictionary<string, Experiment>();
+        private static Dictionary<string, Experiment> _experiments = new Dictionary<string, Experiment>();
 
         public static void Main(string[] args)
         {
@@ -115,7 +115,6 @@ namespace SyncExperiments
             expDetails.FlatB = (obj["integrationVariant"] ?? string.Empty).ToString() == "B";
             expDetails.TrafficRate = int.Parse(obj["trafficRate"].ToString());
             expDetails.InEvaluation = bool.Parse(obj["isEvaluationRun"].ToString());
-
         }
 
         private static string GetExperimentDetails(bool isProduction, string expId)
@@ -148,21 +147,21 @@ namespace SyncExperiments
 
             // In development
             var expsInDevelopment = unequalExps.Where(e =>
-                OneHundredPercentAll(e.Dev)
-                && (e.Prod == null || OneHundredPercentFlatBPrelive(e.Prod) || ZeroPercentPrelive(e.Prod)));
+                (e.Dev != null && e.Dev.OneHundredPercentAll)
+                && (e.Prod == null || e.Prod.OneHundredPercentFlatBPrelive || e.Prod.ZeroPercentPrelive));
             unequalExps = unequalExps.Except(expsInDevelopment);
             
             // Experiments to integrate
             var expsToIntegrate = exps.Where(e => e.Prod != null
-                && e.Prod.AllClusters && e.Prod.FlatB && e.Prod.TrafficRate == 100);
+                && e.Prod.FlatBAll);
             exps = exps.Except(expsToIntegrate).ToArray();
             
             // Running experiments
-            var runningExps = exps.Where(e => e.Prod != null && e.Prod.AllClusters && !e.Prod.FlatB && e.Prod.TrafficRate == 100 && !e.Prod.InEvaluation);
+            var runningExps = exps.Where(e => e.Prod != null && e.Prod.OneHundredPercentAll && !e.Prod.InEvaluation);
             exps = exps.Except(runningExps).ToArray();
 
             // Evaluation run
-            var evaluationRunExps = exps.Where(e => e.Prod != null && e.Prod.AllClusters && !e.Prod.FlatB && e.Prod.TrafficRate == 100 && e.Prod.InEvaluation);
+            var evaluationRunExps = exps.Where(e => e.Prod != null && e.Prod.OneHundredPercentAll && e.Prod.InEvaluation);
             exps = exps.Except(evaluationRunExps).ToArray();
 
             PrintExperiments(unequalExps, "Invalid configuration");
@@ -171,21 +170,6 @@ namespace SyncExperiments
             PrintExperiments(runningExps, "Running");
             PrintExperiments(evaluationRunExps, "Evaluation run");
             PrintExperiments(expsToIntegrate, "Awaiting integration");
-        }
-
-        private static bool OneHundredPercentAll(ExperimentDetails exp)
-        {
-            return exp != null && exp.AllClusters && exp.TrafficRate == 100;
-        }
-
-        private static bool OneHundredPercentFlatBPrelive(ExperimentDetails exp)
-        {
-            return exp != null && !exp.AllClusters && exp.FlatB && exp.TrafficRate == 100;
-        }
-
-        public static bool ZeroPercentPrelive(ExperimentDetails exp)
-        {
-            return exp != null && !exp.AllClusters && !exp.FlatB && exp.TrafficRate == 0;
         }
 
         private static bool Equals(ExperimentDetails exp1, ExperimentDetails exp2)
