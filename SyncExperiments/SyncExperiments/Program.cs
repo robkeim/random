@@ -141,12 +141,45 @@ namespace SyncExperiments
         {
             var exps = _experiments.Values.OrderBy(e => e.Name).ToArray();
 
+            // Unequal experiments
             var unequalExps = exps.Where(e => !Equals(e.Prod, e.Dev));
             exps = exps.Except(unequalExps).ToArray();
 
-            PrintExperiments(unequalExps, "Unequal");
+            // In development
+            var expsInDevelopment = unequalExps.Where(e =>
+                OneHundredPercentAll(e.Dev)
+                && (e.Prod == null || OneHundredPercentFlatBPrelive(e.Prod) || ZeroPercentPrelive(e.Prod)));
+            unequalExps = unequalExps.Except(expsInDevelopment);
+            
+            // Experiments to integrate
+            var expsToIntegrate = exps.Where(e => e.Prod != null
+                && e.Prod.AllClusters && e.Prod.FlatB && e.Prod.TrafficRate == 100);
+            exps = exps.Except(expsToIntegrate).ToArray();
+            
+            // Running experiments
+            var runningExps = exps.Where(e => e.Prod != null && e.Prod.AllClusters && !e.Prod.FlatB && e.Prod.TrafficRate == 100);
+            exps = exps.Except(runningExps).ToArray();
+            
+            PrintExperiments(unequalExps, "Invalid configuration");
+            PrintExperiments(exps, "Unknown configuration");
+            PrintExperiments(expsInDevelopment, "In development");
+            PrintExperiments(runningExps, "Running");
+            PrintExperiments(expsToIntegrate, "Awaiting integration");
+        }
 
-            PrintExperiments(exps, "Remaining");
+        private static bool OneHundredPercentAll(ExperimentDetails exp)
+        {
+            return exp != null && exp.AllClusters && exp.TrafficRate == 100;
+        }
+
+        private static bool OneHundredPercentFlatBPrelive(ExperimentDetails exp)
+        {
+            return exp != null && !exp.AllClusters && exp.FlatB && exp.TrafficRate == 100;
+        }
+
+        public static bool ZeroPercentPrelive(ExperimentDetails exp)
+        {
+            return exp != null && !exp.AllClusters && !exp.FlatB && exp.TrafficRate == 0;
         }
 
         private static bool Equals(ExperimentDetails exp1, ExperimentDetails exp2)
@@ -168,7 +201,12 @@ namespace SyncExperiments
 
         private static void PrintExperiments(IEnumerable<Experiment> exps, string title)
         {
-            Console.WriteLine($"\n=== {title} ===");
+            if (!exps.Any())
+            {
+                return;
+            }
+
+            Console.WriteLine($"\n=== {title.ToUpperInvariant()} ===");
 
             foreach (var exp in exps)
             {
