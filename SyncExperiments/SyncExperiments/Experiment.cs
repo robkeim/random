@@ -8,8 +8,21 @@ namespace SyncExperiments
 
         public string Description { get; set; }
 
-        public DateTimeOffset? ProdStartDate { get; set; }
+        public ExperimentDetails Prod { get; set; }
 
-        public DateTimeOffset? DevStartDate { get; set; }
+        public ExperimentDetails Dev { get; set; }
+    }
+
+    public class ExperimentDetails
+    {
+        public DateTimeOffset StartDate { get; set; }
+
+        public string Id { get; set; }
+
+        public bool AllClusters { get; set; }
+
+        public int TrafficRate { get; set; }
+
+        public bool FlatB { get; set; }
     }
 }
