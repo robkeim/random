@@ -9,6 +9,7 @@ namespace SyncExperiments
 {
     public class Program
     {
+        private const string EXPERIMENT_PREFIX = "HALO-";
         private static Dictionary<string, Experiment> _experiments = new Dictionary<string, Experiment>();
 
         public static void Main(string[] args)
@@ -38,7 +39,7 @@ namespace SyncExperiments
             {
                 string name = obj[i].experimentName;
 
-                if (name.ToUpperInvariant().StartsWith("HALO-"))
+                if (name.ToUpperInvariant().StartsWith(EXPERIMENT_PREFIX))
                 {
                     string description = obj[i].description;
                     var startDate = DateTimeOffset.Parse(obj[i].startDate.ToString());
