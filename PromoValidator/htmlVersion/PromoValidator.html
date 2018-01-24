@@ -1,6 +1,6 @@
 <!--
 Version history:
-	v2.3 -> Add additional styling and favicon (unreleased version)
+	v2.3 -> Update to work with new Lazada site and add additional styling and favicon (unreleased version)
 	v2.2 -> Add ability to run a new set of skus
 	v2.1 -> Fix bug when price contains commas
 	v2.0 -> Re-write in HTML, add out of stock, and product name
@@ -41,6 +41,7 @@ Version history:
 			
 			td {
 				width: 1px;
+				height: 30px;
 				white-space: nowrap;
 				padding: 5px 0;
 			}
@@ -98,11 +99,12 @@ Version history:
 			}
 			
 			function getCrossDomainUrl(target) {
-				return "http://allorigins.us/get?url=" + encodeURIComponent(target) + "&callback=?";
+				// http://allorigins.us -> Not working as of January 2018
+				return "http://allorigins.me/get?url=" + encodeURIComponent(target) + "&callback=?";
 			}
 			
 			function parseFloatWithCommas(input) {
-				return parseFloat(input.replace(",", ""))
+				return parseFloat(input.replace(",", ""));
 			}
 			
 			function validatePrices() {
@@ -120,12 +122,12 @@ Version history:
 					// Do a search to find the product page
 					var searchUrl = getCrossDomainUrl(lazadaUrl + "/catalog/?q=" + this.sku);
 					var row = $("[data-sku=\"" + this.sku + "\"]");
+					var sku = this.sku;
 					
-					$.ajax({
-						url: searchUrl,
-						sku: this.sku
-					}).done(function(data) {
-						var match = data.match("data-sku-simple=\\\\\"" + this.sku + "\\\\\".+?url: '(.+?)'");
+					$.getJSON(searchUrl, function(json) {
+						var skuPart = sku.substring(0, sku.indexOf('-'));
+						var regex = new RegExp('"productUrl":"([^"]+?)".*?"sku":"' + skuPart + '"');
+						var match = regex.exec(json.contents);
 						
 						if (!match) {
 							var element = row.find(":nth-child(3)");
@@ -145,19 +147,31 @@ Version history:
 						}
 						
 						// Navigate to the product page to find the price and stock availability
-						var productPageUrl = lazadaUrl + match[1];
-						row.find(":nth-child(1)").html("<a href=\"" + productPageUrl + "\" target=\"blank\">" + this.sku + "</a>");
+						var productPageUrl = "http:" + match[1];
+						row.find(":nth-child(1)").html("<a href=\"" + productPageUrl + "\" target=\"blank\">" + sku + "</a>");
 						productPageUrl = getCrossDomainUrl(productPageUrl);
 						
-						$.ajax({
-							url: productPageUrl
-						}).done(function(data) {
-							// Process price
-							var match = data.match(/<span id=\\"product_price\\" class=\\"hidden\\">(.*?)<\/span>/);
-							var price = match[1];
-							row.find(":nth-child(3)").html(price);
+						$.getJSON(productPageUrl, function(json) {
+							var regex = new RegExp('"sku":"' + sku + '".*?"name":"([^"]+?)".*?"inStock":(true|false).*?"price":"([^"]+?)"');
+							var match = regex.exec(json.contents);
 							
-							var actualPrice = parseFloatWithCommas(price);
+							if (!match) {
+								var element = row.find(":nth-child(3)");
+								element.html("N/A");
+								element.addClass("not-found");
+								
+								element = row.find(":nth-child(4)");
+								element.html("N/A");
+								element.addClass("not-found");
+								
+								element = row.find(":nth-child(5)");
+								element.html("Product details not found");
+								element.addClass("not-found");
+							}
+							
+							var actualPrice = parseFloatWithCommas(match[3]);
+							row.find(":nth-child(3)").html(actualPrice);
+							
 							var promoPrice = parseFloatWithCommas(row.find(":nth-child(2)").html());
 							
 							if (actualPrice < promoPrice) {
@@ -167,14 +181,13 @@ Version history:
 							}
 							
 							// Process product name
-							match = data.match(/<h1.*>(.*?)<\/h1>/);
-							var title = $.trim(match[1].replace(/\\n/g, "").replace("&nbsp;", ""));
+							var title = JSON.parse('"' + match[1] + '"');
 							row.find(":nth-child(5)").html(title);
 							
 							// Process stock availability
-							match = data.match(/<div class=\\"outofstock oosWrapper\\" style=\\"display: block\\">/);
+							var inStock = match[2] === "true" ? true : false;
 							
-							if (match) {
+							if (!inStock) {
 								var el = row.find(":nth-child(4)");
 								el.html("No");
 								el.addClass("out-of-stock");
