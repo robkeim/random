@@ -110,7 +110,7 @@ namespace SyncExperiments
             dynamic obj = JObject.Parse(json);
             obj = obj.result;
             var array = (JArray) obj;
-            obj = array[array.Count - 1];
+            obj = array.Single(el => el["status"].ToString() == "Active");
 
             expDetails.AllClusters = bool.Parse(obj["allClustersFlag"].ToString());
             expDetails.FlatB = (obj["integrationVariant"] ?? string.Empty).ToString() == "B";
