@@ -1,5 +1,6 @@
 <!--
 Version history:
+	v2.4 -> Update to work with Lazada's new data schema
 	v2.3 -> Update to work with new Lazada site and add additional styling and favicon
 	v2.2 -> Add ability to run a new set of skus
 	v2.1 -> Fix bug when price contains commas
@@ -14,7 +15,7 @@ Version history:
 
 <html>
 	<head>
-		<title>Promo validator v2.3</title>
+		<title>Promo validator v2.4</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 		<link href="http://fonts.googleapis.com/css?family=Roboto|Alegreya:700" rel="stylesheet" type="text/css" />
 		<link href="data:image/ico;base64,AAABAAEAEBAAAAAAIAC0AgAAFgAAAIlQTkcNChoKAAAADUlIRFIAAAAQAAAAEAgGAAAAH/P/YQAAAAFzUkdCAK7OHOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACSUlEQVQ4T22RTWjTcBjG4/w4eBiCH+hBZB6c4EXI0jFQm1ikm03qB+wwtCadFy8iTqT2FE2m6MGDJ5WFJHMUaZdkVHR6cocqTFSWpDWp7WEqiJPdnAMP0/imS0LW7IHnkv/7/N6PIO0q6ke7FAO/ourEFPi9ahCzqo4XJg2cVvUTu7yyqEq1wS1ukWIQVdXAVyDohK3o+B94q2jG8QHWYTu82Koef0A3KzqRh87L7cF2A2RRNYnsGohmHuvTjPjPoEgn/kHhPHQtt1YxiAas8dd/V03cVMzE/lY4+ejLnqHCmxFh9vzolBlvtMbXCVnTEwdmZuKbSqXBjcpHYh8E78P3Jc3AX+fHMzf6Lt66iQ6xOxBKtGhKqi+nxM+Vq+WxfHEueV2zEttb9JCefUe3ipXk2f6R3B00w8/HGO43dmH0DEJJ9hjYcZ0S618puXnIy0TUw/B7MZpvxhjeaZnm7yKkaL30AaRkf6Oe1Lu8+ohi59hO6PzOB2AMPw4A+7kPoET7BynVD3r1ER3O3t4Zo7lqaIKCe4MHwQSitZIW7WGvPqJehjvp7r4GQEqfTsPoS8EUkl1NyTbqZQL1DHPd0P1tEAbDCk+RU9LcNkqyXoUA7i2aMFkuLdjdbhAOdxlshsMBwBVMkYDQQhjiOiXUBAhOtgd9BwDEcTYAJNMOIYXaBABerBf2XFwFgFjW6UjLNgGjT5OS9SsCoPlF6FjGaG5hXYCv/olGJynXB+D33iMF8xIErsHx+N4sfwSj2d0Qegh/Yto1xnC5/06ZuPJfDbWmAAAAAElFTkSuQmCC" rel="icon" type="image/x-icon" />
@@ -152,7 +153,7 @@ Version history:
 						productPageUrl = getCrossDomainUrl(productPageUrl);
 						
 						$.getJSON(productPageUrl, function(json) {
-							var regex = new RegExp('"sku":"' + sku + '".*?"name":"([^"]+?)".*?"inStock":(true|false).*?"price":"([^"]+?)"');
+							var regex = new RegExp('"price":([^,]+).*?"availability":.*?(InStock|OutOfStock).*?"name":"([^"]+?)","model".*?"sku":"' + sku + '"');
 							var match = regex.exec(json.contents);
 							
 							if (!match) {
@@ -167,9 +168,11 @@ Version history:
 								element = row.find(":nth-child(5)");
 								element.html("Product details not found");
 								element.addClass("not-found");
+								
+								return;
 							}
 							
-							var actualPrice = parseFloatWithCommas(match[3]);
+							var actualPrice = parseFloatWithCommas(match[1]);
 							row.find(":nth-child(3)").html(actualPrice);
 							
 							var promoPrice = parseFloatWithCommas(row.find(":nth-child(2)").html());
@@ -181,11 +184,11 @@ Version history:
 							}
 							
 							// Process product name
-							var title = JSON.parse('"' + match[1] + '"');
+							var title = JSON.parse('"' + match[3] + '"');
 							row.find(":nth-child(5)").html(title);
 							
 							// Process stock availability
-							var inStock = match[2] === "true" ? true : false;
+							var inStock = match[2] === "InStock" ? true : false;
 							
 							if (!inStock) {
 								var el = row.find(":nth-child(4)");
