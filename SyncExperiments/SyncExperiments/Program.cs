@@ -20,7 +20,7 @@ namespace SyncExperiments
             Console.WriteLine("Fetching dev experiments...");
             ExtractExperiments(GetRunningExperiments(false));
 
-            Console.WriteLine("Hydrating current run details..");
+            Console.WriteLine("Fetching current run details..");
             HydrateCurrentRunDetails();
 
             Console.WriteLine();
