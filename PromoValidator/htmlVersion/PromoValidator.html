@@ -1,6 +1,6 @@
 <!--
 Version history:
-	v2.5 -> Move to HTTPS (now required by Lazada) and update to match latest data schema
+	v2.5 -> Move to HTTPS (now required by Lazada) and retrive product details page as JSON not regex
 	v2.4 -> Update to work with Lazada's new data schema
 	v2.3 -> Update to work with new Lazada site and add additional styling and favicon
 	v2.2 -> Add ability to run a new set of skus
@@ -11,8 +11,6 @@ Version history:
 	v1.1 -> Fix bug where macro writes in other Excel files
 	v1.0 -> Initial version
 -->
-
-<!-- 11Steet can be automated with http://www.11street.co.th/productdetail/<11_STREET_SKU> -->
 
 <html>
 	<head>
@@ -106,7 +104,11 @@ Version history:
 			}
 			
 			function parseFloatWithCommas(input) {
-				return parseFloat(input.replace(",", ""));
+				if (isNaN(input)) {
+					return parseFloat(input.replace(",", ""));
+				}
+				
+				return input;
 			}
 			
 			function validatePrices() {
@@ -154,7 +156,7 @@ Version history:
 						productPageUrl = getCrossDomainUrl(productPageUrl);
 						
 						$.getJSON(productPageUrl, function(json) {
-							var regex = new RegExp('"price":([^,]+).*?"availability":.*?(InStock|OutOfStock).*"name":"([^"]+?)",.*?"sku":"' + sku + '"');
+							var regex = new RegExp('<script type="application\/ld\\+json">(.*?sku.*?)<\/script>');
 							var match = regex.exec(json.contents);
 							
 							if (!match) {
@@ -173,7 +175,13 @@ Version history:
 								return;
 							}
 							
-							var actualPrice = parseFloatWithCommas(match[1]);
+							var details = JSON.parse(match[1]);
+							var price = details.offers.offers ? details.offers.offers[0].price : details.offers.price;
+							var name = details.name;
+							var inStock = details.offers.offers ? details.offers.offers[0].availability : details.offers.availability;
+							inStock = inStock.includes("InStock");
+							
+							var actualPrice = parseFloatWithCommas(price);
 							row.find(":nth-child(3)").html(actualPrice);
 							
 							var promoPrice = parseFloatWithCommas(row.find(":nth-child(2)").html());
@@ -185,12 +193,10 @@ Version history:
 							}
 							
 							// Process product name
-							var title = JSON.parse('"' + match[3] + '"');
+							var title = JSON.parse('"' + name + '"');
 							row.find(":nth-child(5)").html(title);
 							
 							// Process stock availability
-							var inStock = match[2] === "InStock" ? true : false;
-							
 							if (!inStock) {
 								var el = row.find(":nth-child(4)");
 								el.html("No");
@@ -220,7 +226,6 @@ Version history:
 		<ul>
 			<li>Make sure your computer is plugged in and not running on battery (to make the program run faster)</li>
 			<li>Don't try to validate more than 500 skus at once</li>
-			<li>To save the results right click and the page and select "Save (Page) As..." (Chrome and Firefox only)</li>
 		</ul>
 		
 		<h1>Legend</h1>
