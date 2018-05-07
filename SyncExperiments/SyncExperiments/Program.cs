@@ -20,7 +20,7 @@ namespace SyncExperiments
             Console.WriteLine("Fetching dev experiments...");
             ExtractExperiments(GetRunningExperiments(false));
 
-            Console.WriteLine("Fetching current run details..");
+            Console.WriteLine("Fetching current run details...");
             HydrateCurrentRunDetails();
 
             Console.WriteLine();
@@ -149,7 +149,7 @@ namespace SyncExperiments
             // In development
             var expsInDevelopment = unequalExps.Where(e =>
                 (e.Dev != null && e.Dev.OneHundredPercentAll)
-                && (e.Prod == null || e.Prod.OneHundredPercentFlatBPrelive || e.Prod.ZeroPercentPrelive));
+                && (e.Prod == null || e.Prod.OneHundredPercentFlatBPrelive || e.Prod.ZeroPercentPrelive || e.Prod.OneHundredPercentPrelive));
             unequalExps = unequalExps.Except(expsInDevelopment);
             
             // Experiments to integrate
@@ -165,9 +165,9 @@ namespace SyncExperiments
             var evaluationRunExps = exps.Where(e => e.Prod != null && e.Prod.OneHundredPercentAll && e.Prod.InEvaluation);
             exps = exps.Except(evaluationRunExps).ToArray();
 
-            PrintExperiments(unequalExps, "Invalid configuration");
-            PrintExperiments(exps, "Unknown configuration");
-            PrintExperiments(expsInDevelopment, "In development");
+            PrintExperiments(unequalExps, "Invalid configuration", true);
+            PrintExperiments(exps, "Unknown configuration", true);
+            PrintExperiments(expsInDevelopment, "In development", true);
             PrintExperiments(runningExps, "Running");
             PrintExperiments(evaluationRunExps, "Evaluation run");
             PrintExperiments(expsToIntegrate, "Awaiting integration");
@@ -190,7 +190,7 @@ namespace SyncExperiments
                    && exp1.TrafficRate == exp2.TrafficRate;
         }
 
-        private static void PrintExperiments(IEnumerable<Experiment> exps, string title)
+        private static void PrintExperiments(IEnumerable<Experiment> exps, string title, bool showDetails = false)
         {
             if (!exps.Any())
             {
@@ -201,19 +201,25 @@ namespace SyncExperiments
 
             foreach (var exp in exps)
             {
-                PrintExperiment(exp);
+                PrintExperiment(exp, showDetails);
             }
         }
 
-        private static void PrintExperiment(Experiment exp)
+        private static void PrintExperiment(Experiment exp, bool showDetails = false)
         {
             var description = exp.Description.Length > 100
                 ? $"{exp.Description.Substring(0, 100)}..."
                 : exp.Description;
 
-            Console.WriteLine($"\n{exp.Name}: {description}");
-            Console.WriteLine($"    Dev:  {FormatExperimentDetails(exp.Dev)}");
-            Console.WriteLine($"    Prod: {FormatExperimentDetails(exp.Prod)}");
+            var newLine = showDetails ? "\n" : string.Empty;
+
+            Console.WriteLine($"{newLine}{exp.Name}: {description}");
+
+            if (showDetails)
+            {
+                Console.WriteLine($"    Dev:  {FormatExperimentDetails(exp.Dev)}");
+                Console.WriteLine($"    Prod: {FormatExperimentDetails(exp.Prod)}");
+            }
         }
 
         private static string FormatExperimentDetails(ExperimentDetails expDetails)

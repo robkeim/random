@@ -47,5 +47,13 @@ namespace SyncExperiments
                 return !AllClusters && !FlatB && TrafficRate == 0;
             }
         }
+
+        public bool OneHundredPercentPrelive
+        {
+            get
+            {
+                return !AllClusters && !FlatB && TrafficRate == 100;
+            }
+        }
     }
 }
