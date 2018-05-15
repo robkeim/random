@@ -199,6 +199,13 @@ namespace SyncExperiments
 
             Console.WriteLine($"\n=== {title.ToUpperInvariant()} ===");
 
+            if (!showDetails)
+            {
+                exps = exps
+                    .OrderByDescending(e => Math.Round((DateTimeOffset.UtcNow - e.Prod.StartDate).TotalDays, 0))
+                    .ThenBy(e => e.Name);
+            }
+
             foreach (var exp in exps)
             {
                 PrintExperiment(exp, showDetails);
@@ -207,18 +214,22 @@ namespace SyncExperiments
 
         private static void PrintExperiment(Experiment exp, bool showDetails = false)
         {
-            var description = exp.Description.Length > 100
-                ? $"{exp.Description.Substring(0, 100)}..."
+            var maxLength = showDetails ? 100 : 90;
+
+            var description = exp.Description.Length > maxLength
+                ? $"{exp.Description.Substring(0, maxLength)}..."
                 : exp.Description;
-
-            var newLine = showDetails ? "\n" : string.Empty;
-
-            Console.WriteLine($"{newLine}{exp.Name}: {description}");
 
             if (showDetails)
             {
+                Console.WriteLine($"\n{exp.Name}: {description}");
                 Console.WriteLine($"    Dev:  {FormatExperimentDetails(exp.Dev)}");
                 Console.WriteLine($"    Prod: {FormatExperimentDetails(exp.Prod)}");
+            }
+            else
+            {
+                var days = Math.Round((DateTimeOffset.UtcNow - exp.Prod.StartDate).TotalDays, 0);
+                Console.WriteLine($"{exp.Name}: ({days} days) {description}");
             }
         }
 
