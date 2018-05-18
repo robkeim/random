@@ -196,9 +196,12 @@ b {
 }
 
 .user_card {
+    display: inline-block;
     width: 300px;
     text-align: center;
     position: relative;
+    margin-bottom: 20px;
+    margin-right: 20px;
 }
 
 .user_card__main_content {
