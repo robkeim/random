@@ -213,7 +213,8 @@ b {
     top: 0;
     left: 0;
     padding: 10px 20px;
-    background-color: rgba(211, 211, 211, 0.5);
+    background-color: rgba(211, 211, 211, 0.2);
+    border-radius: 0 0 6px 0;
 }
 
 .user_card__photo {
@@ -248,4 +249,16 @@ b {
     padding-top: 20px;
     padding-bottom: 20px;
     border: lightgray 1px solid;
+}
+
+.user_card--lightgray .user_card__main_content {
+    background: linear-gradient(#97a1a1, #5d6a6b);
+}
+
+.user_card--lightgray .user_card__line3 {
+    color: #b8bcbc;
+}
+
+.user_card--lightgray .user_card__heading, .user_card--lightgray .user_card__line2, .user_card--lightgray b {
+    color: white;
 }
