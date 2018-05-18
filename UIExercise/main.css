@@ -1,3 +1,4 @@
+/*** General settings ***/
 html, body, .exercise_1 {
     height: 100%;
 }
@@ -10,6 +11,13 @@ html, body, .exercise_1 {
     margin-left: 180px;
 }
 
+@media only screen and (max-width: 500px) {
+    .content {
+        margin-left: 50px;
+    }
+}
+
+/*** Search box ***/
 .search_box {
     background-color: #e94a4a;
     color: white;
@@ -75,6 +83,7 @@ html, body, .exercise_1 {
     text-align: left;
 }
 
+/*** Search box - tablet ***/
 @media only screen and (max-width: 880px) {
     .search_box {
         padding: 10px 20px 20px;
@@ -89,6 +98,7 @@ html, body, .exercise_1 {
     }
 }
 
+/*** Search box - phone ***/
 @media only screen and (max-width: 500px) {
     .search_box {
         padding: 10px;
@@ -99,6 +109,7 @@ html, body, .exercise_1 {
     }
 }
 
+/*** Nav menu ***/
 .nav_menu {
     width: 180px;
     height: 100%;
@@ -154,4 +165,23 @@ html, body, .exercise_1 {
 .nav_menu i {
     color: #a9afbb;
     margin-right: 10px;
+}
+
+/*** Nav menu - phone ***/
+@media only screen and (max-width: 500px) {
+    .nav_menu {
+        width: 50px;
+    }
+
+    .nav_menu__name {
+        opacity: 0;
+    }
+
+    .nav_menu__items {
+        margin-right: 0;
+    }
+
+    .nav_menu__item_text {
+        display: none;
+    }
 }
