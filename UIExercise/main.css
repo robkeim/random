@@ -1,6 +1,13 @@
-/*This is where magic happens*/
+html, body, .exercise_1 {
+    height: 100%;
+}
+
 .body {
     min-width: 320px;
+}
+
+.content {
+    margin-left: 180px;
 }
 
 .search_box {
@@ -90,4 +97,45 @@
     .search_box__trending_searches {
         display: none;
     }
+}
+
+.nav_menu {
+    width: 180px;
+    height: 100%;
+    float: left;
+}
+
+.nav_menu i {
+    color: #a9afbb;
+    margin-right: 10px;
+}
+
+.nav_menu__name {
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 14px;
+
+    border-bottom: 1px lightgray solid;
+    padding-bottom: 10px;
+    margin: 10px 14px 20px;
+}
+
+.nav_menu__items {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.nav_menu__item {
+    padding: 10px;
+}
+
+.nav_menu__item--selected {
+    color: white;
+    background-color: #9b2fae;
+}
+
+.nav_menu__item--bottom {
+    position: absolute;
+    bottom: 10px;
 }
