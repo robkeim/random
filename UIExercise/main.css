@@ -375,11 +375,13 @@ b {
 /*** Image cards ***/
 .image_card {
     position: relative;
+    vertical-align: top;
 
+    display: inline-block;
     width: 150px;
     padding: 10px;
     border: 1px solid #e6e6e6;
-    margin: 20px;
+    margin: 34px 0 20px 20px;
 
     background-color: white;
     color: #c7c7c7;
@@ -395,8 +397,26 @@ b {
     height: 60px;
     width: 60px;
     border-radius: 4px;
+}
 
-    background-color: green; // TODO rkeim: remove this once the styling is done
+.image_card__image--orange {
+    background-color: #f99128;
+}
+
+.image_card__image--green {
+    background-color: #4da451;
+}
+
+.image_card__image--red {
+    background-color: #e43e3e;
+}
+
+.image_card__image--green {
+    background-color: #4da451;
+}
+
+.image_card__image--blue {
+    background-color: #23b5c8;
 }
 
 .image_card__image i {
@@ -410,6 +430,8 @@ b {
     width: 24px;
     margin: auto;
 
+    color: white;
+
     font-size: 24px;
 }
 
@@ -417,6 +439,10 @@ b {
     margin-bottom: 24px;
 
     font-size: 12px;
+}
+
+.image_card__title--short {
+    margin-bottom: 0;
 }
 
 .image_card__description {
