@@ -135,6 +135,7 @@ b {
 
 /*** Nav menu ***/
 .nav_menu {
+    position: fixed;
     float: left;
 
     height: 100%;
