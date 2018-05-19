@@ -286,6 +286,7 @@ b {
 }
 
 .user_card__main_content {
+    height: 240px;
     padding: 40px 20px 14px;
 }
 
@@ -476,4 +477,38 @@ b {
 
 .image_card__details--warning i {
     color: #f1423a;
+}
+
+/*** Image cards - large ***/
+.image_card--large {
+    width: 220px;
+
+    text-align: left;
+}
+
+.image_card--large .image_card__image {
+    height: 110px;
+    width: 220px;
+}
+
+.image_card--large .image_card__image img {
+    height: 100%;
+    width: 100%;
+
+    box-shadow: 0 10px 6px -6px rgba(0, 0, 0, 0.3);
+}
+
+.image_card--large .image_card__title {
+    padding-top: 100px;
+    margin-bottom: 0;
+
+    color: black;
+
+    font-size: 14px;
+}
+
+.image_card--large .image_card__description {
+    font-size: 12px;
+
+    color: lightgray;
 }
