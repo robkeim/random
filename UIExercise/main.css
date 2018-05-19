@@ -451,6 +451,12 @@ b {
     font-size: 20px;
 }
 
+.image_card__description--small {
+    color: #929292;
+
+    font-size: 14px;
+}
+
 .image_card__details {
     padding-top: 6px;
     border-top: 1px lightgray solid;
@@ -462,4 +468,12 @@ b {
 
 .image_card__details i {
     margin-right: 6px;
+}
+
+.image_card__details--warning {
+    color: #d5a8dd;
+}
+
+.image_card__details--warning i {
+    color: #f1423a;
 }
