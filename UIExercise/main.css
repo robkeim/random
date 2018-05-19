@@ -214,7 +214,7 @@ b {
     }
 }
 
-/*** User card ***/
+/*** User cards ***/
 .user_card_container {
     padding: 20px;
 }
@@ -242,7 +242,7 @@ b {
     padding: 10px 20px;
     border-radius: 0 0 6px 0;
 
-    background-color: rgba(211, 211, 211, 0.2);
+    background-color: rgba(211, 211, 211, 0.3);
 }
 
 .user_card__photo {
@@ -284,6 +284,7 @@ b {
     font-size: 16px;
 }
 
+/*** User cards - lightgray ***/
 .user_card--lightgray .user_card__main_content {
     background: linear-gradient(#97a1a1, #5d6a6b);
 }
@@ -294,4 +295,15 @@ b {
 
 .user_card--lightgray .user_card__heading, .user_card--lightgray .user_card__line2, .user_card--lightgray b {
     color: white;
+}
+
+/*** User cards -- yellow ***/
+.user_card--yellow .user_card__main_content {
+    background: linear-gradient(#f4e600, #f2d200);
+
+    color: #837600;
+}
+
+.user_card--yellow .user_card__heading, .user_card--yellow .user_card__line2, .user_card--yellow b {
+    color: black;
 }
