@@ -7,6 +7,11 @@ Within a selector the properties are grouped as follows:
 - Other
 ***/
 
+/*** Change these settings to get the different exercises to show up ***/
+.exercise_1 {
+    display: none;
+}
+
 /*** General settings ***/
 html, body, .exercise_1 {
     height: 100%;
