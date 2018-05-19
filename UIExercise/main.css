@@ -1,3 +1,12 @@
+/***
+Within a selector the properties are grouped as follows:
+- Positioning
+- Display and box model
+- Color
+- Text
+- Other
+***/
+
 /*** General settings ***/
 html, body, .exercise_1 {
     height: 100%;
@@ -23,11 +32,13 @@ b {
 
 /*** Search box ***/
 .search_box {
-    background-color: #e94a4a;
-    color: white;
-    text-align: center;
     padding-top: 36px;
     padding-bottom: 50px;
+
+    background-color: #e94a4a;
+    color: white;
+
+    text-align: center;
 }
 
 .search_box__content {
@@ -36,48 +47,57 @@ b {
 }
 
 .search_box__title {
+    padding-bottom: 12px;
+
     font-size: 26px;
     font-weight: bold;
-    padding-bottom: 12px;
 }
 
 .search_box__description {
-    font-size: 16px;
     padding-bottom: 30px;
+
+    font-size: 16px;
 }
 
 .search_box__input_wrapper {
-    background-color: white;
+    position: relative;
+
+    display: inline-block;
     height: 36px;
     width: calc(100% - 72px);
-    display: inline-block;
-    position: relative;
     border-radius: 4px 0 0 4px;
+
+    background-color: white;
 }
 
 .search_box__search_icon {
-    color: #e94a4a;
-    font-size: 20px;
     position: absolute;
     top: 8px;
     left: 8px;
+
+    color: #e94a4a;
+
+    font-size: 20px;
 }
 
 .search_box__input {
-    font-size: 14px;
     height: 34px;
     width: calc(100% - 34px);
+
     border: 0;
     margin-left: 34px;
+
+    font-size: 14px;
 }
 
 .search_box__search {
-    border: 0;
-    padding: 0;
-    margin-left: -3px;
-    border-radius: 0 4px 4px 0;
     height: 39px;
     width: 70px;
+    padding: 0;
+    border: 0;
+    border-radius: 0 4px 4px 0;
+    margin-left: -3px;
+
     background-color: #3a3a3a;
     color: white;
 }
@@ -115,16 +135,18 @@ b {
 
 /*** Nav menu ***/
 .nav_menu {
-    width: 180px;
-    height: 100%;
     float: left;
+
+    height: 100%;
+    width: 180px;
 }
 
 .nav_menu__background {
-    filter: grayscale(100%);
-    max-width: 100%;
-    max-height: 100%;
     height: 100%;
+    max-height: 100%;
+    max-width: 100%;
+
+    filter: grayscale(100%);
     opacity: 0.08;
     transform: rotate(180deg);
 }
@@ -132,19 +154,20 @@ b {
 .nav_menu__content {
     position: absolute;
     top: 0;
+
     height: inherit;
     width: inherit;
 }
 
 .nav_menu__name {
-    text-transform: uppercase;
-    text-align: center;
+    padding-bottom: 10px;
+    border-bottom: 1px lightgray solid;
+    margin: 10px 14px 20px;
+
     font-weight: bolder;
     font-size: 14px;
-
-    border-bottom: 1px lightgray solid;
-    padding-bottom: 10px;
-    margin: 10px 14px 20px;
+    text-align: center;
+    text-transform: uppercase;
 }
 
 .nav_menu__items {
@@ -157,8 +180,8 @@ b {
 }
 
 .nav_menu__item--selected {
-    color: white;
     background-color: #9b2fae;
+    color: white;
 }
 
 .nav_menu__item--bottom {
@@ -167,8 +190,9 @@ b {
 }
 
 .nav_menu i {
-    color: #a9afbb;
     margin-right: 10px;
+
+    color: #a9afbb;
 }
 
 /*** Nav menu - phone ***/
@@ -196,12 +220,14 @@ b {
 }
 
 .user_card {
+    position: relative;
+
     display: inline-block;
     width: 300px;
-    text-align: center;
-    position: relative;
-    margin-bottom: 20px;
     margin-right: 20px;
+    margin-bottom: 20px;
+
+    text-align: center;
 }
 
 .user_card__main_content {
@@ -212,43 +238,50 @@ b {
     position: absolute;
     top: 0;
     left: 0;
+
     padding: 10px 20px;
-    background-color: rgba(211, 211, 211, 0.2);
     border-radius: 0 0 6px 0;
+
+    background-color: rgba(211, 211, 211, 0.2);
 }
 
 .user_card__photo {
-    background-image: url(./assets/person.png);
-    width: 80px;
     height: 80px;
+    width: 80px;
     border-radius: 100%;
-    background-size: cover;
     margin: 0 auto 20px;
+
+    background-image: url(./assets/person.png);
+    background-size: cover;
 }
 
 .user_card__line1 {
-    text-transform: uppercase;
     margin-bottom: 6px;
+
+    text-transform: uppercase;
 }
 
 .user_card__line2 {
-    font-size: 26px;
     padding-bottom: 8px;
+
+    font-size: 26px;
 }
 
 .user_card__actions {
-    margin: 0;
     padding: 0;
+    margin: 0;
+
     font-size: 0;
 }
 
 .user_card__action {
-    font-size: 16px;
-    width: calc(50% - 2px);
     display: inline-block;
+    width: calc(50% - 2px);
     padding-top: 20px;
     padding-bottom: 20px;
     border: lightgray 1px solid;
+
+    font-size: 16px;
 }
 
 .user_card--lightgray .user_card__main_content {
