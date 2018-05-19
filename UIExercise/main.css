@@ -13,7 +13,7 @@ Within a selector the properties are grouped as follows:
 }
 
 /*** General settings ***/
-html, body, .exercise_1 {
+html, body, .exercise_1, .exercise_2 {
     height: 100%;
 }
 
@@ -27,6 +27,12 @@ b {
 
 .main_content {
     margin-left: 180px;
+}
+
+.main_content--lightgray {
+    height: 100%;
+
+    background-color: #eee;
 }
 
 @media only screen and (max-width: 500px) {
@@ -349,7 +355,6 @@ b {
 /*** User cards - yellow ***/
 .user_card--yellow .user_card__main_content {
     background: linear-gradient(#f4e600, #f2d200);
-
     color: #837600;
 }
 
@@ -360,10 +365,75 @@ b {
 /*** User cards - black ***/
 .user_card--black .user_card__main_content {
     background: black;
-
     color: white;
 }
 
 .user_card--black .user_card__line1 {
     color: #6b6b6b;
+}
+
+/*** Image cards ***/
+.image_card {
+    position: relative;
+
+    width: 150px;
+    padding: 10px;
+    border: 1px solid #e6e6e6;
+    margin: 20px;
+
+    background-color: white;
+    color: #c7c7c7;
+
+    text-align: right;
+}
+
+.image_card__image {
+    position: absolute;
+    top: -14px;
+    left: 10px;
+
+    height: 60px;
+    width: 60px;
+    border-radius: 4px;
+
+    background-color: green; // TODO rkeim: remove this once the styling is done
+}
+
+.image_card__image i {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 24px;
+    width: 24px;
+    margin: auto;
+
+    font-size: 24px;
+}
+
+.image_card__title {
+    margin-bottom: 24px;
+
+    font-size: 12px;
+}
+
+.image_card__description {
+    color: black;
+
+    font-size: 20px;
+}
+
+.image_card__details {
+    padding-top: 6px;
+    border-top: 1px lightgray solid;
+    margin-top: 14px;
+
+    font-size: 12px;
+    text-align: left;
+}
+
+.image_card__details i {
+    margin-right: 6px;
 }
