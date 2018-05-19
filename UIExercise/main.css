@@ -297,7 +297,7 @@ b {
     color: white;
 }
 
-/*** User cards -- yellow ***/
+/*** User cards - yellow ***/
 .user_card--yellow .user_card__main_content {
     background: linear-gradient(#f4e600, #f2d200);
 
@@ -306,4 +306,15 @@ b {
 
 .user_card--yellow .user_card__heading, .user_card--yellow .user_card__line2, .user_card--yellow b {
     color: black;
+}
+
+/*** User cards - black ***/
+.user_card--black .user_card__main_content {
+    background: black;
+
+    color: white;
+}
+
+.user_card--black .user_card__line1 {
+    color: #6b6b6b;
 }
