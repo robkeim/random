@@ -215,6 +215,49 @@ b {
     }
 }
 
+/*** Become a Host ***/
+.become_a_host {
+    position: fixed;
+    top: 40px;
+    right: 0;
+    z-index: 1;
+
+    width: 174px;
+    padding: 6px;
+
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+.become_a_host__image {
+    height: 30px;
+    width: 46px;
+}
+
+.become_a_host__content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: 20px;
+    width: 120px;
+    padding-left: 56px;
+    margin: auto;
+}
+
+.become_a_host i {
+    padding-left: 6px;
+}
+
+/*** Become a host - tablet ***/
+@media only screen and (max-width: 880px) {
+    .become_a_host {
+        display: none;
+    }
+}
+
 /*** User cards ***/
 .user_card_container {
     padding: 20px;
