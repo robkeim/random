@@ -51,7 +51,7 @@ namespace Thai
             {
                 foreach (var line in File.ReadAllLines(Path.Combine(RootDir, "_translations.txt")))
                 {
-                    var match = Regex.Match(line, "(.*?) - (.*)");
+                    var match = Regex.Match(line, "(.*?) [-–=] (.*)");
 
                     if (!match.Success)
                     {
