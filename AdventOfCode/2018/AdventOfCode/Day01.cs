@@ -10,16 +10,7 @@ namespace AdventOfCode
 
             foreach (var line in input.Split("\n".ToCharArray()))
             {
-                var value = int.Parse(line.Substring(1));
-
-                if (line[0] == '+')
-                {
-                    result += value;
-                }
-                else
-                {
-                    result -= value;
-                }
+                result += int.Parse(line);
             }
 
             return result;
@@ -34,23 +25,12 @@ namespace AdventOfCode
 
             while (true)
             {
-                var value = int.Parse(lines[index].Substring(1));
+                result += int.Parse(lines[index]);
 
-                if (lines[index][0] == '+')
-                {
-                    result += value;
-                }
-                else
-                {
-                    result -= value;
-                }
-
-                if (seen.Contains(result))
+                if (!seen.Add(result))
                 {
                     return result;
                 }
-
-                seen.Add(result);
 
                 index++;
                 index %= lines.Length;
