@@ -16,7 +16,8 @@ namespace AdventOfCodeTests
             Assert.AreEqual(9386, Day05.Part1(myInput));
         }
 
-        [TestMethod]
+        // This takes ~1 minute to run
+        //[TestMethod]
         public void Part2()
         {
             Assert.AreEqual(4, Day05.Part2(sampleInput));
