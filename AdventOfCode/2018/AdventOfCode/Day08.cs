@@ -41,7 +41,55 @@ namespace AdventOfCode
 
         public static int Part2(string input)
         {
-            return -1;
+            var numbers = input
+                .Split(" ".ToCharArray())
+                .Select(int.Parse)
+                .ToList();
+            
+            return Score(numbers);
+        }
+
+        private static int Score(List<int> numbers)
+        {
+            var numChildren = numbers.First();
+            numbers.RemoveAt(0);
+
+            var numMetadata = numbers.First();
+            numbers.RemoveAt(0);
+
+            var childrenScores = new int[numChildren];
+            
+            for (int i = 0; i < numChildren; i++)
+            {
+                childrenScores[i] = Score(numbers);
+            }
+
+            var metadata = new int[numMetadata];
+
+            for (int i = 0; i < numMetadata; i++)
+            {
+                metadata[i] = numbers.First();
+                numbers.RemoveAt(0);
+            }
+
+            var result = 0;
+
+            foreach (var value in metadata)
+            {
+                if (numChildren != 0)
+                {
+                    if (value != 0 && value <= numChildren)
+                    {
+                        result += childrenScores[value - 1];
+                    }
+                }
+                else
+                {
+                    result += value;
+                }
+            }
+            
+            return result;
         }
     }
 }
