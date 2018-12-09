@@ -22,10 +22,12 @@ namespace AdventOfCodeTests
             Assert.AreEqual(375414, Day09.Part1(myInput));
         }
 
-        [TestMethod]
+        // This takes 1.5 to 2 hours to execute due to slow array copying. Using a LinkedList would
+        // speed up the execution time considerably
+        //[TestMethod]
         public void Part2()
         {
-            Assert.AreEqual(-1, Day09.Part2("459 players; last marble is worth 7132000 points"));
+            Assert.AreEqual(3168033673, Day09.Part2("459 players; last marble is worth 7132000 points"));
         }
     }
 }

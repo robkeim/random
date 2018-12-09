@@ -6,7 +6,7 @@ namespace AdventOfCode
 {
     public static class Day09
     {
-        public static int Part1(string input)
+        public static long Part1(string input)
         {
             var regex = new Regex(@"(\d+) players; last marble is worth (\d+) points", RegexOptions.Compiled);
 
@@ -16,9 +16,9 @@ namespace AdventOfCode
 
             var curMarbleIndex = 0;
             var curPlayerIndex = 0;
-            var marbles = new List<int>();
+            var marbles = new List<int>(lastMarble);
             marbles.Insert(0, 0);
-            var scores = new int[numPlayers];
+            var scores = new long[numPlayers];
 
             for (int curMarble = 1; curMarble <= lastMarble; curMarble++)
             {
@@ -44,7 +44,7 @@ namespace AdventOfCode
                 .First();
         }
 
-        public static int Part2(string input)
+        public static long Part2(string input)
         {
             return Part1(input);
         }
