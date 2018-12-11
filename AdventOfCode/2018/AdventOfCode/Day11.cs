@@ -55,9 +55,47 @@
             return result;
         }
 
-        public static int Part2(int serialNumber)
+        public static string Part2(int serialNumber)
         {
-            return -1;
+            var grid = new int[301, 301];
+
+            for (int x = 1; x <= 300; x++)
+            {
+                for (int y = 1; y <= 300; y++)
+                {
+                    grid[x, y] = PowerLevel(x, y, serialNumber);
+                }
+            }
+
+            var maxPower = int.MinValue;
+            var coordinate = string.Empty;
+
+            for (int size = 1; size <= 300; size++)
+            {
+                for (int x = 1; x <= 300 - size; x++)
+                {
+                    for (int y = 1; y <= 300 - size; y++)
+                    {
+                        var power = 0;
+
+                        for (int dx = 0; dx < size; dx++)
+                        {
+                            for (int dy = 0; dy < size; dy++)
+                            {
+                                power += grid[x + dx, y + dy];
+                            }
+                        }
+
+                        if (power > maxPower)
+                        {
+                            maxPower = power;
+                            coordinate = $"{x},{y},{size}";
+                        }
+                    }
+                }
+            }
+
+            return coordinate;
         }
     }
 }
