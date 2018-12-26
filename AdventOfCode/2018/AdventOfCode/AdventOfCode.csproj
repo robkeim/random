@@ -54,6 +54,7 @@
     <Compile Include="Day12.cs" />
     <Compile Include="Day16.cs" />
     <Compile Include="Day18.cs" />
+    <Compile Include="Day23.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
