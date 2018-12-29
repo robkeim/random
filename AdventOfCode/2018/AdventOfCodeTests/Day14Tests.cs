@@ -23,8 +23,11 @@ namespace AdventOfCodeTests
         [TestMethod]
         public void Part2()
         {
-            Assert.AreEqual(0, Day14.Part2(sampleInput));
-            Assert.AreEqual(0, Day14.Part2(myInput));
+            Assert.AreEqual(9, Day14.Part2(51589));
+            //Assert.AreEqual(5, Day14.Part2(01245));
+            Assert.AreEqual(18, Day14.Part2(92510));
+            Assert.AreEqual(2018, Day14.Part2(59414));
+            Assert.AreEqual(20298300, Day14.Part2(myInput));
         }
     }
 }
