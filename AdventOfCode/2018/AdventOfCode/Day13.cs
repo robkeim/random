@@ -8,62 +8,19 @@ namespace AdventOfCode
     {
         public static string Part1(string input)
         {
-            var lines = input.Split("@".ToCharArray());
-
-            var map = new Dictionary<string, char>();
             var carts = new List<Cart>();
-
-            // Parse map
-            for (int y = 0; y < lines.Length; y++)
-            {
-                for (int x = 0; x < lines[0].Length; x++)
-                {
-                    var character = lines[y][x];
-                    var coord = $"{x}_{y}";
-                    var cart = new Cart
-                    {
-                        X = x,
-                        Y = y,
-                        Last = Turn.Right
-                    };
-
-                    switch (character)
-                    {
-                        case '<':
-                            cart.Facing = Direction.Left;
-                            carts.Add(cart);
-                            map[coord] = '-';
-                            break;
-                        case '>':
-                            cart.Facing = Direction.Right;
-                            carts.Add(cart);
-                            map[coord] = '-';
-                            break;
-                        case '^':
-                            cart.Facing = Direction.Up;
-                            carts.Add(cart);
-                            map[coord] = '|';
-                            break;
-                        case 'v':
-                            cart.Facing = Direction.Down;
-                            carts.Add(cart);
-                            map[coord] = '|';
-                            break;
-                        default:
-                            map[coord] = character;
-                            break;
-                    }
-                }
-            }
-
+            var map = new Dictionary<string, char>();
+            
+            ParseMap(input, carts, map);
+            
             // Run simulation
             while (true)
             {
-                Print(map, carts);
+                // Print(map, carts);
 
                 carts = carts
-                    .OrderBy(c => c.X)
-                    .ThenBy(c => c.Y)
+                    .OrderBy(c => c.Y)
+                    .ThenBy(c => c.X)
                     .ToList();
 
                 var nextCarts = new List<Cart>();
@@ -82,154 +39,19 @@ namespace AdventOfCode
                     switch (map[$"{cart.X}_{cart.Y}"])
                     {
                         case '-':
-                            switch (cart.Facing)
-                            {
-                                case Direction.Left:
-                                    next.X--;
-                                    break;
-                                case Direction.Right:
-                                    next.X++;
-                                    break;
-                                default:
-                                    throw new Exception("Invalid direction");
-                            }
+                            HandleLeftRight(cart, next);
                             break;
                         case '|':
-                            switch (cart.Facing)
-                            {
-                                case Direction.Up:
-                                    next.Y--;
-                                    break;
-                                case Direction.Down:
-                                    next.Y++;
-                                    break;
-                                default:
-                                    throw new Exception("Invalid direction");
-                            }
+                            HandleUpDown(cart, next);
                             break;
                         case '\\':
-                            switch (cart.Facing)
-                            {
-                                case Direction.Up:
-                                    next.Facing = Direction.Left;
-                                    next.X--;
-                                    break;
-                                case Direction.Down:
-                                    next.Facing = Direction.Right;
-                                    next.X++;
-                                    break;
-                                case Direction.Left:
-                                    next.Facing = Direction.Up;
-                                    next.Y--;
-                                    break;
-                                case Direction.Right:
-                                    next.Facing = Direction.Down;
-                                    next.Y++;
-                                    break;
-                                default:
-                                    throw new Exception("Invalid direction");
-                            }
+                            HandleBackslash(cart, next);
                             break;
                         case '/':
-                            switch (cart.Facing)
-                            {
-                                case Direction.Up:
-                                    next.Facing = Direction.Right;
-                                    next.X++;
-                                    break;
-                                case Direction.Down:
-                                    next.Facing = Direction.Left;
-                                    next.X--;
-                                    break;
-                                case Direction.Left:
-                                    next.Facing = Direction.Down;
-                                    next.Y++;
-                                    break;
-                                case Direction.Right:
-                                    next.Facing = Direction.Up;
-                                    next.Y--;
-                                    break;
-                                default:
-                                    throw new Exception("Invalid direction");
-                            }
+                            HandleSlash(cart, next);
                             break;
                         case '+':
-                            switch (cart.Last)
-                            {
-                                case Turn.Straight:
-                                    // Turn right
-                                    next.Last = Turn.Right;
-                                    switch (cart.Facing)
-                                    {
-                                        case Direction.Up:
-                                            next.Facing = Direction.Right;
-                                            next.X++;
-                                            break;
-                                        case Direction.Down:
-                                            next.Facing = Direction.Left;
-                                            next.X--;
-                                            break;
-                                        case Direction.Left:
-                                            next.Facing = Direction.Up;
-                                            next.Y--;
-                                            break;
-                                        case Direction.Right:
-                                            next.Facing = Direction.Down;
-                                            next.Y++;
-                                            break;
-                                        default:
-                                            throw new Exception("Invalid direction");
-                                    }
-                                    break;
-                                case Turn.Left:
-                                    // Go straight
-                                    next.Last = Turn.Straight;
-                                    switch (cart.Facing)
-                                    {
-                                        case Direction.Up:
-                                            next.Y--;
-                                            break;
-                                        case Direction.Down:
-                                            next.Y++;
-                                            break;
-                                        case Direction.Left:
-                                            next.X--;
-                                            break;
-                                        case Direction.Right:
-                                            next.X++;
-                                            break;
-                                        default:
-                                            throw new Exception("Invalid direction");
-                                    }
-                                    break;
-                                case Turn.Right:
-                                    // Turn left
-                                    next.Last = Turn.Left;
-                                    switch (cart.Facing)
-                                    {
-                                        case Direction.Up:
-                                            next.Facing = Direction.Left;
-                                            next.X--;
-                                            break;
-                                        case Direction.Down:
-                                            next.Facing = Direction.Right;
-                                            next.X++;
-                                            break;
-                                        case Direction.Left:
-                                            next.Facing = Direction.Down;
-                                            next.Y++;
-                                            break;
-                                        case Direction.Right:
-                                            next.Facing = Direction.Up;
-                                            next.Y--;
-                                            break;
-                                        default:
-                                            throw new Exception("Invalid direction");
-                                    }
-                                    break;
-                                default:
-                                    throw new Exception("Invalid direction");
-                            }
+                            HandleTurn(cart, next);
                             break;
                         default:
                             throw new Exception("Invalid path character");
@@ -271,6 +93,53 @@ namespace AdventOfCode
             Right
         }
 
+        private static void ParseMap(string input, List<Cart> carts, Dictionary<string, char> map)
+        {
+            var lines = input.Split("@".ToCharArray());
+
+            for (int y = 0; y < lines.Length; y++)
+            {
+                for (int x = 0; x < lines[0].Length; x++)
+                {
+                    var character = lines[y][x];
+                    var coord = $"{x}_{y}";
+                    var cart = new Cart
+                    {
+                        X = x,
+                        Y = y,
+                        Last = Turn.Right
+                    };
+
+                    switch (character)
+                    {
+                        case '<':
+                            cart.Facing = Direction.Left;
+                            carts.Add(cart);
+                            map[coord] = '-';
+                            break;
+                        case '>':
+                            cart.Facing = Direction.Right;
+                            carts.Add(cart);
+                            map[coord] = '-';
+                            break;
+                        case '^':
+                            cart.Facing = Direction.Up;
+                            carts.Add(cart);
+                            map[coord] = '|';
+                            break;
+                        case 'v':
+                            cart.Facing = Direction.Down;
+                            carts.Add(cart);
+                            map[coord] = '|';
+                            break;
+                        default:
+                            map[coord] = character;
+                            break;
+                    }
+                }
+            }
+        }
+
         private static void Print(Dictionary<string, char> map, List<Cart> carts)
         {
             Console.WriteLine();
@@ -310,9 +179,246 @@ namespace AdventOfCode
             }
         }
 
-        public static int Part2(string input)
+        private static void HandleLeftRight(Cart cart, Cart next)
         {
-            return -1;
+            switch (cart.Facing)
+            {
+                case Direction.Left:
+                    next.X--;
+                    break;
+                case Direction.Right:
+                    next.X++;
+                    break;
+                default:
+                    throw new Exception("Invalid direction");
+            }
+        }
+
+        private static void HandleUpDown(Cart cart, Cart next)
+        {
+            switch (cart.Facing)
+            {
+                case Direction.Up:
+                    next.Y--;
+                    break;
+                case Direction.Down:
+                    next.Y++;
+                    break;
+                default:
+                    throw new Exception("Invalid direction");
+            }
+        }
+
+        private static void HandleBackslash(Cart cart, Cart next)
+        {
+            switch (cart.Facing)
+            {
+                case Direction.Up:
+                    next.Facing = Direction.Left;
+                    next.X--;
+                    break;
+                case Direction.Down:
+                    next.Facing = Direction.Right;
+                    next.X++;
+                    break;
+                case Direction.Left:
+                    next.Facing = Direction.Up;
+                    next.Y--;
+                    break;
+                case Direction.Right:
+                    next.Facing = Direction.Down;
+                    next.Y++;
+                    break;
+                default:
+                    throw new Exception("Invalid direction");
+            }
+        }
+
+        private static void HandleSlash(Cart cart, Cart next)
+        {
+            switch (cart.Facing)
+            {
+                case Direction.Up:
+                    next.Facing = Direction.Right;
+                    next.X++;
+                    break;
+                case Direction.Down:
+                    next.Facing = Direction.Left;
+                    next.X--;
+                    break;
+                case Direction.Left:
+                    next.Facing = Direction.Down;
+                    next.Y++;
+                    break;
+                case Direction.Right:
+                    next.Facing = Direction.Up;
+                    next.Y--;
+                    break;
+                default:
+                    throw new Exception("Invalid direction");
+            }
+        }
+
+        private static void HandleTurn(Cart cart, Cart next)
+        {
+            switch (cart.Last)
+            {
+                case Turn.Straight:
+                    HandleRightTurn(cart, next);
+                    break;
+                case Turn.Left:
+                    HandleGoStraight(cart, next);
+                    break;
+                case Turn.Right:
+                    HandleLeftTurn(cart, next);
+                    break;
+                default:
+                    throw new Exception("Invalid direction");
+            }
+        }
+
+        private static void HandleRightTurn(Cart cart, Cart next)
+        {
+            next.Last = Turn.Right;
+            switch (cart.Facing)
+            {
+                case Direction.Up:
+                    next.Facing = Direction.Right;
+                    next.X++;
+                    break;
+                case Direction.Down:
+                    next.Facing = Direction.Left;
+                    next.X--;
+                    break;
+                case Direction.Left:
+                    next.Facing = Direction.Up;
+                    next.Y--;
+                    break;
+                case Direction.Right:
+                    next.Facing = Direction.Down;
+                    next.Y++;
+                    break;
+                default:
+                    throw new Exception("Invalid direction");
+            }
+        }
+
+        private static void HandleGoStraight(Cart cart, Cart next)
+        {
+            next.Last = Turn.Straight;
+            switch (cart.Facing)
+            {
+                case Direction.Up:
+                    next.Y--;
+                    break;
+                case Direction.Down:
+                    next.Y++;
+                    break;
+                case Direction.Left:
+                    next.X--;
+                    break;
+                case Direction.Right:
+                    next.X++;
+                    break;
+                default:
+                    throw new Exception("Invalid direction");
+            }
+        }
+
+        private static void HandleLeftTurn(Cart cart, Cart next)
+        {
+            next.Last = Turn.Left;
+            switch (cart.Facing)
+            {
+                case Direction.Up:
+                    next.Facing = Direction.Left;
+                    next.X--;
+                    break;
+                case Direction.Down:
+                    next.Facing = Direction.Right;
+                    next.X++;
+                    break;
+                case Direction.Left:
+                    next.Facing = Direction.Down;
+                    next.Y++;
+                    break;
+                case Direction.Right:
+                    next.Facing = Direction.Up;
+                    next.Y--;
+                    break;
+                default:
+                    throw new Exception("Invalid direction");
+            }
+        }
+
+        public static string Part2(string input)
+        {
+            var carts = new List<Cart>();
+            var map = new Dictionary<string, char>();
+
+            ParseMap(input, carts, map);
+
+            // Run simulation
+            while (carts.Count > 1)
+            {
+                // Print(map, carts);
+
+                carts = carts
+                    .OrderBy(c => c.Y)
+                    .ThenBy(c => c.X)
+                    .ToList();
+
+                var nextCarts = new List<Cart>();
+
+                // Iterate through the carts and update the position and check for collisions
+                foreach (var cart in carts)
+                {
+                    var next = new Cart
+                    {
+                        X = cart.X,
+                        Y = cart.Y,
+                        Facing = cart.Facing,
+                        Last = cart.Last
+                    };
+
+                    switch (map[$"{cart.X}_{cart.Y}"])
+                    {
+                        case '-':
+                            HandleLeftRight(cart, next);
+                            break;
+                        case '|':
+                            HandleUpDown(cart, next);
+                            break;
+                        case '\\':
+                            HandleBackslash(cart, next);
+                            break;
+                        case '/':
+                            HandleSlash(cart, next);
+                            break;
+                        case '+':
+                            HandleTurn(cart, next);
+                            break;
+                        default:
+                            throw new Exception("Invalid path character");
+                    }
+
+                    if (carts.Any(c => c.X == next.X && c.Y == next.Y)
+                        || nextCarts.Any(c => c.X == next.X && c.Y == next.Y))
+                    {
+                        carts = carts.Where(c => c.X != next.X || c.Y != next.Y).ToList();
+                        nextCarts = nextCarts.Where(c => c.X != next.X || c.Y != next.Y).ToList();
+                    }
+                    else
+                    {
+                        nextCarts.Add(next);
+                    }
+                }
+
+                carts = nextCarts;
+            }
+
+            var result = carts.Single();
+            return $"{result.X},{result.Y}";
         }
     }
 }
