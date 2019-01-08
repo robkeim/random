@@ -36,7 +36,7 @@ let perLetter word =
     | _ -> raise (System.ArgumentException("Unmatched word: " + word))
 
 // Rules for only feminine words from "A simplified list of endings" on this site:
-// https://frenchtogether.com/french-nouns-gender/
+// https://frenchtogether.com/french-nouns-gender
 // Feminine noun endings
 // - The majority of words that end in -e or -ion.
 // - Except words ending in -age, -ege, -é, or -isme (these endings often indicate masculine words).
@@ -53,7 +53,7 @@ let frenchTogether word =
     | _ -> Masculine
 
 // List of roughly twenty five suffixes found on this site:
-// http://www.fluentu.com/french/blog/french-gender-rules/
+// http://www.fluentu.com/french/blog/french-gender-rules
 let fluentU word =
     match word with
     | EndsWithRegexMatch "age" _ -> Masculine
