@@ -20,7 +20,14 @@ namespace GetGenderFromDictionary
             {
                 ServicePointManager.DefaultConnectionLimit = 256;
 
-                var alreadyProcessedWords = File.ReadAllLines(@"c:\users\rkeim\desktop\output.txt");
+                var outputFile = @"c:\users\robke\desktop\output.txt";
+
+                if (!File.Exists(outputFile))
+                {
+                    File.Create(outputFile).Dispose();
+                }
+
+                var alreadyProcessedWords = File.ReadAllLines(outputFile);
 
                 foreach (var alreadyProcessedWord in alreadyProcessedWords)
                 {
@@ -32,9 +39,9 @@ namespace GetGenderFromDictionary
                     .Except(Words.Keys)
                     .OrderBy(w => Guid.NewGuid());
 
-                Random random = new Random();
-
-                using (var streamWriter = new StreamWriter(@"c:\users\rkeim\desktop\output.txt", append: true))
+                var random = new Random();
+                
+                using (var streamWriter = new StreamWriter(outputFile, append: true))
                 {
                     foreach (var word in words)
                     {
