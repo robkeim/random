@@ -9,6 +9,7 @@ namespace AdventOfCode
         const string input = "1\n2\n3\n7\n11\n13\n17\n19\n23\n31\n37\n41\n43\n47\n53\n59\n61\n67\n71\n73\n79\n83\n89\n97\n101\n103\n107\n109\n113";
 
         // Answer: 11846773891
+        // Part 2 answer: 80393059
         public static void Part1()
         {
             var packages = input
