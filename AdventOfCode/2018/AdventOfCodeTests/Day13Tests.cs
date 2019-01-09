@@ -20,7 +20,7 @@ namespace AdventOfCodeTests
         [TestMethod]
         public void Part2()
         {
-            Assert.AreEqual("6,4", Day13.Part2(@"/>-<\  @|   |  @| /<+-\@| | | v@\>+</ |@  |   ^@  \<->/H"));
+            Assert.AreEqual("6,4", Day13.Part2(@"/>-<\  @|   |  @| /<+-\@| | | v@\>+</ |@  |   ^@  \<->/"));
             // Incorrect answer: 40,47
             Assert.AreEqual(-1, Day13.Part2(myInput));
         }
