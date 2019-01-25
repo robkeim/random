@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace MowerSimulator
@@ -6,22 +7,34 @@ namespace MowerSimulator
     public static class AutoMower
     {
         // NOTE: The complexity of the overall algorithm is as follows:
-        // Space: O(N) where N is the number of mowers
-        // TODO rkeim: finish complexity
+        // Space: O(1) Only a constant amount of space is required in executing this
+        //        algorithm because the input file is streamed line by line and not
+        //        read all at once. Each mower is processed and then completed so no
+        //        information needs to be stored about previous mowers once the output
+        //        is written to the console.
+        //
+        // Time:  O(MOW * MOV) For each MOWer the algorithm iterates through all of the
+        //        MOVes.
         public static void Run(string fileName)
         {
-            // NOTE: This method reads all of the lines in the input file and stores them in
-            // memory. This would be problematic for *very* large input files where all of the
-            // mowers could not be stored in memory. To get around this limitation the input
-            // file could be opened as a stream and read one mower at a time.
-            var lines = File.ReadAllLines(fileName);
-
-            var lawn = Parsing.ParseLawn(lines);
+            var lawn = Parsing.ParseLawn(ReadFileLineByLine(fileName));
 
             foreach (var mower in lawn.Mowers)
             {
                 var finalPosition = mower.GetFinalPosition(lawn.MaxSize);
                 Console.WriteLine(Presentation.PrintPosition(finalPosition));
+            }
+        }
+
+        private static IEnumerable<string> ReadFileLineByLine(string file)
+        {
+            string line;
+            using (var reader = File.OpenText(file))
+            {
+                while ((line = reader.ReadLine()) != null)
+                {
+                    yield return line;
+                }
             }
         }
     }
