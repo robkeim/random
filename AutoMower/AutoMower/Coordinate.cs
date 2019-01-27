@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace MowerSimulator
+namespace AutoMower
 {
     [DebuggerDisplay("({X}, {Y})")]
     public class Coordinate : IEquatable<Coordinate>

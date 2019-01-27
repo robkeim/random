@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MowerSimulator
+namespace AutoMower
 {
     public static class Presentation
     {

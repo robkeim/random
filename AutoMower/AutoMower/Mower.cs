@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MowerSimulator
+namespace AutoMower
 {
     public class Mower
     {
@@ -14,7 +14,7 @@ namespace MowerSimulator
             _moves = moves;
         }
 
-        public Position GetFinalPosition(Coordinate maxLawnSize)
+        public Position GetFinalPosition(Coordinate topRightOfLawn)
         {
             var position = _initialPosition;
 
@@ -23,13 +23,13 @@ namespace MowerSimulator
                 switch (move)
                 {
                     case Move.Left:
-                        position = MoveLeft(position, maxLawnSize);
+                        position = MoveLeft(position);
                         break;
                     case Move.Right:
-                        position = MoveRight(position, maxLawnSize);
+                        position = MoveRight(position);
                         break;
                     case Move.Forward:
-                        position = MoveForward(position, maxLawnSize);
+                        position = MoveForward(position, topRightOfLawn);
                         break;
                     default:
                         throw new InvalidOperationException($"Invalid move: {move}");
@@ -39,7 +39,7 @@ namespace MowerSimulator
             return position;
         }
 
-        private Position MoveLeft(Position position, Coordinate maxLawnSize)
+        private Position MoveLeft(Position position)
         {
             Orientation newOrientation;
 
@@ -64,7 +64,7 @@ namespace MowerSimulator
             return new Position(position.Coordinate, newOrientation);
         }
 
-        private Position MoveRight(Position position, Coordinate maxLawnSize)
+        private Position MoveRight(Position position)
         {
             Orientation newOrientation;
 
@@ -89,7 +89,7 @@ namespace MowerSimulator
             return new Position(position.Coordinate, newOrientation);
         }
 
-        private Position MoveForward(Position position, Coordinate maxLawnSize)
+        private Position MoveForward(Position position, Coordinate topRightOfLawn)
         {
             var newX = position.Coordinate.X;
             var newY = position.Coordinate.Y;
@@ -97,7 +97,7 @@ namespace MowerSimulator
             switch (position.Orientation)
             {
                 case Orientation.North:
-                    if (position.Coordinate.Y + 1 <= maxLawnSize.Y)
+                    if (position.Coordinate.Y + 1 <= topRightOfLawn.Y)
                     {
                         newY++;
                     }
@@ -109,7 +109,7 @@ namespace MowerSimulator
                     }
                     break;
                 case Orientation.East:
-                    if (position.Coordinate.X + 1 <= maxLawnSize.X)
+                    if (position.Coordinate.X + 1 <= topRightOfLawn.X)
                     {
                         newX++;
                     }

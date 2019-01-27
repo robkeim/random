@@ -3,12 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-namespace MowerSimulator
+namespace AutoMower
 {
     public static class Parsing
     {
-        // TODO rkeim: explain choice of strict parsing
-        // TODO rkeim: talk about possibility to skip invalid mowers instead of halting the program
+        // NOTE: For this exercise I chose to implement a very strict parsing under the
+        // assumption that we have good control over the input file and can ensure it's valid.
+        // Errors in parsing result in the program halting execution. I could have added
+        // additional logic to try to parse incorrect input (trim whitespace, more flexibility
+        // with whitespace tokenization, ignore invalid tokens, etc), but I felt the additional
+        // complexity it would add to the solution was worth it without first understanding
+        // more about how this program is going to be used.
+        //
+        // One disadvantage of this strict parsing is that one wrong configuration causes the
+        // entire program to stop executing. Imagine a file with many well configured mowers,
+        // and one incorrectly configured one. I could instead run only the well configured
+        // mowers, but this may or may not be the desired behavior depending on how the program
+        // is going to be used.
         public static Lawn ParseLawn(IEnumerable<string> lines)
         {
             lines = lines ?? throw new ArgumentNullException(nameof(lines));
@@ -17,10 +28,10 @@ namespace MowerSimulator
 
             if (!enumerator.MoveNext())
             {
-                throw new ArgumentException(nameof(lines), "Missing max size for lawn");
+                throw new ArgumentException(nameof(lines), "Missing top right coordinate for lawn");
             }
 
-            var maxSize = ParseSize(enumerator.Current);
+            var topRight = ParseTopRight(enumerator.Current);
 
             var mowers = new List<Mower>();
 
@@ -38,10 +49,10 @@ namespace MowerSimulator
                 mowers.Add(new Mower(initialPosition, moves));
             }
 
-            return new Lawn(maxSize, mowers);
+            return new Lawn(topRight, mowers);
         }
 
-        private static Coordinate ParseSize(string input)
+        private static Coordinate ParseTopRight(string input)
         {
             var match = Regex.Match(input, @"^(\d+) (\d+)$", RegexOptions.Compiled);
 

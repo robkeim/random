@@ -1,4 +1,4 @@
-﻿namespace MowerSimulator
+﻿namespace AutoMower
 {
     public enum Move
     {

@@ -1,4 +1,4 @@
-﻿using MowerSimulator;
+﻿using AutoMower;
 using NUnit.Framework;
 using System;
 using System.Linq;
@@ -178,7 +178,7 @@ namespace Tests
             var result = Parsing.ParseLawn(input);
 
             // Assert
-            Assert.AreEqual(new Coordinate(0, 1), result.MaxSize);
+            Assert.AreEqual(new Coordinate(0, 1), result.TopRight);
             Assert.AreEqual(0, result.Mowers.Count());
         }
 
