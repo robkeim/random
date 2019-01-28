@@ -1,10 +1,9 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace AutoMower
 {
     [DebuggerDisplay("({X}, {Y})")]
-    public class Coordinate : IEquatable<Coordinate>
+    public struct Coordinate
     {
         public int X { get; }
 
@@ -15,7 +14,5 @@ namespace AutoMower
             X = x;
             Y = y;
         }
-
-        public bool Equals(Coordinate other) => X == other.X && Y == other.Y;
     }
 }

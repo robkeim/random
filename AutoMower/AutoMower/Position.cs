@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace AutoMower
+﻿namespace AutoMower
 {
-    public class Position : IEquatable<Position>
+    public struct Position
     {
         public Coordinate Coordinate { get; }
 
@@ -13,7 +11,5 @@ namespace AutoMower
             Coordinate = coordinate;
             Orientation = orientation;
         }
-
-        public bool Equals(Position other) => Coordinate.Equals(other.Coordinate) && Orientation == other.Orientation;
     }
 }
