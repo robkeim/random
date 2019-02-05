@@ -8,8 +8,8 @@ namespace CompressDirectory
     {
         public static void Execute(string inputDir, string compressedDir)
         {
-            using (var zipToOpen = new FileStream(compressedDir + @"\compressed.zip", FileMode.Create))
-            using (var archive = new ZipArchive(zipToOpen, ZipArchiveMode.Update))
+            using (var zipFile = new FileStream(compressedDir + Path.DirectorySeparatorChar + @"compressed.zip", FileMode.Create))
+            using (var archive = new ZipArchive(zipFile, ZipArchiveMode.Update))
             {
                 var indexEntry = archive.CreateEntry("index.txt");
                 var indexWriter = new StreamWriter(indexEntry.Open());
