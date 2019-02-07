@@ -25,16 +25,16 @@ namespace CompressDirectory
                         var id = split[0];
                         var relativePath = split[1];
 
-                        var entity = archive.GetEntry(id);
-                        var outputFile = outputDir + relativePath;
-
                         var path = relativePath
                             .Split(Path.DirectorySeparatorChar.ToString().ToCharArray())
                             .ToArray();
 
                         var dir = outputDir;
+                        var stoppingPoint = id == Constants.EMPTY_DIRECTORY
+                            ? path.Length
+                            : path.Length - 1;
 
-                        for (int i = 0; i < path.Length - 1; i++)
+                        for (int i = 0; i < stoppingPoint; i++)
                         {
                             dir += Path.DirectorySeparatorChar + path[i];
 
@@ -44,7 +44,13 @@ namespace CompressDirectory
                             }
                         }
 
-                        entity.ExtractToFile(outputFile);
+                        if (id != Constants.EMPTY_DIRECTORY)
+                        {
+                            var entity = archive.GetEntry(id);
+                            var outputFile = outputDir + relativePath;
+
+                            entity.ExtractToFile(outputFile);
+                        }
                     }
                 }
             }
@@ -54,6 +60,7 @@ namespace CompressDirectory
 
         private static void BuildZip(string inputDir)
         {
+            // Sort the files since lexographical order is not correct
             var files = Directory.GetFiles(inputDir, "compressed-*")
                 .Select(f => new Tuple<string, int>(f, int.Parse(f.Split("-".ToCharArray())[1])))
                 .OrderBy(t => t.Item2)

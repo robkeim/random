@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.IO.Compression;
+using System.Linq;
 
 namespace CompressDirectory
 {
@@ -22,6 +23,16 @@ namespace CompressDirectory
                     var relativeDir = file.Substring(inputDir.Length);
                     indexWriter.WriteLine($"{id} {relativeDir}");
                     archive.CreateEntryFromFile(file, id);
+                }
+
+                var emptyDirectories = Directory.GetDirectories(inputDir, "*", SearchOption.AllDirectories)
+                    .Where(d => !files.Any(f => f.StartsWith(d)))
+                    .ToArray();
+
+                foreach (var dir in emptyDirectories)
+                {
+                    var relativeDir = dir.Substring(inputDir.Length);
+                    indexWriter.WriteLine($"{Constants.EMPTY_DIRECTORY} {relativeDir}");
                 }
 
                 indexWriter.Close();
