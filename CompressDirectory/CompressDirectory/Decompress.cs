@@ -11,10 +11,10 @@ namespace CompressDirectory
         {
             BuildZip(inputDir);
 
-            using (var zipFile = new FileStream(inputDir + Path.DirectorySeparatorChar + "compressed.zip", FileMode.Open))
+            using (var zipFile = new FileStream(inputDir + Path.DirectorySeparatorChar + Constants.ZIP_NAME, FileMode.Open))
             using (var archive = new ZipArchive(zipFile, ZipArchiveMode.Read))
             {
-                var indexEntity = archive.GetEntry("index.txt");
+                var indexEntity = archive.GetEntry(Constants.ZIP_INDEX_NAME);
                 using (var reader = new StreamReader(indexEntity.Open()))
                 {
                     string line;
@@ -49,7 +49,7 @@ namespace CompressDirectory
                 }
             }
 
-            File.Delete(inputDir + Path.DirectorySeparatorChar + "compressed.zip");
+            File.Delete(inputDir + Path.DirectorySeparatorChar + Constants.ZIP_NAME);
         }
 
         private static void BuildZip(string inputDir)
@@ -60,7 +60,7 @@ namespace CompressDirectory
                 .Select(t => t.Item1)
                 .ToArray();
 
-            using (var outputStream = File.Create(inputDir + Path.DirectorySeparatorChar + "compressed.zip"))
+            using (var outputStream = File.Create(inputDir + Path.DirectorySeparatorChar + Constants.ZIP_NAME))
             {
                 foreach (var file in files)
                 {

@@ -8,10 +8,10 @@ namespace CompressDirectory
     {
         public static void Execute(string inputDir, string compressedDir, int maxFileSizeInMB)
         {
-            using (var zipFile = new FileStream(compressedDir + Path.DirectorySeparatorChar + "compressed.zip", FileMode.Create))
+            using (var zipFile = new FileStream(compressedDir + Path.DirectorySeparatorChar + Constants.ZIP_NAME, FileMode.Create))
             using (var archive = new ZipArchive(zipFile, ZipArchiveMode.Update))
             {
-                var indexEntry = archive.CreateEntry("index.txt");
+                var indexEntry = archive.CreateEntry(Constants.ZIP_INDEX_NAME);
                 var indexWriter = new StreamWriter(indexEntry.Open());
 
                 var files = Directory.GetFiles(inputDir, "*", SearchOption.AllDirectories);
@@ -32,8 +32,8 @@ namespace CompressDirectory
 
         private static void SplitFile(string compressedDir, int maxFileSizeInMB)
         {
-            var maxSizeInBytes = maxFileSizeInMB * 1024 * 1024;
-            var compressedFile = compressedDir + Path.DirectorySeparatorChar + "compressed.zip";
+            var maxSizeInBytes = maxFileSizeInMB * 1024L * 1024L;
+            var compressedFile = compressedDir + Path.DirectorySeparatorChar + Constants.ZIP_NAME;
             var length = new FileInfo(compressedFile).Length;
 
             if (length < maxSizeInBytes)
@@ -42,20 +42,22 @@ namespace CompressDirectory
             }
             else
             {
-                const int BUFFER_SIZE = 20 * 1024; // TODO rkeim: justify this
+                // Buffer size of 4k based on .NET's choice to use 4k for FileStream:
+                // https://referencesource.microsoft.com/#mscorlib/system/io/filestream.cs,396
+                const int BUFFER_SIZE = 4 * 1024;
                 var buffer = new byte[BUFFER_SIZE];
 
                 using (var fileToSplit = File.OpenRead(compressedFile))
                 {
-                    int index = 0;
+                    var index = 0;
 
                     while (fileToSplit.Position < fileToSplit.Length)
                     {
                         using (var outputStream = File.Create(compressedDir + Path.DirectorySeparatorChar + $"compressed-{index}"))
                         {
                             int bytesRead;
-                            int remaining = maxSizeInBytes;
-                            while (remaining > 0 && (bytesRead = fileToSplit.Read(buffer, 0, Math.Min(remaining, BUFFER_SIZE))) > 0)
+                            var remaining = maxSizeInBytes;
+                            while (remaining > 0 && (bytesRead = fileToSplit.Read(buffer, 0, Math.Min((int)Math.Min(remaining, int.MaxValue), BUFFER_SIZE))) > 0)
                             {
                                 outputStream.Write(buffer, 0, bytesRead);
                                 remaining -= bytesRead;
