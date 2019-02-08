@@ -7,10 +7,8 @@ namespace CompressDirectory
 {
     public class ZipCompressor : ICompressor
     {
-        public string Compress(string dirToCompress, string compressedDir)
+        public void Compress(string dirToCompress, string outputFile)
         {
-            var outputFile = compressedDir + Path.DirectorySeparatorChar + Constants.ZIP_NAME;
-
             using (var zipFile = new FileStream(outputFile, FileMode.Create))
             using (var archive = new ZipArchive(zipFile, ZipArchiveMode.Update))
             {
@@ -38,13 +36,54 @@ namespace CompressDirectory
                 }
 
                 indexWriter.Close();
-
-                return outputFile;
             }
         }
 
         public void Decompress(string compressedFile, string extractedDir)
         {
+            using (var zipFile = new FileStream(compressedFile, FileMode.Open))
+            using (var archive = new ZipArchive(zipFile, ZipArchiveMode.Read))
+            {
+                var indexEntity = archive.GetEntry(Constants.ZIP_INDEX_NAME);
+                using (var reader = new StreamReader(indexEntity.Open()))
+                {
+                    string line;
+
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        var split = line.Split(" ".ToCharArray(), 2);
+                        var id = split[0];
+                        var relativePath = split[1];
+
+                        var path = relativePath
+                            .Split(Path.DirectorySeparatorChar.ToString().ToCharArray())
+                            .ToArray();
+
+                        var dir = extractedDir;
+                        var stoppingPoint = id == Constants.EMPTY_DIRECTORY
+                            ? path.Length
+                            : path.Length - 1;
+
+                        for (int i = 0; i < stoppingPoint; i++)
+                        {
+                            dir += Path.DirectorySeparatorChar + path[i];
+
+                            if (!Directory.Exists(dir))
+                            {
+                                Directory.CreateDirectory(dir);
+                            }
+                        }
+
+                        if (id != Constants.EMPTY_DIRECTORY)
+                        {
+                            var entity = archive.GetEntry(id);
+                            var outputFile = extractedDir + relativePath;
+
+                            entity.ExtractToFile(outputFile);
+                        }
+                    }
+                }
+            }
         }
     }
 }

@@ -2,11 +2,14 @@
 {
     public interface ICompressor
     {
-        string Compress(string dirToCompress, string compressedDir);
+        /// <summary>
+        /// Given a directory, output a compressed version to the specified file
+        /// </summary>
+        void Compress(string dirToCompress, string outputFile);
 
+        /// <summary>
+        /// Given a file compressed with Compress, extract it to the specified directory
+        /// </summary>
         void Decompress(string compressedFile, string extractedDir);
-
-        // TODO rkeim: have Compress class do validation then check (dirs exist, etc) then call ZipCompression which contains logic
-        // to compress that is specific to zip
     }
 }

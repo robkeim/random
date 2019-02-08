@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace CompressDirectory
 {
@@ -39,6 +40,27 @@ namespace CompressDirectory
                         }
 
                         index++;
+                    }
+                }
+            }
+        }
+
+        public static void JoinFile(string inputDir, string outputFileName)
+        {
+            // Sort the files since lexographical order is not correct
+            var files = Directory.GetFiles(inputDir, "compressed-*")
+                .Select(f => new Tuple<string, int>(f, int.Parse(f.Split("-".ToCharArray())[1])))
+                .OrderBy(t => t.Item2)
+                .Select(t => t.Item1)
+                .ToArray();
+
+            using (var outputStream = File.Create(outputFileName))
+            {
+                foreach (var file in files)
+                {
+                    using (var fileStream = File.OpenRead(file))
+                    {
+                        fileStream.CopyTo(outputStream);
                     }
                 }
             }
