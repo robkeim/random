@@ -74,7 +74,8 @@ namespace CompressDirectory
 
             // Sort the files since lexographical order is not correct
             var files = Directory.GetFiles(inputDir, "compressed-*")
-                .Select(f => new Tuple<string, int>(f, int.Parse(f.Split("-".ToCharArray())[1])))
+                .Select(f => new Tuple<string, string>(f, new FileInfo(f).Name))
+                .Select(f => new Tuple<string, int>(f.Item1, int.Parse(f.Item2.Split("-".ToCharArray())[1])))
                 .OrderBy(t => t.Item2)
                 .Select(t => t.Item1)
                 .ToArray();
