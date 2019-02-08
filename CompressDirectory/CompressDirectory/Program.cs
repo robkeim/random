@@ -1,38 +1,31 @@
 using System;
-using System.IO;
 
 namespace CompressDirectory
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            // TODO rkeim: remove these hard coded arguments and read them from args
-            var inputDir = @"c:\users\robke\desktop\input";
-            var compressedDir = @"c:\users\robke\desktop\compressed";
-            var uncompressedDir = @"c:\users\robke\desktop\uncompressed";
-            var maxFileSizeInMB = 3;
-
-            if (Directory.Exists(compressedDir))
+            if (args.Length < 2 || args.Length > 3)
             {
-                Directory.Delete(compressedDir, true);
+                throw new ArgumentException("Invalid number of input arguments");
             }
-            
-            if (Directory.Exists(uncompressedDir))
-            {
-                Directory.Delete(uncompressedDir, true);
-            }
-
-            Directory.CreateDirectory(compressedDir);
-            Directory.CreateDirectory(uncompressedDir);
 
             var compressor = new ZipCompressor();
 
-            Console.WriteLine("Compressing...");
-            Compress.Execute(compressor, inputDir, compressedDir, maxFileSizeInMB);
+            if (args.Length == 3)
+            {
+                if (!int.TryParse(args[2], out var maxFileSizeInMB) || maxFileSizeInMB < 1)
+                {
+                    throw new ArgumentException("Invalid value for max file size in MB");
+                }
 
-            Console.WriteLine("Decompressing...");
-            Decompress.Execute(compressor, compressedDir, uncompressedDir);
+                Compress.Execute(compressor, args[0], args[1], maxFileSizeInMB);
+            }
+            else
+            {
+                Decompress.Execute(compressor, args[0], args[1]);
+            }
         }
     }
 }
