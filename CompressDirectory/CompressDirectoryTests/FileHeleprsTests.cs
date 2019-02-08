@@ -122,5 +122,67 @@ namespace Tests
             // Assert
             Assert.Throws<ArgumentOutOfRangeException>(action);
         }
+
+        [Test]
+        public void JoinFile_WhenInputDirectoryDoesNotExist_ThrowsArgumentException()
+        {
+            // Arrange
+            var tmpDir = Path.GetTempPath() + Guid.NewGuid();
+            var tmpFile = Path.GetTempPath() + Guid.NewGuid();
+
+            // Act
+            void action() => FileHelpers.JoinFile(tmpDir, tmpFile);
+
+            // Assert
+            Assert.Throws<ArgumentException>(action);
+        }
+
+        [Test]
+        public void JoinFile_WhenOutputFileExists_ThrowsArgumentException()
+        {
+            // Arrange
+            var tmpDir = Path.GetTempPath() + Guid.NewGuid();
+            Directory.CreateDirectory(tmpDir);
+            _tmpDirs.Add(tmpDir);
+            var tmpFile = Path.GetTempFileName();
+
+            // Act
+            void action() => FileHelpers.JoinFile(tmpDir, tmpFile);
+
+            try
+            {
+                // Assert
+                Assert.Throws<ArgumentException>(action);
+            }
+            finally
+            {
+                File.Delete(tmpFile);
+            }
+        }
+
+        [Test]
+        public void JoinFile_WhenCalledWithResultsOfSplitFile_ReturnsOriginalFile()
+        {
+            // Arrange
+            var tmpDir = Path.GetTempPath() + Guid.NewGuid();
+            Directory.CreateDirectory(tmpDir);
+            _tmpDirs.Add(tmpDir);
+            FileHelpers.SplitFile("./RandomFile", tmpDir, 5);
+            var outputFile = Path.GetTempPath() + Guid.NewGuid();
+
+            try
+            {
+                // Act
+                FileHelpers.JoinFile(tmpDir, outputFile);
+
+                // Assert
+                Assert.AreEqual(new FileInfo("./RandomFile").Length, new FileInfo(outputFile).Length);
+                Assert.IsTrue(File.ReadAllBytes("./RandomFile").SequenceEqual(File.ReadAllBytes(outputFile)));
+            }
+            finally
+            {
+                File.Delete(outputFile);
+            }
+        }
     }
 }
