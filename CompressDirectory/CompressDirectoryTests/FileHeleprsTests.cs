@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using CompressDirectory;
@@ -7,32 +6,8 @@ using NUnit.Framework;
 
 namespace CompressDirectoryTests
 {
-    public class FileHelpersTests
+    public class FileHelpersTests : BaseTests
     {
-        private List<string> _tmpDirs;
-
-        [SetUp]
-        public void Setup()
-        {
-            _tmpDirs = new List<string>();
-        }
-
-        [TearDown]
-        public void TearDown()
-        {
-            foreach (var tmpDir in _tmpDirs)
-            {
-                try
-                {
-                    Directory.Delete(tmpDir, true);
-                }
-                catch (DirectoryNotFoundException)
-                {
-                    // Nothing to do
-                }
-            }
-        }
-
         [Test]
         public void SplitFile_WhenFileSizeInLessThanChunkSize_ReturnsOneFile()
         {
@@ -177,7 +152,7 @@ namespace CompressDirectoryTests
 
                 // Assert
                 Assert.AreEqual(new FileInfo("./RandomFile").Length, new FileInfo(outputFile).Length);
-                Assert.IsTrue(File.ReadAllBytes("./RandomFile").SequenceEqual(File.ReadAllBytes(outputFile)));
+                AssertHelpers.FilesAreEqual("./RandomFile", outputFile);
             }
             finally
             {
