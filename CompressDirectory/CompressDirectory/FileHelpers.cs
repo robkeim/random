@@ -8,6 +8,21 @@ namespace CompressDirectory
     {
         public static void SplitFile(string fileToSplit, string outputDir, int maxFileSizeInMB)
         {
+            if (!File.Exists(fileToSplit))
+            {
+                throw new ArgumentException("File to split needs to exist", nameof(fileToSplit));
+            }
+
+            if (!Directory.Exists(outputDir))
+            {
+                throw new ArgumentException("Output directory needs to exist", nameof(outputDir));
+            }
+
+            if (maxFileSizeInMB < 1)
+            {
+                throw new ArgumentOutOfRangeException(nameof(maxFileSizeInMB));
+            }
+
             var maxSizeInBytes = maxFileSizeInMB * 1024L * 1024L;
             var length = new FileInfo(fileToSplit).Length;
 
@@ -47,6 +62,16 @@ namespace CompressDirectory
 
         public static void JoinFile(string inputDir, string outputFileName)
         {
+            if (!Directory.Exists(inputDir))
+            {
+                throw new ArgumentException("Input directory must exist", nameof(inputDir));
+            }
+
+            if (File.Exists(outputFileName))
+            {
+                throw new ArgumentException("Output file must not exist", nameof(outputFileName));
+            }
+
             // Sort the files since lexographical order is not correct
             var files = Directory.GetFiles(inputDir, "compressed-*")
                 .Select(f => new Tuple<string, int>(f, int.Parse(f.Split("-".ToCharArray())[1])))
