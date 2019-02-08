@@ -5,13 +5,13 @@ namespace CompressDirectory
 {
     class Program
     {
-        // TODO rkeim: handle empty directories being compressed
+        // TODO rkeim: extract logic to split and merge file
         static void Main(string[] args)
         {
             var inputDir = @"c:\users\robke\desktop\input";
             var compressedDir = @"c:\users\robke\desktop\compressed";
             var uncompressedDir = @"c:\users\robke\desktop\uncompressed";
-            var maxFileSizeInMB = 3000;
+            var maxFileSizeInMB = 3;
 
             // TODO rkeim: ensure that existing directories/missing directories are handled and remove this chunk of code
             if (Directory.Exists(compressedDir))
