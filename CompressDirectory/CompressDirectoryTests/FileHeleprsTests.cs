@@ -5,7 +5,7 @@ using System.Linq;
 using CompressDirectory;
 using NUnit.Framework;
 
-namespace Tests
+namespace CompressDirectoryTests
 {
     public class FileHelpersTests
     {
