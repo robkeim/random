@@ -13,11 +13,15 @@ namespace CompressDirectory
                 throw new ArgumentException("Compressed directory must exist", nameof(compressedDir));
             }
 
-            if (!Directory.Exists(outputDir)
-                || Directory.EnumerateFiles(outputDir).Any()
-                || Directory.EnumerateDirectories(outputDir).Any())
+            if (Directory.Exists(outputDir)
+                && (Directory.EnumerateFiles(outputDir).Any() || Directory.EnumerateDirectories(outputDir).Any()))
             {
                 throw new ArgumentException("Output directory must exist and be empty", nameof(compressedDir));
+            }
+
+            if (!Directory.Exists(outputDir))
+            {
+                Directory.CreateDirectory(outputDir);
             }
 
             var compressedFileName = compressedDir + Path.DirectorySeparatorChar + Constants.COMPRESSED_FILE_NAME;
