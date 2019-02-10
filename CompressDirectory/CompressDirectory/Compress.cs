@@ -17,7 +17,7 @@ namespace CompressDirectory
             if (Directory.Exists(compressedDir)
                 && (Directory.EnumerateFiles(compressedDir).Any() || Directory.EnumerateDirectories(compressedDir).Any()))
             {
-                throw new ArgumentException("Compressed directory must exist and be empty", nameof(compressedDir));
+                throw new ArgumentException("Compressed directory must not exist or be empty", nameof(compressedDir));
             }
 
             if (!Directory.Exists(compressedDir))

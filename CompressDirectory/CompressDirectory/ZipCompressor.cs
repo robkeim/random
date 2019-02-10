@@ -16,29 +16,30 @@ namespace CompressDirectory
             using (var archive = new ZipArchive(zipFile, ZipArchiveMode.Update))
             {
                 var indexEntry = archive.CreateEntry(ZIP_INDEX_NAME);
-                var indexWriter = new StreamWriter(indexEntry.Open());
-
-                var files = Directory.GetFiles(dirToCompress, "*", SearchOption.AllDirectories);
-
-                foreach (var file in files)
+                using (var indexWriter = new StreamWriter(indexEntry.Open()))
                 {
-                    var id = Guid.NewGuid().ToString();
-                    var relativeDir = file.Substring(dirToCompress.Length);
-                    indexWriter.WriteLine($"{id} {relativeDir}");
-                    archive.CreateEntryFromFile(file, id);
+                    var files = Directory.GetFiles(dirToCompress, "*", SearchOption.AllDirectories);
+
+                    foreach (var file in files)
+                    {
+                        var id = Guid.NewGuid().ToString();
+                        var relativeDir = file.Substring(dirToCompress.Length);
+                        indexWriter.WriteLine($"{id} {relativeDir}");
+                        archive.CreateEntryFromFile(file, id);
+                    }
+
+                    var emptyDirectories = Directory.GetDirectories(dirToCompress, "*", SearchOption.AllDirectories)
+                        .Where(d => !files.Any(f => f.StartsWith(d)))
+                        .ToArray();
+
+                    foreach (var dir in emptyDirectories)
+                    {
+                        var relativeDir = dir.Substring(dirToCompress.Length);
+                        indexWriter.WriteLine($"{EMPTY_DIRECTORY} {relativeDir}");
+                    }
+
+                    indexWriter.Close();
                 }
-
-                var emptyDirectories = Directory.GetDirectories(dirToCompress, "*", SearchOption.AllDirectories)
-                    .Where(d => !files.Any(f => f.StartsWith(d)))
-                    .ToArray();
-
-                foreach (var dir in emptyDirectories)
-                {
-                    var relativeDir = dir.Substring(dirToCompress.Length);
-                    indexWriter.WriteLine($"{EMPTY_DIRECTORY} {relativeDir}");
-                }
-
-                indexWriter.Close();
             }
         }
 

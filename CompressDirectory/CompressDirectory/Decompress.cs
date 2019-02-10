@@ -6,29 +6,29 @@ namespace CompressDirectory
 {
     public static class Decompress
     {
-        public static void Execute(ICompressor compressor, string compressedDir, string outputDir)
+        public static void Execute(ICompressor compressor, string compressedDir, string extracedDir)
         {
             if (!Directory.Exists(compressedDir))
             {
                 throw new ArgumentException("Compressed directory must exist", nameof(compressedDir));
             }
 
-            if (Directory.Exists(outputDir)
-                && (Directory.EnumerateFiles(outputDir).Any() || Directory.EnumerateDirectories(outputDir).Any()))
+            if (Directory.Exists(extracedDir)
+                && (Directory.EnumerateFiles(extracedDir).Any() || Directory.EnumerateDirectories(extracedDir).Any()))
             {
-                throw new ArgumentException("Output directory must exist and be empty", nameof(compressedDir));
+                throw new ArgumentException("Extracted directory must not exist or be empty", nameof(compressedDir));
             }
 
-            if (!Directory.Exists(outputDir))
+            if (!Directory.Exists(extracedDir))
             {
-                Directory.CreateDirectory(outputDir);
+                Directory.CreateDirectory(extracedDir);
             }
 
             var compressedFileName = compressedDir + Path.DirectorySeparatorChar + Constants.COMPRESSED_FILE_NAME;
 
             FileHelpers.JoinFile(compressedDir, compressedFileName);
             
-            compressor.Decompress(compressedFileName, outputDir);
+            compressor.Decompress(compressedFileName, extracedDir);
 
             File.Delete(compressedFileName);
         }

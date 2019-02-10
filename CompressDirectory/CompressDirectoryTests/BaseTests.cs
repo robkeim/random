@@ -25,7 +25,7 @@ namespace CompressDirectoryTests
                 }
                 catch (DirectoryNotFoundException)
                 {
-                    // Nothing to do
+                    // Ignore exception since directory doesn't exist
                 }
             }
         }
