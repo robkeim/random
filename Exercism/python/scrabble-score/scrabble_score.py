@@ -9,20 +9,19 @@ def score(word):
 
 
 def score_letter(letter):
-    if (letter == "A" or letter == "E" or letter == "I" or letter == "O" or letter == "U" or letter == "L"
-            or letter == "N" or letter == "R" or letter == "S" or letter == "T"):
+    if letter in set("AEIOULNRST"):
         return 1
-    elif letter == "D" or letter == "G":
+    elif letter in set("DG"):
         return 2
-    elif letter == "B" or letter == "C" or letter == "M" or letter =="P":
+    elif letter in set("BCMP"):
         return 3
-    elif letter == "F" or letter == "H" or letter == "V" or letter == "W" or letter == "Y":
+    elif letter in set("FHVWY"):
         return 4
-    elif letter == "K":
+    elif letter in set("K"):
         return 5
-    elif letter == "J" or letter == "X":
+    elif letter in set("JX"):
         return 8
-    elif letter == "Q" or letter == "Z":
+    elif letter in set("QZ"):
         return 10
     else:
         raise Exception("Invalid letter: " + letter)
