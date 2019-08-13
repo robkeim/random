@@ -1,16 +1,6 @@
 def convert(number):
-    result = ""
+    sounds = [(3, "Pling"), (5, "Plang"), (7, "Plong")]
 
-    if number % 3 == 0:
-        result += "Pling"
+    result = "".join([x[1] for x in sounds if number % x[0] == 0])
 
-    if number % 5 == 0:
-        result += "Plang"
-
-    if number % 7 == 0:
-        result += "Plong"
-
-    if len(result) > 0:
-        return result
-    else:
-        return str(number)
+    return result if len(result) > 0 else str(number)
