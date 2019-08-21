@@ -1,4 +1,7 @@
+import re
+
+
 def is_isogram(string):
-    string = string.lower().replace(" ", "").replace("-", "")
+    string = re.sub("[- ]+", "", string.lower())
 
     return len(string) == len(set(string))
