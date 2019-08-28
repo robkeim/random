@@ -1,12 +1,10 @@
 import re
 
-from functools import reduce
-
 
 def abbreviate(words):
     split_words = words.upper().replace("-", " ").split()
     words_only_letters = map(keep_letters, split_words)
-    return reduce(lambda result, word: result + word[0], words_only_letters, "")
+    return "".join(word[0] for word in words_only_letters)
 
 
 def keep_letters(word):
