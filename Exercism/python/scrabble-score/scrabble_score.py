@@ -1,27 +1,26 @@
+scores_to_letters = {
+    1 : 'A, E, I, O, U, L, N, R, S, T',
+    2 : 'D, G',
+    3 : 'B, C, M, P',
+    4 : 'F, H, V, W, Y',
+    5 : 'K',
+    8 : 'J, X',
+    10: 'Q, Z'
+}
+
+result = []
+for key, value in scores_to_letters.items():
+    result.append([(item, key) for item in value.split(", ")])
+
+letters_to_score = dict([item for sublist in result for item in sublist])
+
+
 def score(word):
-    word = word.upper()
-    result = 0
-
-    for letter in word:
-        result += score_letter(letter)
-
-    return result
+    return sum([score_letter(letter) for letter in word.upper()])
 
 
 def score_letter(letter):
-    if letter in set("AEIOULNRST"):
-        return 1
-    elif letter in set("DG"):
-        return 2
-    elif letter in set("BCMP"):
-        return 3
-    elif letter in set("FHVWY"):
-        return 4
-    elif letter in set("K"):
-        return 5
-    elif letter in set("JX"):
-        return 8
-    elif letter in set("QZ"):
-        return 10
-    else:
+    if letter not in letters_to_score:
         raise Exception("Invalid letter: " + letter)
+
+    return letters_to_score[letter]
