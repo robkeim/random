@@ -1,27 +1,19 @@
+import collections
+
+
 class School(object):
     def __init__(self):
-        self.enrolled = {}
+        self.enrolled = collections.defaultdict(list)
 
     def add_student(self, name, grade):
-        if grade not in self.enrolled:
-            self.enrolled[grade] = [name]
-        else:
-            self.enrolled[grade].append(name)
-            self.enrolled[grade].sort()
+        self.enrolled[grade].append(name)
+        self.enrolled[grade].sort()
 
     def roster(self):
-        keys = list(self.enrolled.keys())
-        keys.sort()
-
-        result = []
-
-        for key in keys:
-            result += self.enrolled[key]
-
-        return result
+        return [name
+                for grade, names in sorted(self.enrolled.items())
+                for name in sorted(names)
+            ]
 
     def grade(self, grade_number):
-        if grade_number in self.enrolled:
-            return self.enrolled[grade_number]
-        else:
-            return []
+        return self.enrolled.get(grade_number, [])
