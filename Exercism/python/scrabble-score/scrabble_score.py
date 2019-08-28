@@ -8,11 +8,11 @@ scores_to_letters = {
     10: 'Q, Z'
 }
 
-result = []
-for key, value in scores_to_letters.items():
-    result.append([(item, key) for item in value.split(", ")])
-
-letters_to_score = dict([item for sublist in result for item in sublist])
+letters_to_score = {
+    letter: score
+    for score, letters in scores_to_letters.items()
+    for letter in letters.split(", ")
+}
 
 
 def score(word):
