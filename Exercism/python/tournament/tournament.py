@@ -26,7 +26,7 @@ def tally(rows):
 
     results = []
 
-    for team in sorted(teams):
+    for team in teams:
         team_wins = wins[team]
         team_draws = draws[team]
         team_losses = losses[team]
@@ -35,12 +35,12 @@ def tally(rows):
         formatted_line = "{:31}|  {} |  {} |  {} |  {} |  {}" \
             .format(team, matches_played, team_wins, team_draws, team_losses, points)
 
-        results.append((points, formatted_line))
+        results.append((points, team, formatted_line))
 
     result = [
         "Team                           | MP |  W |  D |  L |  P"
     ]
 
-    result.extend([x[1] for x in sorted(results, key=lambda x: x[0], reverse=True)])
+    result.extend([x[2] for x in sorted(results, key=lambda x: (-x[0], x[1]))])
 
     return result
