@@ -1,14 +1,7 @@
 import re
 
-from collections import defaultdict
+from collections import Counter
 
 
 def count_words(sentence):
-    result = defaultdict(int)
-
-    words = re.sub("[^a-zA-Z0-9']+", " ", sentence).lower().split()
-
-    for word in words:
-        result[word.strip("'")] += 1
-
-    return result
+    return Counter([word.strip("'") for word in re.sub("[^a-zA-Z0-9']+", " ", sentence).lower().split()])
