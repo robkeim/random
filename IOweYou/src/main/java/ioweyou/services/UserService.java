@@ -26,4 +26,8 @@ public class UserService {
                 .users(users)
                 .build();
     }
+
+    public void addUser(String name) {
+        userRepository.addUser(name);
+    }
 }
