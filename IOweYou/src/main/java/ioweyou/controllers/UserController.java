@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final UserService userService;
 
+    // TODO rkeim: update this to take a list of users to get details about
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ListUsersResponse listUsers() {
         return userService.listUsers();
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public void CreateUser(@RequestBody CreateUserRequest request) {
+    public void createUser(@RequestBody CreateUserRequest request) {
         userService.addUser(request.getUser());
     }
 }

@@ -8,5 +8,5 @@ import java.util.List;
 @Builder
 @Value
 public class ListUsersResponse {
-    List<String> users;
+    List<UserDetails> users;
 }
