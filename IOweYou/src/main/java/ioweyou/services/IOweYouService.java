@@ -12,7 +12,7 @@ public class IOweYouService {
     private final IOweYouRepository iOweYouRepository;
 
     public void CreateIOweYou(IOweYouRequest request) {
-        IOweYou iOweYou = IOweYou
+        var iOweYou = IOweYou
                 .builder()
                 .lender(request.getLender())
                 .borrower(request.getBorrower())
