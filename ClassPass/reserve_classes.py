@@ -53,7 +53,7 @@ def book_class(driver, email, day_of_week, time, url):
         button.click()
 
     elements = driver.find_elements_by_class_name("Schedule__row")
-    element = list(filter(lambda e: time in e.text, elements))[0]
+    element = [e for e in elements if time in e.text][0]
 
     if "RESERVED" in element.text:
         return "Already enrolled in class"
@@ -76,7 +76,7 @@ def book_class(driver, email, day_of_week, time, url):
 
 def process_user(file_to_process):
     with open(file_to_process) as f:
-        file_contents = list(map(lambda l: l.rstrip("\n"), f.readlines()))
+        file_contents = [l.rstrip("\n") for l in f.readlines()]
 
     email = file_contents[0]
     password = file_contents[1]
@@ -85,7 +85,7 @@ def process_user(file_to_process):
     login(driver, email, password)
     get_credit_count(driver, email)
 
-    classes_to_reserve = list(map(lambda l: tuple(l.split(";")), file_contents[2:]))
+    classes_to_reserve = [tuple(l.split(";")) for l in file_contents[2:]]
     results = []
 
     for (day_of_week, time, url) in classes_to_reserve:
