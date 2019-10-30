@@ -1,6 +1,8 @@
 import os
+import sys
 
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.ui import WebDriverWait
@@ -25,12 +27,7 @@ def get_credit_count(driver, email):
     WebDriverWait(driver, 5).until(element_present)
 
     element = driver.find_element_by_class_name("header__credit-count")
-    num_credits = int(element.text.split(" ")[0])
-
-    if num_credits < 10:
-        email_helper.send(email, "Only " + str(num_credits) + " credits remaining", "")
-
-    return num_credits
+    return int(element.text.split(" ")[0])
 
 
 def book_class(driver, email, day_of_week, time, url):
@@ -48,12 +45,20 @@ def book_class(driver, email, day_of_week, time, url):
     WebDriverWait(driver, 5).until(element_present)
 
     # Expand to see all classes
-    button = driver.find_element_by_css_selector("button.bt")
-    if "See more" in button.text:
-        button.click()
+    try:
+        button = driver.find_element_by_css_selector("button.bt")
+        if "See more" in button.text:
+            button.click()
+    except NoSuchElementException:
+        pass # Nothing to expand
 
     elements = driver.find_elements_by_class_name("Schedule__row")
-    element = [e for e in elements if time in e.text][0]
+    elements = [e for e in elements if time in e.text]
+
+    if not elements:
+        return "No class offered at that time"
+
+    element = elements[0]
 
     if "RESERVED" in element.text:
         return "Already enrolled in class"
@@ -64,14 +69,16 @@ def book_class(driver, email, day_of_week, time, url):
     element = element.find_element_by_class_name("Schedule__row__cta")
     element.click()
 
-    element = driver.find_element_by_css_selector(".reservation--inquiry__body button")
-    element.click()
+    try:
+        element = driver.find_element_by_css_selector(".reservation--inquiry__body button")
+        element.click()
+    except NoSuchElementException:
+        return "Not enough credits remaining to reserve class"
 
     element_present = expected_conditions.presence_of_element_located((By.CLASS_NAME, 'reservation--invite-a-friend__schedule__date-time-text'))
     WebDriverWait(driver, 5).until(element_present)
 
-    email_helper.send(email, "Successfully reserved on " + day_of_week + " at " + time, "")
-    return "Class booked"
+    return "Class successfully reserved"
 
 
 def process_user(file_to_process):
@@ -83,7 +90,7 @@ def process_user(file_to_process):
 
     driver = webdriver.Chrome()
     login(driver, email, password)
-    get_credit_count(driver, email)
+    remaining_credits = get_credit_count(driver, email)
 
     classes_to_reserve = [tuple(l.split(";")) for l in file_contents[2:]]
     results = []
@@ -93,17 +100,22 @@ def process_user(file_to_process):
         results.append((day_of_week, time, result))
 
     body = "\n".join([day_of_week + " at " + time + ": " + result for (day_of_week, time, result) in results])
-    email_helper.send("robkeim@gmail.com", "Summary for " + file_to_process, body)
+    body = str(remaining_credits) + " credits remaining\n\n" + body
+    email_helper.send("robkeim@gmail.com", "Summary for " + file_to_process.lstrip("users").lstrip("/").rstrip(".txt"), body)
 
     driver.close()
 
 
 def main():
     for user in os.listdir('users'):
-        try:
+        if sys.gettrace():
+            # Running in debug mode
             process_user("users/" + user)
-        except Exception as e:
-            email_helper.send("robkeim@gmail.com", "Error processing user: " + user, str(e))
+        else:
+            try:
+                process_user("users/" + user)
+            except Exception as e:
+                email_helper.send("robkeim@gmail.com", "Error processing user: " + user, str(e))
 
 
 if __name__ == "__main__":
