@@ -17,4 +17,8 @@ public class UserRepository {
     public void addUser(String name) {
         users.add(name);
     }
+
+    public boolean exists(String name) {
+        return users.contains(name);
+    }
 }

@@ -1,5 +1,6 @@
 package ioweyou.services;
 
+import ioweyou.BadRequestException;
 import ioweyou.IOweYou;
 import ioweyou.ListUsersResponse;
 import ioweyou.UserDetails;
@@ -76,6 +77,10 @@ public class UserService {
     }
 
     public void addUser(String name) {
+        if (userRepository.exists(name)) {
+            throw new BadRequestException("User already exists");
+        }
+
         userRepository.addUser(name);
     }
 }
