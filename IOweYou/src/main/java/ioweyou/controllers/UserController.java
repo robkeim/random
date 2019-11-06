@@ -4,10 +4,7 @@ import ioweyou.CreateUserRequest;
 import ioweyou.ListUsersResponse;
 import ioweyou.services.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
@@ -16,8 +13,8 @@ public class UserController {
 
     // TODO rkeim: update this to take a list of users to get details about
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ListUsersResponse listUsers() {
-        return userService.listUsers();
+    public ListUsersResponse listUsers(@RequestParam(value = "user") String[] users) {
+        return userService.listUsers(users);
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)

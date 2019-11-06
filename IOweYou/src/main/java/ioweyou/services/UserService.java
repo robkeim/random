@@ -9,10 +9,7 @@ import ioweyou.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.groupingBy;
@@ -24,20 +21,24 @@ public class UserService {
     private final UserRepository userRepository;
 
     // TODO rkeim: see if the database can handle this grouping logic
-    public ListUsersResponse listUsers() {
-        List<String> names = userRepository
-                .listUsers()
-                .stream()
-                .sorted()
-                .collect(Collectors.toUnmodifiableList());
+    public ListUsersResponse listUsers(String[] users) {
+        if (users == null || users.length == 0) {
+            throw new BadRequestException("No users provided");
+        }
+
+        Arrays.sort(users);
 
         List<UserDetails> userDetails = new ArrayList<>();
 
-        for (String name : names) {
+        for (String user : users) {
+            if (!userRepository.exists(user)) {
+                throw new BadRequestException("User does not exist: " + user);
+            }
+
             HashMap<String, Double> owes = new HashMap<>();
             Double owesTotal = 0d;
 
-            Map<String, List<IOweYou>> owesRaw = iOweYouRepository.getForBorrower(name)
+            Map<String, List<IOweYou>> owesRaw = iOweYouRepository.getForBorrower(user)
                     .stream()
                     .collect(groupingBy(IOweYou::getLender));
 
@@ -50,7 +51,7 @@ public class UserService {
             HashMap<String, Double> owedBy = new HashMap<>();
             Double owedByTotal = 0d;
 
-            Map<String, List<IOweYou>> owedByRaw = iOweYouRepository.getForLender(name)
+            Map<String, List<IOweYou>> owedByRaw = iOweYouRepository.getForLender(user)
                     .stream()
                     .collect(groupingBy(IOweYou::getBorrower));
 
@@ -62,7 +63,7 @@ public class UserService {
 
             userDetails.add(UserDetails
                     .builder()
-                    .name(name)
+                    .name(user)
                     .owes(owes)
                     .owedBy(owedBy)
                     .balance(owedByTotal - owesTotal)

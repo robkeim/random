@@ -7,6 +7,8 @@ import lombok.Value;
 @Value
 public class IOweYou {
     private String lender;
+
     private String borrower;
+
     private double amount;
 }
