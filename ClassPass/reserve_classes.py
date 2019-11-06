@@ -36,6 +36,9 @@ def get_credit_count(driver):
 
 
 def book_class(user, driver, day_of_week, time, name, url):
+    if driver.current_url == url:
+        driver.get("about:blank")  # Force refresh of page to clear dialog of a previously reserved class
+
     driver.get(url)
 
     date = driver.find_element_by_class_name("Schedule__datebar__date").text
@@ -79,6 +82,8 @@ def book_class(user, driver, day_of_week, time, name, url):
     element = element.find_element_by_class_name("Schedule__row__cta")
     element.click()
 
+    element_present = expected_conditions.presence_of_element_located((By.CSS_SELECTOR, '.modal__content button'))
+    WebDriverWait(driver, 5).until(element_present)
     element = driver.find_element_by_css_selector(".modal__content button")
 
     if "Reserve this class" not in element.text:
