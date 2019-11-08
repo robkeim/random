@@ -1,0 +1,29 @@
+type: edu
+files:
+- name: src/Task.kt
+  visible: true
+  placeholders:
+  - offset: 130
+    length: 6
+    placeholder_text: TODO()
+    initial_state:
+      length: 6
+      offset: 130
+    initialized_from_dependency: false
+    possible_answer: y - x
+    selected: false
+    status: Unchecked
+  text: |
+    import java.util.*
+
+    fun getList(): List<Int> {
+        val arrayList = arrayListOf(1, 5, 2)
+        Collections.sort(arrayList, { x, y -> TODO() })
+        return arrayList
+    }
+  learner_created: false
+- name: test/tests.kt
+  visible: false
+  learner_created: false
+status: Unchecked
+record: -1

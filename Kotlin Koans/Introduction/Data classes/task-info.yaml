@@ -1,0 +1,27 @@
+type: edu
+files:
+- name: src/Task.kt
+  visible: true
+  placeholders:
+  - offset: 0
+    length: 12
+    placeholder_text: class Person
+    initial_state:
+      length: 12
+      offset: 0
+    initialized_from_dependency: false
+    possible_answer: 'data class Person(val name: String, val age: Int)'
+    selected: false
+    status: Unchecked
+  text: |
+    class Person
+
+    fun getPeople(): List<Person> {
+        return listOf(Person("Alice", 29), Person("Bob", 31))
+    }
+  learner_created: false
+- name: test/tests.kt
+  visible: false
+  learner_created: false
+status: Unchecked
+record: -1

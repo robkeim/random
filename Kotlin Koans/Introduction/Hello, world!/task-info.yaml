@@ -1,0 +1,23 @@
+type: edu
+files:
+- name: src/Task.kt
+  visible: true
+  placeholders:
+  - offset: 21
+    length: 5
+    placeholder_text: TODO()
+    initial_state:
+      length: 6
+      offset: 22
+    initialized_from_dependency: false
+    possible_answer: '"OK"'
+    selected: true
+    status: Solved
+  text: |
+    fun start(): String = TODO()
+  learner_created: false
+- name: test/tests.kt
+  visible: false
+  learner_created: false
+status: Solved
+record: -1

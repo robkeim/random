@@ -1,0 +1,76 @@
+type: edu
+files:
+- name: src/Task.kt
+  visible: true
+  placeholders:
+  - offset: 139
+    length: 69
+    placeholder_text: 'operator fun MyDate.plus(timeInterval: TimeInterval): MyDate
+      = TODO()'
+    initial_state:
+      length: 69
+      offset: 139
+    initialized_from_dependency: false
+    possible_answer: |2
+
+      operator fun MyDate.plus(timeInterval: TimeInterval) = addTimeIntervals(timeInterval, 1)
+
+      class RepeatedTimeInterval(val timeInterval: TimeInterval, val number: Int)
+      operator fun TimeInterval.times(number: Int) = RepeatedTimeInterval(this, number)
+
+      operator fun MyDate.plus(timeIntervals: RepeatedTimeInterval) = addTimeIntervals(timeIntervals.timeInterval, timeIntervals.number)
+    selected: false
+    status: Unchecked
+  - offset: 318
+    length: 64
+    placeholder_text: TODO("Uncomment") //return today + YEAR * 2 + WEEK * 3 + DAY
+      * 5
+    initial_state:
+      length: 64
+      offset: 318
+    initialized_from_dependency: false
+    possible_answer: return today + YEAR * 2 + WEEK * 3 + DAY * 5
+    selected: false
+    status: Unchecked
+  text: |
+    import TimeInterval.*
+
+    data class MyDate(val year: Int, val month: Int, val dayOfMonth: Int)
+
+    enum class TimeInterval { DAY, WEEK, YEAR }
+
+    operator fun MyDate.plus(timeInterval: TimeInterval): MyDate = TODO()
+
+    fun task1(today: MyDate): MyDate {
+        return today + YEAR + WEEK
+    }
+
+    fun task2(today: MyDate): MyDate {
+        TODO("Uncomment") //return today + YEAR * 2 + WEEK * 3 + DAY * 5
+    }
+  learner_created: false
+- name: src/DateUtil.kt
+  visible: true
+  text: |-
+    import java.util.Calendar
+
+    fun MyDate.addTimeIntervals(timeInterval: TimeInterval, number: Int): MyDate {
+        val c = Calendar.getInstance()
+        c.set(year + if (timeInterval == TimeInterval.YEAR) number else 0, month, dayOfMonth)
+        var timeInMillis = c.getTimeInMillis()
+        val millisecondsInADay = 24 * 60 * 60 * 1000L
+        timeInMillis += number * when (timeInterval) {
+            TimeInterval.DAY -> millisecondsInADay
+            TimeInterval.WEEK -> 7 * millisecondsInADay
+            TimeInterval.YEAR -> 0L
+        }
+        val result = Calendar.getInstance()
+        result.setTimeInMillis(timeInMillis)
+        return MyDate(result.get(Calendar.YEAR), result.get(Calendar.MONTH), result.get(Calendar.DATE))
+    }
+  learner_created: false
+- name: test/tests.kt
+  visible: false
+  learner_created: false
+status: Unchecked
+record: -1

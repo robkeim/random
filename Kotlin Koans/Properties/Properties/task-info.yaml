@@ -1,0 +1,31 @@
+type: edu
+files:
+- name: src/Task.kt
+  visible: true
+  placeholders:
+  - offset: 95
+    length: 3
+    placeholder_text: set
+    initial_state:
+      length: 3
+      offset: 95
+    initialized_from_dependency: false
+    possible_answer: |-
+      set(v: Int?) {
+                  field = v
+                  counter++
+              }
+    selected: false
+    status: Unchecked
+  text: |
+    class PropertyExample() {
+        var counter = 0
+        var propertyWithCounter: Int? = null
+            set
+    }
+  learner_created: false
+- name: test/tests.kt
+  visible: false
+  learner_created: false
+status: Unchecked
+record: -1

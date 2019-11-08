@@ -1,0 +1,25 @@
+type: edu
+files:
+- name: src/Task.kt
+  visible: true
+  placeholders:
+  - offset: 58
+    length: 52
+    placeholder_text: //TODO("return the list sorted in descending order")
+    initial_state:
+      length: 52
+      offset: 58
+    initialized_from_dependency: false
+    possible_answer: .sortedDescending()
+    selected: false
+    status: Unchecked
+  text: |
+    fun getList(): List<Int> {
+        return arrayListOf(1, 5, 2)//TODO("return the list sorted in descending order")
+    }
+  learner_created: false
+- name: test/tests.kt
+  visible: false
+  learner_created: false
+status: Unchecked
+record: -1

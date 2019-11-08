@@ -1,0 +1,42 @@
+type: edu
+files:
+- name: src/Task.kt
+  visible: true
+  placeholders:
+  - offset: 72
+    length: 6
+    placeholder_text: TODO()
+    initial_state:
+      length: 6
+      offset: 72
+    initialized_from_dependency: false
+    possible_answer: expr.value
+    selected: false
+    status: Unchecked
+  - offset: 101
+    length: 6
+    placeholder_text: TODO()
+    initial_state:
+      length: 6
+      offset: 101
+    initialized_from_dependency: false
+    possible_answer: eval(expr.left) + eval(expr.right)
+    selected: false
+    status: Unchecked
+  text: |
+    fun eval(expr: Expr): Int =
+            when (expr) {
+                is Num -> TODO()
+                is Sum -> TODO()
+                else -> throw IllegalArgumentException("Unknown expression")
+            }
+
+    interface Expr
+    class Num(val value: Int) : Expr
+    class Sum(val left: Expr, val right: Expr) : Expr
+  learner_created: false
+- name: test/tests.kt
+  visible: false
+  learner_created: false
+status: Unchecked
+record: -1

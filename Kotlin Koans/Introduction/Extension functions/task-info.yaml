@@ -1,0 +1,36 @@
+type: edu
+files:
+- name: src/Task.kt
+  visible: true
+  placeholders:
+  - offset: 30
+    length: 6
+    placeholder_text: TODO()
+    initial_state:
+      length: 6
+      offset: 30
+    initialized_from_dependency: false
+    possible_answer: RationalNumber(this, 1)
+    selected: false
+    status: Unchecked
+  - offset: 78
+    length: 6
+    placeholder_text: TODO()
+    initial_state:
+      length: 6
+      offset: 78
+    initialized_from_dependency: false
+    possible_answer: RationalNumber(first, second)
+    selected: false
+    status: Unchecked
+  text: |
+    fun Int.r(): RationalNumber = TODO()
+    fun Pair<Int, Int>.r(): RationalNumber = TODO()
+
+    data class RationalNumber(val numerator: Int, val denominator: Int)
+  learner_created: false
+- name: test/tests.kt
+  visible: false
+  learner_created: false
+status: Unchecked
+record: -1

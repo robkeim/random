@@ -1,0 +1,62 @@
+type: edu
+files:
+- name: src/Task.kt
+  visible: true
+  placeholders:
+  - offset: 0
+    length: 361
+    placeholder_text: 'fun toJSON(collection: Collection<Int>): String = TODO()'
+    initial_state:
+      length: 56
+      offset: 0
+    initialized_from_dependency: false
+    possible_answer: |-
+      fun toJSON(collection: Collection<Int>): String {
+          val sb = StringBuilder()
+          sb.append("[")
+          val iterator = collection.iterator()
+          while (iterator.hasNext())
+          {
+              val element = iterator.next()
+              sb.append(element)
+              if (iterator.hasNext())
+              {
+                  sb.append(", ")
+              }
+          }
+          sb.append("]")
+          return sb.toString()
+      }
+    selected: true
+    status: Solved
+  text: |
+    fun toJSON(collection: Collection<Int>): String = TODO()
+  learner_created: false
+- name: src/JavaCode.java
+  visible: true
+  text: |-
+    import java.util.Collection;
+    import java.util.Iterator;
+
+    public class JavaCode {
+        public String toJSON(Collection<Integer> collection) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("[");
+            Iterator<Integer> iterator = collection.iterator();
+            while (iterator.hasNext()) {
+                Integer element = iterator.next();
+                sb.append(element);
+                if (iterator.hasNext()) {
+                    sb.append(", ");
+                }
+            }
+            sb.append("]");
+            return sb.toString();
+        }
+    }
+  learner_created: false
+- name: test/tests.kt
+  visible: false
+  learner_created: false
+status: Solved
+record: -1

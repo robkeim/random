@@ -1,0 +1,43 @@
+type: edu
+files:
+- name: src/Task.kt
+  visible: true
+  placeholders:
+  - offset: 53
+    length: 10
+    placeholder_text: /* TODO */
+    initial_state:
+      length: 10
+      offset: 53
+    initialized_from_dependency: false
+    possible_answer: 'var value: Int? = null'
+    selected: false
+    status: Unchecked
+  - offset: 110
+    length: 6
+    placeholder_text: TODO()
+    initial_state:
+      length: 6
+      offset: 110
+    initialized_from_dependency: false
+    possible_answer: |-
+      if (value == null) {
+                      value = initializer()
+                  }
+                  return value!!
+    selected: false
+    status: Unchecked
+  text: |
+    class LazyProperty(val initializer: () -> Int) {
+        /* TODO */
+        val lazy: Int
+            get() {
+                TODO()
+            }
+    }
+  learner_created: false
+- name: test/tests.kt
+  visible: false
+  learner_created: false
+status: Unchecked
+record: -1

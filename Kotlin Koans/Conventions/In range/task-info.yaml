@@ -1,0 +1,41 @@
+type: edu
+files:
+- name: src/Task.kt
+  visible: true
+  placeholders:
+  - offset: 60
+    length: 10
+    placeholder_text: /* TODO */
+    initial_state:
+      length: 10
+      offset: 60
+    initialized_from_dependency: false
+    possible_answer: |2-
+       {
+          operator fun contains(item: MyDate): Boolean = start <= item && item <= endInclusive
+      }
+    selected: false
+    status: Unchecked
+  text: |
+    class DateRange(val start: MyDate, val endInclusive: MyDate)/* TODO */
+
+    fun checkInRange(date: MyDate, first: MyDate, last: MyDate): Boolean {
+        return date in DateRange(first, last)
+    }
+  learner_created: false
+- name: src/MyDate.kt
+  visible: true
+  text: |-
+    data class MyDate(val year: Int, val month: Int, val dayOfMonth: Int) : Comparable<MyDate>{
+        override fun compareTo(other: MyDate): Int{
+            if(year != other.year) return year - other.year
+            if(month != other.month) return month - other.month
+            return dayOfMonth - other.dayOfMonth
+        }
+    }
+  learner_created: false
+- name: test/tests.kt
+  visible: false
+  learner_created: false
+status: Unchecked
+record: -1

@@ -1,0 +1,37 @@
+type: edu
+files:
+- name: src/Task.kt
+  visible: true
+  placeholders:
+  - offset: 90
+    length: 6
+    placeholder_text: TODO()
+    initial_state:
+      length: 6
+      offset: 90
+    initialized_from_dependency: false
+    possible_answer: |-
+      val email = client?.personalInfo?.email
+          if (email != null && message != null) {
+              mailer.sendMessage(email, message)
+          }
+    selected: false
+    status: Unchecked
+  text: |
+    fun sendMessageToClient(
+            client: Client?, message: String?, mailer: Mailer
+    ){
+        TODO()
+    }
+
+    class Client (val personalInfo: PersonalInfo?)
+    class PersonalInfo (val email: String?)
+    interface Mailer {
+        fun sendMessage(email: String, message: String)
+    }
+  learner_created: false
+- name: test/tests.kt
+  visible: false
+  learner_created: false
+status: Unchecked
+record: -1
