@@ -50,8 +50,7 @@ public class IOweYouRepository {
             ResultSet rs = statement.executeQuery(String.format(query, param));
 
             List<IOweYou> results = new ArrayList<>();
-            while(rs.next())
-            {
+            while (rs.next()) {
                 results.add(IOweYou
                         .builder()
                         .borrower(rs.getString("Borrower"))

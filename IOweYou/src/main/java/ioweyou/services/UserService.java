@@ -9,7 +9,11 @@ import ioweyou.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static java.util.stream.Collectors.groupingBy;
 
@@ -19,7 +23,6 @@ public class UserService {
     private final IOweYouRepository iOweYouRepository;
     private final UserRepository userRepository;
 
-    // TODO rkeim: see if the database can handle this grouping logic
     public ListUsersResponse listUsers(String[] users) {
         if (users == null || users.length == 0) {
             throw new BadRequestException("No users provided");
@@ -37,7 +40,8 @@ public class UserService {
             HashMap<String, Double> owes = new HashMap<>();
             Double owesTotal = 0d;
 
-            Map<String, List<IOweYou>> owesRaw = iOweYouRepository.getForBorrower(user)
+            Map<String, List<IOweYou>> owesRaw = iOweYouRepository
+                    .getForBorrower(user)
                     .stream()
                     .collect(groupingBy(IOweYou::getLender));
 

@@ -14,7 +14,7 @@ public class IOweYouService {
     private final IOweYouRepository iOweYouRepository;
     private final UserRepository userRepository;
 
-    public void CreateIOweYou(IOweYouRequest request) {
+    public void createIOweYou(IOweYouRequest request) {
         if (!userRepository.exists(request.getLender())) {
             throw new BadRequestException("Lender does not exist");
         }

@@ -15,6 +15,6 @@ public class IOweYouController {
 
     @RequestMapping(value = "/iou", method = RequestMethod.POST)
     public void createIOweYou(@RequestBody IOweYouRequest request) {
-        iOweYouService.CreateIOweYou(request);
+        iOweYouService.createIOweYou(request);
     }
 }
