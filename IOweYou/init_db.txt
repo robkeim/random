@@ -1,0 +1,11 @@
+.open master.db
+
+CREATE TABLE Users (
+	Name TEXT NOT NULL
+);
+
+CREATE TABLE Transactions (
+	Lender TEXT NOT NULL,
+	Borrower TEXT NOT NULL,
+	Amount REAL NOT NULL
+);

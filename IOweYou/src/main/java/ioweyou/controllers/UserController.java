@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserService userService;
 
-    // TODO rkeim: update this to take a list of users to get details about
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ListUsersResponse listUsers(@RequestParam(value = "user") String[] users) {
         return userService.listUsers(users);

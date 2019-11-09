@@ -1,24 +1,40 @@
 package ioweyou.repositories;
 
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
+@AllArgsConstructor
 @Repository
 public class UserRepository {
-    private HashSet<String> users = new HashSet<>();
+    private static final String insert = "INSERT INTO Users values('%s')";
+    private static final String query = "SELECT COUNT(*) FROM Users WHERE Name = '%s'";
 
-    public List<String> listUsers() {
-        return new ArrayList<>(users);
-    }
+    private final Connection connection;
 
     public void addUser(String name) {
-        users.add(name);
+        try {
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(1);
+            statement.executeUpdate(String.format(insert, name));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public boolean exists(String name) {
-        return users.contains(name);
+        try {
+            Statement statement = connection.createStatement();
+            statement.setQueryTimeout(1);
+            ResultSet rs = statement.executeQuery(String.format(query, name));
+
+            return rs.getInt(1) != 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
