@@ -66,18 +66,18 @@ def book_class(user, driver, day_of_week, time, name, url):
     elements = [e for e in elements if time in e.text and name in e.text]
 
     if not elements:
-        return "No class offered at that time"
+        return date, "No class offered at that time"
 
     element = elements[0]
 
     if "RESERVED" in element.text:
-        return "Already enrolled in class"
+        return date, "Already enrolled in class"
 
     if "Reserve" in element.text:
-        return "Class full"
+        return date, "Class full"
 
     if date_previously_reserved(user, date):
-        return "Date previously reserved, skipping"
+        return date, "Date previously reserved, skipping"
 
     element = element.find_element_by_class_name("Schedule__row__cta")
     element.click()
@@ -87,7 +87,7 @@ def book_class(user, driver, day_of_week, time, name, url):
     element = driver.find_element_by_css_selector(".modal__content button")
 
     if "Reserve this class" not in element.text:
-        return "Not enough credits remaining to reserve class (TODO rkeim: validate this works correctly)"
+        return date, "Not enough credits remaining to reserve class (TODO rkeim: validate this works correctly)"
 
     element.click()
 
@@ -96,7 +96,7 @@ def book_class(user, driver, day_of_week, time, name, url):
 
     add_reserved_class(user, date)
 
-    return "Class successfully reserved"
+    return date, "Class successfully reserved"
 
 
 def date_previously_reserved(user, date):
@@ -127,10 +127,12 @@ def process_user(user):
     results = []
 
     for (day_of_week, time, name, url) in classes_to_reserve:
-        result = book_class(user, driver, day_of_week, time, name, url)
-        results.append((day_of_week, time, result))
+        date, result = book_class(user, driver, day_of_week, time, name, url)
+        date = date.split(",")[0]
+        results.append((day_of_week, date, time, result))
 
-    body = "\n".join([day_of_week + " at " + time + ": " + result for (day_of_week, time, result) in results])
+    body = "\n".join([day_of_week + " " + date + " at " + time + ": " + result
+                      for (day_of_week, date, time, result) in results])
     body = str(remaining_credits) + " credits remaining\n\n" + body
     email_helper.send("robkeim@gmail.com", "Summary for " + user, body)
 
