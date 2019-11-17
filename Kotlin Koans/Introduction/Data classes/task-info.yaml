@@ -4,15 +4,15 @@ files:
   visible: true
   placeholders:
   - offset: 0
-    length: 12
+    length: 49
     placeholder_text: class Person
     initial_state:
       length: 12
       offset: 0
     initialized_from_dependency: false
     possible_answer: 'data class Person(val name: String, val age: Int)'
-    selected: false
-    status: Unchecked
+    selected: true
+    status: Solved
   text: |
     class Person
 
@@ -23,5 +23,5 @@ files:
 - name: test/tests.kt
   visible: false
   learner_created: false
-status: Unchecked
+status: Solved
 record: -1

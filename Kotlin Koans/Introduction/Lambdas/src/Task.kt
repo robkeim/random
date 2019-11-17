@@ -1,1 +1,1 @@
-fun containsEven(collection: Collection<Int>): Boolean = collection.any { (v: Int) => v % 2 == 0 }
+fun containsEven(collection: Collection<Int>): Boolean = collection.any { it % 2 == 0 }
