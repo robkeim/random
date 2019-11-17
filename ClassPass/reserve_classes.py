@@ -28,10 +28,10 @@ def login(driver, email, password):
 
 
 def get_credit_count(driver):
-    element_present = expected_conditions.presence_of_element_located((By.CLASS_NAME, 'header__credit-count'))
+    element_present = expected_conditions.presence_of_element_located((By.CLASS_NAME, "header__credit-count"))
     WebDriverWait(driver, 5).until(element_present)
 
-    element = driver.find_element_by_class_name("header__credit-count")
+    element = driver.find_element_by_class_name("header__credit-count") # Contains text: "XX credits"
     return int(element.text.split(" ")[0])
 
 
@@ -41,17 +41,17 @@ def book_class(user, driver, day_of_week, time, name, url):
 
     driver.get(url)
 
-    date = driver.find_element_by_class_name("Schedule__datebar__date").text
+    date = driver.find_element_by_css_selector("[data-component='DateBar']").text
 
     # Navigate to day
     while day_of_week not in date:
-        element = driver.find_elements_by_class_name("Schedule__datebar__arrow")[1]
+        element = driver.find_elements_by_css_selector("[data-qa='DateBar.arrow']")[1]
         element.click()
-        date = driver.find_element_by_class_name("Schedule__datebar__date").text
+        date = driver.find_element_by_css_selector("[data-component='DateBar']").text
 
     date = date.split(",")[1].lstrip(" ") + ", " + str(datetime.datetime.now().year)
 
-    element_present = expected_conditions.presence_of_element_located((By.CLASS_NAME, 'Schedule__row'))
+    element_present = expected_conditions.presence_of_element_located((By.CSS_SELECTOR, "[data-qa='Schedule.header']"))
     WebDriverWait(driver, 5).until(element_present)
 
     # Expand to see all classes
@@ -62,7 +62,7 @@ def book_class(user, driver, day_of_week, time, name, url):
     except NoSuchElementException:
         pass # Nothing to expand
 
-    elements = driver.find_elements_by_class_name("Schedule__row")
+    elements = driver.find_elements_by_css_selector("[data-component='ScheduleUnwrapped'] [data-component='Section']")
     elements = [e for e in elements if time in e.text and name in e.text]
 
     if not elements:
@@ -79,10 +79,10 @@ def book_class(user, driver, day_of_week, time, name, url):
     if date_previously_reserved(user, date):
         return date, "Date previously reserved, skipping"
 
-    element = element.find_element_by_class_name("Schedule__row__cta")
+    element = element.find_element_by_css_selector("[data-qa='ScheduleRow.cta']")
     element.click()
 
-    element_present = expected_conditions.presence_of_element_located((By.CSS_SELECTOR, '.modal__content button'))
+    element_present = expected_conditions.presence_of_element_located((By.CSS_SELECTOR, ".modal__content button"))
     WebDriverWait(driver, 5).until(element_present)
     element = driver.find_element_by_css_selector(".modal__content button")
 
@@ -140,7 +140,7 @@ def process_user(user):
 
 
 def main():
-    for user in os.listdir('users'):
+    for user in os.listdir("users"):
         if sys.gettrace():
             # Running in debug mode
             process_user(user)
