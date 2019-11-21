@@ -87,7 +87,7 @@ def book_class(user, driver, day_of_week, time, name, url):
     element = driver.find_element_by_css_selector(".modal__content button")
 
     if "Reserve this class" not in element.text:
-        return date, "Not enough credits remaining to reserve class (TODO rkeim: validate this works correctly)"
+        return date, "Not enough credits remaining to reserve class"
 
     element.click()
 
