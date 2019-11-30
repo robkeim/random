@@ -41,6 +41,10 @@ def book_class(user, driver, day_of_week, time, name, url):
 
     driver.get(url)
 
+    # Move forward one day to avoid booking on the same day as the class
+    element = driver.find_elements_by_css_selector("[data-qa='DateBar.arrow']")[1]
+    element.click()
+
     date = driver.find_element_by_css_selector("[data-component='DateBar']").text
 
     # Navigate to day
