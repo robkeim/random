@@ -16,9 +16,8 @@ def part1():
 def part2():
     orig_memory = [int(num) for num in open("day2.txt").read().split(",")]
 
-    # Brute force through a range of possibilities
-    for noun in range(0, 1000):
-        for verb in range(0, 1000):
+    for noun in range(0, 100):
+        for verb in range(0, 100):
             memory = orig_memory[:]
 
             memory[1] = noun
