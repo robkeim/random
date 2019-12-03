@@ -4,7 +4,7 @@ OPCODE_QUIT = 99
 
 
 def part1():
-    memory = [int(num) for num in open("day2.txt").read().split(",")]
+    memory = [int(num) for num in open("day02.txt").read().split(",")]
 
     memory[1] = 12
     memory[2] = 2
@@ -14,7 +14,7 @@ def part1():
 
 
 def part2():
-    orig_memory = [int(num) for num in open("day2.txt").read().split(",")]
+    orig_memory = [int(num) for num in open("day02.txt").read().split(",")]
 
     for noun in range(0, 100):
         for verb in range(0, 100):

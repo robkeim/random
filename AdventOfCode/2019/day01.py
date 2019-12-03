@@ -1,10 +1,10 @@
 def part1():
-    lines = open("day1.txt").read().split()
+    lines = open("day01.txt").read().split()
     print(sum([get_fuel(int(mass)) for mass in lines]))
 
 
 def part2():
-    lines = open("day1.txt").read().split()
+    lines = open("day01.txt").read().split()
     print(sum([get_total_fuel(int(mass)) for mass in lines]))
 
 
