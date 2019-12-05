@@ -2,10 +2,14 @@ OPCODE_ADD = 1
 OPCODE_MULTIPLY = 2
 OPCODE_INPUT = 3
 OPCODE_OUTPUT = 4
+OPCODE_JUMP_IF_TRUE = 5
+OPCODE_JUMP_IF_FALSE = 6
+OPCODE_LESS_THAN = 7
+OPCODE_EQUALS = 8
 OPCODE_QUIT = 99
 
 MODE_POSITION = 0
-MODE_VALUE = 1
+MODE_IMMEDIATE = 1
 
 
 def part1():
@@ -14,7 +18,8 @@ def part1():
 
 
 def part2():
-    pass
+    memory = [int(num) for num in open("day05.txt").read().split(",")]
+    run_iteration(memory, [5])
 
 
 def run_iteration(memory, inputs):
@@ -26,74 +31,90 @@ def run_iteration(memory, inputs):
         opcode %= 100
 
         modes = [int(val) for val in list(str(modes))][::-1]
-        modes.append(0)  # Ensure there are enough modes to avoid out of range issues
-        modes.append(0)
+        while len(modes) < 3:
+            modes.append(0)  # Ensure there are enough modes to avoid out of range issues
 
         if opcode == OPCODE_QUIT:
             return
 
         if opcode == OPCODE_ADD:
-            if modes[0] == MODE_POSITION:
-                val1 = memory[memory[instruction_pointer + 1]]
-            elif modes[0] == MODE_VALUE:
-                val1 = memory[instruction_pointer + 1]
-            else:
-                raise Exception("Unknown mode: " + str(modes[0]))
-
-            if modes[1] == MODE_POSITION:
-                val2 = memory[memory[instruction_pointer + 2]]
-            elif modes[1] == MODE_VALUE:
-                val2 = memory[instruction_pointer + 2]
-            else:
-                raise Exception("Unknown mode: " + str(modes[1]))
-
+            val1 = get_value(memory, instruction_pointer + 1, modes[0])
+            val2 = get_value(memory, instruction_pointer + 2, modes[1])
             result = val1 + val2
-            memory[memory[instruction_pointer + 3]] = result
+
+            set_value(memory, instruction_pointer + 3, modes[2], result)
             instruction_pointer += 4
 
         elif opcode == OPCODE_MULTIPLY:
-            if modes[0] == MODE_POSITION:
-                val1 = memory[memory[instruction_pointer + 1]]
-            elif modes[0] == MODE_VALUE:
-                val1 = memory[instruction_pointer + 1]
-            else:
-                raise Exception("Unknown mode: " + str(modes[0]))
-
-            if modes[1] == MODE_POSITION:
-                val2 = memory[memory[instruction_pointer + 2]]
-            elif modes[1] == MODE_VALUE:
-                val2 = memory[instruction_pointer + 2]
-            else:
-                raise Exception("Unknown mode: " + str(modes[1]))
-
+            val1 = get_value(memory, instruction_pointer + 1, modes[0])
+            val2 = get_value(memory, instruction_pointer + 2, modes[1])
             result = val1 * val2
-            memory[memory[instruction_pointer + 3]] = result
+
+            set_value(memory, instruction_pointer + 3, modes[2], result)
             instruction_pointer += 4
 
         elif opcode == OPCODE_INPUT:
-            if modes[0] == MODE_POSITION:
-                memory[memory[instruction_pointer + 1]] = inputs[0]
-            elif modes[0] == MODE_VALUE:
-                memory[instruction_pointer + 1] = inputs[0]
-            else:
-                raise Exception("Unknown mode: " + str(modes[0]))
-
-            memory[memory[instruction_pointer + 1]] = inputs[0]
+            set_value(memory, instruction_pointer + 1, modes[0], inputs[0])
             inputs = inputs[1:]
             instruction_pointer += 2
 
         elif opcode == OPCODE_OUTPUT:
-            if modes[0] == MODE_POSITION:
-                print(memory[memory[instruction_pointer + 1]])
-            elif modes[0] == MODE_VALUE:
-                print(memory[instruction_pointer + 1])
-            else:
-                raise Exception("Unknown mode: " + str(modes[0]))
-
+            print(get_value(memory, instruction_pointer + 1, modes[0]))
             instruction_pointer += 2
 
-        else:
-            raise Exception("Unknown opcode: " + str(opcode))
+        elif opcode == OPCODE_JUMP_IF_TRUE:
+            if get_value(memory, instruction_pointer + 1, modes[0]) != 0:
+                instruction_pointer = get_value(memory, instruction_pointer + 2, modes[1])
+            else:
+                instruction_pointer += 3
+
+        elif opcode == OPCODE_JUMP_IF_FALSE:
+            if get_value(memory, instruction_pointer + 1, modes[0]) == 0:
+                instruction_pointer = get_value(memory, instruction_pointer + 2, modes[1])
+            else:
+                instruction_pointer += 3
+
+        elif opcode == OPCODE_LESS_THAN:
+            val1 = get_value(memory, instruction_pointer + 1, modes[0])
+            val2 = get_value(memory, instruction_pointer + 2, modes[1])
+
+            if val1 < val2:
+                value_to_store = 1
+            else:
+                value_to_store = 0
+
+            set_value(memory, instruction_pointer + 3, modes[2], value_to_store)
+            instruction_pointer += 4
+
+        elif opcode == OPCODE_EQUALS:
+            val1 = get_value(memory, instruction_pointer + 1, modes[0])
+            val2 = get_value(memory, instruction_pointer + 2, modes[1])
+
+            if val1 == val2:
+                value_to_store = 1
+            else:
+                value_to_store = 0
+
+            set_value(memory, instruction_pointer + 3, modes[2], value_to_store)
+            instruction_pointer += 4
+
+
+def get_value(memory, instruction_pointer, mode):
+    if mode == MODE_POSITION:
+        return memory[memory[instruction_pointer]]
+    elif mode == MODE_IMMEDIATE:
+        return memory[instruction_pointer]
+    else:
+        raise Exception("Unknown mode: " + str(mode))
+
+
+def set_value(memory, instruction_pointer, mode, value):
+    if mode == MODE_POSITION:
+        memory[memory[instruction_pointer]] = value
+    elif mode == MODE_IMMEDIATE:
+        memory[instruction_pointer] = value
+    else:
+        raise Exception("Unknown mode: " + str(mode))
 
 
 def main():
