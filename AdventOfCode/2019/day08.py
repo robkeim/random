@@ -20,7 +20,29 @@ def part1():
 
 
 def part2():
-    pass
+    width = 25
+    height = 6
+    image = [d for d in open("day08.txt").read()]
+
+    result = ["2" for _ in range(width * height)]
+
+    for layer in chunks(image, width * height):
+        for i in range(0, width * height):
+            if result[i] == "2":
+                result[i] = layer[i]
+
+    message = ""
+    layers = chunks(result, width)
+
+    for layer in layers:
+        for i in range(len(layer)):
+            if layer[i] == "1":
+                message += "X"
+            else:
+                message += " "
+        message += "\n"
+
+    print(message)
 
 
 def chunks(elements, size):
