@@ -52,7 +52,7 @@ def find_dx_dy(first, second):
     delta_x = abs(first[0] - second[0])
     delta_y = abs(first[1] - second[1])
 
-    gcd = find_gcd(delta_x, delta_y)
+    gcd = math.gcd(delta_x, delta_y)
 
     delta_x //= gcd
     delta_y //= gcd
@@ -64,13 +64,6 @@ def find_dx_dy(first, second):
         delta_y *= -1
 
     return delta_x, delta_y
-
-
-def find_gcd(x, y):
-    while y:
-        x, y = y, x % y
-
-    return x
 
 
 def part2():
