@@ -3,6 +3,10 @@ import re
 
 
 def part1():
+    print(calculate_ore_needed(1))
+
+
+def calculate_ore_needed(num_fuel):
     # Build recipes dictionary of chemical -> (num_produced, list of required chemicals)
     lines = open("day14.txt").readlines()
     recipes = {}
@@ -40,7 +44,7 @@ def part1():
             distance = max(distances[product[1]] for product in recipes[material][1]) + 1
             distances[material] = distance
 
-    remaining = {"FUEL": 1}
+    remaining = {"FUEL": num_fuel}
 
     while len(remaining) > 1 or "ORE" not in remaining:
         max_product = max(remaining, key=lambda x: distances[x])
@@ -56,7 +60,7 @@ def part1():
             else:
                 remaining[ingredient] += ingredient_quantity * batches_to_make
 
-    print(remaining["ORE"])
+    return remaining["ORE"]
 
 
 def extract_reaction(value):
@@ -68,7 +72,20 @@ def extract_reaction(value):
 
 
 def part2():
-    pass
+    low = 1
+    high = 1000000000000
+
+    while low < high:
+        mid = (low + high) // 2
+
+        ore_needed = calculate_ore_needed(mid)
+
+        if ore_needed < 1000000000000:
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    print(low)
 
 
 def main():
