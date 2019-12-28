@@ -2,11 +2,14 @@ import sys
 from collections import deque
 
 
-def part1():
+def run_simulation(hard_mode):
     PLAYER_START_HP = 50
     BOSS_START_HP = 55
     PLAYER_START_MANA = 500
     BOSS_DAMAGE = 8
+
+    PLAYER_TURN = 0
+    BOSS_TURN = 1
 
     min_mana = sys.maxsize
 
@@ -21,8 +24,10 @@ def part1():
     queue.append((PLAYER_START_HP, BOSS_START_HP, PLAYER_START_MANA, 0, 0, 0, 0, 0))
 
     while len(queue) > 0:
-        print(queue[0])
         player_hp, boss_hp, player_mana, shield_turns, poison_turns, recharge_turns, mana_spent, turn = queue.pop()
+
+        if turn == PLAYER_TURN and hard_mode:
+            player_hp -= 1
 
         if poison_turns > 0:
             boss_hp -= 3
@@ -47,32 +52,37 @@ def part1():
         if mana_spent > min_mana or player_hp <= 0:
             continue
 
-        if turn == 1:
-            turn = 0
+        if turn == BOSS_TURN:
+            turn = PLAYER_TURN
             shield_value = 7 if has_shield else 0
             boss_damage = max(1, BOSS_DAMAGE - shield_value)
-            queue.append((player_hp - boss_damage, boss_hp, player_mana, shield_turns, poison_turns, recharge_turns, mana_spent, turn))
+            queue.append((player_hp - boss_damage, boss_hp, player_mana, shield_turns, poison_turns, recharge_turns,
+                          mana_spent, turn))
             continue
 
-        turn = 1
+        turn = BOSS_TURN
 
         # queue.append((player_hp, boss_hp, player_mana, shield_turns, poison_turns, recharge_turns, mana_spent, turn))
 
         # Magic missile
         if player_mana >= 53:
-            queue.append((player_hp, boss_hp - 4, player_mana - 53, shield_turns, poison_turns, recharge_turns, mana_spent + 53, turn))
+            queue.append((player_hp, boss_hp - 4, player_mana - 53, shield_turns, poison_turns, recharge_turns,
+                          mana_spent + 53, turn))
 
         # Drain
         if player_mana >= 73:
-            queue.append((player_hp + 2, boss_hp - 2, player_mana - 73, shield_turns, poison_turns, recharge_turns, mana_spent + 73, turn))
+            queue.append((player_hp + 2, boss_hp - 2, player_mana - 73, shield_turns, poison_turns, recharge_turns,
+                          mana_spent + 73, turn))
 
         # Shield
         if player_mana >= 113 and shield_turns == 0:
-            queue.append((player_hp, boss_hp, player_mana - 113, 6, poison_turns, recharge_turns, mana_spent + 113, turn))
+            queue.append(
+                (player_hp, boss_hp, player_mana - 113, 6, poison_turns, recharge_turns, mana_spent + 113, turn))
 
         # Poison
         if player_mana >= 173 and poison_turns == 0:
-            queue.append((player_hp, boss_hp, player_mana - 173, shield_turns, 6, recharge_turns, mana_spent + 173, turn))
+            queue.append(
+                (player_hp, boss_hp, player_mana - 173, shield_turns, 6, recharge_turns, mana_spent + 173, turn))
 
         # Recharge
         if player_mana >= 229 and recharge_turns == 0:
@@ -81,8 +91,12 @@ def part1():
     print(min_mana)
 
 
+def part1():
+    run_simulation(False)
+
+
 def part2():
-    pass
+    run_simulation(True)
 
 
 def main():
