@@ -2,29 +2,38 @@ import re
 
 
 def part1():
+    deck_size = 10007
+
     lines = [line.strip() for line in open("day22.txt").readlines()]
-    cards = list(range(10007))
+
+    result = 2019
 
     for line in lines:
         if line == "deal into new stack":
-            cards = cards[::-1]
+            result = new_stack(result, deck_size)
             continue
 
         num = int(re.search("-?\d+", line).group(0))
 
         if line.startswith("cut "):
-            cards = cards[num:] + cards[:num]
+            result = cut_n(result, num, deck_size)
         elif line.startswith("deal with increment "):
-            result = [0] * len(cards)
-            index = 0
-            for card in cards:
-                result[index] = card
-                index = (index + num) % len(cards)
-            cards = result
+            result = increment_n(result, num, deck_size)
         else:
             raise Exception("Unknown line format: " + line)
 
-    print(cards.index(2019))
+    print(result)
+
+def new_stack(index, deck_size):
+    return deck_size - index - 1
+
+
+def cut_n(index, n, deck_size):
+    return (index - n + deck_size) % deck_size
+
+
+def increment_n(index, n, deck_size):
+    return (index * n) % deck_size
 
 
 def part2():
