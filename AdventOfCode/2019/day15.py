@@ -154,8 +154,6 @@ def part1():
     MOVED = 1
     OXYGEN = 2
 
-    intcode = Intcode("day15.txt")
-
     direction_deltas = { N: (0, 1), S: (0, -1), W: (-1, 0), E: (1, 0) }
     opposite_directions = { N: S, S: N, W: E, E: W }
 
@@ -165,6 +163,7 @@ def part1():
     paths.append(((0, 0), []))
 
     while True:
+        intcode = Intcode("day15.txt")
         pos, path = paths.popleft()
         for direction in path:
             intcode.run_to_next_output([direction])
@@ -186,12 +185,79 @@ def part1():
                 paths.append((next_pos, path[:] + [direction]))
                 intcode.run_to_next_output([opposite_directions[direction]])
 
-        for direction in path[::-1]:
-            intcode.run_to_next_output([opposite_directions[direction]])
-
 
 def part2():
-    pass
+    N = 1
+    S = 2
+    W = 3
+    E = 4
+    direction_deltas = {N: (0, 1), S: (0, -1), W: (-1, 0), E: (1, 0)}
+
+    oxygen_pos, walls = explore_all_walls()
+    oxygen = set()
+    new_oxygen = set()
+    new_oxygen.add(oxygen_pos)
+    walls = set(walls)
+
+    minutes = 0
+    while len(new_oxygen) > len(oxygen):
+        minutes += 1
+        oxygen = set(new_oxygen)
+
+        for pos in oxygen:
+            for direction in [N, S, W, E]:
+                next_pos = (pos[0] + direction_deltas[direction][0], pos[1] + direction_deltas[direction][1])
+                if next_pos not in walls:
+                    new_oxygen.add(next_pos)
+
+    print(minutes - 1)
+
+
+def explore_all_walls():
+    N = 1
+    S = 2
+    W = 3
+    E = 4
+    WALL = 0
+    MOVED = 1
+    OXYGEN = 2
+
+    direction_deltas = {N: (0, 1), S: (0, -1), W: (-1, 0), E: (1, 0)}
+    opposite_directions = {N: S, S: N, W: E, E: W}
+
+    explored = set()
+    explored.add((0, 0))
+    walls = set()
+    oxygen_pos = (0, 0)
+    paths = deque()
+    paths.append(((0, 0), []))
+
+    while len(paths) > 0:
+        intcode = Intcode("day15.txt")
+        pos, path = paths.popleft()
+        for direction in path:
+            intcode.run_to_next_output([direction])
+
+        for direction in [N, S, W, E]:
+            delta = direction_deltas[direction]
+            next_pos = (pos[0] + delta[0], pos[1] + delta[1])
+
+            if next_pos in explored or next_pos in walls:
+                continue
+
+            explored.add(next_pos)
+
+            output = intcode.run_to_next_output([direction])
+            if output == OXYGEN:
+                oxygen_pos = next_pos
+                intcode.run_to_next_output([opposite_directions[direction]])
+            elif output == MOVED:
+                paths.append((next_pos, path[:] + [direction]))
+                intcode.run_to_next_output([opposite_directions[direction]])
+            elif output == WALL:
+                walls.add(next_pos)
+
+    return oxygen_pos, walls
 
 
 def main():
