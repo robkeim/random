@@ -17,8 +17,8 @@ class Intcode:
     __MODE_IMMEDIATE = 1
     __MODE_RELATIVE_BASE = 2
 
-    def __init__(self, filename):
-        input_memory = [int(num) for num in open(filename).read().split(",")]
+    def __init__(self, file_contents):
+        input_memory = [int(num) for num in file_contents.split(",")]
 
         self.__memory = defaultdict(int)
 
@@ -164,15 +164,31 @@ def part1():
 
     for y in range(0, 50):
         for x in range(0, 50):
-            intcode = Intcode("day19.txt")
+            intcode = Intcode(open("day19.txt").read())
             if intcode.run_to_next_output([x, y]) == 1:
                 points_affected += 1
 
     print(points_affected)
 
 
+# This takes a couple of minutes to run with pypy, but it eventually finds the solution
 def part2():
-    pass
+    file_contents = open("day19.txt").read()
+
+    for y in range(0, 1500):
+        for x in range(0, 1500):
+            intcode = Intcode(file_contents)
+            if intcode.run_to_next_output([x, y]) != 1:
+                continue
+
+            intcode = Intcode(file_contents)
+            if intcode.run_to_next_output([x + 99, y]) != 1:
+                continue
+
+            intcode = Intcode(file_contents)
+            if intcode.run_to_next_output([x, y + 99]) == 1:
+                print(x * 10000 + y)
+                return
 
 
 def main():
