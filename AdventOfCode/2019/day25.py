@@ -181,8 +181,6 @@ def main():
 
         intcode.run_until_next_input("north")
 
-        pass
-
 
 if __name__ == "__main__":
     main()
