@@ -33,7 +33,7 @@ class Intcode:
         if inputs is None:
             inputs = []
         else:
-            inputs = [ord(char) for char in inputs] + [10]
+            inputs = [ord(char) for char in inputs]
 
         self.__inputs += inputs
 
@@ -148,18 +148,33 @@ class Intcode:
 def part1():
     intcode = Intcode("day21.txt")
     # Jump if there's a hole in A, B, or C and a space to land in D
-    instructions = """NOT A J
+    instructions = """\
+NOT A J
 NOT B T
 OR T J
 NOT C T
 OR T J
 AND D J
-WALK"""
+WALK
+"""
     intcode.run_until_next_input(instructions)
 
 
 def part2():
-    pass
+    intcode = Intcode("day21.txt")
+    instructions = """\
+NOT A J
+AND D J
+NOT B T
+AND D T
+OR T J
+NOT C T
+AND D T
+AND H T
+OR T J
+RUN
+"""
+    intcode.run_until_next_input(instructions)
 
 
 def main():
