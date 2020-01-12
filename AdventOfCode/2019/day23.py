@@ -30,6 +30,7 @@ class Intcode:
 
         self.inputs = []
         self.outputs = []
+        self.try_receive_count = 0
 
     def run_tick(self):
         opcode = self.__memory[self.__instruction_pointer]
@@ -62,6 +63,9 @@ class Intcode:
         elif opcode == self.__OPCODE_INPUT:
             if len(self.inputs) == 0:
                 self.inputs.append(-1)
+                self.try_receive_count += 1
+            else:
+                self.try_receive_count = 0
 
             self.__set_value(self.__instruction_pointer + 1, self.__relative_base, modes[0], self.inputs[0])
             self.inputs = self.inputs[1:]
@@ -162,7 +166,51 @@ def part1():
 
 
 def part2():
-    pass
+    computers = [Intcode("day23.txt") for _ in range(50)]
+
+    for i in range(50):
+        computers[i].inputs.append(i)
+
+    nat_x = None
+    nat_y = None
+    prev_nat_y_value = None
+
+    while True:
+        is_empty = True
+
+        for i in range(50):
+            if computers[i].try_receive_count < 2:
+                is_empty = False
+                break
+
+        if is_empty:
+            if nat_y == prev_nat_y_value:
+                print(nat_y)
+                return
+
+            prev_nat_y_value = nat_y
+            computers[0].inputs.append(nat_x)
+            computers[0].inputs.append(nat_y)
+
+            for i in range(50):
+                computers[i].try_receive_count = 0
+
+        for i in range(50):
+            computer = computers[i]
+            if len(computer.outputs) >= 3:
+                destination, x, y = computer.outputs[:3]
+                computer.outputs = computer.outputs[3:]
+
+                assert destination < 50 or destination == 255
+
+                if destination == 255:
+                    nat_x = x
+                    nat_y = y
+                else:
+                    computers[destination].inputs.append(x)
+                    computers[destination].inputs.append(y)
+
+            computer.run_tick()
 
 
 def main():
