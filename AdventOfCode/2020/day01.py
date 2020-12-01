@@ -12,13 +12,16 @@ def part1():
 
 def part2():
     values = [int(value.strip()) for value in open("day01.txt").readlines()]
+    values_dict = dict()
 
     for value1 in values:
         for value2 in values:
-            for value3 in values:
-                if value1 + value2 + value3 == 2020:
-                    print(value1 * value2 * value3)
-                    return
+            values_dict[value1 + value2] = value1 * value2
+
+    for value in values:
+        if 2020 - value in values_dict:
+            print(values_dict[2020 - value] * value)
+            return
 
     raise Exception("No solution found")
 
