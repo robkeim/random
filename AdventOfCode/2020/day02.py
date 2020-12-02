@@ -24,7 +24,32 @@ def part1():
 
 
 def part2():
-    pass
+    lines = [value.strip() for value in open("day02.txt").readlines()]
+    valid_passwords = 0
+
+    for line in lines:
+        match = re.match("(\d+)-(\d+) ([a-z]): ([a-z]+)", line)
+
+        if not match:
+            raise Exception("Invalid input line: " + line)
+
+        first_index = int(match.group(1)) - 1
+        second_index = int(match.group(2)) - 1
+        letter = match.group(3)
+        password = match.group(4)
+
+        num_matches = 0
+
+        if first_index < len(password) and password[first_index] == letter:
+            num_matches += 1
+
+        if second_index < len(password) and password[second_index] == letter:
+            num_matches += 1
+
+        if num_matches == 1:
+            valid_passwords += 1
+
+    print(valid_passwords)
 
 
 def main():
