@@ -1,11 +1,11 @@
 def part1():
-    grid = [value.strip() for value in open("day03.txt").readlines()]
+    grid = [line.strip() for line in open("day03.txt").readlines()]
 
     print(count_trees(grid, 3, 1))
 
 
 def part2():
-    grid = [value.strip() for value in open("day03.txt").readlines()]
+    grid = [line.strip() for line in open("day03.txt").readlines()]
 
     combinations = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)]
 
@@ -30,6 +30,7 @@ def count_trees(grid, right, down):
         col += right
 
     return num_trees
+
 
 def main():
     part1()

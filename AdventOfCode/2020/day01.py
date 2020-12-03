@@ -1,5 +1,5 @@
 def part1():
-    values = [int(value.strip()) for value in open("day01.txt").readlines()]
+    values = [int(line.strip()) for line in open("day01.txt").readlines()]
     values_set = set(values)
 
     for value in values:
@@ -11,7 +11,7 @@ def part1():
 
 
 def part2():
-    values = [int(value.strip()) for value in open("day01.txt").readlines()]
+    values = [int(line.strip()) for line in open("day01.txt").readlines()]
     values_dict = dict()
 
     for value1 in values:

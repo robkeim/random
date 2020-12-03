@@ -3,7 +3,7 @@ import re
 
 
 def part1():
-    lines = [value.strip() for value in open("day02.txt").readlines()]
+    lines = [line.strip() for line in open("day02.txt").readlines()]
     valid_passwords = 0
 
     for line in lines:
@@ -24,7 +24,7 @@ def part1():
 
 
 def part2():
-    lines = [value.strip() for value in open("day02.txt").readlines()]
+    lines = [line.strip() for line in open("day02.txt").readlines()]
     valid_passwords = 0
 
     for line in lines:
