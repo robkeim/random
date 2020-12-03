@@ -1,5 +1,5 @@
 def part1():
-    pass
+    lines = [line.strip() for line in open("dayXX.txt").readlines()]
 
 
 def part2():
