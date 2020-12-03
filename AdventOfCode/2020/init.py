@@ -1,4 +1,4 @@
-# Shameless copied (and then modified) from here:
+# Shamelessly copied (and then modified) from here:
 # https://github.com/Universemul/AdventOfCode2020/blob/master/start.py
 
 import datetime
