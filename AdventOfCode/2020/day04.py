@@ -2,16 +2,14 @@ import re
 
 
 def part1():
-    raw_input = open("day04.txt").read().strip()
-    raw_input = raw_input.replace("\n\n", "_").replace("\n", " ")
+    raw_input = open("day04.txt").read().strip().replace("\n\n", "_").replace("\n", " ")
     passports = [dict(map(lambda s: s.split(":"), line.split(" "))) for line in raw_input.split("_")]
 
     print(len([passport for passport in passports if len(passport) == 8 or (len(passport) == 7 and "cid" not in passport)]))
 
 
 def part2():
-    raw_input = open("day04.txt").read().strip()
-    raw_input = raw_input.replace("\n\n", "_").replace("\n", " ")
+    raw_input = open("day04.txt").read().strip().replace("\n\n", "_").replace("\n", " ")
     passports = [dict(map(lambda s: s.split(":"), line.split(" "))) for line in raw_input.split("_")]
 
     valid_passports = 0
