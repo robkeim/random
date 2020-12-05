@@ -1,15 +1,34 @@
 def part1():
+    print(max(parse_boarding_passes()))
+
+
+def part2():
+    boarding_passes = sorted(parse_boarding_passes())
+
+    prev = boarding_passes[0]
+
+    for i in range(1, len(boarding_passes)):
+        if boarding_passes[i] != prev + 1:
+            print(prev + 1)
+            return
+
+        prev = boarding_passes[i]
+
+    raise Exception("No ticket found")
+
+
+def parse_boarding_passes():
     boarding_passes = [line.strip() for line in open("day05.txt").readlines()]
-    max_id = 0
+    result = []
 
     for boarding_pass in boarding_passes:
         row = binary_search(0, 127, boarding_pass[:-3])
         col = binary_search(0, 7, boarding_pass[-3:])
         seat_id = row * 8 + col
 
-        max_id = max(max_id, seat_id)
+        result.append(seat_id)
 
-    print(max_id)
+    return result
 
 
 def binary_search(low, high, instructions):
@@ -25,10 +44,6 @@ def binary_search(low, high, instructions):
         raise Exception("Instructions didn't result in a single answer")
 
     return low
-
-
-def part2():
-    pass
 
 
 def main():
