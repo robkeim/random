@@ -3,7 +3,18 @@ def part1():
 
 
 def part2():
-    pass
+    groups = [line.split("\n") for line in open("day06.txt").read().strip().split("\n\n")]
+    result = 0
+
+    for group in groups:
+        intersection = set(group[0])
+
+        for person in group[1:]:
+            intersection = intersection.intersection(person)
+
+        result += len(intersection)
+
+    print(result)
 
 
 def main():
