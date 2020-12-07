@@ -45,7 +45,45 @@ def part1():
 
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("day07.txt").readlines()]
+
+    bags = defaultdict(list)
+
+    for line in lines:
+        match = re.fullmatch("([a-z ]+) bags contain ([^.]+).", line)
+
+        if not match:
+            raise Exception("Wrongly formatted line: " + line)
+
+        bag = match.group(1)
+        contains = match.group(2).split(", ")
+
+        for contain in contains:
+            if contain == "no other bags":
+                bags[bag] = []
+                continue
+
+            match = re.fullmatch("(\d+) ([a-z ]+) bags?", contain)
+
+            if not match:
+                raise Exception("Wrongly formatted line: " + line)
+
+            bags[bag].append((int(match.group(1)), match.group(2)))
+
+    result = 0
+
+    to_process = bags["shiny gold"][:]
+
+    while len(to_process) > 0:
+        num, bag = to_process.pop(0)
+        result += num
+
+        nested_bags = bags[bag][:]
+
+        for nested_count, nested_bag in nested_bags:
+            to_process.append((nested_count * num, nested_bag))
+
+    print(result)
 
 
 def main():
