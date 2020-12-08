@@ -11,8 +11,14 @@ def main():
             module = __import__("day" + day_str)
 
             print("Day " + day_str)
-            print("    Part 1: " + str(measure_execution_time(module.part1)) + "s")
-            print("    Part 2: " + str(measure_execution_time(module.part2)) + "s")
+
+            part1 = measure_execution_time(module.part1)
+            print("    Part 1: " + str(part1) + "s (" + str(round(part1 * 1000, 1)) + " ms)")
+
+            part2 = measure_execution_time(module.part2)
+            print("    Part 2: " + str(part2) + "s (" + str(round(part2 * 1000, 1)) + " ms)")
+
+            print()
 
         except ModuleNotFoundError:
             break
