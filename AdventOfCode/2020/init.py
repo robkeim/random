@@ -38,8 +38,12 @@ def download_input_file(day, year):
     url = "https://adventofcode.com/{}/day/{}/input".format(year, day)
     response = requests.get(url, cookies={"session": session_cookie})
 
-    with open("day{}.txt".format(get_day_string(day)), "wb") as output:
+    file_name = "day{}.txt".format(get_day_string(day))
+
+    with open(file_name, "wb") as output:
         output.write(response.content)
+
+    shutil.copy(file_name, file_name.replace(".", "real."))
 
 
 def get_day_string(day):
