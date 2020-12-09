@@ -20,7 +20,22 @@ def part1():
 
 
 def part2():
-    pass
+    values = [int(line.strip()) for line in open("day09.txt").readlines()]
+    target = 15353384  # Result from part 1
+
+    for i in range(len(values)):
+        total = 0
+
+        for j in range(i, len(values)):
+            total += values[j]
+
+            if total == target:
+                print(min(values[i:j]) + max(values[i:j]))
+                return
+            elif total > target:
+                break
+
+    raise Exception("No solution found")
 
 
 def main():
