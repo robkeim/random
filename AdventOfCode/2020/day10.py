@@ -16,7 +16,26 @@ def part1():
 
 
 def part2():
-    pass
+    volts = set([int(line.strip()) for line in open("day10.txt").readlines()])
+
+    target = max(volts) + 3
+    volts.add(target)
+
+    print(num_valid(0, target, volts, {target: 1}))
+
+
+def num_valid(cur, target, volts, cache):
+    if cur in cache:
+        return cache[cur]
+
+    result = 0
+
+    for i in range(1, 4):
+        if cur + i in volts:
+            result += num_valid(cur + i, target, volts, cache)
+
+    cache[cur] = result
+    return result
 
 
 def main():
