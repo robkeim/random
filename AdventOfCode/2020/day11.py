@@ -15,6 +15,9 @@ def part1():
 
         for row in range(num_rows):
             for col in range(num_cols):
+                if next_iteration[row][col] == ".":
+                    continue
+
                 occupied_neighbors = 0
 
                 for delta_row in range(-1, 2):
@@ -30,10 +33,8 @@ def part1():
 
                 if cur_iteration[row][col] == "L":
                     next_iteration[row][col] = "#" if occupied_neighbors == 0 else "L"
-                elif cur_iteration[row][col] == "#":
+                else:  # Hash (#)
                     next_iteration[row][col] = "L" if occupied_neighbors >= 4 else "#"
-                else:
-                    next_iteration[row][col] = "."
 
         next_hash = hash_grid(next_iteration)
         cur_iteration = next_iteration
@@ -70,6 +71,9 @@ def part2():
 
         for row in range(num_rows):
             for col in range(num_cols):
+                if next_iteration[row][col] == ".":
+                    continue
+
                 occupied_neighbors = 0
 
                 for direction_row in range(-1, 2):
@@ -96,10 +100,8 @@ def part2():
 
                 if cur_iteration[row][col] == "L":
                     next_iteration[row][col] = "#" if occupied_neighbors == 0 else "L"
-                elif cur_iteration[row][col] == "#":
+                else:  # Hash (#)
                     next_iteration[row][col] = "L" if occupied_neighbors >= 5 else "#"
-                else:
-                    next_iteration[row][col] = "."
 
         next_hash = hash_grid(next_iteration)
         cur_iteration = next_iteration
@@ -123,9 +125,7 @@ def hash_grid(grid):
     result = ""
 
     for row in range(len(grid)):
-        for col in range(len(grid[0])):
-            if grid[row][col] == "#":
-                result += str(row) + "," + str(col) + "_"
+        result += "".join(grid[row])
 
     return result
 
