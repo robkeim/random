@@ -5,6 +5,7 @@ import datetime
 import os
 import requests
 import shutil
+import sys
 
 
 def main():
@@ -21,7 +22,7 @@ def copy_skeleton(day):
 
     if os.path.isfile(file):
         print("Python file for today already exists, skipping")
-        return
+        sys.exit(1)
 
     shutil.copyfile("skeleton.py", file)
 
