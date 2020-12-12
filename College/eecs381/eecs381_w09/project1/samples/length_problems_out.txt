@@ -1,7 +1,0 @@
-This is a short line, just to get started.
-Is "pseudosyzygy" really a word?
-This is a very long line that also has a very long word in the middle of it, namely protoquasispseudoantidisestablishmentarianism, but on the other hand, the line could contain even more long words, so that it was extremely long to an utterly amazing extent.
-This is also a long line, with short word in the middle of it, syzygy, that if replaced, might result in a bad line length.
-This is another long line, with short word in the middle of it, slithy, that if replaced, might result in a bad line length.
-This is a short line, but we have already started.
-

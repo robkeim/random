@@ -1,5 +1,0 @@
-./p5exe 100 3 1 test/sports > sampleoutput/sports.out
-./p5exe 100 3 1 test/xyz > sampleoutput/xyz.out
-./p5exe 100 3 1 test/letters > sampleoutput/letters.out
-./p5exe 100 3 1 test/large > sampleoutput/large.out
-

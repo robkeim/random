@@ -1,4 +1,0 @@
-Please first read the JavaWorld introduction to XML, here:
-
-http://www.javaworld.com/javaworld/jw-04-1999/jw-04-xml.html?page=1
-
