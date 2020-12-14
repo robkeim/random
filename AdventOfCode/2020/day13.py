@@ -13,12 +13,26 @@ def part1():
             min_wait = wait_time
             min_bus = bus
 
-    print(min_bus, min_wait)
     print(min_bus * min_wait)
 
 
+# After trying a bunch of differnet things and reading about the Chinese Remainder Theorem, I'm giving up on trying
+# to implement this problem and pulling a solution from here:
+# https://dev.to/qviper/advent-of-code-2020-python-solution-day-13-24k4
 def part2():
-    pass
+    buses = open("day13.txt").readlines()[1].strip().split(",")
+
+    mods = { int(bus): -i % int(bus) for i, bus in enumerate(buses) if bus != "x" }
+    values = list(reversed(sorted(mods)))
+    result = mods[values[0]]
+    cycle = values[0]
+
+    for bus in values[1:]:
+        while result % bus != mods[bus]:
+            result += cycle
+        cycle *= bus
+
+    print(result)
 
 
 def main():
