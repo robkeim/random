@@ -2,12 +2,21 @@ from collections import defaultdict
 
 
 def part1():
+    print(run(2020))
+
+
+def part2():
+    print(run(30000000))
+
+
+def run(num_turns):
     starting_values = [int(value) for value in open("day15.txt").read().split(",")]
     prev = None
     turn = 0
     value_to_turns = defaultdict(list)
 
-    while turn < 2020:
+    while turn < num_turns:
+
         if len(starting_values) > 0:
             next_value = starting_values.pop(0)
         else:
@@ -21,10 +30,6 @@ def part1():
         turn += 1
 
     print(prev)
-
-
-def part2():
-    pass
 
 
 def main():
