@@ -16,7 +16,6 @@ def run(num_turns):
     value_to_turns = defaultdict(list)
 
     while turn < num_turns:
-
         if len(starting_values) > 0:
             next_value = starting_values.pop(0)
         else:
