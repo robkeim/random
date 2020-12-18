@@ -2,25 +2,25 @@ import re
 
 
 def part1():
-    equations = [line.strip() for line in open("day18.txt").readlines()]
+    expressions = [line.strip() for line in open("day18.txt").readlines()]
 
     result = 0
 
-    for equation in equations:
-        match = re.search("\(([^()]+)\)", equation)
+    for expression in expressions:
+        match = re.search("\(([^()]+)\)", expression)
         while match:
-            equation = equation.replace(match.group(0), calculate(match.group(1)))
-            match = re.search("\(([^()]+)\)", equation)
+            expression = expression.replace(match.group(0), evaluate_expression(match.group(1)))
+            match = re.search("\(([^()]+)\)", expression)
 
-        equation = calculate(equation)
+        expression = evaluate_expression(expression)
 
-        result += int(equation)
+        result += int(expression)
 
     print(result)
 
 
-def calculate(value):
-    values = value.split(" ")
+def evaluate_expression(expression):
+    values = expression.split(" ")
 
     result = int(values[0])
 
@@ -40,7 +40,35 @@ def calculate(value):
 
 
 def part2():
-    pass
+    expressions = [line.strip() for line in open("day18.txt").readlines()]
+
+    result = 0
+
+    for expression in expressions:
+        match = re.search("\(([^()]+)\)", expression)
+        while match:
+            expression = expression.replace(match.group(0), evaluate_expression_with_reverse_order_of_operations(match.group(1)), 1)
+            match = re.search("\(([^()]+)\)", expression)
+
+        expression = evaluate_expression_with_reverse_order_of_operations(expression)
+
+        result += int(expression)
+
+    print(result)
+
+
+def evaluate_expression_with_reverse_order_of_operations(equation):
+    while "+" in equation:
+        match = re.search("(\d+) \+ (\d+)", equation)
+
+        equation = equation.replace(match.group(0), str(int(match.group(1)) + int(match.group(2))), 1)
+
+    while "*" in equation:
+        match = re.search("(\d+) \* (\d+)", equation)
+
+        equation = equation.replace(match.group(0), str(int(match.group(1)) * int(match.group(2))), 1)
+
+    return equation
 
 
 def main():
