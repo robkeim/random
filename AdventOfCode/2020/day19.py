@@ -1,3 +1,6 @@
+import re
+
+
 def part1():
     lines = [line.strip() for line in open("day19.txt").readlines()]
     unsolved = dict()
@@ -59,7 +62,63 @@ def part1():
 
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("day19.txt").readlines()]
+    rules = dict()
+    potential_matches = []
+
+    for line in lines:
+        if ":" not in line:
+            potential_matches.append(line)
+            continue
+
+        split = line.split(":")
+
+        if "\"" in line:
+            rules[split[0]] = split[1].strip().strip("\"")
+            continue
+
+        value = split[1].strip()
+
+        if "|" in value:
+            value = "( " + value + " )"
+
+        rules[split[0]] = value
+
+    # 8: 42 | 42 8
+    # 11: 42 31 | 42 11 31
+    rules["8"] = "( 42 )+"
+    rules["11"] = "42 ( 42 31 )* 31"
+
+    finished = False
+
+    while not finished:
+        finished = True
+
+        for key in rules:
+            values = rules[key].split(" ")
+
+            for index, value in enumerate(values):
+                if value.isnumeric():
+                    values[index] = rules[value]
+                    finished = False
+
+            rules[key] = " ".join(values)
+
+    print(rules)
+
+    for key in rules:
+        rules[key] = rules[key].replace(" ", "")
+
+    count = 0
+
+    for item in potential_matches:
+        for rule in rules:
+            if re.fullmatch(rules[rule], item):
+                print(rules[rule], item)
+                count += 1
+                break
+
+    print(count)
 
 
 def main():
