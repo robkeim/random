@@ -37,7 +37,38 @@ def part1():
 
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("day21.txt").readlines()]
+    allergen_to_ingredients = dict()
+
+    for line in lines:
+        match = re.fullmatch("(.+) \(contains (.+)\)", line)
+        assert match, "Invalid line format: " + line
+
+        ingredients = set(match.group(1).split())
+
+        for allergen in match.group(2).split(", "):
+            if allergen not in allergen_to_ingredients:
+                allergen_to_ingredients[allergen] = ingredients
+            else:
+                allergen_to_ingredients[allergen] = allergen_to_ingredients[allergen].intersection(ingredients)
+
+    results = []
+
+    while len(allergen_to_ingredients) > 0:
+        for allergen in list(allergen_to_ingredients):
+            if len(allergen_to_ingredients[allergen]) == 1:
+                ingredient = list(allergen_to_ingredients[allergen])[0]
+                results.append((allergen, ingredient))
+
+                for key in allergen_to_ingredients:
+                    if ingredient in allergen_to_ingredients[key]:
+                        allergen_to_ingredients[key].remove(ingredient)
+
+                del allergen_to_ingredients[allergen]
+
+    results = sorted(results)
+
+    print(",".join([result[1] for result in results]))
 
 
 def main():
