@@ -1,7 +1,101 @@
 import re
+from collections import defaultdict
+from copy import deepcopy
 
 
 def part1():
+    placed_tiles = get_placed_tiles()
+
+    min_x = float("inf")
+    max_x = float("-inf")
+    min_y = float("inf")
+    max_y = float("-inf")
+
+    for x, y in placed_tiles:
+        min_x = min(min_x, x)
+        max_x = max(max_x, x)
+        min_y = min(min_y, y)
+        max_y = max(max_y, y)
+
+    result = 1
+
+    result *= placed_tiles[(min_x, max_y)][0]
+    result *= placed_tiles[(max_x, max_y)][0]
+    result *= placed_tiles[(max_x, min_y)][0]
+    result *= placed_tiles[(min_x, min_y)][0]
+
+    print(result)
+
+
+def part2():
+    giant_tile = extract_giant_tile()
+
+    transformations = [
+        giant_tile,
+        rotate(giant_tile),
+        rotate(rotate(giant_tile)),
+        rotate(rotate(rotate(giant_tile))),
+        vertical_flip(giant_tile),
+        vertical_flip(rotate(giant_tile)),
+        vertical_flip(rotate(rotate(giant_tile))),
+        vertical_flip(rotate(rotate(rotate(giant_tile))))
+    ]
+
+    found = False
+
+    for transformation in transformations:
+        result = count_non_sea_monsters(transformation)
+
+        if result > 0:
+            found = True
+            print(result)
+            break
+
+    assert found, "No sea monsters found"
+
+
+def count_non_sea_monsters(tile):
+    len_ = len(tile)
+
+    tile = deepcopy(tile)
+
+    for i in range(len_):
+        tile[i] = list(tile[i])
+
+    offsets = [(0, 18), (1, 0), (1, 5), (1, 6), (1, 11), (1, 12), (1, 17), (1, 18), (1, 19), (2, 1), (2, 4), (2, 7), (2, 10), (2, 13), (2, 16)]
+
+    found = False
+
+    for r in range(len_ - 3):
+        for c in range(len_ - 20):
+            is_sea_monster = True
+
+            for dr, dc in offsets:
+                if tile[r + dr][c + dc] != "#":
+                    is_sea_monster = False
+                    break
+
+            if is_sea_monster:
+                found = True
+
+                for dr, dc in offsets:
+                    tile[r + dr][c + dc] = "_"
+
+
+    if found:
+        result = 0
+
+        for r in range(len_):
+            for c in range(len_):
+                if tile[r][c] == "#":
+                    result += 1
+
+        return result
+
+    return 0
+
+
+def get_placed_tiles():
     tiles = parse_tiles()
 
     # Place first tile
@@ -77,25 +171,7 @@ def part1():
             if found:
                 break
 
-    min_x = float("inf")
-    max_x = float("-inf")
-    min_y = float("inf")
-    max_y = float("-inf")
-
-    for x, y in placed_tiles:
-        min_x = min(min_x, x)
-        max_x = max(max_x, x)
-        min_y = min(min_y, y)
-        max_y = max(max_y, y)
-
-    result = 1
-
-    result *= placed_tiles[(min_x, max_y)][0]
-    result *= placed_tiles[(max_x, max_y)][0]
-    result *= placed_tiles[(max_x, min_y)][0]
-    result *= placed_tiles[(min_x, min_y)][0]
-
-    print(result)
+    return placed_tiles
 
 
 def parse_tiles():
@@ -190,8 +266,52 @@ def vertical_flip(tile):
     return tile[::-1]
 
 
-def part2():
-    pass
+def extract_giant_tile():
+    tiles = get_placed_tiles()
+
+    min_x = float("inf")
+    max_x = float("-inf")
+    min_y = float("inf")
+    max_y = float("-inf")
+
+    for x, y in tiles:
+        min_x = min(min_x, x)
+        max_x = max(max_x, x)
+        min_y = min(min_y, y)
+        max_y = max(max_y, y)
+
+    # Remove borders
+    borderless_tiles = dict()
+
+    for key in tiles:
+        tile = tiles[key][1]
+        result = []
+
+        for index in range(1, len(tile) - 1):
+            result.append(tile[index][1:-1])
+
+        borderless_tiles[key] = result[::-1]
+
+    tiles = borderless_tiles
+
+    rows = defaultdict(list)
+    row = 0
+
+    for y in range(min_y, max_y + 1):
+        for x in range(min_x, max_x + 1):
+            tile = tiles[(x, y)]
+
+            for index, tile_row in enumerate(tile):
+                rows[row + index].append(tile_row)
+
+        row += 8
+
+    giant_tile = []
+
+    for i in range(row):
+        giant_tile.append("".join(rows[i]))
+
+    return giant_tile
 
 
 def main():
