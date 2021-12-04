@@ -1,6 +1,3 @@
-from collections import defaultdict
-
-
 def part1():
     lines = [line.strip() for line in open("day04.txt").readlines()]
 
@@ -59,7 +56,37 @@ def count_score(board):
 
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("day04.txt").readlines()]
+
+    numbers_drawn = lines[0].split(",")
+    lines = lines[2:]
+
+    boards = []
+
+    while len(lines) > 0:
+        boards.append([line.replace("  ", " ").split(" ") for line in lines[:5]])
+        lines = lines[6:]
+
+    boards_won = set()
+
+    while len(numbers_drawn):
+        number = numbers_drawn[0]
+        numbers_drawn = numbers_drawn[1:]
+
+        for index, board in enumerate(boards):
+            for i in range(5):
+                for j in range(5):
+                    if board[i][j] == number:
+                        board[i][j] = "X"
+
+                        if not index in boards_won and has_won(board):
+                            boards_won.add(index)
+
+                            if len(boards_won) == len(boards):
+                                print(count_score(board) * int(number))
+                                return
+
+    raise Exception("No more numbers available, but no winner found yet")
 
 
 def main():
