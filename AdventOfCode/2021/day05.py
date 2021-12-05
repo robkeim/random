@@ -2,6 +2,14 @@ import re
 
 
 def part1():
+    count_overlap(False)
+
+
+def part2():
+    count_overlap(True)
+
+
+def count_overlap(include_diagonal):
     lines = [line.strip() for line in open("day05.txt").readlines()]
 
     points = set()
@@ -41,14 +49,20 @@ def part1():
                     points.add(coordinate)
 
                 max_x -= 1
-        else:
-            pass # Nothing to do here
+        elif include_diagonal:
+            steps = abs(x1 - x2) + 1
+            delta_x = 1 if x2 > x1 else -1
+            delta_y = 1 if y2 > y1 else -1
+
+            for i in range(steps):
+                coordinate = (x1 + i * delta_x, y1 + i * delta_y)
+
+                if coordinate in points:
+                    overlap.add(coordinate)
+                else:
+                    points.add(coordinate)
 
     print(len(overlap))
-
-
-def part2():
-    pass
 
 
 def main():
