@@ -1,13 +1,14 @@
+opening = {"(", "[", "{", "<"}
+
+close_to_open_mapping = {
+    ")": "(",
+    "]": "[",
+    "}": "{",
+    ">": "<"
+}
+
+
 def part1():
-    opening = {"(", "[", "{", "<"}
-
-    mapping = {
-        ")": "(",
-        "]": "[",
-        "}": "{",
-        ">": "<"
-    }
-
     points = {
         ")": 3,
         "]": 57,
@@ -25,7 +26,7 @@ def part1():
         for char in line:
             if char in opening:
                 stack.append(char)
-            elif len(stack) > 0 and stack.pop() == mapping[char]:
+            elif len(stack) > 0 and stack.pop() == close_to_open_mapping[char]:
                 pass
             else:
                 result += points[char]
@@ -35,7 +36,40 @@ def part1():
 
 
 def part2():
-    pass
+    points = {
+        "(": 1,
+        "[": 2,
+        "{": 3,
+        "<": 4
+    }
+
+    lines = [line.strip() for line in open("day10.txt").readlines()]
+
+    scores = []
+
+    for line in lines:
+        stack = []
+        corrupted = False
+
+        for char in line:
+            if char in opening:
+                stack.append(char)
+            elif len(stack) > 0 and stack.pop() == close_to_open_mapping[char]:
+                pass
+            else:
+                corrupted = True
+                break
+
+        if not corrupted:
+            score = 0
+
+            for element in stack[::-1]:
+                score *= 5
+                score += points[element]
+
+            scores.append(score)
+
+    print(sorted(scores)[len(scores) // 2])
 
 
 def main():
