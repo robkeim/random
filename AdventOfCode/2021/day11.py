@@ -56,7 +56,52 @@ def print_grid(grid):
 
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("day11.txt").readlines()]
+
+    grid = []
+
+    for line in lines:
+        grid.append([int(num) for num in line])
+
+    num_iterations = 0
+
+    while True:
+        num_iterations += 1
+
+        # Increase energy level by 1
+        for row in range(10):
+            for col in range(10):
+                grid[row][col] += 1
+
+        # Octopuses flash
+        flashed = set()
+        has_flash = True
+
+        while has_flash:
+            has_flash = False
+
+            for row in range(10):
+                for col in range(10):
+                    if grid[row][col] > 9 and (row, col) not in flashed:
+                        flashed.add((row, col))
+                        has_flash = True
+
+                        for delta_row in range(-1, 2):
+                            for delta_col in range(-1, 2):
+                                update_row = row + delta_row
+                                update_col = col + delta_col
+
+                                if 0 <= update_row < 10 and 0 <= update_col < 10:
+                                    grid[update_row][update_col] += 1
+
+        # Reset energy for octopuses
+        for (row, col) in flashed:
+            grid[row][col] = 0
+
+        if len(flashed) == 100:
+            break
+
+    print(num_iterations)
 
 
 def main():
