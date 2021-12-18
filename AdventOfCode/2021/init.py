@@ -10,7 +10,7 @@ import sys
 
 def main():
     now = datetime.datetime.now()
-    day = now.day
+    day = now.day if len(sys.argv) < 2 else int(sys.argv[1])
     year = now.year
 
     copy_skeleton(day)
