@@ -1,4 +1,5 @@
 import re
+from collections import defaultdict
 
 
 def part1():
@@ -7,32 +8,17 @@ def part1():
     result = 0
 
     for line in lines:
-        max_blue = 0
-        max_green = 0
-        max_red = 0
-        id = int(line.split(":")[0].split()[1])
+        game_id = int(line.split(":")[0].split()[1]) # Ugly but it works :)
+        max_dict = defaultdict(int)
 
         rounds = line.split(";")
 
-        for round in rounds:
-            for match in re.findall("(\d+) (blue|green|red)", round):
-                value = int(match[0])
-                color = match[1]
+        for cur_round in rounds:
+            for match in re.findall(r"(\d+) (blue|green|red)", cur_round):
+                max_dict[match[1]] = max(max_dict[match[1]], int(match[0]))
 
-                if color == "blue":
-                    max_blue = max(max_blue, value)
-                    pass
-                elif color == "green":
-                    max_green = max(max_green, value)
-                    pass
-                elif color == "red":
-                    max_red = max(max_red, value)
-                    pass
-                else:
-                    raise Exception("Unknown color " + color)
-
-        if max_red <= 12 and max_green <= 13 and max_blue <= 14:
-            result += id
+        if max_dict["red"] <= 12 and max_dict["green"] <= 13 and max_dict["blue"] <= 14:
+            result += game_id
 
     print(result)
 
@@ -43,31 +29,15 @@ def part2():
     result = 0
 
     for line in lines:
-        max_blue = 0
-        max_green = 0
-        max_red = 0
-        id = int(line.split(":")[0].split()[1])
+        max_dict = defaultdict(int)
 
         rounds = line.split(";")
 
-        for round in rounds:
-            for match in re.findall("(\d+) (blue|green|red)", round):
-                value = int(match[0])
-                color = match[1]
+        for cur_round in rounds:
+            for match in re.findall(r"(\d+) (blue|green|red)", cur_round):
+                max_dict[match[1]] = max(max_dict[match[1]], int(match[0]))
 
-                if color == "blue":
-                    max_blue = max(max_blue, value)
-                    pass
-                elif color == "green":
-                    max_green = max(max_green, value)
-                    pass
-                elif color == "red":
-                    max_red = max(max_red, value)
-                    pass
-                else:
-                    raise Exception("Unknown color " + color)
-
-        result += max_red * max_green * max_blue
+        result += max_dict["red"] * max_dict["green"] * max_dict["blue"]
 
     print(result)
 
