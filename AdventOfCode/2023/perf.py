@@ -13,10 +13,10 @@ def main():
             print("Day " + day_str)
 
             part1 = measure_execution_time(module.part1)
-            print("    Part 1: " + str(part1) + "s (" + str(round(part1 * 1000, 1)) + " ms)")
+            print("    Part 1: {} sec ({} ms)".format(part1, round(part1 * 1000, 1)))
 
             part2 = measure_execution_time(module.part2)
-            print("    Part 2: " + str(part2) + "s (" + str(round(part2 * 1000, 1)) + " ms)")
+            print("    Part 2: {} sec ({} ms)".format(part2, round(part2 * 1000, 1)))
 
             print()
 
