@@ -19,7 +19,19 @@ def calc_score(total_time, seconds_to_hold):
 
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("day06.txt").readlines()]
+    total_time = int(lines[0].split(":")[1].replace(" ", ""))
+    record = int(lines[1].split(":")[1].replace(" ", ""))
+
+    print(total_time, record)
+
+    result = 0
+
+    for seconds_to_hold in range(total_time):
+        if calc_score(total_time, seconds_to_hold) > record:
+            result += 1
+
+    print(result)
 
 
 def main():
