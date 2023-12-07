@@ -23,8 +23,6 @@ def part2():
     total_time = int(lines[0].split(":")[1].replace(" ", ""))
     record = int(lines[1].split(":")[1].replace(" ", ""))
 
-    print(total_time, record)
-
     result = 0
 
     for seconds_to_hold in range(total_time):
