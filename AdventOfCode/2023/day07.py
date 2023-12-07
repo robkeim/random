@@ -50,8 +50,73 @@ def convert_to_hex(card, has_jokers):
     return card.replace("A", "E").replace("K", "D").replace("Q", "C").replace("J", joker_replacement).replace("T", "A")
 
 
-def part2():
-    pass
+def part2(): # Too high 246774314
+    lines = [line.strip() for line in open("day07.txt").readlines()]
+    lines = [(convert_to_hex(line.split()[0], True), int(line.split()[1])) for line in lines]
+
+    sorted_hands = []
+
+    for hand, rank in lines:
+        cards = Counter(hand)
+        num_jokers = cards["1"] if "1" in cards else 0
+        del cards["1"]
+
+        if num_jokers == 4 or num_jokers == 5:
+            sorted_hands.append((five_of_a_kind, hand, rank))
+        elif num_jokers == 3:
+            if len(cards.keys()) == 1:
+                sorted_hands.append((five_of_a_kind, hand, rank))
+            else:
+                sorted_hands.append((four_of_a_kind, hand, rank))
+        elif num_jokers == 2:
+            max_value = max(cards.values())
+
+            if max_value == 3:
+                sorted_hands.append((five_of_a_kind, hand, rank))
+            elif max_value == 2:
+                sorted_hands.append((four_of_a_kind, hand, rank))
+            else:
+                sorted_hands.append((three_of_a_kind, hand, rank))
+        elif num_jokers == 1:
+            max_value = max(cards.values())
+
+            if max_value == 4:
+                sorted_hands.append((five_of_a_kind, hand, rank))
+            elif max_value == 3:
+                sorted_hands.append((four_of_a_kind, hand, rank))
+            elif max_value == 2:
+                if len(cards) == 2:
+                    sorted_hands.append((full_house, hand, rank))
+                else:
+                    sorted_hands.append((two_pair, hand, rank))
+            else:
+                sorted_hands.append((one_pair, hand, rank))
+        else:
+            if len(cards) == 1:
+                sorted_hands.append((five_of_a_kind, hand, rank))
+            elif len(cards) == 2:
+                if 4 in cards.values():
+                    sorted_hands.append((four_of_a_kind, hand, rank))
+                else:
+                    sorted_hands.append((full_house, hand, rank))
+            elif len(cards) == 3:
+                if 3 in cards.values():
+                    sorted_hands.append((three_of_a_kind, hand, rank))
+                else:
+                    sorted_hands.append((two_pair, hand, rank))
+            elif len(cards) == 4:
+                sorted_hands.append((one_pair, hand, rank))
+            else:
+                sorted_hands.append((high_card, hand, rank))
+
+    sorted_hands.sort(key=lambda x: (-x[0], int(x[1], 16)))
+
+    result = 0
+
+    for i in range(len(sorted_hands)):
+        result += sorted_hands[i][2] * (i + 1)
+
+    print(result)
 
 
 def main():
