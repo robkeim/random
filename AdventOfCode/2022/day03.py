@@ -16,7 +16,19 @@ def part1():
 
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("day03.txt").readlines()]
+
+    result = 0
+
+    for i in range(0, len(lines), 3):
+        badge = list(set(lines[i]) & set(lines[i + 1]) & set(lines[i + 2]))[0]
+
+        if "a" <= badge <= "z":
+            result += ord(badge) - ord("a") + 1
+        else:
+            result += ord(badge) - ord("A") + 27
+
+    print(result)
 
 
 def main():
