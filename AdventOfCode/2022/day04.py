@@ -15,7 +15,19 @@ def part1():
 
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("day04.txt").readlines()]
+
+    result = 0
+
+    for line in lines:
+        first, second = line.split(",")
+        first = [int(value) for value in first.split("-")]
+        second = [int(value) for value in second.split("-")]
+
+        if not (first[1] < second[0] or second[1] < first[0]):
+            result += 1
+
+    print(result)
 
 
 def main():
