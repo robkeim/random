@@ -2,9 +2,9 @@ def part1():
     lines = [line.strip() for line in open("day02.txt").readlines()]
 
     points = {
-        "X": 1,
-        "Y": 2,
-        "Z": 3
+        "X": 1,  # Rock
+        "Y": 2,  # Paper
+        "Z": 3   # Scissors
     }
 
     wins = {"C X", "A Y", "B Z"}
@@ -24,7 +24,24 @@ def part1():
 
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("day02.txt").readlines()]
+
+    # X -> lose
+    # Y -> tie
+    # Z -> win
+    points = {
+        "A X": 0 + 3,
+        "A Y": 3 + 1,
+        "A Z": 6 + 2,
+        "B X": 0 + 1,
+        "B Y": 3 + 2,
+        "B Z": 6 + 3,
+        "C X": 0 + 2,
+        "C Y": 3 + 3,
+        "C Z": 6 + 1,
+    }
+
+    print(sum([points[game] for game in lines]))
 
 
 def main():
