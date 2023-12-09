@@ -4,6 +4,12 @@ from collections import defaultdict
 # Make the assumption that we're only going to visit each directory once
 def part1():
     lines = [line.strip() for line in open("day07.txt").readlines()]
+    sizes = get_directory_sizes(lines)
+
+    print(sum([size for size in sizes.values() if size <= 100000]))
+
+
+def get_directory_sizes(lines):
     index = 0
     cur_dir = None
     sizes = defaultdict(int)
@@ -15,7 +21,7 @@ def part1():
             argument = line.split()[2]
 
             if argument == "/":
-                cur_dir = []
+                cur_dir = ["/"]
             elif argument == "..":
                 cur_dir.pop()
             else:
@@ -39,11 +45,21 @@ def part1():
         else:
             assert False, "Unexpected line: {}".format(line)
 
-    print(sum([size for size in sizes.values() if size <= 100000]))
+    return sizes
 
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("day07.txt").readlines()]
+    sizes = sorted(get_directory_sizes(lines).values())
+    total_disk_size = 70000000
+    min_required = 30000000
+    cur_used = sizes[-1]
+    need_to_free = min_required - (total_disk_size - cur_used)
+
+    for i in range(len(sizes)):
+        if sizes[i] >= need_to_free:
+            print(sizes[i])
+            break
 
 
 def main():
