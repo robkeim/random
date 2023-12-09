@@ -1,15 +1,20 @@
 def part1():
     stream = open("day06.txt").read().strip()
+    print(first_unique_n(stream, 4))
+
+
+def first_unique_n(stream, n):
     i = 0
 
-    while len(set(stream[i:i + 4])) != 4:
+    while len(set(stream[i:i + n])) != n:
         i += 1
 
-    print(i + 4)
+    return i + n
 
 
 def part2():
-    pass
+    stream = open("day06.txt").read().strip()
+    print(first_unique_n(stream, 14))
 
 
 def main():
