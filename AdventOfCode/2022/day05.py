@@ -41,7 +41,23 @@ def parse_stacks(stacks_input):
 
 
 def part2():
-    pass
+    stacks_input, moves = open("day05.txt").read().split("\n\n")
+    stacks = parse_stacks(stacks_input)
+
+    for num_moves, source, destination in re.findall(r"move (\d+) from (\d+) to (\d+)", moves):
+        to_move = []
+
+        for _ in range(int(num_moves)):
+            to_move.append(stacks[int(source) - 1].pop())
+
+        stacks[int(destination) - 1] += to_move[::-1]
+
+    result = ""
+
+    for stack in stacks:
+        result += stack.pop()
+
+    print(result)
 
 
 def main():
