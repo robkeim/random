@@ -10,8 +10,8 @@ import sys
 
 def main():
     now = datetime.datetime.now()
-    day = now.day
-    year = now.year
+    day = now.day if len(sys.argv) < 2 else int(sys.argv[1])
+    year = now.year if len(sys.argv) < 3 else int(sys.argv[2])
 
     copy_skeleton(day)
     download_input_file(day, year)
