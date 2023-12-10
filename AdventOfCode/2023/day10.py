@@ -66,7 +66,89 @@ def find_start_position(grid):
 
 
 def part2():
-    pass
+    grid = [list(line.strip()) for line in open("day10.txt").readlines()]
+    x, y, direction = find_start_position(grid)
+
+    while True:
+        grid[y][x] = "S"
+
+        if direction == north:
+            y -= 1
+        elif direction == south:
+            y += 1
+        elif direction == west:
+            x -= 1
+        elif direction == east:
+            x += 1
+        else:
+            assert False, "Invalid direction: {}".format(direction)
+
+        next_pos = grid[y][x]
+
+        if next_pos == "L":
+            direction = north if direction == west else east
+        elif next_pos == "J":
+            direction = west if direction == south else north
+        elif next_pos == "7":
+            direction = west if direction == north else south
+        elif next_pos == "F":
+            direction = east if direction == north else south
+        elif next_pos == "S":
+            break
+
+    grid = flood_fill(grid) # This isn't taking into consideration that there is space between pipes
+
+    for row in grid:
+        print("".join(row))
+
+    height = len(grid)
+    width = len(grid[0])
+    result = 0
+
+    for y in range(height):
+        for x in range(width):
+            if grid[y][x] not in set("Sx"):
+                result += 1
+
+    print(result)
+
+
+def flood_fill(grid):
+    height = len(grid)
+    width = len(grid[0])
+
+    to_process = []
+
+    for i in range(width):
+        to_process.append((i, 0))
+        to_process.append((i, height - 1))
+
+    for i in range(height):
+        to_process.append((0, i))
+        to_process.append((width - 1, i))
+
+    processed = set()
+
+    while len(to_process) > 0:
+        x, y = to_process.pop()
+        processed.add((x, y))
+
+        if grid[y][x] == "S":
+            continue
+
+        grid[y][x] = "x"
+
+        for delta_x in [-1, 0, 1]:
+            for delta_y in [-1, 0, 1]:
+                if abs(delta_x + delta_y) == 2:
+                    continue
+
+                to_add = (x + delta_x, y + delta_y)
+
+                if to_add not in processed and 0 <= to_add[0] < width and 0 <= to_add[1] < height:
+                    to_process.append(to_add)
+
+    return grid
 
 
 def main():
