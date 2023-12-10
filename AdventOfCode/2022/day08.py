@@ -41,9 +41,50 @@ def part1():
     print(len(visible))
 
 
-
 def part2():
-    pass
+    grid = [line.strip() for line in open("day08.txt").readlines()]
+
+    height = len(grid)
+    width = len(grid[0])
+
+    result = 0
+
+    for y in range(1, height - 1):
+        for x in range(1, width - 1):
+            score = 1
+            tree_height = grid[y][x]
+
+            delta_x = 1
+
+            while x + delta_x < width - 1 and grid[y][x + delta_x] < tree_height:
+                delta_x += 1
+
+            score *= delta_x
+
+            delta_x = 1
+
+            while x - delta_x > 0 and grid[y][x - delta_x] < tree_height:
+                delta_x += 1
+
+            score *= delta_x
+
+            delta_y = 1
+
+            while y + delta_y < height - 1 and grid[y + delta_y][x] < tree_height:
+                delta_y += 1
+
+            score *= delta_y
+
+            delta_y = 1
+
+            while y - delta_y > 0 and grid[y - delta_y][x] < tree_height:
+                delta_y += 1
+
+            score *= delta_y
+
+            result = max(result, score)
+
+    print(result)
 
 
 def main():
