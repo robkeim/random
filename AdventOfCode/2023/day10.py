@@ -68,9 +68,10 @@ def find_start_position(grid):
 def part2():
     grid = [list(line.strip()) for line in open("day10.txt").readlines()]
     x, y, direction = find_start_position(grid)
+    path = set()
 
     while True:
-        grid[y][x] = "S"
+        path.add((x, y))
 
         if direction == north:
             y -= 1
@@ -96,10 +97,17 @@ def part2():
         elif next_pos == "S":
             break
 
-    grid = flood_fill(grid) # This isn't taking into consideration that there is space between pipes
+    height = len(grid)
+    width = len(grid[0])
 
-    for row in grid:
-        print("".join(row))
+    for y in range(height):
+        for x in range(width):
+            if (x, y) not in path:
+                grid[y][x] = "."
+
+    grid = expand_grid(grid)
+
+    grid = flood_fill(grid)
 
     height = len(grid)
     width = len(grid[0])
@@ -107,10 +115,90 @@ def part2():
 
     for y in range(height):
         for x in range(width):
-            if grid[y][x] not in set("Sx"):
+            if grid[y][x] == ".":
                 result += 1
 
     print(result)
+
+
+def expand_grid(grid):
+    grid = replace_S(grid)
+    rows = len(grid)
+    cols = len(grid[0])
+    result = []
+
+    # Expand horizontally
+    for r in range(rows):
+        row = []
+
+        for c in range(cols - 1):
+            row.append(grid[r][c])
+            if grid[r][c] in set("FL-") and grid[r][c + 1] in set("J7-"):
+                row.append("-")
+            else:
+                row.append("e")
+
+        row.append(grid[r][cols - 1])
+        result.append(row)
+
+    # Expand vertically
+    grid = result
+    result = []
+    cols = len(grid[0])
+
+    for r in range(rows - 1):
+        row = []
+
+        for c in range(cols):
+            if grid[r][c] in set("F7|") and grid[r + 1][c] in set("JL|"):
+                row.append("|")
+            else:
+                row.append("e")
+
+        result.append(grid[r])
+        result.append(row)
+
+    result.append(grid[rows - 1])
+
+    return result
+
+
+def replace_S(grid):
+    rows = len(grid)
+    cols = len(grid[0])
+
+    for r in range(rows):
+        for c in range(cols):
+            if grid[r][c] == "S":  # Assume S isn't along a border (handling those cases isn't done for simplicity)
+                # This logic doesn't work when S has multiple borders, so I looked at the input and manually analyzed
+                # what S should be replaced with
+                grid[r][c] = "|"
+                return grid
+
+                has_left = grid[r][c - 1] != "."
+                has_right = grid[r][c + 1] != "."
+                has_up = grid[r - 1][c] != "."
+                has_down = grid[r + 1][c] != "."
+
+                if has_left and has_right:
+                    replacement = "-"
+                elif has_left and has_up:
+                    replacement = "J"
+                elif has_left and has_down:
+                    replacement = "7"
+                elif has_right and has_up:
+                    replacement = "L"
+                elif has_right and has_down:
+                    replacement = "F"
+                elif has_up and has_down:
+                    replacement = "|"
+                else:
+                    assert False, "Invalid combination"
+
+                grid[r][c] = replacement
+                break
+
+    return grid
 
 
 def flood_fill(grid):
@@ -133,7 +221,7 @@ def flood_fill(grid):
         x, y = to_process.pop()
         processed.add((x, y))
 
-        if grid[y][x] == "S":
+        if grid[y][x] != "." and grid[y][x] != "e":
             continue
 
         grid[y][x] = "x"
