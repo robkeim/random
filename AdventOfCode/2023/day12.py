@@ -1,13 +1,17 @@
+from functools import lru_cache
+
+
 def part1():
     lines = [line.strip().split() for line in open("day12.txt").readlines()]
     result = 0
 
     for pattern, springs in lines:
-        result += count_arrangements(pattern, [int(spring) for spring in springs.split(",")])
+        result += count_arrangements(pattern, tuple([int(spring) for spring in springs.split(",")]))
 
     print(result)
 
 
+@lru_cache(maxsize=10000)
 def count_arrangements(pattern, springs):
     # No more springs left to place, check there are no springs remaining in the pattern
     if len(springs) == 0:
@@ -36,7 +40,16 @@ def count_arrangements(pattern, springs):
 
 
 def part2():
-    pass
+    lines = [line.strip().split() for line in open("day12.txt").readlines()]
+    result = 0
+
+    for pattern, springs in lines:
+        pattern = "?".join([pattern] * 5)
+        springs = ",".join([springs] * 5)
+
+        result += count_arrangements(pattern, tuple([int(spring) for spring in springs.split(",")]))
+
+    print(result)
 
 
 def main():
