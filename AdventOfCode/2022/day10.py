@@ -24,7 +24,32 @@ def part1():
 
 
 def part2():
-    pass
+    instructions = [line.split() for line in open("day10.txt").readlines()]
+
+    num_cycles = 0
+    sprite_position = 1
+    result = ""
+
+    for instruction in instructions:
+        if abs((num_cycles % 40) - sprite_position) <= 1:
+            result += "#"
+        else:
+            result += "."
+
+        num_cycles += 1
+
+        if instruction[0] == "addx":
+            if abs((num_cycles % 40) - sprite_position) <= 1:
+                result += "#"
+            else:
+                result += "."
+
+            num_cycles += 1
+
+            sprite_position += int(instruction[1])
+
+    for i in range(0, len(result), 40):
+        print(result[i:i+40])
 
 
 def main():
