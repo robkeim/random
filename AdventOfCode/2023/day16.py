@@ -6,12 +6,16 @@ left = 3
 
 def part1():
     grid = [line.strip() for line in open("day16.txt").readlines()]
+    print(run_simulation(grid, (0, 0, right)))
+
+
+def run_simulation(grid, start):
     rows = len(grid)
     cols = len(grid[0])
 
-    to_process = [(0, 0, right)]
     seen = set()
     positions = set()
+    to_process = [start]
 
     while len(to_process) > 0:
         row, col, direction = to_process.pop()
@@ -80,11 +84,25 @@ def part1():
         else:
             assert False, "Invalid direction: {}".format(direction)
 
-    print(len(positions))
+    return len(positions)
 
 
 def part2():
-    pass
+    grid = [line.strip() for line in open("day16.txt").readlines()]
+    rows = len(grid)
+    cols = len(grid[0])
+
+    result = 0
+
+    for row in range(rows):
+        result = max(result, run_simulation(grid, (row, 0, right)))
+        result = max(result, run_simulation(grid, (row, cols - 1, left)))
+
+    for col in range(cols):
+        result = max(result, run_simulation(grid, (0, col, down)))
+        result = max(result, run_simulation(grid, (rows - 1, col, up)))
+
+    print(result)
 
 
 def main():
