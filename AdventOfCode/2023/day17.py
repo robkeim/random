@@ -54,7 +54,41 @@ def get_prev(prev, direction):
 
 
 def part2():
-    pass
+    grid = [[int(value) for value in list(line.strip())] for line in open("day17.txt").readlines()]
+    rows = len(grid)
+    cols = len(grid[0])
+    seen = set()
+    heap = []
+    # cost, row, col, prev
+    heapq.heappush(heap, (grid[1][0], 1, 0, "D"))
+    heapq.heappush(heap, (grid[0][1], 0, 1, "R"))
+    while len(heap) > 0:
+        cost, row, col, prev = heapq.heappop(heap)
+
+        if len(prev) > 10 or (row, col, prev) in seen:
+            continue
+
+        seen.add((row, col, prev))
+
+        if row == rows - 1 and col == cols - 1 and len(prev) >= 4:
+            print(cost)
+            break
+
+        # Up
+        if row > 0 and prev[-1] != "D" and (prev[-1] == "U" or len(prev) >= 4):
+            heapq.heappush(heap, (cost + grid[row - 1][col], row - 1, col, get_prev(prev, "U")))
+
+        # Right
+        if col < cols - 1 and prev[-1] != "L" and (prev[-1] == "R" or len(prev) >= 4):
+            heapq.heappush(heap, (cost + grid[row][col + 1], row, col + 1, get_prev(prev, "R")))
+
+        # Down
+        if row < rows - 1 and prev[-1] != "U" and (prev[-1] == "D" or len(prev) >= 4):
+            heapq.heappush(heap, (cost + grid[row + 1][col], row + 1, col, get_prev(prev, "D")))
+
+        # Left
+        if col > 0 and prev[-1] != "R" and (prev[-1] == "L" or len(prev) >= 4):
+            heapq.heappush(heap, (cost + grid[row][col - 1], row, col - 1, get_prev(prev, "L")))
 
 
 def test_find_shortest_path():
