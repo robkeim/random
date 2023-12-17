@@ -34,7 +34,7 @@ def part2():
         if abs((num_cycles % 40) - sprite_position) <= 1:
             result += "#"
         else:
-            result += "."
+            result += " "
 
         num_cycles += 1
 
@@ -42,7 +42,7 @@ def part2():
             if abs((num_cycles % 40) - sprite_position) <= 1:
                 result += "#"
             else:
-                result += "."
+                result += " "
 
             num_cycles += 1
 
