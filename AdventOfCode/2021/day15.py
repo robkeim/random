@@ -1,3 +1,6 @@
+import heapq
+
+
 def part1():
     lines = [line.strip() for line in open("day15.txt").readlines()]
     length = len(lines)
@@ -68,15 +71,38 @@ def part2():
     length *= 5
 
     # Calculate path
-    for i in range(1, length):
-        grid[(0, i)] += grid[(0, i - 1)]
-        grid[(i, 0)] += grid[(i - 1, 0)]
+    rows = length
+    cols = length
+    seen = set()
+    heap = []
+    heapq.heappush(heap, (0, 0, 0))
+    while len(heap) > 0:
+        cost, row, col = heapq.heappop(heap)
 
-    for y in range(1, length):
-        for x in range(1, length):
-            grid[(x, y)] += min(grid[(x - 1, y)], grid[(x, y - 1)])
+        if (row, col) in seen:
+            continue
 
-    print(grid[(length - 1, length - 1)] - grid[(0, 0)])
+        seen.add((row, col))
+
+        if row == rows - 1 and col == cols - 1:
+            print(cost)
+            break
+
+        # Up
+        if row > 0:
+            heapq.heappush(heap, (cost + grid[(row - 1, col)], row - 1, col))
+
+        # Right
+        if col < cols - 1:
+            heapq.heappush(heap, (cost + grid[(row, col + 1)], row, col + 1))
+
+        # Down
+        if row < rows - 1:
+            heapq.heappush(heap, (cost + grid[(row + 1, col)], row + 1, col))
+
+        # Left
+        if col > 0:
+            heapq.heappush(heap, (cost + grid[(row, col - 1)], row, col - 1))
 
 
 def main():
