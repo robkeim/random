@@ -80,7 +80,58 @@ def flood_fill(border, outside, min_row, max_row, min_col, max_col, start_row, s
 
 
 def part2():
-    pass
+    lines = [line.split()[-1] for line in open("day18.txt").readlines()]
+    indices = [(0, 0)]
+    row = 0
+    col = 0
+    dirs = {
+        "R": (0, 1),
+        "D": (1, 0),
+        "L": (0, -1),
+        "U": (-1, 0)
+    }
+
+    border = 0
+
+    hex_to_dir = {
+        "0": "R",
+        "1": "D",
+        "2": "L",
+        "3": "U"
+    }
+
+    for dir_and_num in lines:
+        direction = hex_to_dir[dir_and_num[-2]]
+        num = int(dir_and_num[2:7], 16)
+        dr, dc = dirs[direction]
+        row += num * dr
+        col += num * dc
+
+        indices.append((row, col))
+        border += num
+
+    area = calculate_area(indices)
+
+    # Pick's theorem:
+    # https://en.wikipedia.org/wiki/Pick%27s_theorem
+    # A = i + b/2 - 1 => i = A - b/2 + 1
+    interior = area - border // 2 + 1
+
+    print(border + interior)
+
+
+# Use the shoelace formula:
+# https://en.wikipedia.org/wiki/Shoelace_formula
+def calculate_area(indices):
+    ans = 0
+
+    for i in range(len(indices) - 1):
+        r1, c1 = indices[i]
+        r2, c2 = indices[i + 1]
+
+        ans += (r1 * c2) - (r2 * c1)
+
+    return abs(ans // 2)
 
 
 def main():
