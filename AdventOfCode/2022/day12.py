@@ -1,4 +1,5 @@
 import heapq
+import sys
 
 
 def part1():
@@ -12,20 +13,25 @@ def part1():
                 start = (r, c)
                 grid[r][c] = "a"
             elif grid[r][c] == "E":
-                end = (r, c)
+                destination = (r, c)
                 grid[r][c] = "z"
+
+    print(calculate_distance(grid, start, destination))
+
+
+def calculate_distance(grid, start, destination):
+    rows = len(grid)
+    cols = len(grid[0])
 
     to_process = [(0, start[0], start[1])]
     heapq.heapify(to_process)
     deltas = [(0, 1), (0, -1), (1, 0), (-1, 0)]
     seen = set()
-
     while len(to_process) > 0:
         steps, r, c = heapq.heappop(to_process)
 
-        if (r, c) == end:
-            print(steps)
-            return
+        if (r, c) == destination:
+            return steps
 
         if (r, c) in seen:
             continue
@@ -43,11 +49,34 @@ def part1():
                 if cur_value + 1 >= next_value:
                     heapq.heappush(to_process, (steps + 1, rr, cc))
 
-    assert False, "No path found"
+    return None
 
 
 def part2():
-    pass
+    grid = [list(line.strip()) for line in open("day12.txt").readlines()]
+
+    rows = len(grid)
+    cols = len(grid[0])
+
+    for r in range(rows):
+        for c in range(cols):
+            if grid[r][c] == "S":
+                grid[r][c] = "a"
+            elif grid[r][c] == "E":
+                destination = (r, c)
+                grid[r][c] = "z"
+
+    result = sys.maxsize
+
+    for r in range(rows):
+        for c in range(cols):
+            if grid[r][c] == "a":
+                cur_path = calculate_distance(grid, (r, c), destination)
+
+                if cur_path:
+                    result = min(result, cur_path)
+
+    print(result)
 
 
 def main():
