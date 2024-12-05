@@ -1,25 +1,28 @@
-import re
-
-
 def part1():
-    lines = [line.strip() for line in open("day05.txt").readlines()]
-    patterns = []
-    pattern = None
+    input = [line.strip() for line in open("day05.txt").readlines()]
+    rules = []
+    lines = []
     result = 0
 
-    for line in lines:
-        if line == "":
-            continue
-
+    for line in input:
         if "|" in line:
-            patterns.append("(" + ".+".join(line.split("|")[::-1]) + ")")
-            continue
+            rules.append(line.split("|"))
 
-        if not pattern:
-            pattern = "|".join(patterns)
+        if "," in line:
+            lines.append(line.split(","))
 
-        if not re.search(pattern, line):
-            line = line.split(",")
+    for line in lines:
+        found_error = False
+
+        for first, second in rules:
+            first_index = line.index(first) if first in line else None
+            second_index = line.index(second) if second in line else None
+
+            if first_index is not None and second_index is not None and first_index > second_index:
+                found_error = True
+                break
+
+        if not found_error:
             result += int(line[len(line) // 2])
 
     print(result)
