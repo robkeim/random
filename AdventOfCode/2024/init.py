@@ -18,7 +18,7 @@ def main():
 
 
 def copy_skeleton(day):
-    file = "day{}.py".format(get_day_string(day))
+    file = f"day{get_day_string(day)}.py"
 
     if os.path.isfile(file):
         print("Python file for today already exists, skipping")
@@ -36,10 +36,10 @@ def download_input_file(day, year):
         print("Could not find session cookie in environment variable")
         return
 
-    url = "https://adventofcode.com/{}/day/{}/input".format(year, day)
+    url = f"https://adventofcode.com/{year}/day/{day}/input"
     response = requests.get(url, cookies={"session": session_cookie})
 
-    file_name = "day{}.txt".format(get_day_string(day))
+    file_name = f"day{get_day_string(day)}.txt"
 
     with open(file_name, "wb") as output:
         output.write(response.content)
