@@ -50,6 +50,9 @@ def print_grid(num_r, num_c, robot_positions):
         print(row)
 
 def part2():
+    # Skipping part 2 because it requires manually looking at the output while the algorithm runs forever
+    return
+
     lines = [line.strip() for line in open("day14.txt").readlines()]
     num_r = 103
     num_c = 101
@@ -112,8 +115,7 @@ def part2():
 
 def main():
     part1()
-    # Commenting out part 2 because it requires manually looking at the output while the algorithm runs forever
-    # part2()
+    part2()
 
 
 if __name__ == "__main__":
