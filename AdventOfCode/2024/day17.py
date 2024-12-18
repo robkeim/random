@@ -1,6 +1,3 @@
-import math
-
-
 adv = 0
 bxl = 1
 bst = 2
@@ -30,7 +27,7 @@ def run_program(A, B, C, program):
         opcode, operand = program[instruction_pointer:instruction_pointer + 2]
 
         if opcode == adv:
-            A = math.trunc(A / (2 ** combo(operand, A, B, C)))
+            A = A // (2 ** combo(operand, A, B, C))
         elif opcode == bxl:
             B ^= operand
         elif opcode == bst:
@@ -44,9 +41,9 @@ def run_program(A, B, C, program):
         elif opcode == out:
             output.append(combo(operand, A, B, C) % 8)
         elif opcode == bdv:
-            B = math.trunc(A / (2 ** combo(operand, A, B, C)))
+            B = A // (2 ** combo(operand, A, B, C))
         elif opcode == cdv:
-            C = math.trunc(A / (2 ** combo(operand, A, B, C)))
+            C = A // (2 ** combo(operand, A, B, C))
         else:
             assert False, f"Invalid opcode: {opcode}"
 
@@ -69,7 +66,69 @@ def combo(operand, A, B, C):
         assert False, f"Invalid operand: {operand}"
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("day17.txt").readlines()]
+    B = int(lines[1].split(":")[1])
+    C = int(lines[2].split(":")[1])
+    program_str = lines[4].split(":")[1]
+    program = [int(value) for value in program_str.split(",")]
+
+    A = 1
+
+    while True:
+        if A % 10_000 == 0:
+            print("A:", A)
+
+        _, _, _, output = run_program(A, B, C, program)
+        if output == program_str:
+            print(A)
+            break
+
+        A += 1
+
+    # 2,4 -> B = A % 8
+    # 1,7 -> B ^= 7
+    # 7,5 -> C = A // (2 ** B)
+    # 0,3 -> A = A // (2 ** 3) => A // 8
+    # 4,4 -> B ^= C
+    # 1,7 -> B ^= 7
+    # 5,5 -> Output: B % 8
+    # 3,0 -> If A != 0, goto 0
+
+
+# Running the simulation would be too long so reverse engineer the program and translate it into a high level language
+# Since everything is mod 8, look at the numbers that start outputting the correct values and look for a pattern
+# use that pattern as a suffix and continue adding new prefixes and try to extend the pattern
+# After several iterations you eventually come up with the correct value
+def run_part2():
+    prefix = 0
+    expected_output = [2, 4, 1, 7, 7, 5, 0, 3, 4, 4, 1, 7, 5, 5, 3, 0]
+
+    while True:
+        for base in ["522621633", "522621635"]:
+            startA = int(f"{oct(prefix)}{base}", 8)
+
+            A = startA
+            B = 0
+            C = 0
+            output = []
+
+            while A != 0:
+                B = A % 8
+                B ^= 7
+                C = A // (2 ** B)
+                A = A // 8
+                B ^= C
+                B ^= 7
+                output.append(B % 8)
+
+                if len(output) > len(expected_output) or output[-1] != expected_output[len(output) - 1]:
+                    break
+
+                if output == expected_output:
+                    print(startA)
+                    return
+
+        prefix += 1
 
 
 def test():
@@ -111,7 +170,8 @@ test_cases = [
 def main():
     # test()
     part1()
-    part2()
+    # part2()
+    run_part2()
 
 
 if __name__ == "__main__":
