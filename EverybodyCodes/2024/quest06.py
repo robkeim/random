@@ -1,9 +1,6 @@
 from collections import defaultdict
 
 
-# RRXKQXBSGRMW
-# Your answer length is: incorrect
-# The first character of your answer is: correct
 def part1():
     lines = [line.strip() for line in open("quest06_p1.txt").readlines()]
 
@@ -35,7 +32,37 @@ def part1():
 
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("quest06_p2.txt").readlines()]
+
+    graph = defaultdict(set)
+
+    for line in lines:
+        source, destinations = line.split(":")
+
+        for destination in destinations.split(","):
+            graph[source].add(destination)
+
+    lengths = defaultdict(set)
+    to_process = [("R", 2, "RR")]
+
+    while to_process:
+        word, length, prev = to_process.pop(0)
+
+        if prev == "@":
+            lengths[length].add(word)
+            continue
+
+        for destination in graph[prev]:
+            to_process.append((word + destination[0], length + len(destination), destination))
+
+    max_length = 0
+    answer = None
+    for length, words in lengths.items():
+        if len(words) == 1 and length > max_length:
+            answer = list(words)[0]
+            max_length = length
+
+    print(answer)
 
 
 def part3():
