@@ -3,6 +3,15 @@ import heapq
 
 def part1():
     grid = [list(line.strip()) for line in open("quest13_p1.txt").readlines()]
+    solve_part_one_and_two(grid)
+
+
+def part2():
+    grid = [list(line.strip()) for line in open("quest13_p2.txt").readlines()]
+    solve_part_one_and_two(grid)
+
+
+def solve_part_one_and_two(grid):
     num_r = len(grid)
     num_c = len(grid[0])
     start_r = start_c = end_r = end_c = None
@@ -48,10 +57,6 @@ def part1():
                 step_cost = min(max_value - min_value, abs(max_value - (min_value + 10)))
 
                 heapq.heappush(heap, (cost + step_cost + 1, next_r, next_c))
-
-
-def part2():
-    pass
 
 
 def part3():
