@@ -94,8 +94,43 @@ def find_num_cheats(grid, start_r, start_c, end_r, end_c, shortest_distance, dis
 
     return num_paths
 
+
 def part2():
-    pass
+    grid = [list(line.strip()) for line in open("day20.txt").readlines()]
+    num_r = len(grid)
+    num_c = len(grid[0])
+
+    start_r = start_c = end_r = end_c = None
+
+    for r in range(num_r):
+        for c in range(num_c):
+            if grid[r][c] == "S":
+                start_r = r
+                start_c = c
+                grid[r][c] = "."
+            elif grid[r][c] == "E":
+                end_r = r
+                end_c = c
+                grid[r][c] = "."
+
+    assert start_r and start_c and end_r and end_c, "Did not find start or end points"
+
+    distances = get_distances(grid, start_r, start_c, end_r, end_c)
+    distances = sorted([(distance, coordinates) for coordinates, distance in distances.items()])
+
+    num_cheats = 0
+
+    for i in range(len(distances)):
+        for j in range(i + 1, len(distances)):
+            distance1, coordinates1 = distances[i]
+            distance2, coordinates2 = distances[j]
+
+            num_steps = abs(coordinates1[0] - coordinates2[0]) + abs(coordinates1[1] - coordinates2[1])
+
+            if num_steps <= 20 and distance1 + num_steps + 100 <= distance2:
+                num_cheats += 1
+
+    print(num_cheats)
 
 
 def main():
