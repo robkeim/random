@@ -15,7 +15,6 @@ def solve_part_one_and_two(grid):
     num_r = len(grid)
     num_c = len(grid[0])
     start_r = start_c = end_r = end_c = None
-    dirs = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
     for r in range(num_r):
         for c in range(num_c):
@@ -32,6 +31,16 @@ def solve_part_one_and_two(grid):
 
     assert start_r != None and start_c != None and end_r != None and end_c != None, "Can't find start or end"
 
+    end_points = set()
+    end_points.add((end_r, end_c))
+
+    print(dijkstra(grid, start_r, start_c, end_points))
+
+
+def dijkstra(grid, start_r, start_c, end_points):
+    num_r = len(grid)
+    num_c = len(grid[0])
+    dirs = [(0, 1), (0, -1), (1, 0), (-1, 0)]
     heap = [(0, start_r, start_c)]
     seen = set()
 
@@ -43,9 +52,8 @@ def solve_part_one_and_two(grid):
 
         seen.add((r, c))
 
-        if r == end_r and c == end_c:
-            print(cost)
-            break
+        if (r, c) in end_points:
+            return cost
 
         for dr, dc in dirs:
             next_r = r + dr
@@ -60,7 +68,25 @@ def solve_part_one_and_two(grid):
 
 
 def part3():
-    pass
+    grid = [list(line.strip()) for line in open("quest13_p3.txt").readlines()]
+    end_points = []
+
+    num_r = len(grid)
+    num_c = len(grid[0])
+
+    for r in range(num_r):
+        for c in range(num_c):
+            if grid[r][c] == "S":
+                end_points.append((r, c))
+                grid[r][c] = 0
+            elif grid[r][c] == "E":
+                start_r = r
+                start_c = c
+                grid[r][c] = 0
+            elif "0" <= grid[r][c] <= "9":
+                grid[r][c] = int(grid[r][c])
+
+    print(dijkstra(grid, start_r, start_c, end_points))
 
 
 def main():
