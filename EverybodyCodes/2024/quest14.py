@@ -14,7 +14,31 @@ def part1():
 
 
 def part2():
-    pass
+    plants = [line.strip() for line in open("quest14_p2.txt").readlines()]
+    seen = set()
+    dirs = {
+        "R": (0, 1, 0),
+        "D": (1, 0, 0),
+        "L": (0, -1, 0),
+        "U": (-1, 0, 0),
+        "F": (0, 0, 1),
+        "B": (0, 0, -1)
+    }
+
+    for plant in plants:
+        x = y = z = 0
+
+        for direction in plant.split(","):
+            dy, dx, dz = dirs[direction[0]]
+
+            for _ in range(int(direction[1:])):
+                x += dx
+                y += dy
+                z += dz
+
+                seen.add((x, y, z))
+
+    print(len(seen))
 
 
 def part3():
