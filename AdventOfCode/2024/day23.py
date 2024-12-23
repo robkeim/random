@@ -1,3 +1,4 @@
+import networkx
 from collections import defaultdict
 
 
@@ -28,7 +29,25 @@ def part1():
 
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("day23.txt").readlines()]
+    graph = networkx.Graph()
+
+    for line in lines:
+        source, destination = line.split("-")
+        graph.add_edge(source, destination)
+
+    # https://en.m.wikipedia.org/wiki/Clique_problem
+    # Thank you networkx :)
+    cliques = list(networkx.find_cliques(graph))
+    max_length = 0
+    max_clique = None
+
+    for clique in cliques:
+        if len(clique) > max_length:
+            max_length = len(clique)
+            max_clique = clique
+
+    print(",".join(sorted(max_clique)))
 
 
 def main():
