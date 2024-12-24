@@ -35,7 +35,19 @@ def print_grid(grid):
 
 
 def part2():
-    pass
+    lines = [list(line.strip()) for line in open("quest19_p2.txt").readlines()]
+    directions = lines[0]
+    grid = lines[2:]
+
+    for _ in range(100):
+        count = 0
+
+        for r in range(1, len(grid) - 1):
+            for c in range(1, len(grid[0]) - 1):
+                grid = rotate(grid, r, c, directions[count % len(directions)])
+                count += 1
+
+    print_grid(grid)
 
 
 def part3():
