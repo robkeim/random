@@ -36,15 +36,15 @@ def part1():
 
 def part2():
     grid = [line.strip() for line in open("quest15_p2.txt").readlines()]
-    solve_parts_2_and_3(grid)
+    solve_parts_2_and_3(grid, 2)
 
 
 def part3():
     grid = [line.strip() for line in open("quest15_p3.txt").readlines()]
-    solve_parts_2_and_3(grid)
+    solve_parts_2_and_3(grid, 3)
 
 
-def solve_parts_2_and_3(grid):
+def solve_parts_2_and_3(grid, part):
     num_r = len(grid)
     num_c = len(grid[0])
     unique_types = set()
@@ -54,35 +54,54 @@ def solve_parts_2_and_3(grid):
     for r in range(num_r):
         for c in range(num_c):
             if grid[r][c] not in "#.~":
-                special_nodes[(r, c)] = grid[r][c]
+                special_nodes[get_r_c_key(r, c)] = grid[r][c]
                 unique_types.add(grid[r][c])
 
     for c in range(num_c):
         if grid[0][c] == ".":
-            special_nodes[(0, c)] = "S"
+            special_nodes[get_r_c_key(0, c)] = "S"
             start_c = c
 
     distances = defaultdict(set)
 
-    for i, (r1, c1) in enumerate(special_nodes):
-        for j, (r2, c2)  in enumerate(special_nodes):
-            if j <= i:
-                continue
+    if False: # Pre-compute distances from each node to each other node
+        print("Starting BFSes")
 
-            type1 = special_nodes[(r1, c1)]
-            type2 = special_nodes[(r2, c2)]
+        for i, r_c_1 in enumerate(special_nodes):
+            print(f"Processing: {i + 1} / {len(special_nodes)} nodes")
+            for j, r_c_2  in enumerate(special_nodes):
+                if j <= i:
+                    continue
 
-            if type1 == type2:
-                continue
+                type1 = special_nodes[r_c_1]
+                type2 = special_nodes[r_c_2]
 
-            distance = bfs(grid, r1, c1, r2, c2)
+                if type1 == type2:
+                    continue
 
-            distances[(r1, c1)].add((r2, c2, distance))
-            distances[(r2, c2)].add((r1, c1, distance))
+                r1, c1 = [int(value) for value in r_c_1.split(",")]
+                r2, c2 = [int(value) for value in r_c_2.split(",")]
+                distance = bfs(grid, r1, c1, r2, c2)
+
+                distances[r_c_1].add((r_c_2, distance))
+                distances[r_c_2].add((r_c_1, distance))
+
+        print("Finished BFSes")
+
+    if True: # Read distances from file
+        lines = open(f"quest15_p{part}_bfses.txt").readlines()
+
+        for line in lines:
+            r_c_1, r_c_2, cost = line.split("-")
+            cost = int(cost)
+
+            distances[r_c_1].add((r_c_2, cost))
+            distances[r_c_2].add((r_c_1, cost))
+
 
     global_seen = set()
     to_process = []
-    heapq.heappush(to_process, (0, 0, start_c, set()))
+    heapq.heappush(to_process, (0, get_r_c_key(0, start_c), ""))
 
     processed = 0
     while to_process:
@@ -90,35 +109,44 @@ def solve_parts_2_and_3(grid):
 
         if processed % 100_000 == 0:
             print(f"Processed: {processed}")
-        cost, r, c, seen = heapq.heappop(to_process)
 
-        if (r, c, frozenset(seen)) in global_seen:
+        cost, r_c, seen = heapq.heappop(to_process)
+
+        key = f"{r_c}-{seen}"
+
+        if key in global_seen:
             continue
 
-        global_seen.add((r, c, frozenset(seen)))
+        global_seen.add(key)
 
         if len(seen) > len(unique_types):
             print(cost)
             break
 
         if len(seen) == len(unique_types):
-            for next_r, next_c, distance in distances[(r, c)]:
-                if special_nodes[(next_r, next_c)] == "S":
-                    next_seen = seen.copy()
-                    next_seen.add("S")
-                    heapq.heappush(to_process, (cost + distance, next_r, next_c, next_seen))
+            for next_r_c, distance in distances[r_c]:
+                if special_nodes[next_r_c] == "S":
+                    next_seen = get_next_seen(seen, "S")
+                    heapq.heappush(to_process, (cost + distance, next_r_c, next_seen))
 
             continue
 
-        for next_r, next_c, distance in distances[(r, c)]:
-            next_type = special_nodes[(next_r, next_c)]
+        for next_r_c, distance in distances[r_c]:
+            next_type = special_nodes[next_r_c]
 
             if next_type in seen or next_type == "S":
                 continue
 
-            next_seen = seen.copy()
-            next_seen.add(next_type)
-            heapq.heappush(to_process, (cost + distance, next_r, next_c, next_seen))
+            next_seen = get_next_seen(seen, next_type)
+            heapq.heappush(to_process, (cost + distance, next_r_c, next_seen))
+
+
+def get_next_seen(seen, value_to_add):
+    return "".join(sorted(seen + value_to_add))
+
+
+def get_r_c_key(r, c):
+    return f"{r},{c}"
 
 
 def bfs(grid, start_r, start_c, target_r, target_c):
@@ -151,7 +179,7 @@ def bfs(grid, start_r, start_c, target_r, target_c):
 
 
 def main():
-    part1()
+    #part1()
     part2()
     part3()
 
