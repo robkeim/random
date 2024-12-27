@@ -50,7 +50,55 @@ def manhatten_distance(r1, c1, r2, c2):
 
 
 def part3():
-    pass
+    grid = [line.strip() for line in open("quest17_p3.txt").readlines()]
+
+    stars = set()
+
+    for r in range(len(grid)):
+        for c in range(len(grid[0])):
+            if grid[r][c] == "*":
+                stars.add((r, c))
+
+    mst_sizes = []
+
+    while len(stars) > 0:
+        num_stars, stars = calculate_mst(stars)
+        mst_sizes.append(num_stars)
+
+    mst_sizes = sorted(mst_sizes, reverse=True)
+
+    print(mst_sizes[0] * mst_sizes[1] * mst_sizes[2])
+
+
+def calculate_mst(stars):
+    start = list(stars)[0]
+    stars.remove(start)
+    answer = 1
+
+    to_process = []
+
+    for r, c in stars:
+        distance = manhatten_distance(start[0], start[1], r, c)
+
+        if distance < 6:
+            heapq.heappush(to_process, (distance, r, c))
+
+    while to_process:
+        distance, r, c = heapq.heappop(to_process)
+
+        if (r, c) not in stars:
+            continue
+
+        answer += 1 + distance
+        stars.remove((r, c))
+
+        for next_r, next_c in stars:
+            distance = manhatten_distance(r, c, next_r, next_c)
+
+            if distance < 6:
+                heapq.heappush(to_process, (distance, next_r, next_c))
+
+    return answer, stars
 
 
 def main():
