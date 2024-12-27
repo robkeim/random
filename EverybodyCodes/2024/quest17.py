@@ -3,6 +3,14 @@ import heapq
 
 def part1():
     grid = [line.strip() for line in open("quest17_p1.txt").readlines()]
+    solve_parts_1_and_2(grid)
+
+def part2():
+    grid = [line.strip() for line in open("quest17_p2.txt").readlines()]
+    solve_parts_1_and_2(grid)
+
+
+def solve_parts_1_and_2(grid):
     num_r = len(grid)
     num_c = len(grid[0])
 
@@ -39,10 +47,6 @@ def part1():
 
 def manhatten_distance(r1, c1, r2, c2):
     return abs(r1 - r2) + abs(c1 - c2)
-
-
-def part2():
-    pass
 
 
 def part3():
