@@ -1,4 +1,4 @@
-import re
+from functools import lru_cache
 
 
 def part1():
@@ -62,131 +62,76 @@ def part1():
 
 
 def part2():
+    constants, rules, messages = parse_input()
+
+    @lru_cache(4_000_000)
+    def match_list(message, cur_rules):
+        if not message and not cur_rules:
+            return True
+
+        if not message or not cur_rules:
+            return False
+
+        for i in range(len(message) + 1):
+            first = message[:i]
+            remaining = message[i:]
+
+            if match(first, cur_rules[0]) and match_list(remaining, cur_rules[1:]):
+                return True
+
+        return False
+
+    @lru_cache(4_000_000)
+    def match(message, rule):
+        if rule in constants:
+            return constants[rule] == message
+
+        for option in rules[rule]:
+            if match_list(message, tuple(option)):
+                return True
+
+        return False
+
+    num_matches = 0
+
+    for message in messages:
+        match.cache_clear()
+        match_list.cache_clear()
+
+        if match(message, "0"):
+            num_matches += 1
+
+    print(num_matches)
+
+
+def parse_input():
     lines = [line.strip() for line in open("day19.txt").readlines()]
+    constants = dict()
     rules = dict()
-    potential_matches = []
+    messages = []
 
     for line in lines:
-        if ":" not in line:
-            potential_matches.append(line)
-            continue
+        if ":" in line:
+            if line.startswith("8:"):
+                line = "8: 42 | 42 8"
 
-        split = line.split(":")
+            if line.startswith("11:"):
+                line = "11: 42 31 | 42 11 31"
 
-        if "\"" in line:
-            rules[split[0]] = split[1].strip().strip("\"")
-            continue
+            key, rest = line.split(":")
 
-        value = split[1].strip()
+            if "\"" in rest:
+                constants[key] = rest.strip().strip("\"")
+            else:
+                rules[key] = [part.split() for part in rest.split("|")]
+        elif line:
+            messages.append(line)
 
-        if "|" in value:
-            value = f"(?: " + value + " )" # "( " + value + " )"
-
-        rules[split[0]] = value
-
-    # 8: 42 | 42 8
-    # 11: 42 31 | 42 11 31
-    rules["8"] = f"(?: " + "42" + " )+" # "( 42 )+"
-    rules["11"] = f"(?: " + "42" + " ){x}" + " (?: " + "31" + " ){x}" # "( 42 ){x} ( 31 ){x}" #"( 42 )+ ( 31 )+"
-
-    finished = False
-
-    while not finished:
-        finished = True
-
-        for key in rules:
-            values = rules[key].split(" ")
-
-            for index, value in enumerate(values):
-                if value.isnumeric():
-                    values[index] = rules[value]
-                    finished = False
-
-            rules[key] = " ".join(values)
-
-    print(rules)
-
-    for key in rules:
-        rules[key] = rules[key].replace(" ", "")
-
-    count = 0
-
-    print(rules)
-
-    for item in potential_matches:
-        for rule in rules:
-            if re.fullmatch(rules[rule], item):
-                print(rule, rules[rule], item)
-                count += 1
-                break
-
-            if "x" in rules[rule]:
-                for i in range(1, 10):
-                    regex = rules[rule].replace("x", str(i))
-                    if re.fullmatch(regex, item):
-                        print(rule, regex, item)
-                        count += 1
-                        break
-
-    print(count)
-
-
-def part2workingforpart1():
-    lines = [line.strip() for line in open("day19.txt").readlines()]
-    rules = dict()
-    potential_matches = []
-
-    for line in lines:
-        if ":" not in line:
-            potential_matches.append(line)
-            continue
-
-        split = line.split(":")
-
-        if "\"" in line:
-            rules[split[0]] = split[1].strip().strip("\"")
-            continue
-
-        value = split[1].strip()
-
-        if "|" in value:
-            value = "( " + value + " )"
-
-        rules[split[0]] = value
-
-    finished = False
-
-    while not finished:
-        finished = True
-
-        for key in rules:
-            values = rules[key].split(" ")
-
-            for index, value in enumerate(values):
-                if value.isnumeric():
-                    values[index] = rules[value]
-                    finished = False
-
-            rules[key] = " ".join(values)
-
-    print(rules)
-
-    for key in rules:
-        rules[key] = rules[key].replace(" ", "")
-
-    count = 0
-
-    for item in potential_matches:
-        for rule in rules:
-            if re.fullmatch(rules[rule], item):
-                count += 1
-                break
-
-    print(count)
+    return constants, rules, messages
 
 
 def main():
-    #part1()
+    part1()
     part2()
 
 
