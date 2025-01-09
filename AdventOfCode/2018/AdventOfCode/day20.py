@@ -13,6 +13,7 @@ def part1():
 
     seen = set()
     max_distance = 0
+    one_thousand_doors = 0
     to_process = deque()
     to_process.append((0, 0, 0))
 
@@ -24,11 +25,14 @@ def part1():
 
         seen.add((r, c))
         max_distance = max(max_distance, num_steps)
+        if num_steps >= 1000:
+            one_thousand_doors += 1
 
         for (next_r, next_c) in doors[(r, c)]:
             to_process.append((num_steps + 1, next_r, next_c))
 
     print(max_distance)
+    print(one_thousand_doors)
 
 
 @lru_cache(1_000_000)
@@ -84,6 +88,7 @@ def process_path(r, c, path):
 
 
 def part2():
+    # Done as part of part 1 as the code is almost identical
     pass
 
 
