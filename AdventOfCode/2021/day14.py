@@ -45,7 +45,42 @@ def part1():
 
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("day14.txt").readlines()]
+
+    template = lines[0]
+    lines = lines[2:]
+    rules = dict()
+
+    for line in lines:
+        source, replacement = line.split(" -> ")
+
+        rules[source] = replacement
+
+    counts = Counter()
+
+    for i in range(0, len(template) - 1):
+        counts[template[i:i + 2]] += 1
+
+    for _ in range(40):
+        counts_next = Counter()
+
+        for key in counts:
+            replacement = rules[key]
+            # If the rule is AB -> C then AB is transformed into AC and CB
+            counts_next[key[0] + replacement] += counts[key]
+            counts_next[replacement + key[1]] += counts[key]
+
+        counts = counts_next
+
+    letter_counts = Counter()
+
+    for key in counts:
+        letter_counts[key[0]] += counts[key]
+
+    # Add the last character of the string (after taking only the first character of each pair)
+    letter_counts[template[-1]] += 1
+
+    print(max(letter_counts.values()) - min(letter_counts.values()))
 
 
 def main():
