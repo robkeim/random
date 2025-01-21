@@ -369,10 +369,19 @@ namespace AdventOfCode
                     .ToList();
 
                 var nextCarts = new List<Cart>();
+                var removedCarts = new HashSet<string>();
 
                 // Iterate through the carts and update the position and check for collisions
-                foreach (var cart in carts)
+                while (carts.Count > 0)
                 {
+                    var cart = carts[0];
+                    carts = carts.Skip(1).ToList();
+
+                    if (removedCarts.Contains($"{cart.X}_{cart.Y}"))
+                    {
+                        continue;
+                    }
+
                     var next = new Cart
                     {
                         X = cart.X,
@@ -402,10 +411,12 @@ namespace AdventOfCode
                             throw new Exception("Invalid path character");
                     }
 
-                    if (carts.Any(c => c.X == next.X && c.Y == next.Y)
-                        || nextCarts.Any(c => c.X == next.X && c.Y == next.Y))
+                    if (carts.Any(c => c.X == next.X && c.Y == next.Y))
                     {
-                        carts = carts.Where(c => c.X != next.X || c.Y != next.Y).ToList();
+                        removedCarts.Add($"{next.X}_{next.Y}");
+                    }
+                    else if (nextCarts.Any(c => c.X == next.X && c.Y == next.Y))
+                    {
                         nextCarts = nextCarts.Where(c => c.X != next.X || c.Y != next.Y).ToList();
                     }
                     else
