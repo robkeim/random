@@ -1,14 +1,14 @@
 def part1():
     start = [int(line.strip()) for line in open("day20.txt").readlines()]
-    print(mix(start)[1])
+    start = [(index, value) for (index, value) in enumerate(start)]
+    print(mix(start, start)[1])
 
 
-def mix(arr2):
-    num_elements = len(arr2)
-    start = [(index, value) for (index, value) in enumerate(arr2)]
+def mix(start, original):
+    num_elements = len(start)
     arr = start[::]
 
-    for (index, num) in start:
+    for (index, num) in original:
         start_index = arr.index((index, num))
         shift = num
 
@@ -59,7 +59,16 @@ def sort_arr(arr):
 
 
 def part2():
-    pass
+    original = [int(line.strip()) * 811589153 for line in open("day20.txt").readlines()]
+    original = [(index, value) for (index, value) in enumerate(original)]
+    arr = original[::]
+
+    total = None
+
+    for _ in range(10):
+        arr, total = mix(arr, original)
+
+    print(total)
 
 
 def test(in_arr, expected_arr, expected_sum):
@@ -74,9 +83,9 @@ def test(in_arr, expected_arr, expected_sum):
 
 
 def main():
-    test([1, 2, -3, 3, -2, 0, 4], [0, 3, -2, 1, 2, -3, 4], 3)
-    test([12, 0, 1, 2, 3, 4], [0, 3, 12, 4, 1, 2], 13)
-    test([-12, 0, -4, -3, -2, -1], [0, -4, -2, -12, -1, -3], -3)
+    # test([1, 2, -3, 3, -2, 0, 4], [0, 3, -2, 1, 2, -3, 4], 3)
+    # test([12, 0, 1, 2, 3, 4], [0, 3, 12, 4, 1, 2], 13)
+    # test([-12, 0, -4, -3, -2, -1], [0, -4, -2, -12, -1, -3], -3)
     part1()
     part2()
 
