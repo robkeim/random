@@ -1,36 +1,37 @@
 def part1():
     start = [int(line.strip()) for line in open("day20.txt").readlines()]
-    start = [(index, value) for (index, value) in enumerate(start)]
-    print(mix(start, start)[1])
+    print(mix(start, 1)[1])
 
 
-def mix(start, original):
+def mix(start, num_rounds):
     num_elements = len(start)
+    start = [(index, value) for (index, value) in enumerate(start)]
     arr = start[::]
 
-    for (index, num) in original:
-        start_index = arr.index((index, num))
-        shift = num
+    for _ in range(num_rounds):
+        for (index, num) in start:
+            start_index = arr.index((index, num))
+            shift = num
 
-        if shift < 0:
-            offset = (shift % (num_elements - 1)) - num_elements
-            shift = num_elements + offset #- 1
-            assert 0 <= shift < num_elements
-        elif shift > 0:
-            shift %= num_elements - 1
+            if shift < 0:
+                offset = (shift % (num_elements - 1)) - num_elements
+                shift = num_elements + offset #- 1
+                assert 0 <= shift < num_elements
+            elif shift > 0:
+                shift %= num_elements - 1
 
-        end_index = start_index + shift
-        if end_index >= num_elements:
-            end_index %= num_elements
+            end_index = start_index + shift
+            if end_index >= num_elements:
+                end_index %= num_elements
 
-        if start_index < end_index:
-            arr.insert(end_index + 1, (index, num))
-            del arr[start_index]
-        elif start_index > end_index:
-            del arr[start_index]
-            arr.insert(end_index + 1, (index, num))
-        else:
-            pass  # Nothing to do
+            if start_index < end_index:
+                arr.insert(end_index + 1, (index, num))
+                del arr[start_index]
+            elif start_index > end_index:
+                del arr[start_index]
+                arr.insert(end_index + 1, (index, num))
+            else:
+                pass  # Nothing to do
 
     zero_index = None
     for (index, (_, num)) in enumerate(arr):
@@ -59,20 +60,12 @@ def sort_arr(arr):
 
 
 def part2():
-    original = [int(line.strip()) * 811589153 for line in open("day20.txt").readlines()]
-    original = [(index, value) for (index, value) in enumerate(original)]
-    arr = original[::]
-
-    total = None
-
-    for _ in range(10):
-        arr, total = mix(arr, original)
-
-    print(total)
+    start = [int(line.strip()) * 811589153 for line in open("day20.txt").readlines()]
+    print(mix(start, 10)[1])
 
 
 def test(in_arr, expected_arr, expected_sum):
-    actual_arr, actual_sum = mix(in_arr)
+    actual_arr, actual_sum = mix(in_arr, 1)
     actual_arr = sort_arr(actual_arr)
 
     if expected_arr != actual_arr:
@@ -83,9 +76,9 @@ def test(in_arr, expected_arr, expected_sum):
 
 
 def main():
-    # test([1, 2, -3, 3, -2, 0, 4], [0, 3, -2, 1, 2, -3, 4], 3)
-    # test([12, 0, 1, 2, 3, 4], [0, 3, 12, 4, 1, 2], 13)
-    # test([-12, 0, -4, -3, -2, -1], [0, -4, -2, -12, -1, -3], -3)
+    test([1, 2, -3, 3, -2, 0, 4], [0, 3, -2, 1, 2, -3, 4], 3)
+    test([12, 0, 1, 2, 3, 4], [0, 3, 12, 4, 1, 2], 13)
+    test([-12, 0, -4, -3, -2, -1], [0, -4, -2, -12, -1, -3], -3)
     part1()
     part2()
 
