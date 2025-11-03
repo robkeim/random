@@ -1,0 +1,3 @@
+Felmarsar,Soragrath,Maralsarix,Shaelverax,Fyndlar,Shaemnylor,Durnfyr,Zornylor,Malithloris,Ralkyr,Pylarquor,Ignthel,Xyrris,Iskarlith,Arknyn,Morzryn,Balththys,Ozanvynar,Ryntor,Kharaelor
+
+L7,R10,L6,R15,L11,R14,L6,R14,L16,R14,L5,R12,L5,R10,L5,R8,L5,R18,L5,R7,L7,R15,L15,R19,L6,R14,L8,R12,L5
