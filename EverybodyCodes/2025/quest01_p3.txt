@@ -1,0 +1,3 @@
+Fyrfarin,Araksyron,Zarathagrath,Krythjorath,Xyrimar,Fenulth,Dorzeth,Cynvarzorin,Drethox,Marorath,Selkrex,Dorzral,Sarneth,Fyndxaril,Glaurzal,Rythanxith,Gaerhynd,Quorluth,Quorindor,Agnarzyph,Eryaxar,Xyrgaz,Nythagrath,Quorvor,Lirrilor,Aureral,Thazvalir,Gorathasis,Urmyr,Sarneldrin
+
+L29,R32,L35,R15,L16,R44,L30,R49,L47,R22,L41,R45,L11,R44,L30,R36,L34,R36,L32,R5,L5,R28,L5,R26,L5,R47,L5,R23,L5,R17,L5,R40,L5,R13,L5,R36,L5,R49,L5,R42,L12,R31,L12,R16,L24,R24,L25,R48,L15,R11,L22,R26,L33,R45,L15,R44,L19,R5,L30

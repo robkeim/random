@@ -34,7 +34,20 @@ def part2():
 
 
 def part3():
-    pass
+    lines = [line.strip() for line in open("quest01_p3.txt").readlines()]
+    names = lines[0].split(",")
+
+    for instruction in lines[2].split(","):
+        value = int(instruction[1:])
+        value %= len(names)
+        if instruction[0] == "L":
+            value *= -1
+
+        tmp = names[0]
+        names[0] = names[value]
+        names[value] = tmp
+
+    print(names[0])
 
 
 def main():
