@@ -32,17 +32,19 @@ def divide(x, y):
 
 
 def part2():
-    raw_input = open("quest02_p2.txt").read().strip()
+    simulate("quest02_p2.txt", 101, 10)
+
+
+def simulate(filename, grid_dimension, spacing):
+    raw_input = open(filename).read().strip()
     left, right = raw_input[2:].strip("[]").split(",")
     A = [int(left), int(right)]
     num_engravings = 0
 
-    for start_y in range(101):
-        row = ""
-
-        for start_x in range(101):
+    for start_y in range(grid_dimension):
+        for start_x in range(grid_dimension):
             result = [0, 0]
-            point_under_examination = [A[0] + 10 * start_x, A[1] + 10 * start_y]
+            point_under_examination = [A[0] + spacing * start_x, A[1] + spacing * start_y]
 
             should_engrave = True
 
@@ -57,11 +59,6 @@ def part2():
 
             if should_engrave:
                 num_engravings += 1
-                row += "x"
-            else:
-                row += "."
-
-        #print(row)
 
     print(num_engravings)
 
@@ -73,7 +70,7 @@ def valid_range_to_engrave(num):
 
 
 def part3():
-    pass
+    simulate("quest02_p3.txt", 1001, 1)
 
 
 def main():
