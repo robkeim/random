@@ -3,7 +3,22 @@ def part1():
 
 
 def part2():
-    pass
+    nums = sorted([int(num) for num in open("quest03_p2.txt").read().strip().split(",")])
+    result = 0
+    num_found = 0
+    prev = None
+
+    for num in nums:
+        if num_found == 20:
+            print(result)
+            return
+
+        if num != prev:
+            result += num
+            num_found += 1
+            prev = num
+
+    assert False, "No solution found"
 
 
 def part3():
