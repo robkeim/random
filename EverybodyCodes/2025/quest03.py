@@ -1,3 +1,6 @@
+from collections import Counter
+
+
 def part1():
     print(sum(set([int(num) for num in open("quest03_p1.txt").read().strip().split(",")])))
 
@@ -22,23 +25,8 @@ def part2():
 
 
 def part3():
-    nums = sorted([int(num) for num in open("quest03_p3.txt").read().strip().split(",")])
-    result = 0
-
-    while len(nums) > 0:
-        result += 1
-        next_nums = []
-        prev = None
-
-        for num in nums:
-            if num == prev:
-                next_nums.append(num)
-            else:
-                prev = num
-
-        nums = next_nums
-
-    print(result)
+    counter = Counter([int(num) for num in open("quest03_p3.txt").read().strip().split(",")])
+    print(max(counter.values()))
 
 
 def main():
