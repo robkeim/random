@@ -22,7 +22,23 @@ def part2():
 
 
 def part3():
-    pass
+    nums = sorted([int(num) for num in open("quest03_p3.txt").read().strip().split(",")])
+    result = 0
+
+    while len(nums) > 0:
+        result += 1
+        next_nums = []
+        prev = None
+
+        for num in nums:
+            if num == prev:
+                next_nums.append(num)
+            else:
+                prev = num
+
+        nums = next_nums
+
+    print(result)
 
 
 def main():
