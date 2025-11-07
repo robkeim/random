@@ -24,7 +24,26 @@ def part2():
 
 
 def part3():
-    pass
+    gears = [line.strip() for line in open("quest04_p3.txt").readlines()]
+
+    multiplier = 1
+
+    for i in range(len(gears) - 1):
+        first = gears[i]
+        if "|" in first:
+            first = int(first.split("|")[1])
+        else:
+            first = int(first)
+
+        second = gears[i + 1]
+        if "|" in second:
+            second = int(second.split("|")[0])
+        else:
+            second = int(second)
+
+        multiplier *= first / second
+
+    print(math.floor(100 * multiplier))
 
 
 def main():
