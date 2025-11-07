@@ -13,7 +13,14 @@ def part1():
 
 
 def part2():
-    pass
+    gears = [int(line.strip()) for line in open("quest04_p2.txt").readlines()]
+
+    multiplier = 1
+
+    for i in range(len(gears) - 1):
+        multiplier *= gears[i] / gears[i + 1]
+
+    print(math.ceil(10000000000000 / multiplier))
 
 
 def part3():
