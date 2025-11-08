@@ -1,6 +1,9 @@
 def part1():
-    values = [int(value) for value in open("quest05_p1.txt").read().strip().split(":")[1].split(",")]
+    print(calculate_quality(open("quest05_p1.txt").read().strip()))
 
+
+def calculate_quality(line):
+    values = [int(value) for value in line.split(":")[1].split(",")]
     fishbone = [[None, values[0], None]]
 
     for value in values[1:]:
@@ -19,11 +22,12 @@ def part1():
         if not added:
             fishbone.append([None, value, None])
 
-    print("".join([str(row[1]) for row in fishbone]))
+    return int("".join([str(row[1]) for row in fishbone]))
 
 
 def part2():
-    pass
+    qualities = [calculate_quality(line) for line in open("quest05_p2.txt").readlines()]
+    print(max(qualities) - min(qualities))
 
 
 def part3():
