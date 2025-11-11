@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 def part1():
     line = open("quest06_p1.txt").read().strip()
     result = 0
@@ -13,7 +16,17 @@ def part1():
 
 
 def part2():
-    pass
+    line = open("quest06_p2.txt").read().strip()
+    mentors = defaultdict(int)
+    result = 0
+
+    for char in line:
+        if char.isupper():
+            mentors[char] += 1
+        else:
+            result += mentors[char.upper()]
+
+    print(result)
 
 
 def part3():
