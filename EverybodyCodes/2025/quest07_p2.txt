@@ -1,0 +1,28 @@
+Ravzor,Cragrax,Belralis,Durncion,Caelzor,Galzor,Galtaril,Ignralis,Bellith,Ascalcion,Craglon,Ravralis,Ignsin,Ravtaril,Xarrax,Caelsin,Xarlon,Durnzor,Xarthel,Xarsin,Ravlith,Gallon,Durnralis,Belthel,Cragthel,Xartaril,Gallith,Ignzor,Cragcion,Durnkynar,Durnsin,Ascalkynar,Caelkynar,Durnthel,Caelcion,Ignlith,Cragralis,Cragtaril,Bellon,Ascalralis,Cragzor,Xendkynar,Xendthel,Ascaltaril,Ascalsin,Xendrax,Ascallon,Ravcion,Belcion,Galthel,Ignkynar,Caeltaril,Cragkynar,Xarcion,Xarralis,Durnlon,Belrax,Ascalthel,Xendzor,Cragsin,Galralis,Igntaril,Ignlon,Ascallith,Ignthel,Xendlon,Galkynar,Igncion,Beltaril,Ravkynar,Durntaril,Xarlith,Galsin,Caelralis,Belsin,Ravlon,Caelthel,Galcion,Ignrax,Xendtaril,Caellith,Durnlith,Xendsin,Belzor,Xarzor,Xarkynar,Belkynar,Caelrax,Caellon,Xendcion,Galrax,Xendralis,Ascalzor,Durnrax,Ravsin,Ravrax,Ascalrax,Ravthel,Craglith,Xendlith
+
+k > y
+A > s
+u > v
+r > i,a,r,k,c,t,z,l,s,v,n
+a > l,r,v,x,g
+g > r,k,c,t,z,l,s,v
+D > u
+e > l,v
+n > a,r,k,c,t,z,l,s,d
+I > g
+t > a,h
+R > a
+h > e
+G > a
+y > n
+B > e
+c > i,a
+s > i,v
+C > r,a
+v > r,k,c,t,z,l,s
+l > t,i,o,r,k,c,z,l,s
+d > r,k,c,t,z,l,s
+i > l,s,o,t,n
+X > a,e
+z > o
+o > n,r
