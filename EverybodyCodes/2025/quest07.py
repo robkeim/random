@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 def part1():
     lines = [line.strip() for line in open("quest07_p1.txt").readlines()]
     names = lines[0].split(",")
@@ -50,7 +53,44 @@ def part2():
 
 
 def part3():
-    pass
+    lines = [line.strip() for line in open("quest07_p3.txt").readlines()]
+    prefixes = lines[0].split(",")
+
+    mappings = defaultdict(set)
+
+    for line in lines[2:]:
+        first, remaining = line.split(" > ")
+        for char in remaining.split(","):
+            mappings[first].add(char)
+
+    result = set()
+
+    for prefix in prefixes:
+        valid_prefix = True
+
+        for i in range(len(prefix) - 1):
+            if prefix[i + 1] not in mappings[prefix[i]]:
+                valid_prefix = False
+                break
+
+        if valid_prefix:
+            for target_length in range(7, 12):
+                remaining = target_length - len(prefix)
+                result |= all_combinations(prefix, remaining, mappings)
+
+    print(len(result))
+
+
+def all_combinations(word, remaining, mappings):
+    if remaining == 0:
+        return {word}
+
+    result = set()
+
+    for next_char in mappings[word[-1]]:
+        result |= all_combinations(word + next_char, remaining - 1, mappings)
+
+    return result
 
 
 def main():
