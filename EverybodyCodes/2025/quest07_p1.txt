@@ -1,0 +1,15 @@
+Baladarin,Azthar,Azzyph,Talthar,Balthar,Balzyph,Azadarin,Taladarin,Talzyph
+
+r > i
+d > a
+p > h
+T > a
+y > p
+h > a
+a > d,r,b
+B > a
+z > a,y,b
+i > n
+l > t,a,z
+t > h
+A > z
