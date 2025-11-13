@@ -11,7 +11,24 @@ def part1():
 
 
 def part2():
-    pass
+    nails = [int(nail) for nail in open("quest08_p2.txt").read().strip().split(",")]
+
+    segments = []
+    result = 0
+
+    for i in range(len(nails) - 1):
+        small = nails[i]
+        big = nails[i + 1]
+
+        for small_test, big_test in segments:
+            sorted_values = "".join([values[1] for values in sorted([(small, "A"), (big, "A"), (small_test, "B"), (big_test, "B")])])
+
+            if (sorted_values == "ABAB" or sorted_values == "BABA") and len({small, big, small_test, big_test}) == 4:
+                result += 1
+
+        segments.append((small, big))
+
+    print(result)
 
 
 def part3():
