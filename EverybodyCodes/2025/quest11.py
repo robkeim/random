@@ -42,7 +42,37 @@ def calculate_checksum(columns):
 
 
 def part2():
-    pass
+    columns = [int(line.strip()) for line in open("quest11_p2.txt").readlines()]
+
+    # Phase one
+    has_moved = True
+    round_number = 0
+
+    while has_moved:
+        has_moved = False
+        round_number += 1
+
+        for i in range(len(columns) - 1):
+            if columns[i] > columns[i + 1]:
+                columns[i] -= 1
+                columns[i + 1] += 1
+                has_moved = True
+
+    # Phase two
+    has_moved = True
+
+    while has_moved:
+        has_moved = False
+        round_number += 1
+
+        for i in range(len(columns) - 1):
+            if columns[i] < columns[i + 1]:
+                columns[i] += 1
+                columns[i + 1] -= 1
+                has_moved = True
+
+    # Subtract the two loops where we're just checking that there are no more moves
+    print(round_number - 2)
 
 
 def part3():
