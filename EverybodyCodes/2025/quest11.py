@@ -76,12 +76,19 @@ def part2():
 
 
 def part3():
-    pass
+    columns = [int(line.strip()) for line in open("quest11_p3.txt").readlines()]
+
+    # The data is sorted so only the second part of the algorithm applies
+    # In the second phase one duck is moved at each step
+
+    mean = sum(columns) // len(columns)
+
+    print(sum([mean - column for column in columns if column < mean]))
 
 
 def main():
-    part1()
-    part2()
+    #part1()
+    #part2()
     part3()
 
 
