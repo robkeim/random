@@ -1,5 +1,9 @@
 def part1():
     grid = [line.strip() for line in open("quest14_p1.txt").readlines()]
+    run_simulation(grid, 10)
+
+
+def run_simulation(grid, num_rounds):
     num_r = len(grid)
     num_c = len(grid[0])
     active = set()
@@ -11,7 +15,7 @@ def part1():
 
     result = 0
 
-    for _ in range(10):
+    for _ in range(num_rounds):
         next_active = set()
 
         for r in range(num_r):
@@ -24,7 +28,8 @@ def part1():
                     if (next_r, next_c) in active:
                         num_active_neighbors += 1
 
-                if ((r, c) in active and num_active_neighbors % 2 == 1) or ((r, c) not in active and num_active_neighbors % 2 == 0):
+                if ((r, c) in active and num_active_neighbors % 2 == 1) or (
+                        (r, c) not in active and num_active_neighbors % 2 == 0):
                     next_active.add((r, c))
 
         result += len(next_active)
@@ -34,7 +39,8 @@ def part1():
 
 
 def part2():
-    pass
+    grid = [line.strip() for line in open("quest14_p2.txt").readlines()]
+    run_simulation(grid, 2025)
 
 
 def part3():
