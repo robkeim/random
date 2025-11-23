@@ -3,6 +3,10 @@ from collections import deque
 
 def part1():
     instructions = open("quest15_p1.txt").read().strip().split(",")
+    solve(instructions)
+
+
+def solve(instructions):
     walls = set()
     r = 0
     c = 0
@@ -61,7 +65,8 @@ def print_grid(walls):
 
 
 def part2():
-    pass
+    instructions = open("quest15_p2.txt").read().strip().split(",")
+    solve(instructions)
 
 
 def part3():
