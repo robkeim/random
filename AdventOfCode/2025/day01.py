@@ -20,7 +20,22 @@ def part1():
 
 
 def part2():
-    pass
+    lines = [line.strip() for line in open("day01.txt").readlines()]
+    dial_pos = 50
+    password = 0
+
+    for line in lines:
+        direction = line[0]
+        amount = int(line[1:])
+        increment = 1 if direction == "R" else -1
+
+        for _ in range(amount):
+            dial_pos = (dial_pos + increment + 100) % 100
+
+            if dial_pos == 0:
+                password += 1
+
+    print(password)
 
 
 def main():
